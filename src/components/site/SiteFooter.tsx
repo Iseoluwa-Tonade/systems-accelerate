@@ -8,12 +8,8 @@ export function SiteFooter() {
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <div className="flex items-center gap-2.5">
-              <span className="relative flex h-7 w-7 items-center justify-center rounded-md bg-gradient-to-br from-accent-blue to-accent-indigo">
-                <svg viewBox="0 0 24 24" className="h-4 w-4 text-background" fill="none" stroke="currentColor" strokeWidth="2.4">
-                  <path d="M5 19L12 5l7 14M9 14h6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
-              <span className="font-display text-base font-semibold">Northbound</span>
+              <img src="/supertelque-logo.png" alt="SuperTelque" className="h-7 w-7 rounded-md object-contain" />
+              <span className="font-display text-base font-semibold">SuperTelque</span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
               Technical revenue operators building the GTM infrastructure behind modern B2B
@@ -77,7 +73,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-14 flex flex-col-reverse items-start justify-between gap-4 border-t border-border pt-6 text-xs text-muted-foreground md:flex-row md:items-center">
-          <div>© {new Date().getFullYear()} Northbound RevOps. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} SuperTelque RevOps. All rights reserved.</div>
           <div className="flex items-center gap-4">
             <span className="font-mono">SOC2 ready · GDPR compliant</span>
             <a href="#" className="hover:text-foreground">LinkedIn</a>

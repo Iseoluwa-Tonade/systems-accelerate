@@ -5,9 +5,9 @@ import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — Northbound RevOps" },
+      { title: "Services — SuperTelque RevOps" },
       { name: "description", content: "RevOps, GTM engineering, CRM architecture, outbound systems, data & analytics and AI revenue systems for B2B technology companies." },
-      { property: "og:title", content: "Services — Northbound RevOps" },
+      { property: "og:title", content: "Services — SuperTelque RevOps" },
       { property: "og:description", content: "Six disciplines, one revenue engine. Architecture diagrams for every service." },
     ],
   }),

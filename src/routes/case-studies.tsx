@@ -5,9 +5,9 @@ import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
 export const Route = createFileRoute("/case-studies")({
   head: () => ({
     meta: [
-      { title: "Case Studies — Northbound RevOps" },
+      { title: "Case Studies — SuperTelque RevOps" },
       { name: "description", content: "Teardowns of RevOps and GTM engineering engagements: B2B SaaS pipeline transformation, fintech automation, AI startup lead routing." },
-      { property: "og:title", content: "Case Studies — Northbound RevOps" },
+      { property: "og:title", content: "Case Studies — SuperTelque RevOps" },
       { property: "og:description", content: "Challenge · Solution · Stack · Outcome — three engagement teardowns." },
     ],
   }),

@@ -6,9 +6,9 @@ import { Eyebrow } from "@/components/site/Eyebrow";
 export const Route = createFileRoute("/book")({
   head: () => ({
     meta: [
-      { title: "Book a Strategy Session — Northbound RevOps" },
+      { title: "Book a Strategy Session — SuperTelque RevOps" },
       { name: "description", content: "Book a 45-minute revenue systems strategy session. Stack assessment, automation opportunities, CRM review and a written roadmap." },
-      { property: "og:title", content: "Book a Strategy Session — Northbound RevOps" },
+      { property: "og:title", content: "Book a Strategy Session — SuperTelque RevOps" },
       { property: "og:description", content: "Estimated value $2,500 · 45 minutes · senior RevOps engineer." },
     ],
   }),

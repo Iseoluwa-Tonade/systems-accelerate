@@ -5,9 +5,9 @@ import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — Northbound RevOps" },
+      { title: "About — SuperTelque RevOps" },
       { name: "description", content: "Technical revenue operators building the GTM infrastructure behind B2B technology companies in the US, UK, and Canada." },
-      { property: "og:title", content: "About — Northbound RevOps" },
+      { property: "og:title", content: "About — SuperTelque RevOps" },
       { property: "og:description", content: "RevOps expertise. GTM systems thinking. Automation engineering. AI implementation." },
     ],
   }),
@@ -43,7 +43,7 @@ function AboutPage() {
           </h1>
           <div className="mt-10 grid gap-10 lg:grid-cols-12">
             <p className="lg:col-span-7 text-lg leading-relaxed text-muted-foreground">
-              Northbound is a small, senior team of operators who have run RevOps, built GTM
+              SuperTelque is a small, senior team of operators who have run RevOps, built GTM
               engineering functions, and shipped automation inside enterprise revenue orgs.
               We bring that operating muscle to founders and CROs who want infrastructure, not slides.
             </p>

@@ -5,9 +5,9 @@ import { Eyebrow } from "@/components/site/Eyebrow";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Northbound RevOps" },
-      { name: "description", content: "Reach the Northbound RevOps team. We operate across the United States, United Kingdom and Canada." },
-      { property: "og:title", content: "Contact — Northbound RevOps" },
+      { title: "Contact — SuperTelque RevOps" },
+      { name: "description", content: "Reach the SuperTelque RevOps team. We operate across the United States, United Kingdom and Canada." },
+      { property: "og:title", content: "Contact — SuperTelque RevOps" },
       { property: "og:description", content: "Email, LinkedIn and a direct contact form for B2B revenue infrastructure engagements." },
     ],
   }),
@@ -35,9 +35,9 @@ function ContactPage() {
                 Direct
               </div>
               <dl className="mt-4 space-y-4 text-sm">
-                <Row k="Email" v="hello@northbound.systems" />
+                <Row k="Email" v="hello@supertelque.systems" />
                 <Row k="Phone" v="+1 (212) 555 0140" />
-                <Row k="LinkedIn" v="linkedin.com/company/northbound" />
+                <Row k="LinkedIn" v="linkedin.com/company/supertelque" />
               </dl>
             </div>
 

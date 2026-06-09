@@ -27,14 +27,9 @@ export function SiteHeader() {
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <span className="relative flex h-7 w-7 items-center justify-center rounded-md bg-gradient-to-br from-accent-blue to-accent-indigo">
-            <span className="absolute inset-0 rounded-md ring-1 ring-inset ring-white/20" />
-            <svg viewBox="0 0 24 24" className="h-4 w-4 text-background" fill="none" stroke="currentColor" strokeWidth="2.4">
-              <path d="M5 19L12 5l7 14M9 14h6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
+          <img src="/supertelque-logo.png" alt="SuperTelque" className="h-7 w-7 rounded-md object-contain" />
           <div className="flex items-baseline gap-1.5">
-            <span className="font-display text-[15px] font-semibold tracking-tight">Northbound</span>
+            <span className="font-display text-[15px] font-semibold tracking-tight">SuperTelque</span>
             <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-muted-foreground">/revops</span>
           </div>
         </Link>
