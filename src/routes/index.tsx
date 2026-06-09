@@ -39,12 +39,6 @@ function Hero() {
       <div className="absolute inset-x-0 top-0 h-[600px] bg-grid opacity-[0.35] [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]" />
       <div className="mx-auto grid max-w-7xl gap-14 px-6 pt-20 pb-16 lg:grid-cols-12 lg:gap-10 lg:pt-28">
         <div className="lg:col-span-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-[color:var(--surface)]/70 px-3 py-1 text-[12px] backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent-teal)] animate-pulse-dot" />
-            <span className="text-muted-foreground">Now booking Q3 — </span>
-            <span className="font-medium">3 spots left</span>
-          </div>
-
           <h1 className="mt-6 font-display text-[44px] font-semibold leading-[1.04] tracking-[-0.025em] sm:text-[56px] lg:text-[68px]">
             Architecting
             <br />
