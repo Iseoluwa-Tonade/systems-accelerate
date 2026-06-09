@@ -39,10 +39,10 @@ function ProductShowcase() {
         alt="GTM Command Center"
         className="w-full h-auto object-cover select-none transition-transform duration-500 group-hover:scale-[1.01]"
       />
-      {/* Dark glassmorphic overlay to blend it in */}
-      <div className="absolute inset-0 bg-background/55 backdrop-blur-[1.5px] pointer-events-none mix-blend-normal" />
+      {/* Light glassmorphic overlay to blend it in */}
+      <div className="absolute inset-0 bg-background/5 backdrop-blur-[0.2px] pointer-events-none mix-blend-normal" />
       {/* Vignette effect to fade edges into background */}
-      <div className="absolute inset-0 shadow-[inset_0_0_50px_rgba(11,16,32,0.95)] pointer-events-none" />
+      <div className="absolute inset-0 shadow-[inset_0_0_30px_rgba(11,16,32,0.6)] pointer-events-none" />
       {/* Accent glow corner */}
       <div className="absolute -right-20 -bottom-20 h-60 w-60 rounded-full bg-accent-blue/10 blur-3xl pointer-events-none" />
     </div>
@@ -89,11 +89,7 @@ function Hero() {
             </Link>
           </div>
 
-          <dl className="mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-border pt-6">
-            <Stat label="Pipeline managed" value="$120M+" />
-            <Stat label="Velocity lift" value="3.5×" />
-            <Stat label="Automations" value="100+" />
-          </dl>
+
         </div>
 
         <div className="lg:col-span-6">

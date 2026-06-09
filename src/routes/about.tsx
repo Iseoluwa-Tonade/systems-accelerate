@@ -39,29 +39,20 @@ function AboutPage() {
         <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:pt-32">
           <Eyebrow>About</Eyebrow>
           <h1 className="mt-5 max-w-4xl font-display text-5xl font-semibold tracking-tight sm:text-6xl lg:text-[76px] lg:leading-[1.02]">
-            We are <span className="text-gradient-brand">technical revenue operators</span> — not a marketing agency.
+            We are <span className="text-gradient-brand">technical revenue operators</span> not a marketing agency.
           </h1>
           <div className="mt-10 grid gap-10 lg:grid-cols-12">
             <p className="lg:col-span-7 text-lg leading-relaxed text-muted-foreground">
               SuperTelque is a small, senior team of operators who have run RevOps, built GTM
               engineering functions, and shipped automation inside enterprise revenue orgs.
-              We bring that operating muscle to founders and CROs who want infrastructure, not slides.
+              We bring that operating experience to founders and CROs who want infrastructure, not slides.
             </p>
-            <dl className="lg:col-span-5 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border">
-              {[
-                ["$120M+", "Pipeline managed"],
-                ["100+", "Automations shipped"],
-                ["50+", "CRM implementations"],
-                ["HQ", "Lagos, Nigeria"],
-              ].map(([v, l]) => (
-                <div key={l as string} className="bg-background p-5">
-                  <div className="font-display text-3xl font-semibold tracking-tight">{v}</div>
-                  <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                    {l}
-                  </div>
-                </div>
-              ))}
-            </dl>
+            <div className="lg:col-span-5 surface-card p-6 flex flex-col justify-center items-center text-center">
+              <div className="font-display text-3xl font-semibold tracking-tight">HQ</div>
+              <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                Lagos, Nigeria
+              </div>
+            </div>
           </div>
         </div>
       </section>

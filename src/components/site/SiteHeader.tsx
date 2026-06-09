@@ -21,7 +21,7 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`fixed left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-5xl transition-all duration-300 ease-out border ${
+      className={`fixed left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-5xl transition-[top,padding,background-color,border-color,transform,box-shadow] duration-300 ease-out border ${
         open
           ? "top-3 rounded-2xl bg-background/95 border-border/80 shadow-2xl backdrop-blur-xl p-5"
           : scrolled
@@ -43,8 +43,8 @@ export function SiteHeader() {
             <Link
               key={n.to}
               to={n.to}
-              className="px-3 py-1.5 rounded-full text-[13px] font-medium text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition-all"
-              activeProps={{ className: "px-3 py-1.5 rounded-full text-[13px] font-medium text-foreground bg-foreground/10" }}
+              className="px-3 py-1.5 rounded-full text-[13px] font-medium text-muted-foreground hover:text-foreground hover:bg-foreground/5 border border-transparent transition-all"
+              activeProps={{ className: "!text-foreground bg-foreground/10 !border-border/80 shadow-sm" }}
               activeOptions={{ exact: n.to === "/" }}
             >
               {n.label}
@@ -87,8 +87,8 @@ export function SiteHeader() {
                 key={n.to}
                 to={n.to}
                 onClick={() => setOpen(false)}
-                className="py-2.5 px-3 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition-colors"
-                activeProps={{ className: "py-2.5 px-3 rounded-lg text-sm text-foreground bg-foreground/10" }}
+                className="py-2.5 px-3 rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-foreground/5 border border-transparent transition-colors"
+                activeProps={{ className: "!text-foreground bg-foreground/10 !border-border/50" }}
                 activeOptions={{ exact: n.to === "/" }}
               >
                 {n.label}
