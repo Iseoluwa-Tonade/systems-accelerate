@@ -6,7 +6,7 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — SuperTelque RevOps" },
-      { name: "description", content: "Reach the SuperTelque RevOps team. We operate across the United States, United Kingdom and Canada." },
+      { name: "description", content: "Reach the SuperTelque RevOps team. We operate across Nigeria." },
       { property: "og:title", content: "Contact — SuperTelque RevOps" },
       { property: "og:description", content: "Email, LinkedIn and a direct contact form for B2B revenue infrastructure engagements." },
     ],
@@ -35,25 +35,19 @@ function ContactPage() {
                 Direct
               </div>
               <dl className="mt-4 space-y-4 text-sm">
-                <Row k="Email" v="hello@supertelque.systems" />
-                <Row k="Phone" v="+1 (212) 555 0140" />
+                <Row k="Email" v="support@supertelque.com" />
+                <Row k="Phone" v="+234 (1) 555 0140" />
                 <Row k="LinkedIn" v="linkedin.com/company/supertelque" />
               </dl>
             </div>
 
             <div className="surface-card overflow-hidden">
               <RegionsMap />
-              <div className="grid grid-cols-3 divide-x divide-border border-t border-border">
-                {[
-                  ["United States", "NY · SF"],
-                  ["United Kingdom", "London"],
-                  ["Canada", "Toronto"],
-                ].map(([r, c]) => (
-                  <div key={r} className="p-4">
-                    <div className="font-display text-sm font-semibold">{r}</div>
-                    <div className="font-mono text-[11px] text-muted-foreground">{c}</div>
-                  </div>
-                ))}
+              <div className="border-t border-border">
+                <div className="p-4 text-center">
+                  <div className="font-display text-sm font-semibold">Nigeria</div>
+                  <div className="font-mono text-[11px] text-muted-foreground">Lagos</div>
+                </div>
               </div>
             </div>
 
@@ -100,9 +94,9 @@ function ContactPage() {
 
 function Row({ k, v }: { k: string; v: string }) {
   return (
-    <div className="flex items-baseline justify-between gap-6 border-b border-border pb-3 last:border-b-0 last:pb-0">
-      <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{k}</dt>
-      <dd className="font-display text-sm">{v}</dd>
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-6 border-b border-border pb-3 last:border-b-0 last:pb-0">
+      <dt className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{k}</dt>
+      <dd className="font-display text-sm break-all text-foreground/90">{v}</dd>
     </div>
   );
 }
@@ -142,14 +136,11 @@ function RegionsMap() {
     }
   }
   const pins: { x: number; y: number; label: string }[] = [
-    { x: 130, y: 90, label: "NY" },
-    { x: 95, y: 80, label: "SF" },
-    { x: 100, y: 70, label: "Toronto" },
-    { x: 290, y: 80, label: "London" },
+    { x: 290, y: 125, label: "Lagos" },
   ];
   return (
-    <div className="relative bg-[color:var(--surface)]/60">
-      <svg viewBox="0 0 600 200" className="block w-full h-44">
+    <div className="relative bg-[color:var(--surface)]/60 overflow-hidden">
+      <svg viewBox="0 0 600 200" className="block w-full h-auto aspect-[3/1]">
         {dots.map(([x, y], i) => (
           <circle key={i} cx={x} cy={y} r="1.1" fill="var(--muted-foreground)" opacity="0.35" />
         ))}

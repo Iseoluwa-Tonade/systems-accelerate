@@ -6,7 +6,7 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About — SuperTelque RevOps" },
-      { name: "description", content: "Technical revenue operators building the GTM infrastructure behind B2B technology companies in the US, UK, and Canada." },
+      { name: "description", content: "Technical revenue operators building the GTM infrastructure behind B2B technology companies in Nigeria." },
       { property: "og:title", content: "About — SuperTelque RevOps" },
       { property: "og:description", content: "RevOps expertise. GTM systems thinking. Automation engineering. AI implementation." },
     ],
@@ -23,12 +23,12 @@ const PRINCIPLES = [
 ];
 
 const TEAM = [
-  { role: "RevOps Strategist", name: "M. Aldridge", region: "New York" },
-  { role: "GTM Engineer", name: "S. Patel", region: "London" },
-  { role: "CRM Architect", name: "J. Okafor", region: "Toronto" },
-  { role: "Automation Specialist", name: "L. Becker", region: "Berlin" },
-  { role: "Data Analyst", name: "R. Tanaka", region: "Vancouver" },
-  { role: "AI Engineer", name: "K. Halberg", region: "Brooklyn" },
+  { role: "RevOps Strategist", name: "M. Aldridge", region: "Lagos" },
+  { role: "GTM Engineer", name: "S. Patel", region: "Lagos" },
+  { role: "CRM Architect", name: "J. Okafor", region: "Lagos" },
+  { role: "Automation Specialist", name: "L. Becker", region: "Lagos" },
+  { role: "Data Analyst", name: "R. Tanaka", region: "Lagos" },
+  { role: "AI Engineer", name: "K. Halberg", region: "Lagos" },
 ];
 
 function AboutPage() {
@@ -52,7 +52,7 @@ function AboutPage() {
                 ["$120M+", "Pipeline managed"],
                 ["100+", "Automations shipped"],
                 ["50+", "CRM implementations"],
-                ["3", "Countries served"],
+                ["HQ", "Lagos, Nigeria"],
               ].map(([v, l]) => (
                 <div key={l as string} className="bg-background p-5">
                   <div className="font-display text-3xl font-semibold tracking-tight">{v}</div>

@@ -64,9 +64,7 @@ export function SiteFooter() {
                 Regions
               </div>
               <ul className="mt-4 space-y-2 text-sm">
-                <li>United States</li>
-                <li>United Kingdom</li>
-                <li>Canada</li>
+                <li>Nigeria (Lagos)</li>
               </ul>
             </div>
           </div>

@@ -47,25 +47,22 @@ function BookPage() {
                 </div>
                 <div className="mt-1 font-display text-xl font-semibold">Pick a working block</div>
               </div>
-              <div className="rounded-full border border-border px-3 py-1 font-mono text-[11px] text-muted-foreground">
-                tz · America/New_York
-              </div>
             </div>
 
-            <div className="mt-6 grid grid-cols-5 gap-2">
+            <div className="mt-6 grid grid-cols-5 gap-1.5 sm:gap-2">
               {DAYS.map((d, i) => (
                 <button
                   key={d}
                   onClick={() => setDay(i)}
                   className={
-                    "rounded-lg border px-3 py-3 text-center transition " +
+                    "rounded-lg border px-1 sm:px-3 py-3 text-center transition " +
                     (day === i
                       ? "border-accent-blue/60 bg-accent-blue/10 text-foreground"
                       : "border-border bg-[color:var(--surface)]/40 text-muted-foreground hover:text-foreground")
                   }
                 >
-                  <div className="font-mono text-[10.5px] uppercase tracking-[0.18em]">{d.split(" ")[0]}</div>
-                  <div className="mt-1 font-display text-lg font-semibold">{d.split(" ")[1]}</div>
+                  <div className="font-mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.12em] sm:tracking-[0.18em]">{d.split(" ")[0]}</div>
+                  <div className="mt-1 font-display text-base sm:text-lg font-semibold">{d.split(" ")[1]}</div>
                 </button>
               ))}
             </div>
@@ -115,7 +112,7 @@ function BookPage() {
 
               <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-5">
                 <div className="font-mono text-[12px] text-muted-foreground">
-                  Confirming {DAYS[day]} · {SLOTS[slot]} ET · 45 min
+                  Confirming {DAYS[day]} · {SLOTS[slot]} WAT · 45 min
                 </div>
                 <button className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background">
                   Schedule consultation →
@@ -165,7 +162,7 @@ function BookPage() {
                 Trusted by operators at
               </div>
               <div className="mt-3 font-display text-foreground/85 leading-relaxed">
-                Series A → C SaaS, fintech and AI companies across the US, UK and Canada.
+                Series A → C SaaS, fintech and AI companies across Nigeria.
               </div>
             </div>
           </aside>

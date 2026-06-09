@@ -11,7 +11,7 @@ export const Route = createFileRoute("/")({
       { title: "SuperTelque — Revenue Systems Engineered for Scale" },
       { name: "description", content: "B2B RevOps, GTM engineering, CRM architecture and AI revenue systems built on HubSpot, Salesforce, Clay, Apollo, n8n and OpenAI." },
       { property: "og:title", content: "SuperTelque — Revenue Systems Engineered for Scale" },
-      { property: "og:description", content: "Architecting revenue systems that scale for B2B technology companies in the US, UK, and Canada." },
+      { property: "og:description", content: "Architecting revenue systems that scale for B2B technology companies in Nigeria." },
     ],
   }),
   component: HomePage,
