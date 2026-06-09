@@ -7,9 +7,9 @@ import * as L from "@/components/site/Logos";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "SuperTelque — Revenue Systems Engineered for Scale" },
+      { title: "SuperTelque | Revenue Systems Engineered for Scale" },
       { name: "description", content: "B2B RevOps, GTM engineering, CRM architecture and AI revenue systems built on HubSpot, Salesforce, Clay, Apollo, n8n and OpenAI." },
-      { property: "og:title", content: "SuperTelque — Revenue Systems Engineered for Scale" },
+      { property: "og:title", content: "SuperTelque | Revenue Systems Engineered for Scale" },
       { property: "og:description", content: "Architecting revenue systems that scale for B2B technology companies in Nigeria." },
     ],
   }),
@@ -67,7 +67,7 @@ function Hero() {
 
           <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-muted-foreground sm:text-[17px]">
             We turn disconnected sales, marketing, and customer success operations into a single
-            revenue engine — powered by automation, AI, and modern GTM infrastructure on HubSpot,
+            revenue engine, powered by automation, AI, and modern GTM infrastructure on HubSpot,
             Salesforce, Clay, Apollo and OpenAI.
           </p>
 
@@ -161,13 +161,13 @@ const SERVICES = [
   {
     code: "05",
     title: "Outbound Infrastructure",
-    desc: "Intent-driven prospecting systems using Clay and Apollo — built to ship pipeline, not vanity activity.",
+    desc: "Intent-driven prospecting systems using Clay and Apollo, built to ship pipeline, not vanity activity.",
     bullets: ["Clay waterfalls", "Apollo sequencing", "Signal-based routing"],
   },
   {
     code: "06",
     title: "Fractional Operations",
-    desc: "Embedded RevOps and GTM engineering leadership — strategic ownership without full-time overhead.",
+    desc: "Embedded RevOps and GTM engineering leadership, providing strategic ownership without full-time overhead.",
     bullets: ["Embedded leadership", "Quarterly roadmaps", "Team enablement"],
   },
 ] as const;
@@ -185,7 +185,7 @@ function Services() {
                 <span className="text-muted-foreground">One revenue engine.</span>
               </>
             }
-            description="Every engagement combines strategy, engineering and measurement. Pick a starting point — we architect the rest around it."
+            description="Every engagement combines strategy, engineering and measurement. Pick a starting point, and we architect the rest around it."
           />
           <Link
             to="/services"
@@ -230,8 +230,8 @@ function Services() {
 /* ------------------------------- METHODOLOGY ---------------------------- */
 const STEPS = [
   { k: "Audit", d: "Forensic review of pipeline, CRM, data flows and reporting. We map what exists, what breaks, and what each gap costs in revenue.", out: "Findings deck · risk model · ROI plan" },
-  { k: "Architect", d: "Design the target-state revenue stack — objects, lifecycles, integrations, attribution, AI layers — so every downstream build has a blueprint.", out: "Architecture diagram · data contracts" },
-  { k: "Automate", d: "Engineer workflows across HubSpot, Salesforce, Clay, Apollo, n8n and custom Python — versioned, monitored, owned.", out: "Production automations · runbooks" },
+  { k: "Architect", d: "Design the target-state revenue stack, detailing objects, lifecycles, integrations, attribution, and AI layers, so every downstream build has a blueprint.", out: "Architecture diagram · data contracts" },
+  { k: "Automate", d: "Engineer workflows across HubSpot, Salesforce, Clay, Apollo, n8n and custom Python, ensuring they are versioned, monitored, and owned.", out: "Production automations · runbooks" },
   { k: "Accelerate", d: "Instrument outcomes, enable the team, and run continuous optimisation against pipeline, velocity and conversion.", out: "Exec dashboards · QBR loop" },
 ] as const;
 
@@ -246,7 +246,7 @@ function Methodology() {
               Audit. Architect. Automate. <span className="text-gradient-brand">Accelerate.</span>
             </>
           }
-          description="A repeatable engineering rhythm — the same four phases every senior team uses to ship infrastructure that compounds."
+          description="A repeatable engineering rhythm, using the same four phases every senior team uses to ship infrastructure that compounds."
         />
 
         <ol className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-4">
@@ -290,7 +290,7 @@ function CommandCenterSection() {
                   <span className="text-gradient-brand">moving in real time.</span>
                 </>
               }
-              description="One operational surface that replaces five disconnected tabs. Lead flow, routing, AI scoring, and pipeline impact — observable end-to-end."
+              description="One operational surface that replaces five disconnected tabs. Lead flow, routing, AI scoring, and pipeline impact are observable end-to-end."
             />
 
             <ul className="mt-8 space-y-4 text-sm">

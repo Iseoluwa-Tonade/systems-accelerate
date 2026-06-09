@@ -5,9 +5,9 @@ import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — SuperTelque RevOps" },
+      { title: "About | SuperTelque RevOps" },
       { name: "description", content: "Technical revenue operators building the GTM infrastructure behind B2B technology companies in Nigeria." },
-      { property: "og:title", content: "About — SuperTelque RevOps" },
+      { property: "og:title", content: "About | SuperTelque RevOps" },
       { property: "og:description", content: "RevOps expertise. GTM systems thinking. Automation engineering. AI implementation." },
     ],
   }),
@@ -15,11 +15,11 @@ export const Route = createFileRoute("/about")({
 });
 
 const PRINCIPLES = [
-  { k: "Data first", d: "We build on the integrity of the model. Garbage CRM data isn't a reporting problem — it's a revenue ceiling." },
+  { k: "Data first", d: "We build on the integrity of the model. Garbage CRM data isn't just a reporting problem; it's a revenue ceiling." },
   { k: "Automation before headcount", d: "Hire a system before you hire a seat. Every recurring motion is a candidate for engineering." },
   { k: "Revenue alignment", d: "Marketing, sales and CS share one funnel, one definition, one scoreboard. No exceptions." },
   { k: "Process scalability", d: "Architect for 10×. Patch work compounds into legacy cost; clean systems compound into leverage." },
-  { k: "Measurable outcomes", d: "Every engagement reports against pipeline, velocity, conversion or cost — never activity." },
+  { k: "Measurable outcomes", d: "Every engagement reports against pipeline, velocity, conversion or cost, never activity." },
 ];
 
 const TEAM = [
@@ -38,7 +38,7 @@ function AboutPage() {
         <div className="absolute inset-0 bg-radial-glow opacity-70" />
         <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:pt-32">
           <Eyebrow>About</Eyebrow>
-          <h1 className="mt-5 max-w-4xl font-display text-5xl font-semibold tracking-tight sm:text-6xl lg:text-[76px] lg:leading-[1.02]">
+          <h1 className="mt-5 max-w-4xl font-display text-4xl font-semibold tracking-tight sm:text-6xl lg:text-[76px] lg:leading-[1.02]">
             We are <span className="text-gradient-brand">technical revenue operators</span> not a marketing agency.
           </h1>
           <div className="mt-10 grid gap-10 lg:grid-cols-12">
@@ -65,7 +65,7 @@ function AboutPage() {
             </div>
             <p className="lg:col-span-8 text-xl leading-relaxed text-foreground/85 lg:text-2xl">
               "To help B2B companies scale revenue through systems, automation, and operational
-              excellence — replacing manual work with infrastructure that compounds quarter over
+              excellence, replacing manual work with infrastructure that compounds quarter over
               quarter."
             </p>
           </div>
@@ -89,7 +89,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-[color:var(--surface)]/30 py-24">
+      <section className="border-y border-border bg-[color:var(--surface)]/30 py-24 hidden">
         <div className="mx-auto max-w-7xl px-6">
           <SectionHeader eyebrow="Team" title={<>Operators, engineers, analysts.</>} description="A deliberately small bench. The same senior person who scopes the work ships the work." />
           <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">

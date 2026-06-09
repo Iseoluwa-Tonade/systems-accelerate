@@ -5,9 +5,9 @@ import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — SuperTelque RevOps" },
+      { title: "Services | SuperTelque RevOps" },
       { name: "description", content: "RevOps, GTM engineering, CRM architecture, outbound systems, data & analytics and AI revenue systems for B2B technology companies." },
-      { property: "og:title", content: "Services — SuperTelque RevOps" },
+      { property: "og:title", content: "Services | SuperTelque RevOps" },
       { property: "og:description", content: "Six disciplines, one revenue engine. Architecture diagrams for every service." },
     ],
   }),
@@ -47,7 +47,7 @@ const SERVICES = [
     id: "data",
     code: "05",
     title: "Data & Analytics",
-    blurb: "A single source of revenue truth — built for boards, leaders and reps.",
+    blurb: "A single source of revenue truth, built for boards, leaders and reps.",
     items: ["Power BI dashboards", "Attribution modeling", "Data warehouses", "Executive reporting"],
   },
   {
@@ -227,7 +227,7 @@ function CTA() {
           Not sure where to start?
         </h2>
         <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-          Book a 45-minute working session — we'll map your current stack and recommend the next
+          Book a 45-minute working session. We'll map your current stack and recommend the next
           three moves.
         </p>
         <Link

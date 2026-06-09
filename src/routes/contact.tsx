@@ -5,9 +5,9 @@ import { Eyebrow } from "@/components/site/Eyebrow";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — SuperTelque RevOps" },
+      { title: "Contact | SuperTelque RevOps" },
       { name: "description", content: "Reach the SuperTelque RevOps team. We operate across Nigeria." },
-      { property: "og:title", content: "Contact — SuperTelque RevOps" },
+      { property: "og:title", content: "Contact | SuperTelque RevOps" },
       { property: "og:description", content: "Email, LinkedIn and a direct contact form for B2B revenue infrastructure engagements." },
     ],
   }),

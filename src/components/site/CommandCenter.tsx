@@ -122,7 +122,7 @@ export function CommandCenter() {
               </div>
               <p className="mt-2 text-[13px] leading-relaxed text-foreground/90">
                 <span className="text-foreground">Acme Corp</span> shows 4 buying signals in 7 days.
-                Recommend escalating to AE — estimated influence{" "}
+                Recommend escalating to AE, with estimated influence{" "}
                 <span className="font-medium text-foreground">+$48k pipeline</span>.
               </p>
             </div>

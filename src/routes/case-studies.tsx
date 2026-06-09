@@ -5,10 +5,10 @@ import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
 export const Route = createFileRoute("/case-studies")({
   head: () => ({
     meta: [
-      { title: "Case Studies — SuperTelque RevOps" },
+      { title: "Case Studies | SuperTelque RevOps" },
       { name: "description", content: "Teardowns of RevOps and GTM engineering engagements: B2B SaaS pipeline transformation, fintech automation, AI startup lead routing." },
-      { property: "og:title", content: "Case Studies — SuperTelque RevOps" },
-      { property: "og:description", content: "Challenge · Solution · Stack · Outcome — three engagement teardowns." },
+      { property: "og:title", content: "Case Studies | SuperTelque RevOps" },
+      { property: "og:description", content: "Challenge · Solution · Stack · Outcome: three engagement teardowns." },
     ],
   }),
   component: CaseStudiesPage,
@@ -33,7 +33,7 @@ const CASES = [
     tag: "Fintech · Series B",
     title: "Outbound automation across 3 GTM motions",
     challenge:
-      "Manual enrichment, fragmented sequences, and no signal layer — reps spent 60% of their week on list-building.",
+      "Manual enrichment, fragmented sequences, and no signal layer meant reps spent 60% of their week on list-building.",
     solution:
       "Built a Clay waterfall feeding Apollo sequences, routed via intent signals and scored by an OpenAI layer with hand-off into Salesforce.",
     stack: ["Clay", "Apollo", "Salesforce", "OpenAI", "Slack"],
@@ -72,7 +72,7 @@ function CaseStudiesPage() {
             <span className="text-gradient-brand">What it moved.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            Three field teardowns from recent engagements — challenge, architecture, stack and the
+            Three field teardowns from recent engagements covering challenge, architecture, stack and the
             metrics that changed in the boardroom.
           </p>
         </div>

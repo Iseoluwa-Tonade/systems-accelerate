@@ -73,14 +73,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SuperTelque — Revenue Systems Engineered for Scale" },
+      { title: "SuperTelque | Revenue Systems Engineered for Scale" },
       { name: "description", content: "SuperTelque architects RevOps, GTM automation, CRM and AI-powered revenue systems for B2B technology companies across Nigeria." },
       { name: "author", content: "SuperTelque" },
-      { property: "og:title", content: "SuperTelque — Revenue Systems Engineered for Scale" },
+      { property: "og:title", content: "SuperTelque | Revenue Systems Engineered for Scale" },
       { property: "og:description", content: "SuperTelque architects RevOps, GTM automation, CRM and AI-powered revenue systems for B2B technology companies across Nigeria." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "SuperTelque — Revenue Systems Engineered for Scale" },
+      { name: "twitter:title", content: "SuperTelque | Revenue Systems Engineered for Scale" },
       { name: "twitter:description", content: "SuperTelque architects RevOps, GTM automation, CRM and AI-powered revenue systems for B2B technology companies across Nigeria." },
     ],
     links: [
