@@ -72,21 +72,8 @@ function ServicesPage() {
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             Each capability ships with an architecture diagram, a measurement plan and an
-            owned runbook. Mix what you need — we sequence the rest.
+            owned runbook. Mix what you need, we sequence the rest.
           </p>
-
-          <nav className="mt-10 flex flex-wrap gap-2 border-t border-border pt-6">
-            {SERVICES.map((s) => (
-              <a
-                key={s.id}
-                href={`#${s.id}`}
-                className="rounded-full border border-border bg-[color:var(--surface)]/50 px-3 py-1.5 text-[12.5px] text-muted-foreground hover:text-foreground"
-              >
-                <span className="font-mono mr-2 text-foreground/60">{s.code}</span>
-                {s.title}
-              </a>
-            ))}
-          </nav>
         </div>
       </section>
 

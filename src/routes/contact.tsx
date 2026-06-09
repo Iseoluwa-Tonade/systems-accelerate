@@ -36,7 +36,6 @@ function ContactPage() {
               </div>
               <dl className="mt-4 space-y-4 text-sm">
                 <Row k="Email" v="support@supertelque.com" />
-                <Row k="Phone" v="+234 (1) 555 0140" />
                 <Row k="LinkedIn" v="linkedin.com/company/supertelque" />
               </dl>
             </div>
@@ -69,8 +68,9 @@ function ContactPage() {
             <Field label="Company" placeholder="Acme Inc." />
             <Field label="Role" placeholder="CRO / Head of RevOps" />
             <Field label="Email" placeholder="alex@company.com" type="email" />
-            <Field label="Phone" placeholder="+1 ..." />
-            <Select label="Current CRM" options={["HubSpot", "Salesforce", "Pipedrive", "None / building"]} />
+            <div className="sm:col-span-2">
+              <Select label="Current CRM" options={["HubSpot", "Salesforce", "Pipedrive", "None / building"]} />
+            </div>
             <div className="sm:col-span-2">
               <Label>Message</Label>
               <textarea

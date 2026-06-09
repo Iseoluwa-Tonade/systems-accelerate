@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { CommandCenter } from "@/components/site/CommandCenter";
 import { Eyebrow, SectionHeader } from "@/components/site/Eyebrow";
 import * as L from "@/components/site/Logos";
 
@@ -28,6 +27,25 @@ function HomePage() {
       <CaseStudiesPreview />
       <FinalCTA />
     </SiteLayout>
+  );
+}
+
+function ProductShowcase() {
+  return (
+    <div className="surface-card relative overflow-hidden rounded-2xl border border-border bg-background/50 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] group">
+      {/* Product Image */}
+      <img
+        src="/Employee Onboarding Process Data Visualization Infographic Presentation.png"
+        alt="GTM Command Center"
+        className="w-full h-auto object-cover select-none transition-transform duration-500 group-hover:scale-[1.01]"
+      />
+      {/* Dark glassmorphic overlay to blend it in */}
+      <div className="absolute inset-0 bg-background/55 backdrop-blur-[1.5px] pointer-events-none mix-blend-normal" />
+      {/* Vignette effect to fade edges into background */}
+      <div className="absolute inset-0 shadow-[inset_0_0_50px_rgba(11,16,32,0.95)] pointer-events-none" />
+      {/* Accent glow corner */}
+      <div className="absolute -right-20 -bottom-20 h-60 w-60 rounded-full bg-accent-blue/10 blur-3xl pointer-events-none" />
+    </div>
   );
 }
 
@@ -79,7 +97,7 @@ function Hero() {
         </div>
 
         <div className="lg:col-span-6">
-          <CommandCenter />
+          <ProductShowcase />
         </div>
       </div>
     </section>
@@ -296,7 +314,7 @@ function CommandCenterSection() {
             </ul>
           </div>
           <div className="lg:col-span-7">
-            <CommandCenter />
+            <ProductShowcase />
           </div>
         </div>
       </div>

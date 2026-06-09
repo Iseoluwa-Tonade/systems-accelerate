@@ -31,7 +31,7 @@ function BookPage() {
             Book a <span className="text-gradient-brand">revenue systems</span> strategy session.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            45 minutes with a senior RevOps engineer. We audit your stack, identify three automation
+            A meeting with a senior RevOps engineer. We audit your stack, identify three automation
             wins, and leave you with a written roadmap.
           </p>
         </div>
