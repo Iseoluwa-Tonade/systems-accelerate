@@ -64,9 +64,9 @@ function CaseStudiesPage() {
     <SiteLayout>
       <section className="relative overflow-hidden border-b border-border">
         <div className="absolute inset-0 bg-radial-glow opacity-70" />
-        <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:pt-32">
+        <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>Case studies</Eyebrow>
-          <h1 className="mt-5 max-w-4xl font-display text-5xl font-semibold tracking-tight sm:text-6xl lg:text-[72px] lg:leading-[1.03]">
+          <h1 className="mt-5 max-w-4xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
             What we shipped.
             <br />
             <span className="text-gradient-brand">What it moved.</span>
@@ -78,14 +78,14 @@ function CaseStudiesPage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-6 py-24 space-y-24 lg:space-y-32">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6 py-16 space-y-16 lg:space-y-32">
         {CASES.map((c, i) => (
           <Study key={c.title} c={c} index={i} />
         ))}
       </div>
 
-      <section className="border-t border-border py-20">
-        <div className="mx-auto max-w-4xl px-6 text-center">
+      <section className="border-t border-border py-12 lg:py-20">
+        <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
           <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
             Your engagement could be the next teardown.
           </h2>

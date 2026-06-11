@@ -23,7 +23,7 @@ export function SectionHeader({
   return (
     <div className={align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-3xl"}>
       {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-      <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-4xl lg:text-[44px] lg:leading-[1.05]">
+      <h2 className="mt-4 font-display text-2xl font-semibold tracking-tight sm:text-3xl lg:text-[44px] lg:leading-[1.05]">
         {title}
       </h2>
       {description && (

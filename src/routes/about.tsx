@@ -45,9 +45,9 @@ function AboutPage() {
     <SiteLayout>
       <section className="relative overflow-hidden border-b border-border">
         <div className="absolute inset-0 bg-radial-glow opacity-70" />
-        <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:pt-32">
+        <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>About</Eyebrow>
-          <h1 className="mt-5 max-w-4xl font-display text-4xl font-semibold tracking-tight sm:text-6xl lg:text-[76px] lg:leading-[1.02]">
+          <h1 className="mt-5 max-w-4xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[76px] lg:leading-[1.02]">
             We are <span className="text-gradient-brand">technical revenue operators</span> not a marketing agency.
           </h1>
           <div className="mt-10 grid gap-10 lg:grid-cols-12">
@@ -66,8 +66,8 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="border-b border-border bg-[color:var(--surface)]/30 py-24">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="border-b border-border bg-[color:var(--surface)]/30 py-16 lg:py-32">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <SectionHeader eyebrow="Mission" title={<>Scale revenue through systems.</>} />
@@ -81,10 +81,10 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="py-24">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="py-16 lg:py-32">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <SectionHeader eyebrow="Core principles" title={<>How we operate.</>} />
-          <ol className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-2 lg:grid-cols-5">
+          <ol className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:mt-12 md:grid-cols-2 lg:grid-cols-5">
             {PRINCIPLES.map((p, i) => (
               <li key={p.k} className="bg-background p-6">
                 <div className="font-mono text-[11px] tracking-[0.2em] text-muted-foreground">
@@ -98,8 +98,8 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-[color:var(--surface)]/20 py-24">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="border-y border-border bg-[color:var(--surface)]/20 py-16 lg:py-32">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <SectionHeader
             eyebrow="Industries"
             title={
@@ -110,7 +110,7 @@ function AboutPage() {
             description="Our systems engineered approach is sector-agnostic. Here are the core industries we've shipped revenue operations for."
           />
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
             {INDUSTRIES.map((ind, i) => {
               return (
                 <div
@@ -166,9 +166,9 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="py-24">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+      <section className="py-16 lg:py-32">
+        <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
+          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-5xl">
             Let's build something durable.
           </h2>
           <Link

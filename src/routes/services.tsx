@@ -65,9 +65,9 @@ function ServicesPage() {
       <section className="relative overflow-hidden border-b border-border">
         <div className="absolute inset-0 bg-radial-glow opacity-70" />
         <div className="absolute inset-0 bg-grid opacity-25 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]" />
-        <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:pt-32">
+        <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>Services</Eyebrow>
-          <h1 className="mt-5 max-w-3xl font-display text-5xl font-semibold tracking-tight sm:text-6xl lg:text-[72px] lg:leading-[1.03]">
+          <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
             Revenue infrastructure, <span className="text-gradient-brand">engineered.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
@@ -77,7 +77,7 @@ function ServicesPage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-6 py-24 space-y-24 lg:py-32 lg:space-y-32">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6 py-16 space-y-16 lg:py-32 lg:space-y-32">
         {SERVICES.map((s, i) => (
           <ServiceBlock key={s.id} svc={s} reverse={i % 2 === 1} />
         ))}
@@ -239,8 +239,8 @@ const WORK_ITEMS = [
 
 function WhatWeWorkOn() {
   return (
-    <section className="relative border-t border-border bg-[color:var(--surface)]/10 py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="relative border-t border-border bg-[color:var(--surface)]/10 py-16 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <SectionHeader
           eyebrow="Capabilities"
           title={
@@ -252,7 +252,7 @@ function WhatWeWorkOn() {
           description="Operational problems solved with software, triggers, and solid engineering. If it can be mapped, it can be automated."
         />
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 md:mt-14 lg:grid-cols-4">
           {WORK_ITEMS.map((item, i) => {
             return (
               <div
@@ -280,8 +280,8 @@ function WhatWeWorkOn() {
 
 function CTA() {
   return (
-    <section className="border-t border-border py-20">
-      <div className="mx-auto max-w-4xl px-6 text-center">
+    <section className="border-t border-border py-12 lg:py-20">
+      <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
         <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
           Not sure where to start?
         </h2>

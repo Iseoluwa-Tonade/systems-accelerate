@@ -4,7 +4,7 @@ export function SiteFooter() {
   return (
     <footer className="relative border-t border-border bg-background">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-blue/60 to-transparent" />
-      <div className="mx-auto max-w-7xl px-6 py-16">
+      <div className="mx-auto max-w-7xl px-4 py-12 lg:px-6 lg:py-16">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <div className="flex items-center gap-2.5">
@@ -16,13 +16,13 @@ export function SiteFooter() {
               technology companies.
             </p>
 
-            <form className="mt-6 flex max-w-sm gap-2" onSubmit={(e) => e.preventDefault()}>
+            <form className="mt-6 flex flex-col sm:flex-row max-w-sm gap-2" onSubmit={(e) => e.preventDefault()}>
               <input
                 type="email"
                 placeholder="you@company.com"
-                className="flex-1 rounded-md border border-border bg-surface px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                className="w-full sm:flex-1 rounded-md border border-border bg-surface px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
               />
-              <button className="rounded-md bg-foreground px-3 py-2 text-sm font-medium text-background">
+              <button className="w-full sm:w-auto rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background">
                 Subscribe
               </button>
             </form>
@@ -31,7 +31,7 @@ export function SiteFooter() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 lg:col-span-8 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-8 lg:col-span-8 lg:grid-cols-4 lg:gap-8">
             <FooterCol
               title="Company"
               links={[
@@ -70,7 +70,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col-reverse items-start justify-between gap-4 border-t border-border pt-6 text-xs text-muted-foreground md:flex-row md:items-center">
+        <div className="mt-10 flex flex-col-reverse items-start justify-between gap-4 border-t border-border pt-6 text-xs text-muted-foreground md:mt-14 md:flex-row md:items-center">
           <div>© {new Date().getFullYear()} SuperTelque RevOps. All rights reserved.</div>
           <div className="flex items-center gap-4">
             <span className="font-mono">SOC2 ready · GDPR compliant</span>

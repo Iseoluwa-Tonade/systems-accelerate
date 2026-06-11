@@ -25,9 +25,9 @@ function BookPage() {
     <SiteLayout>
       <section className="relative overflow-hidden border-b border-border">
         <div className="absolute inset-0 bg-radial-glow opacity-70" />
-        <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-12 lg:pt-32">
+        <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-10 lg:pt-32 lg:px-6">
           <Eyebrow>Book a session</Eyebrow>
-          <h1 className="mt-5 max-w-3xl font-display text-5xl font-semibold tracking-tight sm:text-6xl lg:text-[68px] lg:leading-[1.03]">
+          <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
             Book a <span className="text-gradient-brand">revenue systems</span> strategy session.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
@@ -37,7 +37,7 @@ function BookPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:py-20">
+      <section className="mx-auto max-w-7xl px-4 lg:px-6 py-16 lg:py-20">
         <div className="grid gap-8 lg:grid-cols-12">
           <div className="lg:col-span-8 surface-card p-6 lg:p-8">
             <div className="flex items-center justify-between">

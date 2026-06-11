@@ -78,9 +78,9 @@ function Hero() {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 bg-radial-glow pointer-events-none" />
       <div className="absolute inset-x-0 top-0 h-[600px] bg-grid opacity-[0.35] [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]" />
-      <div className="mx-auto grid max-w-7xl gap-14 px-6 pt-20 pb-16 lg:grid-cols-12 lg:gap-10 lg:pt-28">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 pt-14 pb-12 lg:grid-cols-12 lg:gap-10 lg:pt-28 lg:px-6">
         <div className="lg:col-span-6">
-          <h1 className="mt-6 font-display text-[44px] font-semibold leading-[1.04] tracking-[-0.025em] sm:text-[56px] lg:text-[68px]">
+          <h1 className="mt-6 font-display text-[32px] font-semibold leading-[1.04] tracking-[-0.025em] sm:text-[44px] lg:text-[68px]">
             Architecting
             <br />
             <span className="text-gradient-brand">revenue systems</span>
@@ -209,8 +209,8 @@ const SERVICES = [
 
 function Services() {
   return (
-    <section className="relative py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="relative py-16 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeader
             eyebrow="What we build"
@@ -230,7 +230,7 @@ function Services() {
           </Link>
         </div>
 
-        <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s) => (
             <div
               key={s.code}
@@ -272,8 +272,8 @@ const STEPS = [
 
 function Methodology() {
   return (
-    <section className="relative border-t border-border bg-[color:var(--surface)]/30 py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="relative border-t border-border bg-[color:var(--surface)]/30 py-16 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <SectionHeader
           eyebrow="Methodology"
           title={
@@ -284,7 +284,7 @@ function Methodology() {
           description="A repeatable engineering rhythm, using the same four phases every senior team uses to ship infrastructure that compounds."
         />
 
-        <ol className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-4">
+        <ol className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:mt-14 md:grid-cols-4">
           {STEPS.map((s, i) => (
             <li key={s.k} className="relative bg-background p-7">
               <div className="flex items-center justify-between">
@@ -311,9 +311,9 @@ function Methodology() {
 /* --------------------------- COMMAND CENTER SEC -------------------------- */
 function CommandCenterSection() {
   return (
-    <section className="relative overflow-hidden py-24 lg:py-32">
+    <section className="relative overflow-hidden py-16 lg:py-32">
       <div className="absolute inset-0 bg-radial-glow opacity-60" />
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="grid items-end gap-10 lg:grid-cols-12">
           <div className="lg:col-span-6">
             <SectionHeader
@@ -384,8 +384,8 @@ const CASES = [
 
 function CaseStudiesPreview() {
   return (
-    <section className="relative border-t border-border py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="relative border-t border-border py-16 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeader
             eyebrow="Field work"
@@ -399,7 +399,7 @@ function CaseStudiesPreview() {
           </Link>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+        <div className="mt-8 grid gap-6 md:mt-12 lg:grid-cols-3">
           {CASES.map((c) => (
             <article
               key={c.title}
@@ -417,7 +417,7 @@ function CaseStudiesPreview() {
               </h3>
 
               <div className="mt-8 flex items-baseline gap-3">
-                <span className="font-display text-5xl font-semibold tracking-tight text-gradient-brand">
+                <span className="font-display text-4xl font-semibold tracking-tight text-gradient-brand sm:text-5xl">
                   {c.metric}
                 </span>
               </div>
@@ -451,12 +451,12 @@ function CaseStudiesPreview() {
 /* ------------------------------- FINAL CTA ------------------------------ */
 function FinalCTA() {
   return (
-    <section className="relative overflow-hidden border-t border-border py-24 lg:py-32">
+    <section className="relative overflow-hidden border-t border-border py-16 lg:py-32">
       <div className="absolute inset-0 bg-radial-glow opacity-80" />
       <div className="absolute inset-0 bg-grid opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
-      <div className="relative mx-auto max-w-4xl px-6 text-center">
+      <div className="relative mx-auto max-w-4xl px-4 lg:px-6 text-center">
         <Eyebrow>Let's build</Eyebrow>
-        <h2 className="mt-6 font-display text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+        <h2 className="mt-6 font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
           Ready to build a revenue
           <br />
           engine that <span className="text-gradient-brand">runs itself?</span>
@@ -503,8 +503,8 @@ const WORK_ITEMS = [
 
 function WhatWeWorkOn() {
   return (
-    <section className="relative border-t border-border bg-[color:var(--surface)]/10 py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6">
+    <section className="relative border-t border-border bg-[color:var(--surface)]/10 py-16 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <SectionHeader
           eyebrow="Capabilities"
           title={
@@ -516,7 +516,7 @@ function WhatWeWorkOn() {
           description="Operational problems solved with software, triggers, and solid engineering. If it can be mapped, it can be automated."
         />
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 md:mt-14 lg:grid-cols-4">
           {WORK_ITEMS.map((item, i) => {
             return (
               <div
