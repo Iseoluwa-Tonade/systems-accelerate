@@ -87,3 +87,30 @@ export const Slack = (p: ComponentProps<"svg">) => (
     <path d="M9 5v4M15 19v-4" strokeLinecap="round" />
   </Frame>
 );
+export const GoHighLevel = (p: ComponentProps<"svg">) => (
+  <Frame label="GoHighLevel" {...p}>
+    <path d="M22 12A10 10 0 1112 2a10 10 0 0110 10z" />
+    <path d="M8 16V10M12 16V8M16 16v-11" strokeLinecap="round" strokeWidth="2" />
+  </Frame>
+);
+export const Lemlist = (p: ComponentProps<"svg">) => (
+  <Frame label="Lemlist" {...p}>
+    <path d="M12 2s-4 4-4 8a4 4 0 008 0c0-4-4-8-4-8z" />
+    <path d="M12 6a2 2 0 00-2 2" strokeLinecap="round" />
+  </Frame>
+);
+export const Instantly = (p: ComponentProps<"svg">) => (
+  <Frame label="Instantly" {...p}>
+    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" strokeLinecap="round" strokeLinejoin="round" />
+  </Frame>
+);
+export const LowNoCode = (p: ComponentProps<"svg">) => (
+  <Frame label="Low/No-code" {...p}>
+    <path d="M7 8l-4 4 4 4M17 8l4 4-4 4M14 4l-4 16" strokeLinecap="round" strokeLinejoin="round" />
+  </Frame>
+);
+export const Supabase = (p: ComponentProps<"svg">) => (
+  <Frame label="Supabase" {...p}>
+    <path d="M4 14.5L12 3v7.5h8L12 21v-7.5H4z" strokeLinecap="round" strokeLinejoin="round" />
+  </Frame>
+);

@@ -22,6 +22,15 @@ const PRINCIPLES = [
   { k: "Measurable outcomes", d: "Every engagement reports against pipeline, velocity, conversion or cost, never activity." },
 ];
 
+const INDUSTRIES = [
+  { title: "Manufacturing", desc: "Automating inventory tracking, RFX routing, and vendor communication portals.", color: "var(--accent-blue)" },
+  { title: "Real Estate", desc: "Lead intake, property database ingestion, and automated client sequencing.", color: "var(--accent-indigo)" },
+  { title: "Ecommerce", desc: "Shopping platform syncs, order automation, and customer feedback triggers.", color: "var(--accent-teal)" },
+  { title: "Logistics & Supply Chain", desc: "Waybill processing, real-time dispatch alerts, and tracking integrations.", color: "var(--accent-purple)" },
+  { title: "Healthcare & Pharmaceuticals", desc: "Compliance-first intake flows, doctor matching queues, and scheduling syncs.", color: "var(--accent-blue)" },
+  { title: "Edutech", desc: "Student onboarding workflows, automated course access, and event reminders.", color: "var(--accent-teal)" },
+] as const;
+
 const TEAM = [
   { role: "RevOps Strategist", name: "M. Aldridge", region: "Lagos" },
   { role: "GTM Engineer", name: "S. Patel", region: "Lagos" },
@@ -86,6 +95,42 @@ function AboutPage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-[color:var(--surface)]/20 py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <SectionHeader
+            eyebrow="Industries"
+            title={
+              <>
+                Sectors of <span className="text-gradient-brand">expertise.</span>
+              </>
+            }
+            description="Our systems engineered approach is sector-agnostic. Here are the core industries we've shipped revenue operations for."
+          />
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {INDUSTRIES.map((ind, i) => {
+              return (
+                <div
+                  key={ind.title}
+                  className="surface-card group relative p-8 transition duration-300 hover:border-accent-blue/30"
+                >
+                  <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
+                    <span>SECTOR · 0{i + 1}</span>
+                    <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: ind.color }} />
+                  </div>
+                  <h3 className="font-display text-xl font-semibold tracking-tight text-foreground/90">
+                    {ind.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    {ind.desc}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
