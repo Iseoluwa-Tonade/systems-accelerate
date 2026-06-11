@@ -32,20 +32,41 @@ function HomePage() {
   );
 }
 
-function ProductShowcase() {
+function ProductShowcase({
+  primarySrc,
+  secondarySrc,
+  secondaryOffset,
+}: {
+  primarySrc: string;
+  secondarySrc: string;
+  secondaryOffset: string;
+}) {
   return (
-    <div className="surface-card relative overflow-hidden rounded-2xl border border-border bg-background/50 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] group">
-      {/* Product Image */}
-      <img
-        src="/Employee Onboarding Process Data Visualization Infographic Presentation.png"
-        alt="GTM Command Center"
-        className="w-full h-auto object-cover select-none transition-transform duration-500 group-hover:scale-[1.01]"
-      />
-      {/* Light glassmorphic overlay to blend it in */}
-      <div className="absolute inset-0 bg-background/5 backdrop-blur-[0.2px] pointer-events-none mix-blend-normal" />
-      {/* Vignette effect to fade edges into background */}
-      <div className="absolute inset-0 shadow-[inset_0_0_30px_rgba(11,16,32,0.6)] pointer-events-none" />
-      {/* Accent glow corner */}
+    <div className="relative group my-8">
+      {/* Base/Primary Card */}
+      <div className="surface-card relative overflow-hidden rounded-2xl border border-border bg-background/50 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] transition-all duration-500 group-hover:scale-[1.01]">
+        <img
+          src={primarySrc}
+          alt="GTM Command Center primary view"
+          className="w-full h-auto object-cover select-none"
+        />
+        <div className="absolute inset-0 bg-background/5 backdrop-blur-[0.2px] pointer-events-none mix-blend-normal" />
+        <div className="absolute inset-0 shadow-[inset_0_0_30px_rgba(11,16,32,0.6)] pointer-events-none" />
+      </div>
+
+      {/* Overlapping Secondary Card */}
+      <div
+        className={`hidden md:block absolute w-[45%] overflow-hidden rounded-xl border border-border bg-background/80 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-500 group-hover:translate-y-[-8px] group-hover:scale-[1.03] ${secondaryOffset}`}
+      >
+        <img
+          src={secondarySrc}
+          alt="GTM Command Center detailed perspective"
+          className="w-full h-auto object-cover select-none"
+        />
+        <div className="absolute inset-0 bg-background/5 pointer-events-none mix-blend-normal" />
+      </div>
+
+      {/* Ambient background glows */}
       <div className="absolute -right-20 -bottom-20 h-60 w-60 rounded-full bg-accent-blue/10 blur-3xl pointer-events-none" />
     </div>
   );
@@ -94,20 +115,15 @@ function Hero() {
 
         </div>
 
-        <div className="lg:col-span-6">
-          <ProductShowcase />
+        <div className="lg:col-span-6 pb-16 lg:pb-24">
+          <ProductShowcase
+            primarySrc="/Employee Onboarding Process Data Visualization Infographic Presentation (1).png"
+            secondarySrc="/Employee Onboarding Process Data Visualization Infographic Presentation.png"
+            secondaryOffset="right-0 -bottom-8 md:-bottom-16"
+          />
         </div>
       </div>
     </section>
-  );
-}
-
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{label}</dt>
-      <dd className="mt-1 font-display text-2xl font-semibold tabular-nums">{value}</dd>
-    </div>
   );
 }
 
@@ -299,7 +315,7 @@ function CommandCenterSection() {
       <div className="absolute inset-0 bg-radial-glow opacity-60" />
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid items-end gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-6">
             <SectionHeader
               eyebrow="GTM Command Center"
               title={
@@ -328,8 +344,12 @@ function CommandCenterSection() {
               ))}
             </ul>
           </div>
-          <div className="lg:col-span-7">
-            <ProductShowcase />
+          <div className="lg:col-span-6 pb-16 lg:pb-24">
+            <ProductShowcase
+              primarySrc="/Employee Onboarding Process Data Visualization Infographic Presentation (2).png"
+              secondarySrc="/Employee Onboarding Process Data Visualization Infographic Presentation.png"
+              secondaryOffset="right-0 -bottom-8 md:-bottom-16"
+            />
           </div>
         </div>
       </div>
