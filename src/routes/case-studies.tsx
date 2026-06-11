@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
+import { ScrollReveal } from "@/components/site/ScrollReveal";
 
 export const Route = createFileRoute("/case-studies")({
   head: () => ({
@@ -66,33 +67,41 @@ function CaseStudiesPage() {
         <div className="absolute inset-0 bg-radial-glow opacity-70" />
         <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>Case studies</Eyebrow>
-          <h1 className="mt-5 max-w-4xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
-            What we shipped.
-            <br />
-            <span className="text-gradient-brand">What it moved.</span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            Three field teardowns from recent engagements covering challenge, architecture, stack and the
-            metrics that changed in the boardroom.
-          </p>
+          <ScrollReveal variant="fadeUp">
+            <h1 className="mt-5 max-w-4xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
+              What we shipped.
+              <br />
+              <span className="text-gradient-brand">What it moved.</span>
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal variant="fadeUp" delay={0.15}>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
+              Three field teardowns from recent engagements covering challenge, architecture, stack and the
+              metrics that changed in the boardroom.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
       <div className="mx-auto max-w-7xl px-4 lg:px-6 py-16 space-y-16 lg:space-y-32">
         {CASES.map((c, i) => (
-          <Study key={c.title} c={c} index={i} />
+          <ScrollReveal key={c.title} variant="fadeUp" delay={i * 0.1}>
+            <Study c={c} index={i} />
+          </ScrollReveal>
         ))}
       </div>
 
       <section className="border-t border-border py-12 lg:py-20">
-        <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
+      <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
+        <ScrollReveal variant="scaleIn">
           <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
             Your engagement could be the next teardown.
           </h2>
           <Link to="/book" className="mt-8 inline-flex rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background">
             Book a strategy session →
           </Link>
-        </div>
+        </ScrollReveal>
+      </div>
       </section>
     </SiteLayout>
   );

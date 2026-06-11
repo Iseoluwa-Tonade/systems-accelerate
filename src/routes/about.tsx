@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
+import { ScrollReveal, StaggerReveal, StaggerChild } from "@/components/site/ScrollReveal";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -47,10 +48,13 @@ function AboutPage() {
         <div className="absolute inset-0 bg-radial-glow opacity-70" />
         <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>About</Eyebrow>
-          <h1 className="mt-5 max-w-4xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[76px] lg:leading-[1.02]">
-            We are <span className="text-gradient-brand">technical revenue operators</span> not a marketing agency.
-          </h1>
-          <div className="mt-10 grid gap-10 lg:grid-cols-12">
+          <ScrollReveal variant="fadeUp">
+            <h1 className="mt-5 max-w-4xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[76px] lg:leading-[1.02]">
+              We are <span className="text-gradient-brand">technical revenue operators</span> not a marketing agency.
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal variant="fadeUp" delay={0.15}>
+            <div className="mt-10 grid gap-10 lg:grid-cols-12">
             <p className="lg:col-span-7 text-lg leading-relaxed text-muted-foreground">
               SuperTelque is a small, senior team of operators who have run RevOps, built GTM
               engineering functions, and shipped automation inside enterprise revenue orgs.
@@ -63,12 +67,14 @@ function AboutPage() {
               </div>
             </div>
           </div>
+          </ScrollReveal>
         </div>
       </section>
 
       <section className="border-b border-border bg-[color:var(--surface)]/30 py-16 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <div className="grid gap-12 lg:grid-cols-12">
+          <ScrollReveal variant="fadeUp">
+            <div className="grid gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <SectionHeader eyebrow="Mission" title={<>Scale revenue through systems.</>} />
             </div>
@@ -78,23 +84,24 @@ function AboutPage() {
               quarter."
             </p>
           </div>
+          </ScrollReveal>
         </div>
       </section>
 
       <section className="py-16 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <SectionHeader eyebrow="Core principles" title={<>How we operate.</>} />
-          <ol className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:mt-12 md:grid-cols-2 lg:grid-cols-5">
+          <StaggerReveal className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:mt-12 md:grid-cols-2 lg:grid-cols-5">
             {PRINCIPLES.map((p, i) => (
-              <li key={p.k} className="bg-background p-6">
+              <StaggerChild key={p.k} className="bg-background p-6">
                 <div className="font-mono text-[11px] tracking-[0.2em] text-muted-foreground">
                   0{i + 1}
                 </div>
                 <h3 className="mt-4 font-display text-lg font-semibold tracking-tight">{p.k}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.d}</p>
-              </li>
+              </StaggerChild>
             ))}
-          </ol>
+          </StaggerReveal>
         </div>
       </section>
 
@@ -110,13 +117,13 @@ function AboutPage() {
             description="Our systems engineered approach is sector-agnostic. Here are the core industries we've shipped revenue operations for."
           />
 
-          <div className="mt-8 grid gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerReveal className="mt-8 grid gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
             {INDUSTRIES.map((ind, i) => {
               return (
-                <div
-                  key={ind.title}
-                  className="surface-card group relative p-8 transition duration-300 hover:border-accent-blue/30"
-                >
+                <StaggerChild key={ind.title}>
+                  <div
+                    className="surface-card group relative p-8 transition duration-300 hover:border-accent-blue/30"
+                  >
                   <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
                     <span>SECTOR · 0{i + 1}</span>
                     <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: ind.color }} />
@@ -128,9 +135,10 @@ function AboutPage() {
                     {ind.desc}
                   </p>
                 </div>
+                </StaggerChild>
               );
             })}
-          </div>
+          </StaggerReveal>
         </div>
       </section>
 
@@ -167,7 +175,8 @@ function AboutPage() {
       </section>
 
       <section className="py-16 lg:py-32">
-        <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
+      <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
+        <ScrollReveal variant="scaleIn">
           <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-5xl">
             Let's build something durable.
           </h2>
@@ -177,7 +186,8 @@ function AboutPage() {
           >
             Book a strategy session →
           </Link>
-        </div>
+        </ScrollReveal>
+      </div>
       </section>
     </SiteLayout>
   );

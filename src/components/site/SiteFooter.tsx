@@ -72,7 +72,7 @@ export function SiteFooter() {
 
         <div className="mt-10 flex flex-col-reverse items-start justify-between gap-4 border-t border-border pt-6 text-xs text-muted-foreground md:mt-14 md:flex-row md:items-center">
           <div>© {new Date().getFullYear()} SuperTelque RevOps. All rights reserved.</div>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <span className="font-mono">SOC2 ready · GDPR compliant</span>
             <a href="#" className="hover:text-foreground">LinkedIn</a>
             <a href="#" className="hover:text-foreground">X</a>

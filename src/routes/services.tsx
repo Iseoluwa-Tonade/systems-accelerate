@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
+import { ScrollReveal, StaggerReveal, StaggerChild } from "@/components/site/ScrollReveal";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -67,13 +68,17 @@ function ServicesPage() {
         <div className="absolute inset-0 bg-grid opacity-25 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]" />
         <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>Services</Eyebrow>
-          <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
-            Revenue infrastructure, <span className="text-gradient-brand">engineered.</span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Each capability ships with an architecture diagram, a measurement plan and an
-            owned runbook. Mix what you need, we sequence the rest.
-          </p>
+          <ScrollReveal variant="fadeUp">
+            <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
+              Revenue infrastructure, <span className="text-gradient-brand">engineered.</span>
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal variant="fadeUp" delay={0.15}>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Each capability ships with an architecture diagram, a measurement plan and an
+              owned runbook. Mix what you need, we sequence the rest.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -100,7 +105,7 @@ function ServiceBlock({
   return (
     <section id={svc.id} className="scroll-mt-24">
       <div className={"grid items-center gap-10 lg:grid-cols-12 " + (reverse ? "lg:[direction:rtl]" : "")}>
-        <div className="lg:col-span-5 [direction:ltr]">
+        <ScrollReveal variant="slideRight" className="lg:col-span-5 [direction:ltr]">
           <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
             Capability · {svc.code}
           </span>
@@ -122,10 +127,10 @@ function ServiceBlock({
           >
             Discuss this engagement →
           </Link>
-        </div>
-        <div className="lg:col-span-7 [direction:ltr]">
+        </ScrollReveal>
+        <ScrollReveal variant="slideLeft" className="lg:col-span-7 [direction:ltr]">
           <ArchitectureDiagram code={svc.code} />
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
@@ -252,26 +257,53 @@ function WhatWeWorkOn() {
           description="Operational problems solved with software, triggers, and solid engineering. If it can be mapped, it can be automated."
         />
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 md:mt-14 lg:grid-cols-4">
-          {WORK_ITEMS.map((item, i) => {
-            return (
-              <div
-                key={item.title}
-                className="surface-card group relative p-6 transition duration-300 hover:border-accent-blue/40"
-              >
-                <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
-                  <span>CAP · {String(i + 1).padStart(2, "0")}</span>
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent-blue opacity-50 group-hover:opacity-100 transition" />
+        <div className="mt-10 md:mt-14">
+          <div className="sm:hidden overflow-x-auto -mx-4 px-4 pb-2">
+            <div className="flex gap-4 w-max">
+              {WORK_ITEMS.map((item, i) => {
+                return (
+                  <div
+                    key={item.title}
+                    className="surface-card group relative w-[260px] shrink-0 p-5 transition duration-300 hover:border-accent-blue/40"
+                  >
+                    <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
+                      <span>CAP · {String(i + 1).padStart(2, "0")}</span>
+                      <span className="h-1.5 w-1.5 rounded-full bg-accent-blue opacity-50 group-hover:opacity-100 transition" />
+                    </div>
+                    <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground/90">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                      {item.desc}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <StaggerReveal className="hidden sm:grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {WORK_ITEMS.map((item, i) => {
+              return (
+                <StaggerChild key={item.title}>
+                  <div
+                    className="surface-card group relative p-6 transition duration-300 hover:border-accent-blue/40"
+                  >
+                  <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
+                    <span>CAP · {String(i + 1).padStart(2, "0")}</span>
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent-blue opacity-50 group-hover:opacity-100 transition" />
+                  </div>
+                  <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground/90">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                    {item.desc}
+                  </p>
                 </div>
-                <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground/90">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                  {item.desc}
-                </p>
-              </div>
-            );
-          })}
+                </StaggerChild>
+              );
+            })}
+          </StaggerReveal>
         </div>
       </div>
     </section>
@@ -282,19 +314,21 @@ function CTA() {
   return (
     <section className="border-t border-border py-12 lg:py-20">
       <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
-        <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-          Not sure where to start?
-        </h2>
-        <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-          Book a 45-minute working session. We'll map your current stack and recommend the next
-          three moves.
-        </p>
-        <Link
-          to="/book"
-          className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background"
-        >
-          Book a strategy session →
-        </Link>
+        <ScrollReveal variant="scaleIn">
+          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+            Not sure where to start?
+          </h2>
+          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
+            Book a 45-minute working session. We'll map your current stack and recommend the next
+            three moves.
+          </p>
+          <Link
+            to="/book"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background"
+          >
+            Book a strategy session →
+          </Link>
+        </ScrollReveal>
       </div>
     </section>
   );

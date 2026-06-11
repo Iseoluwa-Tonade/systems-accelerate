@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Eyebrow } from "@/components/site/Eyebrow";
+import { ScrollReveal } from "@/components/site/ScrollReveal";
+import { BookingCalendar, formatConfirmDate } from "@/components/site/BookingCalendar";
 
 export const Route = createFileRoute("/book")({
   head: () => ({
@@ -15,30 +17,40 @@ export const Route = createFileRoute("/book")({
   component: BookPage,
 });
 
-const SLOTS = ["09:00", "10:30", "12:00", "13:30", "15:00", "16:30"];
-const DAYS = ["MON 14", "TUE 15", "WED 16", "THU 17", "FRI 18"];
-
 function BookPage() {
-  const [day, setDay] = useState(2);
-  const [slot, setSlot] = useState(2);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+
+  const confirmationText =
+    selectedDate && selectedSlot
+      ? `${formatConfirmDate(selectedDate)} · ${selectedSlot} WAT · 45 min`
+      : selectedDate
+        ? `${formatConfirmDate(selectedDate)} · Pick a time slot`
+        : "Select a date and time";
+
   return (
     <SiteLayout>
       <section className="relative overflow-hidden border-b border-border">
         <div className="absolute inset-0 bg-radial-glow opacity-70" />
         <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-10 lg:pt-32 lg:px-6">
           <Eyebrow>Book a session</Eyebrow>
-          <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
-            Book a <span className="text-gradient-brand">revenue systems</span> strategy session.
-          </h1>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            A meeting with a senior RevOps engineer. We audit your stack, identify three automation
-            wins, and leave you with a written roadmap.
-          </p>
+          <ScrollReveal variant="fadeUp">
+            <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
+              Book a <span className="text-gradient-brand">revenue systems</span> strategy session.
+            </h1>
+          </ScrollReveal>
+          <ScrollReveal variant="fadeUp" delay={0.15}>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
+              A meeting with a senior RevOps engineer. We audit your stack, identify three automation
+              wins, and leave you with a written roadmap.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 lg:px-6 py-16 lg:py-20">
-        <div className="grid gap-8 lg:grid-cols-12">
+        <ScrollReveal variant="fadeUp">
+          <div className="grid gap-8 lg:grid-cols-12">
           <div className="lg:col-span-8 surface-card p-6 lg:p-8">
             <div className="flex items-center justify-between">
               <div>
@@ -49,39 +61,17 @@ function BookPage() {
               </div>
             </div>
 
-            <div className="mt-6 grid grid-cols-5 gap-1.5 sm:gap-2">
-              {DAYS.map((d, i) => (
-                <button
-                  key={d}
-                  onClick={() => setDay(i)}
-                  className={
-                    "rounded-lg border px-1 sm:px-3 py-3 text-center transition " +
-                    (day === i
-                      ? "border-accent-blue/60 bg-accent-blue/10 text-foreground"
-                      : "border-border bg-[color:var(--surface)]/40 text-muted-foreground hover:text-foreground")
-                  }
-                >
-                  <div className="font-mono text-[10px] sm:text-[10.5px] uppercase tracking-[0.12em] sm:tracking-[0.18em]">{d.split(" ")[0]}</div>
-                  <div className="mt-1 font-display text-base sm:text-lg font-semibold">{d.split(" ")[1]}</div>
-                </button>
-              ))}
-            </div>
-
-            <div className="mt-5 grid grid-cols-3 gap-2 sm:grid-cols-6">
-              {SLOTS.map((s, i) => (
-                <button
-                  key={s}
-                  onClick={() => setSlot(i)}
-                  className={
-                    "rounded-md border px-3 py-2 font-mono text-sm transition " +
-                    (slot === i
-                      ? "border-foreground bg-foreground text-background"
-                      : "border-border bg-[color:var(--surface)]/40 hover:border-foreground/50")
-                  }
-                >
-                  {s}
-                </button>
-              ))}
+            {/* Calendar + time slots */}
+            <div className="mt-6">
+              <BookingCalendar
+                selectedDate={selectedDate}
+                selectedSlot={selectedSlot}
+                onDateChange={(date) => {
+                  setSelectedDate(date);
+                  setSelectedSlot(null);
+                }}
+                onSlotChange={setSelectedSlot}
+              />
             </div>
 
             <form className="mt-10 grid gap-5 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
@@ -112,9 +102,12 @@ function BookPage() {
 
               <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-5">
                 <div className="font-mono text-[12px] text-muted-foreground">
-                  Confirming {DAYS[day]} · {SLOTS[slot]} WAT · 45 min
+                  {confirmationText}
                 </div>
-                <button className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background">
+                <button
+                  disabled={!selectedDate || !selectedSlot}
+                  className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background disabled:opacity-40 disabled:pointer-events-none transition"
+                >
                   Schedule consultation →
                 </button>
               </div>
@@ -167,6 +160,7 @@ function BookPage() {
             </div>
           </aside>
         </div>
+        </ScrollReveal>
       </section>
     </SiteLayout>
   );
