@@ -104,7 +104,7 @@ function BookPage() {
       <section className="mx-auto max-w-7xl px-4 lg:px-6 py-16 lg:py-20">
         <ScrollReveal variant="fadeUp">
           <div className="grid gap-8 lg:grid-cols-12">
-          <div className="lg:col-span-8 surface-card p-6 lg:p-8">
+          <div className="lg:col-span-8 surface-card p-6 lg:p-8 overflow-hidden">
             <div className="flex items-center justify-between">
               <div>
                 <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
