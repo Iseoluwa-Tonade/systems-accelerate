@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { toast } from "sonner";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Eyebrow } from "@/components/site/Eyebrow";
 import { ScrollReveal } from "@/components/site/ScrollReveal";
 import { BookingCalendar, formatConfirmDate } from "@/components/site/BookingCalendar";
+import { submitBookSession } from "@/lib/form-actions";
 
 export const Route = createFileRoute("/book")({
   head: () => ({
@@ -20,6 +22,59 @@ export const Route = createFileRoute("/book")({
 function BookPage() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+  const [sending, setSending] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [fullName, setFullName] = useState("");
+  const [workEmail, setWorkEmail] = useState("");
+  const [company, setCompany] = useState("");
+  const [companySize, setCompanySize] = useState("1–10");
+  const [crm, setCrm] = useState("HubSpot");
+  const [challenge, setChallenge] = useState("");
+  const [notes, setNotes] = useState("");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (sending || !selectedDate || !selectedSlot) return;
+
+    const errs: Record<string, string> = {};
+    if (!fullName.trim()) errs.fullName = "Required";
+    if (!workEmail.trim()) errs.workEmail = "Required";
+    if (!company.trim()) errs.company = "Required";
+    setErrors(errs);
+    if (Object.keys(errs).length > 0) return;
+
+    setSending(true);
+    try {
+      await submitBookSession({
+        data: {
+          fullName,
+          workEmail,
+          company,
+          companySize,
+          crm,
+          challenge,
+          notes,
+          selectedDate: formatConfirmDate(selectedDate),
+          selectedSlot,
+        },
+      });
+      toast.success("Session booked! We'll send a calendar invite shortly.");
+      setFullName("");
+      setWorkEmail("");
+      setCompany("");
+      setCompanySize("1–10");
+      setCrm("HubSpot");
+      setChallenge("");
+      setNotes("");
+      setSelectedDate(null);
+      setSelectedSlot(null);
+      setErrors({});
+    } catch {
+      toast.error("Something went wrong. Please email support@supertelque.com directly.");
+    } finally {
+      setSending(false);
+    }
+  }
 
   const confirmationText =
     selectedDate && selectedSlot
@@ -71,14 +126,14 @@ function BookPage() {
               />
             </div>
 
-            <form className="mt-10 grid gap-5 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
-              <Field label="Full name" placeholder="Alex Morgan" />
-              <Field label="Work email" placeholder="alex@company.com" type="email" />
-              <Field label="Company" placeholder="Acme Inc." />
-              <Select label="Company size" options={["1–10", "11–50", "51–200", "201–500", "500+"]} />
-              <Select label="Current CRM" options={["HubSpot", "Salesforce", "Pipedrive", "None / building"]} />
+            <form className="mt-10 grid gap-5 sm:grid-cols-2" onSubmit={handleSubmit}>
+              <Field label="Full name" placeholder="Alex Morgan" value={fullName} onChange={(e) => setFullName(e.target.value)} error={errors.fullName} />
+              <Field label="Work email" placeholder="alex@company.com" type="email" value={workEmail} onChange={(e) => setWorkEmail(e.target.value)} error={errors.workEmail} />
+              <Field label="Company" placeholder="Acme Inc." value={company} onChange={(e) => setCompany(e.target.value)} error={errors.company} />
+              <Select label="Company size" options={["1–10", "11–50", "51–200", "201–500", "500+"]} value={companySize} onChange={(e) => setCompanySize(e.target.value)} />
+              <Select label="Current CRM" options={["HubSpot", "Salesforce", "Pipedrive", "None / building"]} value={crm} onChange={(e) => setCrm(e.target.value)} />
               <Select
-                label="Main challenge"
+                label="Main challenge (optional)"
                 options={[
                   "Forecasting accuracy",
                   "Lead routing & SLAs",
@@ -87,13 +142,17 @@ function BookPage() {
                   "Attribution & reporting",
                   "AI in the GTM stack",
                 ]}
+                value={challenge}
+                onChange={(e) => setChallenge(e.target.value)}
               />
               <div className="sm:col-span-2">
-                <Label>Anything else?</Label>
+                <Label>Anything else? (optional)</Label>
                 <textarea
                   rows={3}
                   placeholder="Context, links, current stack..."
                   className="mt-2 w-full resize-none rounded-md border border-border bg-[color:var(--surface)]/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
                 />
               </div>
 
@@ -102,10 +161,11 @@ function BookPage() {
                   {confirmationText}
                 </div>
                 <button
-                  disabled={!selectedDate || !selectedSlot}
+                  type="submit"
+                  disabled={!selectedDate || !selectedSlot || sending}
                   className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background disabled:opacity-40 disabled:pointer-events-none transition"
                 >
-                  Schedule consultation →
+                  {sending ? "Scheduling..." : "Schedule consultation →"}
                 </button>
               </div>
             </form>
@@ -165,7 +225,7 @@ function BookPage() {
 function Label({ children }: { children: React.ReactNode }) {
   return <label className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{children}</label>;
 }
-function Field({ label, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string }) {
+function Field({ label, error, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string; error?: string }) {
   return (
     <div>
       <Label>{label}</Label>
@@ -173,14 +233,20 @@ function Field({ label, ...props }: React.InputHTMLAttributes<HTMLInputElement> 
         {...props}
         className="mt-2 w-full rounded-md border border-border bg-[color:var(--surface)]/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
       />
+      {error && (
+        <p className="mt-1 font-mono text-[11px] text-red-500">{error}</p>
+      )}
     </div>
   );
 }
-function Select({ label, options }: { label: string; options: string[] }) {
+function Select({ label, options, ...props }: { label: string; options: string[] } & React.SelectHTMLAttributes<HTMLSelectElement>) {
   return (
     <div>
       <Label>{label}</Label>
-      <select className="mt-2 w-full rounded-md border border-border bg-[color:var(--surface)]/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
+      <select
+        {...props}
+        className="mt-2 w-full rounded-md border border-border bg-[color:var(--surface)]/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+      >
         {options.map((o) => (
           <option key={o} className="bg-background">{o}</option>
         ))}

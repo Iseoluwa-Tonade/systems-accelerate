@@ -1,7 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { toast } from "sonner";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Eyebrow } from "@/components/site/Eyebrow";
 import { ScrollReveal } from "@/components/site/ScrollReveal";
+import { submitContactForm } from "@/lib/form-actions";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -16,6 +19,46 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const [sending, setSending] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
+  const [role, setRole] = useState("");
+  const [email, setEmail] = useState("");
+  const [crm, setCrm] = useState("HubSpot");
+  const [message, setMessage] = useState("");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (sending) return;
+
+    const errs: Record<string, string> = {};
+    if (!name.trim()) errs.name = "Required";
+    if (!company.trim()) errs.company = "Required";
+    if (!role.trim()) errs.role = "Required";
+    if (!email.trim()) errs.email = "Required";
+    if (!message.trim()) errs.message = "Required";
+    setErrors(errs);
+    if (Object.keys(errs).length > 0) return;
+
+    setSending(true);
+    try {
+      await submitContactForm({ data: { name, company, role, email, crm, message } });
+      toast.success("Message sent. We'll be in touch within 24 hours.");
+      setName("");
+      setCompany("");
+      setRole("");
+      setEmail("");
+      setCrm("HubSpot");
+      setMessage("");
+      setErrors({});
+    } catch {
+      toast.error("Something went wrong. Please email support@supertelque.com directly.");
+    } finally {
+      setSending(false);
+    }
+  }
+
   return (
     <SiteLayout>
       <section className="relative overflow-hidden border-b border-border pt-8">
@@ -64,13 +107,13 @@ function ContactPage() {
             </div>
           </div>
 
-          <form className="lg:col-span-7 surface-card p-6 lg:p-8 grid gap-5 sm:grid-cols-2" onSubmit={(e) => e.preventDefault()}>
-            <Field label="Name" placeholder="Alex Morgan" />
-            <Field label="Company" placeholder="Acme Inc." />
-            <Field label="Role" placeholder="CRO / Head of RevOps" />
-            <Field label="Email" placeholder="alex@company.com" type="email" />
+          <form className="lg:col-span-7 surface-card p-6 lg:p-8 grid gap-5 sm:grid-cols-2" onSubmit={handleSubmit}>
+            <Field label="Name" placeholder="Alex Morgan" value={name} onChange={(e) => setName(e.target.value)} error={errors.name} />
+            <Field label="Company" placeholder="Acme Inc." value={company} onChange={(e) => setCompany(e.target.value)} error={errors.company} />
+            <Field label="Role" placeholder="CRO / Head of RevOps" value={role} onChange={(e) => setRole(e.target.value)} error={errors.role} />
+            <Field label="Email" placeholder="alex@company.com" type="email" value={email} onChange={(e) => setEmail(e.target.value)} error={errors.email} />
             <div className="sm:col-span-2">
-              <Select label="Current CRM" options={["HubSpot", "Salesforce", "Pipedrive", "None / building"]} />
+              <Select label="Current CRM" options={["HubSpot", "Salesforce", "Pipedrive", "None / building"]} value={crm} onChange={(e) => setCrm(e.target.value)} />
             </div>
             <div className="sm:col-span-2">
               <Label>Message</Label>
@@ -78,12 +121,21 @@ function ContactPage() {
                 rows={5}
                 placeholder="Tell us about your revenue stack and what you'd like to fix..."
                 className="mt-2 w-full resize-none rounded-md border border-border bg-[color:var(--surface)]/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
               />
+              {errors.message && (
+                <p className="mt-1 font-mono text-[11px] text-red-500">{errors.message}</p>
+              )}
             </div>
             <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-5">
               <div className="text-xs text-muted-foreground">Typical response in under 24 hours.</div>
-              <button className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background">
-                Send message →
+              <button
+                type="submit"
+                disabled={sending}
+                className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background disabled:opacity-40 disabled:pointer-events-none transition"
+              >
+                {sending ? "Sending..." : "Send message →"}
               </button>
             </div>
           </form>
@@ -105,7 +157,7 @@ function Row({ k, v }: { k: string; v: string }) {
 function Label({ children }: { children: React.ReactNode }) {
   return <label className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{children}</label>;
 }
-function Field({ label, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string }) {
+function Field({ label, error, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string; error?: string }) {
   return (
     <div>
       <Label>{label}</Label>
@@ -113,14 +165,20 @@ function Field({ label, ...props }: React.InputHTMLAttributes<HTMLInputElement> 
         {...props}
         className="mt-2 w-full rounded-md border border-border bg-[color:var(--surface)]/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
       />
+      {error && (
+        <p className="mt-1 font-mono text-[11px] text-red-500">{error}</p>
+      )}
     </div>
   );
 }
-function Select({ label, options }: { label: string; options: string[] }) {
+function Select({ label, options, ...props }: { label: string; options: string[] } & React.SelectHTMLAttributes<HTMLSelectElement>) {
   return (
     <div>
       <Label>{label}</Label>
-      <select className="mt-2 w-full rounded-md border border-border bg-[color:var(--surface)]/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
+      <select
+        {...props}
+        className="mt-2 w-full rounded-md border border-border bg-[color:var(--surface)]/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+      >
         {options.map((o) => (
           <option key={o} className="bg-background">{o}</option>
         ))}

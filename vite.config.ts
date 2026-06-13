@@ -4,6 +4,7 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 import { nitro } from "nitro/vite";
+import "dotenv/config";
 
 export default defineConfig(({ command, mode }) => {
   const envDefine: Record<string, string> = {};

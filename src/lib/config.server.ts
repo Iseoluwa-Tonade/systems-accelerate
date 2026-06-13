@@ -22,5 +22,7 @@ export function getServerConfig() {
     // Add server-only values here, e.g.:
     //   databaseUrl: process.env.DATABASE_URL,
     //   stripeSecretKey: process.env.STRIPE_SECRET_KEY,
+    // Google Apps Script web app (form submissions → Google Sheets):
+    //   googleAppsScriptUrl: process.env.GOOGLE_APPS_SCRIPT_URL,
   };
 }
