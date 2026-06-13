@@ -52,7 +52,8 @@ function ContactPage() {
       setCrm("HubSpot");
       setMessage("");
       setErrors({});
-    } catch {
+    } catch (err) {
+      console.error("[contact]", err);
       toast.error("Something went wrong. Please email support@supertelque.com directly.");
     } finally {
       setSending(false);

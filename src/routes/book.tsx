@@ -29,7 +29,7 @@ function BookPage() {
   const [company, setCompany] = useState("");
   const [companySize, setCompanySize] = useState("1–10");
   const [crm, setCrm] = useState("HubSpot");
-  const [challenge, setChallenge] = useState("");
+  const [challenge, setChallenge] = useState("none");
   const [notes, setNotes] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
@@ -64,12 +64,13 @@ function BookPage() {
       setCompany("");
       setCompanySize("1–10");
       setCrm("HubSpot");
-      setChallenge("");
+      setChallenge("none");
       setNotes("");
       setSelectedDate(null);
       setSelectedSlot(null);
       setErrors({});
-    } catch {
+    } catch (err) {
+      console.error("[book]", err);
       toast.error("Something went wrong. Please email support@supertelque.com directly.");
     } finally {
       setSending(false);
@@ -133,8 +134,9 @@ function BookPage() {
               <Select label="Company size" options={["1–10", "11–50", "51–200", "201–500", "500+"]} value={companySize} onChange={(e) => setCompanySize(e.target.value)} />
               <Select label="Current CRM" options={["HubSpot", "Salesforce", "Pipedrive", "None / building"]} value={crm} onChange={(e) => setCrm(e.target.value)} />
               <Select
-                label="Main challenge (optional)"
+                label="Main challenge"
                 options={[
+                  "none",
                   "Forecasting accuracy",
                   "Lead routing & SLAs",
                   "CRM re-architecture",
