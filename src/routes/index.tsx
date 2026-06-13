@@ -45,30 +45,24 @@ function ProductShowcase({
   return (
     <div className="relative group my-8">
       {/* Base/Primary Card */}
-      <div className="surface-card relative overflow-hidden rounded-2xl border border-border bg-background/50 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] transition-all duration-500 group-hover:scale-[1.01]">
+      <div className="surface-card relative overflow-hidden rounded-2xl border border-border bg-background/50 shadow-lg transition-all duration-500 group-hover:scale-[1.01]">
         <img
           src={primarySrc}
           alt="GTM Command Center primary view"
           className="w-full h-auto object-cover select-none"
         />
-        <div className="absolute inset-0 bg-background/5 backdrop-blur-[0.2px] pointer-events-none mix-blend-normal" />
-        <div className="absolute inset-0 shadow-[inset_0_0_30px_rgba(11,16,32,0.6)] pointer-events-none" />
       </div>
 
       {/* Overlapping Secondary Card */}
       <div
-        className={`hidden md:block absolute w-[45%] overflow-hidden rounded-xl border border-border bg-background/80 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-500 group-hover:translate-y-[-8px] group-hover:scale-[1.03] ${secondaryOffset}`}
+        className={`hidden md:block absolute w-[45%] overflow-hidden rounded-xl border border-border bg-background/80 shadow-md transition-all duration-500 group-hover:translate-y-[-8px] group-hover:scale-[1.03] ${secondaryOffset}`}
       >
         <img
           src={secondarySrc}
           alt="GTM Command Center detailed perspective"
           className="w-full h-auto object-cover select-none"
         />
-        <div className="absolute inset-0 bg-background/5 pointer-events-none mix-blend-normal" />
       </div>
-
-      {/* Ambient background glows */}
-      <div className="absolute -right-20 -bottom-20 h-60 w-60 rounded-full bg-accent-blue/10 blur-3xl pointer-events-none" />
     </div>
   );
 }
@@ -76,9 +70,7 @@ function ProductShowcase({
 /* --------------------------------- HERO --------------------------------- */
 function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-radial-glow pointer-events-none" />
-      <div className="absolute inset-x-0 top-0 h-[600px] bg-grid opacity-[0.35] [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]" />
+    <section className="relative overflow-hidden pt-8">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 pt-14 pb-12 lg:grid-cols-12 lg:gap-10 lg:pt-28 lg:px-6">
         <div className="lg:col-span-6">
           <h1 className="mt-6 font-display text-[32px] font-semibold leading-[1.04] tracking-[-0.025em] sm:text-[44px] lg:text-[68px]">
@@ -247,7 +239,6 @@ function Services() {
                 <span className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground">
                   {s.code}
                 </span>
-                <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent-blue)] opacity-40 group-hover:opacity-100 transition" />
               </div>
               <h3 className="mt-6 font-display text-xl font-semibold tracking-tight">
                 {s.title}
@@ -256,7 +247,7 @@ function Services() {
               <ul className="mt-5 space-y-1.5 font-mono text-[12px] text-foreground/70">
                 {s.bullets.map((b) => (
                   <li key={b} className="flex items-center gap-2">
-                    <span className="h-px w-3 bg-accent-blue/60" />
+                    <span className="h-1 w-1 rounded-full bg-muted-foreground/40" />
                     {b}
                   </li>
                 ))}
@@ -319,7 +310,6 @@ function Methodology() {
 function CommandCenterSection() {
   return (
     <section className="relative overflow-hidden py-16 lg:py-32">
-      <div className="absolute inset-0 bg-radial-glow opacity-60" />
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="grid items-end gap-10 lg:grid-cols-12">
           <div className="lg:col-span-6">
@@ -412,8 +402,7 @@ function CaseStudiesPreview() {
 
         <StaggerReveal className="mt-8 grid gap-6 md:mt-12 lg:grid-cols-3">
           {CASES.map((c) => (
-            <StaggerChild key={c.title} className="surface-card group relative flex flex-col overflow-hidden p-7 transition hover:-translate-y-0.5">
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-blue/40 to-transparent" />
+            <StaggerChild key={c.title} className="surface-card group relative flex flex-col overflow-hidden p-7 transition hover:-translate-y-0.5 border-t border-border">
               <div className="flex items-center justify-between">
                 <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
                   {c.tag}
@@ -460,8 +449,6 @@ function CaseStudiesPreview() {
 function FinalCTA() {
   return (
     <section className="relative overflow-hidden border-t border-border py-16 lg:py-32">
-      <div className="absolute inset-0 bg-radial-glow opacity-80" />
-      <div className="absolute inset-0 bg-grid opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
       <div className="relative mx-auto max-w-4xl px-4 lg:px-6 text-center">
         <ScrollReveal variant="scaleIn">
           <Eyebrow>Let's build</Eyebrow>
@@ -533,11 +520,10 @@ function WhatWeWorkOn() {
                 return (
                   <div
                     key={item.title}
-                    className="surface-card group relative w-[260px] shrink-0 p-5 transition duration-300 hover:border-accent-blue/40"
+                    className="surface-card group relative w-[260px] shrink-0 p-5 transition duration-300 hover:border-border/80"
                   >
                     <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
                       <span>CAP · {String(i + 1).padStart(2, "0")}</span>
-                      <span className="h-1.5 w-1.5 rounded-full bg-accent-blue opacity-50 group-hover:opacity-100 transition" />
                     </div>
                     <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground/90">
                       {item.title}
@@ -556,11 +542,10 @@ function WhatWeWorkOn() {
               return (
                 <StaggerChild key={item.title}>
                   <div
-                    className="surface-card group relative p-6 transition duration-300 hover:border-accent-blue/40"
+                    className="surface-card group relative p-6 transition duration-300 hover:border-border/80"
                   >
                   <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
                     <span>CAP · {String(i + 1).padStart(2, "0")}</span>
-                    <span className="h-1.5 w-1.5 rounded-full bg-accent-blue opacity-50 group-hover:opacity-100 transition" />
                   </div>
                   <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground/90">
                     {item.title}

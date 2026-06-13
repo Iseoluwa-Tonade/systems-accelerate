@@ -63,9 +63,7 @@ const SERVICES = [
 function ServicesPage() {
   return (
     <SiteLayout>
-      <section className="relative overflow-hidden border-b border-border">
-        <div className="absolute inset-0 bg-radial-glow opacity-70" />
-        <div className="absolute inset-0 bg-grid opacity-25 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]" />
+      <section className="relative overflow-hidden border-b border-border pt-8">
         <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>Services</Eyebrow>
           <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
@@ -262,11 +260,10 @@ function WhatWeWorkOn() {
                 return (
                   <div
                     key={item.title}
-                    className="surface-card group relative w-[260px] shrink-0 p-5 transition duration-300 hover:border-accent-blue/40"
+                    className="surface-card group relative w-[260px] shrink-0 p-5 transition duration-300 hover:border-border/80"
                   >
                     <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
                       <span>CAP · {String(i + 1).padStart(2, "0")}</span>
-                      <span className="h-1.5 w-1.5 rounded-full bg-accent-blue opacity-50 group-hover:opacity-100 transition" />
                     </div>
                     <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground/90">
                       {item.title}
@@ -285,11 +282,10 @@ function WhatWeWorkOn() {
               return (
                 <StaggerChild key={item.title}>
                   <div
-                    className="surface-card group relative p-6 transition duration-300 hover:border-accent-blue/40"
+                    className="surface-card group relative p-6 transition duration-300 hover:border-border/80"
                   >
                   <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
                     <span>CAP · {String(i + 1).padStart(2, "0")}</span>
-                    <span className="h-1.5 w-1.5 rounded-full bg-accent-blue opacity-50 group-hover:opacity-100 transition" />
                   </div>
                   <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground/90">
                     {item.title}

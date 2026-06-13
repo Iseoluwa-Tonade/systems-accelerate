@@ -18,8 +18,7 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   return (
     <SiteLayout>
-      <section className="relative overflow-hidden border-b border-border">
-        <div className="absolute inset-0 bg-radial-glow opacity-60" />
+      <section className="relative overflow-hidden border-b border-border pt-8">
         <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>Contact</Eyebrow>
           <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[68px] lg:leading-[1.03]">

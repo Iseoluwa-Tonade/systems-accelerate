@@ -330,10 +330,7 @@ export function BookingCalendar({
       <div className="md:w-[200px] shrink-0">
         {/* Slots header */}
         <div className="flex items-center gap-2 mb-5">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-teal opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-teal" />
-          </span>
+          <span className="h-1.5 w-1.5 rounded-full bg-accent-teal" />
           <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
             Available Slots
           </span>

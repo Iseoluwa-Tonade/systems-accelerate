@@ -32,7 +32,7 @@ const LOG_LINES = [
   { t: "OK", m: "Routed inbound lead → SDR queue · Northeast" },
   { t: "INFO", m: "Apollo sequence v4 deployed to 8 reps" },
   { t: "OK", m: "HubSpot ↔ Salesforce bi-directional sync · 4.2s" },
-  { t: "AI", m: "GPT scored 312 opportunities · 28 flagged hot" },
+  { t: "SYS", m: "Scored 312 routing opportunities · 28 assigned" },
   { t: "OK", m: "Slack alert sent · Acme · pipeline +$48k" },
   { t: "INFO", m: "Power BI snapshot refreshed · 12 dashboards" },
   { t: "OK", m: "Stripe MRR reconciled → Snowflake" },
@@ -61,11 +61,11 @@ export function CommandCenter() {
   const visibleLogs = Array.from({ length: 5 }, (_, k) => LOG_LINES[(logIdx + k) % LOG_LINES.length]);
 
   return (
-    <div className="surface-card relative overflow-hidden p-3 sm:p-4 lg:p-5 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]">
+    <div className="surface-card relative overflow-hidden p-3 sm:p-4 lg:p-5 shadow-lg">
       {/* Top toolbar */}
       <div className="flex items-center justify-between gap-3 px-2 pb-3">
         <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-[color:var(--accent-teal)] animate-pulse-dot" />
+          <span className="h-2 w-2 rounded-full bg-[color:var(--accent-teal)]" />
           <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
             GTM Command Center · live
           </span>
@@ -108,22 +108,19 @@ export function CommandCenter() {
             <Kpi label="Automations" value="312" delta="24/7" muted />
           </div>
 
-          {/* AI insight */}
+          {/* System Health */}
           <div className="relative rounded-xl border border-border bg-[color:var(--surface)]/70 p-3">
-            <div className="absolute -inset-px rounded-xl bg-gradient-to-br from-accent-indigo/20 via-transparent to-accent-teal/15 opacity-60 pointer-events-none" />
             <div className="relative">
               <div className="flex items-center gap-2">
-                <span className="rounded-md bg-accent-indigo/20 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-accent-indigo">
-                  AI · gpt-5
+                <span className="rounded-md bg-emerald-500/10 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-emerald-500 border border-emerald-500/20">
+                  Active
                 </span>
                 <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                  insight
+                  System Health
                 </span>
               </div>
               <p className="mt-2 text-[13px] leading-relaxed text-foreground/90">
-                <span className="text-foreground">Acme Corp</span> shows 4 buying signals in 7 days.
-                Recommend escalating to AE, with estimated influence{" "}
-                <span className="font-medium text-foreground">+$48k pipeline</span>.
+                All data sync triggers are operational. Verified <span className="font-medium text-foreground">312 workflow events</span> in the past 24 hours. Zero errors or delays detected.
               </p>
             </div>
           </div>
@@ -132,7 +129,7 @@ export function CommandCenter() {
           <div className="relative rounded-xl border border-border bg-[color:var(--surface)]/70 p-3 font-mono text-[11.5px] leading-relaxed">
             <div className="mb-1 flex items-center justify-between">
               <span className="text-muted-foreground">~/revops/agent.log</span>
-              <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent-teal)] animate-pulse-dot" />
+              <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent-teal)]" />
             </div>
             <ul className="space-y-1">
               {visibleLogs.map((l, i) => (
@@ -142,7 +139,7 @@ export function CommandCenter() {
                       "mr-2 inline-block w-7 " +
                       (l.t === "OK"
                         ? "text-[color:var(--accent-teal)]"
-                        : l.t === "AI"
+                        : l.t === "SYS"
                         ? "text-[color:var(--accent-indigo)]"
                         : "text-[color:var(--accent-blue)]")
                     }

@@ -63,8 +63,7 @@ const CASES = [
 function CaseStudiesPage() {
   return (
     <SiteLayout>
-      <section className="relative overflow-hidden border-b border-border">
-        <div className="absolute inset-0 bg-radial-glow opacity-70" />
+      <section className="relative overflow-hidden border-b border-border pt-8">
         <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>Case studies</Eyebrow>
           <h1 className="mt-5 max-w-4xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
@@ -163,7 +162,7 @@ function DashboardMock({ c }: { c: (typeof CASES)[number] }) {
     <div className="surface-card overflow-hidden p-5">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-[color:var(--accent-teal)] animate-pulse-dot" />
+          <span className="h-2 w-2 rounded-full bg-[color:var(--accent-teal)]" />
           <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
             pipeline · 16-week view
           </span>

@@ -44,8 +44,7 @@ const TEAM = [
 function AboutPage() {
   return (
     <SiteLayout>
-      <section className="relative overflow-hidden border-b border-border">
-        <div className="absolute inset-0 bg-radial-glow opacity-70" />
+      <section className="relative overflow-hidden border-b border-border pt-8">
         <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>About</Eyebrow>
           <h1 className="mt-5 max-w-4xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[76px] lg:leading-[1.02]">
@@ -120,11 +119,11 @@ function AboutPage() {
               return (
                 <StaggerChild key={ind.title}>
                   <div
-                    className="surface-card group relative p-8 transition duration-300 hover:border-accent-blue/30"
+                    className="surface-card group relative p-8 transition duration-300 hover:border-border/80"
                   >
                   <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
                     <span>SECTOR · 0{i + 1}</span>
-                    <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: ind.color }} />
+                    <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/30" />
                   </div>
                   <h3 className="font-display text-xl font-semibold tracking-tight text-foreground/90">
                     {ind.title}

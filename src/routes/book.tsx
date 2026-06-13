@@ -30,8 +30,7 @@ function BookPage() {
 
   return (
     <SiteLayout>
-      <section className="relative overflow-hidden border-b border-border">
-        <div className="absolute inset-0 bg-radial-glow opacity-70" />
+      <section className="relative overflow-hidden border-b border-border pt-8">
         <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-10 lg:pt-32 lg:px-6">
           <Eyebrow>Book a session</Eyebrow>
           <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
@@ -134,7 +133,6 @@ function BookPage() {
             </div>
 
             <div className="surface-card relative overflow-hidden p-6">
-              <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-accent-indigo/25 blur-3xl" />
               <div className="relative">
                 <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
                   Estimated value
