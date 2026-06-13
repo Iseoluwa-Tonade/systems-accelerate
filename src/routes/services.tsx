@@ -68,11 +68,9 @@ function ServicesPage() {
         <div className="absolute inset-0 bg-grid opacity-25 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]" />
         <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>Services</Eyebrow>
-          <ScrollReveal variant="fadeUp">
-            <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
-              Revenue infrastructure, <span className="text-gradient-brand">engineered.</span>
-            </h1>
-          </ScrollReveal>
+          <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
+            Revenue infrastructure, <span className="text-gradient-brand">engineered.</span>
+          </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
               Each capability ships with an architecture diagram, a measurement plan and an

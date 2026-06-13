@@ -34,11 +34,9 @@ function BookPage() {
         <div className="absolute inset-0 bg-radial-glow opacity-70" />
         <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-10 lg:pt-32 lg:px-6">
           <Eyebrow>Book a session</Eyebrow>
-          <ScrollReveal variant="fadeUp">
-            <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
-              Book a <span className="text-gradient-brand">revenue systems</span> strategy session.
-            </h1>
-          </ScrollReveal>
+          <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
+            Book a <span className="text-gradient-brand">revenue systems</span> strategy session.
+          </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
               A meeting with a senior RevOps engineer. We audit your stack, identify three automation

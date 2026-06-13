@@ -48,11 +48,9 @@ function AboutPage() {
         <div className="absolute inset-0 bg-radial-glow opacity-70" />
         <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>About</Eyebrow>
-          <ScrollReveal variant="fadeUp">
-            <h1 className="mt-5 max-w-4xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[76px] lg:leading-[1.02]">
-              We are <span className="text-gradient-brand">technical revenue operators</span> not a marketing agency.
-            </h1>
-          </ScrollReveal>
+          <h1 className="mt-5 max-w-4xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[76px] lg:leading-[1.02]">
+            We are <span className="text-gradient-brand">technical revenue operators</span> not a marketing agency.
+          </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <div className="mt-10 grid gap-10 lg:grid-cols-12">
             <p className="lg:col-span-7 text-lg leading-relaxed text-muted-foreground">

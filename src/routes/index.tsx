@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Eyebrow, SectionHeader } from "@/components/site/Eyebrow";
+import { ScrollReveal, StaggerReveal, StaggerChild } from "@/components/site/ScrollReveal";
 import * as L from "@/components/site/Logos";
 // Removed lucide-react imports to reduce icon clutter
 
@@ -88,13 +89,16 @@ function Hero() {
             that scale.
           </h1>
 
-          <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-muted-foreground sm:text-[17px]">
-            We turn disconnected sales, marketing, and customer success operations into a single
-            revenue engine, powered by automation, AI, and modern GTM infrastructure on HubSpot,
-            Salesforce, Clay, Apollo, GoHighLevel, Lemlist, Instantly, Zapier, Supabase, and Low/No-code.
-          </p>
+          <ScrollReveal variant="fadeUp" delay={0.15}>
+            <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-muted-foreground sm:text-[17px]">
+              We turn disconnected sales, marketing, and customer success operations into a single
+              revenue engine, powered by automation, AI, and modern GTM infrastructure on HubSpot,
+              Salesforce, Clay, Apollo, GoHighLevel, Lemlist, Instantly, Zapier, Supabase, and Low/No-code.
+            </p>
+          </ScrollReveal>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <ScrollReveal variant="fadeUp" delay={0.25}>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
               to="/book"
               className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background hover:opacity-90"
@@ -111,16 +115,19 @@ function Hero() {
               Explore services
             </Link>
           </div>
+          </ScrollReveal>
 
 
         </div>
 
         <div className="lg:col-span-6 pb-16 lg:pb-24">
-          <ProductShowcase
+          <ScrollReveal variant="scaleIn" delay={0.2}>
+            <ProductShowcase
             primarySrc="/Employee Onboarding Process Data Visualization Infographic Presentation (1).png"
             secondarySrc="/Employee Onboarding Process Data Visualization Infographic Presentation.png"
-            secondaryOffset="right-0 -bottom-8 md:-bottom-16"
-          />
+              secondaryOffset="right-0 -bottom-8 md:-bottom-16"
+            />
+          </ScrollReveal>
         </div>
       </div>
     </section>
@@ -230,9 +237,9 @@ function Services() {
           </Link>
         </div>
 
-        <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
+        <StaggerReveal className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s) => (
-            <div
+            <StaggerChild
               key={s.code}
               className="group relative bg-background p-7 transition-colors hover:bg-[color:var(--surface)]/60"
             >
@@ -254,9 +261,9 @@ function Services() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </StaggerChild>
           ))}
-        </div>
+        </StaggerReveal>
       </div>
     </section>
   );
@@ -284,9 +291,9 @@ function Methodology() {
           description="A repeatable engineering rhythm, using the same four phases every senior team uses to ship infrastructure that compounds."
         />
 
-        <ol className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:mt-14 md:grid-cols-4">
+        <StaggerReveal className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-border bg-border md:mt-14 md:grid-cols-4">
           {STEPS.map((s, i) => (
-            <li key={s.k} className="relative bg-background p-7">
+            <StaggerChild key={s.k} className="relative bg-background p-7">
               <div className="flex items-center justify-between">
                 <span className="font-mono text-[11px] tracking-[0.2em] text-muted-foreground">
                   PHASE 0{i + 1}
@@ -300,9 +307,9 @@ function Methodology() {
               <div className="mt-6 rounded-md border border-border bg-[color:var(--surface-2)]/60 px-3 py-2 font-mono text-[11px] text-foreground/75">
                 ↳ {s.out}
               </div>
-            </li>
+            </StaggerChild>
           ))}
-        </ol>
+        </StaggerReveal>
       </div>
     </section>
   );
@@ -316,7 +323,8 @@ function CommandCenterSection() {
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="grid items-end gap-10 lg:grid-cols-12">
           <div className="lg:col-span-6">
-            <SectionHeader
+            <ScrollReveal variant="slideRight">
+              <SectionHeader
               eyebrow="GTM Command Center"
               title={
                 <>
@@ -343,13 +351,16 @@ function CommandCenterSection() {
                 </li>
               ))}
             </ul>
+            </ScrollReveal>
           </div>
           <div className="lg:col-span-6 pb-16 lg:pb-24">
-            <ProductShowcase
+            <ScrollReveal variant="slideLeft">
+              <ProductShowcase
               primarySrc="/Employee Onboarding Process Data Visualization Infographic Presentation (2).png"
               secondarySrc="/Employee Onboarding Process Data Visualization Infographic Presentation.png"
-              secondaryOffset="right-0 -bottom-8 md:-bottom-16"
-            />
+                secondaryOffset="right-0 -bottom-8 md:-bottom-16"
+              />
+            </ScrollReveal>
           </div>
         </div>
       </div>
@@ -399,12 +410,9 @@ function CaseStudiesPreview() {
           </Link>
         </div>
 
-        <div className="mt-8 grid gap-6 md:mt-12 lg:grid-cols-3">
+        <StaggerReveal className="mt-8 grid gap-6 md:mt-12 lg:grid-cols-3">
           {CASES.map((c) => (
-            <article
-              key={c.title}
-              className="surface-card group relative flex flex-col overflow-hidden p-7 transition hover:-translate-y-0.5"
-            >
+            <StaggerChild key={c.title} className="surface-card group relative flex flex-col overflow-hidden p-7 transition hover:-translate-y-0.5">
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent-blue/40 to-transparent" />
               <div className="flex items-center justify-between">
                 <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
@@ -440,9 +448,9 @@ function CaseStudiesPreview() {
               >
                 Read teardown <span aria-hidden>→</span>
               </Link>
-            </article>
+            </StaggerChild>
           ))}
-        </div>
+        </StaggerReveal>
       </div>
     </section>
   );
@@ -455,8 +463,9 @@ function FinalCTA() {
       <div className="absolute inset-0 bg-radial-glow opacity-80" />
       <div className="absolute inset-0 bg-grid opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]" />
       <div className="relative mx-auto max-w-4xl px-4 lg:px-6 text-center">
-        <Eyebrow>Let's build</Eyebrow>
-        <h2 className="mt-6 font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+        <ScrollReveal variant="scaleIn">
+          <Eyebrow>Let's build</Eyebrow>
+          <h2 className="mt-6 font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
           Ready to build a revenue
           <br />
           engine that <span className="text-gradient-brand">runs itself?</span>
@@ -480,6 +489,7 @@ function FinalCTA() {
             Contact the team
           </Link>
         </div>
+        </ScrollReveal>
       </div>
     </section>
   );
@@ -516,26 +526,53 @@ function WhatWeWorkOn() {
           description="Operational problems solved with software, triggers, and solid engineering. If it can be mapped, it can be automated."
         />
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 md:mt-14 lg:grid-cols-4">
-          {WORK_ITEMS.map((item, i) => {
-            return (
-              <div
-                key={item.title}
-                className="surface-card group relative p-6 transition duration-300 hover:border-accent-blue/40"
-              >
-                <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
-                  <span>CAP · {String(i + 1).padStart(2, "0")}</span>
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent-blue opacity-50 group-hover:opacity-100 transition" />
+        <div className="mt-10 md:mt-14">
+          <div className="sm:hidden overflow-x-auto -mx-4 px-4 pb-2">
+            <div className="flex gap-4 w-max">
+              {WORK_ITEMS.map((item, i) => {
+                return (
+                  <div
+                    key={item.title}
+                    className="surface-card group relative w-[260px] shrink-0 p-5 transition duration-300 hover:border-accent-blue/40"
+                  >
+                    <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
+                      <span>CAP · {String(i + 1).padStart(2, "0")}</span>
+                      <span className="h-1.5 w-1.5 rounded-full bg-accent-blue opacity-50 group-hover:opacity-100 transition" />
+                    </div>
+                    <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground/90">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                      {item.desc}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <StaggerReveal className="hidden sm:grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {WORK_ITEMS.map((item, i) => {
+              return (
+                <StaggerChild key={item.title}>
+                  <div
+                    className="surface-card group relative p-6 transition duration-300 hover:border-accent-blue/40"
+                  >
+                  <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
+                    <span>CAP · {String(i + 1).padStart(2, "0")}</span>
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent-blue opacity-50 group-hover:opacity-100 transition" />
+                  </div>
+                  <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground/90">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                    {item.desc}
+                  </p>
                 </div>
-                <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground/90">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                  {item.desc}
-                </p>
-              </div>
-            );
-          })}
+                </StaggerChild>
+              );
+            })}
+          </StaggerReveal>
         </div>
       </div>
     </section>

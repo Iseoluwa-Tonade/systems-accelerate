@@ -22,11 +22,9 @@ function ContactPage() {
         <div className="absolute inset-0 bg-radial-glow opacity-60" />
         <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>Contact</Eyebrow>
-          <ScrollReveal variant="fadeUp">
-            <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
-              Talk to a <span className="text-gradient-brand">revenue engineer.</span>
-            </h1>
-          </ScrollReveal>
+          <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
+            Talk to a <span className="text-gradient-brand">revenue engineer.</span>
+          </h1>
         </div>
       </section>
 

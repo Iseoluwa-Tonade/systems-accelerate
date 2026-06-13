@@ -67,13 +67,11 @@ function CaseStudiesPage() {
         <div className="absolute inset-0 bg-radial-glow opacity-70" />
         <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>Case studies</Eyebrow>
-          <ScrollReveal variant="fadeUp">
-            <h1 className="mt-5 max-w-4xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
-              What we shipped.
-              <br />
-              <span className="text-gradient-brand">What it moved.</span>
-            </h1>
-          </ScrollReveal>
+          <h1 className="mt-5 max-w-4xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
+            What we shipped.
+            <br />
+            <span className="text-gradient-brand">What it moved.</span>
+          </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
               Three field teardowns from recent engagements covering challenge, architecture, stack and the
