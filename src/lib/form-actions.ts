@@ -1,17 +1,21 @@
 import { createServerFn } from "@tanstack/react-start";
 import { appendToSheet } from "./sheets.server";
+import { z } from "zod";
 
-export interface ContactFormData {
-  name: string;
-  company: string;
-  role: string;
-  email: string;
-  crm: string;
-  message: string;
-}
+export const contactFormSchema = z.object({
+  name: z.string(),
+  company: z.string(),
+  role: z.string(),
+  email: z.string(),
+  crm: z.string(),
+  message: z.string(),
+});
 
-export const submitContactForm = createServerFn({ method: "POST" }).handler(
-  async ({ data }: { data: ContactFormData }) => {
+export type ContactFormData = z.infer<typeof contactFormSchema>;
+
+export const submitContactForm = createServerFn({ method: "POST" })
+  .validator((data: ContactFormData) => contactFormSchema.parse(data))
+  .handler(async ({ data }) => {
     try {
       await appendToSheet("contact", {
         name: data.name,
@@ -26,23 +30,25 @@ export const submitContactForm = createServerFn({ method: "POST" }).handler(
       console.error("[submitContactForm]", err);
       throw err;
     }
-  },
-);
+  });
 
-export interface BookSessionData {
-  fullName: string;
-  workEmail: string;
-  company: string;
-  companySize: string;
-  crm: string;
-  challenge: string;
-  notes: string;
-  selectedDate: string;
-  selectedSlot: string;
-}
+export const bookSessionSchema = z.object({
+  fullName: z.string(),
+  workEmail: z.string(),
+  company: z.string(),
+  companySize: z.string(),
+  crm: z.string(),
+  challenge: z.string(),
+  notes: z.string(),
+  selectedDate: z.string(),
+  selectedSlot: z.string(),
+});
 
-export const submitBookSession = createServerFn({ method: "POST" }).handler(
-  async ({ data }: { data: BookSessionData }) => {
+export type BookSessionData = z.infer<typeof bookSessionSchema>;
+
+export const submitBookSession = createServerFn({ method: "POST" })
+  .validator((data: BookSessionData) => bookSessionSchema.parse(data))
+  .handler(async ({ data }) => {
     try {
       await appendToSheet("book", {
         fullName: data.fullName,
@@ -60,5 +66,4 @@ export const submitBookSession = createServerFn({ method: "POST" }).handler(
       console.error("[submitBookSession]", err);
       throw err;
     }
-  },
-);
+  });
