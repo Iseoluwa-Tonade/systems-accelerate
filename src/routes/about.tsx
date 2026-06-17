@@ -43,9 +43,9 @@ const TEAM = [
 
 function AboutPage() {
   return (
-    <SiteLayout>
-      <section className="relative overflow-hidden border-b border-border pt-8">
-        <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-12 lg:pt-32 lg:px-6">
+    <SiteLayout headerTheme="dark">
+      <section className="sec-navy relative overflow-hidden border-b border-border pt-24 md:pt-28">
+        <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>About</Eyebrow>
           <h1 className="mt-5 max-w-4xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[76px] lg:leading-[1.02]">
             We are <span className="text-gradient-brand">technical revenue operators</span> not a marketing agency.
@@ -68,7 +68,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="border-b border-border bg-[color:var(--surface)]/30 py-16 lg:py-32">
+      <section className="sec-cream border-b border-border py-16 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <ScrollReveal variant="fadeUp">
             <div className="grid gap-12 lg:grid-cols-12">
@@ -85,7 +85,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 lg:py-32">
+      <section className="sec-white py-16 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <SectionHeader eyebrow="Core principles" title={<>How we operate.</>} />
           <StaggerReveal className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:mt-12 md:grid-cols-2 lg:grid-cols-5">
@@ -102,7 +102,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-[color:var(--surface)]/20 py-16 lg:py-32">
+      <section className="sec-navy border-y border-border py-16 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <SectionHeader
             eyebrow="Industries"
@@ -139,7 +139,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-[color:var(--surface)]/30 py-24 hidden">
+      <section className="border-y border-border bg-(--surface)/30 py-24 hidden">
         <div className="mx-auto max-w-7xl px-6">
           <SectionHeader eyebrow="Team" title={<>Operators, engineers, analysts.</>} description="A deliberately small bench. The same senior person who scopes the work ships the work." />
           <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
@@ -152,7 +152,7 @@ function AboutPage() {
                       background: `conic-gradient(from ${i * 60}deg, var(--accent-blue), var(--accent-indigo), var(--accent-teal), var(--accent-blue))`,
                     }}
                   >
-                    <div className="m-[2px] h-[calc(100%-4px)] w-[calc(100%-4px)] rounded-full bg-[color:var(--surface-2)] flex items-center justify-center font-display font-semibold text-foreground/80">
+                    <div className="m-[2px] h-[calc(100%-4px)] w-[calc(100%-4px)] rounded-full bg-(--surface-2) flex items-center justify-center font-display font-semibold text-foreground/80">
                       {m.name.split(" ").pop()?.charAt(0)}
                     </div>
                   </div>
@@ -171,7 +171,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 lg:py-32">
+      <section className="sec-lime py-16 lg:py-32">
       <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
         <ScrollReveal variant="scaleIn">
           <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-5xl">

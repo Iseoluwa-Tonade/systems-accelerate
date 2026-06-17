@@ -62,9 +62,9 @@ const CASES = [
 
 function CaseStudiesPage() {
   return (
-    <SiteLayout>
-      <section className="relative overflow-hidden border-b border-border pt-8">
-        <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-12 lg:pt-32 lg:px-6">
+    <SiteLayout headerTheme="dark">
+      <section className="sec-navy relative overflow-hidden border-b border-border pt-24 md:pt-28">
+        <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>Case studies</Eyebrow>
           <h1 className="mt-5 max-w-4xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
             What we shipped.
@@ -73,32 +73,37 @@ function CaseStudiesPage() {
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
-              Three field teardowns from recent engagements covering challenge, architecture, stack and the
-              metrics that changed in the boardroom.
+              Three field teardowns from recent engagements covering challenge, architecture, stack
+              and the metrics that changed in the boardroom.
             </p>
           </ScrollReveal>
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-4 lg:px-6 py-16 space-y-16 lg:space-y-32">
-        {CASES.map((c, i) => (
-          <ScrollReveal key={c.title} variant="fadeUp" delay={i * 0.1}>
-            <Study c={c} index={i} />
-          </ScrollReveal>
-        ))}
-      </div>
+      <section className="sec-white py-16 lg:py-32">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6 space-y-16 lg:space-y-32">
+          {CASES.map((c, i) => (
+            <ScrollReveal key={c.title} variant="fadeUp" delay={i * 0.1}>
+              <Study c={c} index={i} />
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
 
-      <section className="border-t border-border py-12 lg:py-20">
-      <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
-        <ScrollReveal variant="scaleIn">
-          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-            Your engagement could be the next teardown.
-          </h2>
-          <Link to="/book" className="mt-8 inline-flex rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background">
-            Book a strategy session →
-          </Link>
-        </ScrollReveal>
-      </div>
+      <section className="sec-lime border-t border-border py-12 lg:py-20">
+        <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
+          <ScrollReveal variant="scaleIn">
+            <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+              Your engagement could be the next teardown.
+            </h2>
+            <Link
+              to="/book"
+              className="mt-8 inline-flex rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background"
+            >
+              Book a strategy session →
+            </Link>
+          </ScrollReveal>
+        </div>
       </section>
     </SiteLayout>
   );
@@ -109,7 +114,8 @@ function Study({ c, index }: { c: (typeof CASES)[number]; index: number }) {
     <article className="grid gap-10 lg:grid-cols-12">
       <div className="lg:col-span-5">
         <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-          Case · {String(index + 1).padStart(2, "0")} / {String(CASES.length).padStart(2, "0")} · {c.tag}
+          Case · {String(index + 1).padStart(2, "0")} / {String(CASES.length).padStart(2, "0")} ·{" "}
+          {c.tag}
         </div>
         <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
           {c.title}
@@ -118,10 +124,15 @@ function Study({ c, index }: { c: (typeof CASES)[number]; index: number }) {
           <Field k="Challenge" v={c.challenge} />
           <Field k="Solution" v={c.solution} />
           <div>
-            <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Stack</div>
+            <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+              Stack
+            </div>
             <div className="mt-2 flex flex-wrap gap-1.5">
               {c.stack.map((s) => (
-                <span key={s} className="rounded-full border border-border bg-[color:var(--surface)]/60 px-2.5 py-1 font-mono text-[11px] text-foreground/85">
+                <span
+                  key={s}
+                  className="rounded-full border border-border bg-(--surface)/60 px-2.5 py-1 font-mono text-[11px] text-foreground/85"
+                >
                   {s}
                 </span>
               ))}
@@ -135,7 +146,9 @@ function Study({ c, index }: { c: (typeof CASES)[number]; index: number }) {
         <div className="grid grid-cols-3 gap-3">
           {c.outcomes.map(([v, l]) => (
             <div key={l} className="surface-card p-4">
-              <div className="font-display text-2xl font-semibold tracking-tight text-gradient-brand">{v}</div>
+              <div className="font-display text-2xl font-semibold tracking-tight text-gradient-brand">
+                {v}
+              </div>
               <div className="mt-1 text-xs text-muted-foreground">{l}</div>
             </div>
           ))}
@@ -148,7 +161,9 @@ function Study({ c, index }: { c: (typeof CASES)[number]; index: number }) {
 function Field({ k, v }: { k: string; v: string }) {
   return (
     <div>
-      <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">{k}</div>
+      <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+        {k}
+      </div>
       <p className="mt-2 text-foreground/85">{v}</p>
     </div>
   );
@@ -162,7 +177,7 @@ function DashboardMock({ c }: { c: (typeof CASES)[number] }) {
     <div className="surface-card overflow-hidden p-5">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-[color:var(--accent-teal)]" />
+          <span className="h-2 w-2 rounded-full bg-(--accent-teal)" />
           <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
             pipeline · 16-week view
           </span>
@@ -175,18 +190,26 @@ function DashboardMock({ c }: { c: (typeof CASES)[number] }) {
           {bars.map((h, i) => (
             <div key={i} className="flex-1 flex flex-col items-stretch gap-1">
               <div
-                className="w-full rounded-sm bg-gradient-to-t from-accent-blue/60 to-accent-indigo/80"
+                className="w-full rounded-sm bg-linear-to-t from-accent-blue/60 to-accent-indigo/80"
                 style={{ height: `${h}%` }}
               />
-              <div className="w-full rounded-sm bg-foreground/10" style={{ height: `${100 - h}%` }} />
+              <div
+                className="w-full rounded-sm bg-foreground/10"
+                style={{ height: `${100 - h}%` }}
+              />
             </div>
           ))}
         </div>
         <div className="flex flex-col gap-2 text-right">
           {["+40%", "+18%", "−12%"].map((d, i) => (
-            <div key={d} className="rounded-md border border-border px-2 py-1 font-mono text-[11px]">
+            <div
+              key={d}
+              className="rounded-md border border-border px-2 py-1 font-mono text-[11px]"
+            >
               <span className="text-muted-foreground mr-2">Q{i + 1}</span>
-              <span className={d.startsWith("−") ? "text-destructive" : "text-[color:var(--accent-teal)]"}>{d}</span>
+              <span className={d.startsWith("−") ? "text-destructive" : "text-(--accent-teal)"}>
+                {d}
+              </span>
             </div>
           ))}
         </div>

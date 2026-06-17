@@ -62,9 +62,9 @@ const SERVICES = [
 
 function ServicesPage() {
   return (
-    <SiteLayout>
-      <section className="relative overflow-hidden border-b border-border pt-8">
-        <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-12 lg:pt-32 lg:px-6">
+    <SiteLayout headerTheme="dark">
+      <section className="sec-navy relative overflow-hidden border-b border-border pt-24 md:pt-28">
+        <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>Services</Eyebrow>
           <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
             Revenue infrastructure, <span className="text-gradient-brand">engineered.</span>
@@ -78,11 +78,13 @@ function ServicesPage() {
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-4 lg:px-6 py-16 space-y-16 lg:py-32 lg:space-y-32">
-        {SERVICES.map((s, i) => (
-          <ServiceBlock key={s.id} svc={s} reverse={i % 2 === 1} />
-        ))}
-      </div>
+      <section className="sec-white py-16 lg:py-32">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6 space-y-16 lg:space-y-32">
+          {SERVICES.map((s, i) => (
+            <ServiceBlock key={s.id} svc={s} reverse={i % 2 === 1} />
+          ))}
+        </div>
+      </section>
 
       <WhatWeWorkOn />
 
@@ -119,7 +121,7 @@ function ServiceBlock({
           </ul>
           <Link
             to="/book"
-            className="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-[color:var(--surface)]/60 px-4 py-2 text-sm hover:bg-[color:var(--surface)]"
+            className="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-(--surface)/60 px-4 py-2 text-sm hover:bg-(--surface)"
           >
             Discuss this engagement →
           </Link>
@@ -240,7 +242,7 @@ const WORK_ITEMS = [
 
 function WhatWeWorkOn() {
   return (
-    <section className="relative border-t border-border bg-[color:var(--surface)]/10 py-16 lg:py-32">
+    <section className="sec-navy relative border-t border-border py-16 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <SectionHeader
           eyebrow="Capabilities"
@@ -306,7 +308,7 @@ function WhatWeWorkOn() {
 
 function CTA() {
   return (
-    <section className="border-t border-border py-12 lg:py-20">
+    <section className="sec-lime border-t border-border py-12 lg:py-20">
       <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
         <ScrollReveal variant="scaleIn">
           <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">

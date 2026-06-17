@@ -1,4 +1,4 @@
-@import "tailwindcss" source(none);
+@import "tailwindcss";
 @source "../src";
 @import "tw-animate-css";
 
@@ -75,6 +75,7 @@
   --foreground: #0B1120;
 
   --surface: #FFFFFF;
+  --surface-2: #F0EFEA;
   --primary: #1B5EFF;
   --secondary: #E5E9F2;
 
@@ -82,6 +83,10 @@
   --muted-foreground: #5B6680;
 
   --accent: #EEF3FF;
+  --accent-blue: #1B5EFF;
+  --accent-indigo: #4F46E5;
+  --accent-teal: #14B8A6;
+  --accent-purple: #8B5CF6;
   --border: rgba(0, 0, 0, 0.06);
 
   --card: #FFFFFF;
@@ -117,34 +122,65 @@
    to set the section-wide background + text.
    ═══════════════════════════════════════════════ */
 
-/* Warm cream — hero sections */
+/* Warm cream — hero / logo-bar sections */
 .sec-cream {
   background-color: #F7F5F0;
   color: #0B1120;
+  --background: #F7F5F0;
+  --surface: #FFFFFF;
+  --surface-2: #F0EFEA;
+  --muted-foreground: #5B6680;
+  --border: rgba(0, 0, 0, 0.06);
 }
 
-/* Pure white — feature / capability sections */
+/* Pure white — feature / content sections */
 .sec-white {
   background-color: #FFFFFF;
   color: #0B1120;
+  --background: #F7F5F0;
+  --surface: #FFFFFF;
+  --surface-2: #F0EFEA;
+  --muted-foreground: #5B6680;
+  --border: rgba(0, 0, 0, 0.06);
 }
 
 /* Soft blue tint — mid-page, stats */
 .sec-mid {
   background-color: #EEF3FF;
   color: #0B1120;
+  --background: #EEF3FF;
+  --surface: #FFFFFF;
+  --surface-2: #F0EFEA;
+  --muted-foreground: #5B6680;
+  --border: rgba(0, 0, 0, 0.06);
 }
 
 /* Deep navy — dark contrast sections */
 .sec-navy {
   background-color: #0B1120;
   color: #FFFFFF;
+  --background: #0B1120;
+  --foreground: #FFFFFF;
+  --muted-foreground: #94A3B8;
+  --surface: #111827;
+  --surface-2: #1F2937;
+  --border: rgba(255, 255, 255, 0.08);
+  --primary: #4B80FF;
+  --accent-blue: #4B80FF;
+  --accent-teal: #2DD4BF;
 }
 
 /* Electric lime — bold CTA sections */
 .sec-lime {
   background-color: #CDEA68;
   color: #0B1120;
+  --background: #CDEA68;
+  --foreground: #0B1120;
+  --muted-foreground: #5B6680;
+  --surface: #FFFFFF;
+  --surface-2: #F0EFEA;
+  --border: rgba(0, 0, 0, 0.08);
+  --primary: #0B1120;
 }
 
 /* ═══════════════════════════════════════════════
@@ -194,6 +230,13 @@
   border-radius: 1.5rem;
   color: #FFFFFF;
   transition: transform 0.3s ease;
+}
+
+/* Adaptive card surface — picks up section's --surface variable */
+@utility surface-card {
+  background: var(--surface);
+  border-radius: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* ═══════════════════════════════════════════════
