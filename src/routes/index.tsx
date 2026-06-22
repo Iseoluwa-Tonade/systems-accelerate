@@ -527,14 +527,14 @@ function CaseStudiesPreview() {
   return (
     <section className="sec-white relative border-t border-border py-16 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between mb-16 md:mb-44">
           <SectionHeader eyebrow="Field work" title={<>What we ship, and what it changes.</>} />
           <Link to="/case-studies" className="text-sm text-foreground/80 hover:text-foreground">
             View all case studies →
           </Link>
         </div>
 
-        <div className="mt-8 md:mt-12 grid gap-8 lg:grid-cols-12">
+        <div className="mt-16 md:mt-24 grid gap-8 lg:grid-cols-12">
           <div className="lg:col-span-5 flex flex-col justify-center space-y-4">
             <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
               {focused.tag}
