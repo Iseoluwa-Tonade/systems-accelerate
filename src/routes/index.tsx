@@ -525,7 +525,7 @@ function CaseStudiesPreview() {
   const detail = CASE_DETAILS[focused.title];
 
   return (
-    <section className="sec-white relative border-t border-border py-16 lg:py-32 overflow-hidden">
+    <section className="sec-white relative border-t border-border py-16 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeader eyebrow="Field work" title={<>What we ship, and what it changes.</>} />
@@ -580,7 +580,7 @@ function CaseStudiesPreview() {
             </Link>
           </div>
 
-          <div className="lg:col-span-7 relative overflow-hidden" style={{ minHeight: "320px" }}>
+          <div className="lg:col-span-7 relative py-16" style={{ minHeight: "320px" }}>
             <CardSwap
               width={500}
               height={480}
