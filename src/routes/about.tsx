@@ -32,14 +32,6 @@ const INDUSTRIES = [
   { title: "Edutech", desc: "Student onboarding workflows, automated course access, and event reminders.", color: "var(--accent-teal)" },
 ] as const;
 
-const TEAM = [
-  { role: "RevOps Strategist", name: "M. Aldridge", region: "Lagos" },
-  { role: "GTM Engineer", name: "S. Patel", region: "Lagos" },
-  { role: "CRM Architect", name: "J. Okafor", region: "Lagos" },
-  { role: "Automation Specialist", name: "L. Becker", region: "Lagos" },
-  { role: "Data Analyst", name: "R. Tanaka", region: "Lagos" },
-  { role: "AI Engineer", name: "K. Halberg", region: "Lagos" },
-];
 
 function AboutPage() {
   return (
@@ -68,7 +60,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="sec-cream border-b border-border py-16 lg:py-32">
+      <section className="sec-navy border-b border-white/08 py-16 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <ScrollReveal variant="fadeUp">
             <div className="grid gap-12 lg:grid-cols-12">
@@ -139,47 +131,18 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-(--surface)/30 py-24 hidden">
-        <div className="mx-auto max-w-7xl px-6">
-          <SectionHeader eyebrow="Team" title={<>Operators, engineers, analysts.</>} description="A deliberately small bench. The same senior person who scopes the work ships the work." />
-          <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-            {TEAM.map((m, i) => (
-              <div key={m.name} className="group relative overflow-hidden bg-background p-6">
-                <div className="flex items-center gap-4">
-                  <div
-                    className="h-14 w-14 rounded-full"
-                    style={{
-                      background: `conic-gradient(from ${i * 60}deg, var(--accent-blue), var(--accent-indigo), var(--accent-teal), var(--accent-blue))`,
-                    }}
-                  >
-                    <div className="m-[2px] h-[calc(100%-4px)] w-[calc(100%-4px)] rounded-full bg-(--surface-2) flex items-center justify-center font-display font-semibold text-foreground/80">
-                      {m.name.split(" ").pop()?.charAt(0)}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="font-display text-base font-semibold">{m.name}</div>
-                    <div className="text-sm text-muted-foreground">{m.role}</div>
-                  </div>
-                </div>
-                <div className="mt-5 flex items-center justify-between border-t border-border pt-4 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                  <span>{m.region}</span>
-                  <span>since · 202{i % 4 + 1}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="sec-lime py-16 lg:py-32">
+      <section className="sec-gold border-t border-black/10 py-16 lg:py-32">
       <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
         <ScrollReveal variant="scaleIn">
-          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-5xl">
+          <div className="flex items-center justify-center gap-2.5 mb-4">
+            <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain" />
+          </div>
+          <h2 className="font-display text-3xl font-extrabold tracking-tight sm:text-5xl">
             Let's build something durable.
           </h2>
           <Link
             to="/book"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#080D1C] px-6 py-3.5 text-sm font-bold text-white hover:bg-[#162038] transition-colors"
           >
             Book a strategy session →
           </Link>

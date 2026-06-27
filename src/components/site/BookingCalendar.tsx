@@ -49,7 +49,7 @@ function formatConfirmDate(date: Date) {
 
 /* ─────────────────────── constants ─────────────────────── */
 
-const DAY_LABELS = ["S", "M", "T", "W", "T", "F", "S"];
+const DAY_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const DEFAULT_SLOTS = [
   "09:00 AM",

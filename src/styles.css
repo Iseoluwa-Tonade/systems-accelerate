@@ -2,16 +2,16 @@
 @source "../src";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 /*
- * SuperTelque — Multi-Section Color System
+ * SuperTelque — Color System
  *
- * Key concept: Each section has a dramatically different background color,
- * creating a visually rich, magazine-like layout.
+ * Brand: deep navy dark + brand gold (#FFB800) + electric blue (#1B5EFF)
+ * Gold matches the actual company logo mark.
  *
- * Section palette rotation:
- *  cream  → white  → navy-dark  → lime-green  → white  → mid-blue  → navy-dark
+ * Section palette:
+ *  navy (hero) → navy (trust) → white (services) → navy (capabilities)
+ *  → white (methodology) → navy (command center) → white (case studies)
+ *  → gold (CTA) → navy (footer)
  */
 
 @theme inline {
@@ -41,20 +41,20 @@
   --color-ring: var(--primary);
 
   /* ── Section Background Tokens ── */
-  --color-section-cream:  #F7F5F0;     /* warm off-white / hero */
-  --color-section-white:  #FFFFFF;     /* pure white */
-  --color-section-mid:    #EEF3FF;     /* soft blue-tinted pale */
-  --color-section-navy:   #0B1120;     /* deep navy / dark sections */
-  --color-section-charcoal: #111827;   /* card bg inside navy */
-  --color-section-lime:   #CDEA68;     /* electric lime / bold CTA bg */
-  --color-section-lime-dark: #B4D347;  /* slightly deeper lime */
+  --color-section-white:    #FFFFFF;
+  --color-section-mid:      #EEF3FF;
+  --color-section-navy:     #080D1C;   /* deep near-black navy */
+  --color-section-charcoal: #0F1628;   /* card bg inside navy */
+  --color-section-gold:     #FFB800;   /* brand gold — matches logo */
+  --color-section-gold-dark: #E08A00;  /* deeper amber */
 
   /* ── Brand Colors ── */
   --color-primary:      #1B5EFF;   /* electric blue */
   --color-primary-mid:  #4B80FF;   /* lighter blue for dark bg */
-  --color-lime:         #CDEA68;
-  --color-lime-dark:    #B4D347;
-  --color-navy:         #0B1120;
+  --color-gold:         #FFB800;   /* brand gold */
+  --color-gold-dark:    #E08A00;
+  --color-gold-light:   #FFD44D;
+  --color-navy:         #080D1C;
 
   /* ── Typography ── */
   --font-sans:    "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -65,17 +65,17 @@
   --shadow-soft:   0 4px 24px -4px  rgba(0, 0, 0, 0.06);
   --shadow-medium: 0 20px 48px -12px rgba(0, 0, 0, 0.12);
   --shadow-glow:   0 0 32px rgba(27, 94, 255, 0.20);
-  --shadow-lime:   0 8px 32px -8px rgba(180, 211, 71, 0.35);
+  --shadow-gold:   0 8px 32px -8px rgba(255, 184, 0, 0.40);
 }
 
 :root {
   --radius: 1rem;
 
-  --background: #F7F5F0;
-  --foreground: #0B1120;
+  --background: #FFFFFF;
+  --foreground: #080D1C;
 
   --surface: #FFFFFF;
-  --surface-2: #F0EFEA;
+  --surface-2: #F4F6FA;
   --primary: #1B5EFF;
   --secondary: #E5E9F2;
 
@@ -87,7 +87,8 @@
   --accent-indigo: #4F46E5;
   --accent-teal: #14B8A6;
   --accent-purple: #8B5CF6;
-  --border: rgba(0, 0, 0, 0.06);
+  --accent-gold: #FFB800;
+  --border: rgba(0, 0, 0, 0.08);
 
   --card: #FFFFFF;
 }
@@ -107,8 +108,8 @@
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
-    font-weight: 700;
+    letter-spacing: -0.03em;
+    font-weight: 800;
   }
 
   html {
@@ -122,65 +123,70 @@
    to set the section-wide background + text.
    ═══════════════════════════════════════════════ */
 
-/* Warm cream — hero / logo-bar sections */
-.sec-cream {
-  background-color: #F7F5F0;
-  color: #0B1120;
-  --background: #F7F5F0;
-  --surface: #FFFFFF;
-  --surface-2: #F0EFEA;
-  --muted-foreground: #5B6680;
-  --border: rgba(0, 0, 0, 0.06);
-}
-
 /* Pure white — feature / content sections */
 .sec-white {
   background-color: #FFFFFF;
-  color: #0B1120;
-  --background: #F7F5F0;
+  color: #080D1C;
+  --background: #FFFFFF;
+  --foreground: #080D1C;
   --surface: #FFFFFF;
-  --surface-2: #F0EFEA;
+  --surface-2: #F4F6FA;
   --muted-foreground: #5B6680;
-  --border: rgba(0, 0, 0, 0.06);
+  --border: rgba(0, 0, 0, 0.08);
 }
 
 /* Soft blue tint — mid-page, stats */
 .sec-mid {
   background-color: #EEF3FF;
-  color: #0B1120;
+  color: #080D1C;
   --background: #EEF3FF;
+  --foreground: #080D1C;
   --surface: #FFFFFF;
-  --surface-2: #F0EFEA;
+  --surface-2: #F4F6FA;
   --muted-foreground: #5B6680;
-  --border: rgba(0, 0, 0, 0.06);
+  --border: rgba(0, 0, 0, 0.08);
 }
 
-/* Deep navy — dark contrast sections */
+/* Deep navy — dark contrast sections (primary hero/feature bg) */
 .sec-navy {
-  background-color: #0B1120;
+  background-color: #080D1C;
   color: #FFFFFF;
-  --background: #0B1120;
+  --background: #080D1C;
   --foreground: #FFFFFF;
-  --muted-foreground: #94A3B8;
-  --surface: #111827;
-  --surface-2: #1F2937;
+  --muted-foreground: #8898B8;
+  --surface: #0F1628;
+  --surface-2: #162038;
   --border: rgba(255, 255, 255, 0.08);
   --primary: #4B80FF;
   --accent-blue: #4B80FF;
+  --accent-gold: #FFB800;
   --accent-teal: #2DD4BF;
 }
 
-/* Electric lime — bold CTA sections */
+/* Brand gold — bold CTA sections */
+.sec-gold {
+  background-color: #FFB800;
+  color: #080D1C;
+  --background: #FFB800;
+  --foreground: #080D1C;
+  --muted-foreground: #5C4000;
+  --surface: rgba(255,255,255,0.30);
+  --surface-2: rgba(255,255,255,0.15);
+  --border: rgba(0, 0, 0, 0.12);
+  --primary: #080D1C;
+}
+
+/* Keep sec-lime as alias for backward compat */
 .sec-lime {
-  background-color: #CDEA68;
-  color: #0B1120;
-  --background: #CDEA68;
-  --foreground: #0B1120;
-  --muted-foreground: #5B6680;
-  --surface: #FFFFFF;
-  --surface-2: #F0EFEA;
-  --border: rgba(0, 0, 0, 0.08);
-  --primary: #0B1120;
+  background-color: #FFB800;
+  color: #080D1C;
+  --background: #FFB800;
+  --foreground: #080D1C;
+  --muted-foreground: #5C4000;
+  --surface: rgba(255,255,255,0.30);
+  --surface-2: rgba(255,255,255,0.15);
+  --border: rgba(0, 0, 0, 0.12);
+  --primary: #080D1C;
 }
 
 /* ═══════════════════════════════════════════════
@@ -253,10 +259,10 @@
 }
 
 @utility glass-nav {
-  background: rgba(247, 245, 240, 0.80);
+  background: rgba(8, 13, 28, 0.80);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 @utility pill-tag {
@@ -277,7 +283,14 @@
   @apply inline-flex items-center px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest;
   background: rgba(0,0,0,0.08);
   border: 1px solid rgba(0,0,0,0.12);
-  color: #0B1120;
+  color: #080D1C;
+}
+
+@utility pill-tag-gold {
+  @apply inline-flex items-center px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest;
+  background: rgba(255,184,0,0.15);
+  border: 1px solid rgba(255,184,0,0.30);
+  color: #FFB800;
 }
 
 @utility text-gradient-blue {
@@ -287,12 +300,22 @@
 
 @utility text-gradient-lime {
   @apply bg-clip-text text-transparent;
-  background-image: linear-gradient(135deg, #CDEA68 0%, #A8C840 100%);
+  background-image: linear-gradient(135deg, #FFB800 0%, #FF7A00 100%);
+}
+
+@utility text-gradient-gold {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, #FFD44D 0%, #FFB800 50%, #E08A00 100%);
 }
 
 /* Backwards compat alias */
 @utility text-gradient-mixed {
   @apply text-gradient-blue;
+}
+
+@utility text-gradient-brand {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, #1B5EFF 0%, #14B8A6 100%);
 }
 
 /* ═══════════════════════════════════════════════
@@ -329,10 +352,20 @@
 }
 @utility btn-lime {
   @apply inline-flex items-center justify-center gap-2 rounded-full font-bold transition-all duration-200;
-  background: #CDEA68;
-  color: #0B1120;
+  background: linear-gradient(135deg, #FFD44D 0%, #FFB800 100%);
+  color: #080D1C;
   padding: 1rem 2.5rem;
   font-size: 0.9375rem;
+  box-shadow: 0 8px 24px -6px rgba(255,184,0,0.40);
+}
+
+@utility btn-gold {
+  @apply inline-flex items-center justify-center gap-2 rounded-full font-bold transition-all duration-200;
+  background: linear-gradient(135deg, #FFD44D 0%, #FFB800 100%);
+  color: #080D1C;
+  padding: 1rem 2.5rem;
+  font-size: 0.9375rem;
+  box-shadow: 0 8px 24px -6px rgba(255,184,0,0.40);
 }
 @utility btn-white {
   @apply inline-flex items-center justify-center gap-2 rounded-full font-bold transition-all duration-200;
@@ -364,20 +397,3 @@
 }
 .animate-pulse-dot { animation: pulse-dot 2.4s ease-in-out infinite; }
 
-/* ═══════════════════════════════════════════════
-   NOISE / TEXTURE OVERLAY (for lime & navy bgs)
-   ═══════════════════════════════════════════════ */
-
-.noise-overlay {
-  position: relative;
-}
-.noise-overlay::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.04;
-}

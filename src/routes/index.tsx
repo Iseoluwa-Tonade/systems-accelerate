@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Eyebrow, SectionHeader } from "@/components/site/Eyebrow";
 import { ScrollReveal, StaggerReveal, StaggerChild } from "@/components/site/ScrollReveal";
+import { WhatWeWorkOn } from "@/components/site/WhatWeWorkOn";
 import CardSwap, { Card } from "@/components/site/CardSwap";
 import * as L from "@/components/site/Logos";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -82,45 +83,66 @@ function ProductShowcase({
 function Hero() {
   return (
     <section className="sec-navy relative overflow-hidden pt-24 md:pt-28">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 pb-12 lg:grid-cols-12 lg:gap-10 lg:pt-28 lg:px-6">
+      {/* Background glow orbs — Make.com style */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="absolute -top-32 right-0 h-[600px] w-[600px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(255,184,0,0.12) 0%, transparent 70%)" }}
+        />
+        <div
+          className="absolute bottom-0 -left-32 h-[500px] w-[500px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(27,94,255,0.14) 0%, transparent 70%)" }}
+        />
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[800px] w-[800px] rounded-full opacity-[0.04]"
+          style={{ background: "radial-gradient(circle, #FFB800 0%, transparent 60%)" }}
+        />
+      </div>
+
+      <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-12 lg:grid-cols-12 lg:gap-10 lg:pt-28 lg:px-6">
         <div className="lg:col-span-6">
-          <h1 className="mt-6 font-display text-[32px] font-semibold leading-[1.04] tracking-tight sm:text-[44px] lg:text-[68px]">
+          {/* Logo mark + eyebrow */}
+          <div className="flex items-center gap-3 mb-6">
+            <img src="/supertelque-logo.png" alt="SuperTelque" className="h-10 w-10 object-contain drop-shadow-[0_0_12px_rgba(255,184,0,0.5)]" />
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#FFB800]/80">Revenue Systems · GTM Engineering</span>
+          </div>
+
+          <h1 className="mt-2 font-display text-[38px] font-extrabold leading-[1.02] tracking-tight sm:text-[52px] lg:text-[76px] lg:leading-[1.0]">
             Architecting
             <br />
-            <span className="text-gradient-brand">revenue systems</span>
+            <span className="text-gradient-gold">revenue systems</span>
             <br />
             that scale.
           </h1>
 
           <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-muted-foreground sm:text-[17px]">
+            <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-muted-foreground sm:text-[18px]">
               We turn disconnected sales, marketing, and customer success operations into a single
-              revenue engine, powered by automation, AI, and modern GTM infrastructure on HubSpot,
-              Salesforce, Clay, Apollo, GoHighLevel, Lemlist, Instantly, Zapier, Supabase, and
-              Low/No-code.
+              revenue engine — powered by automation, AI, and modern GTM infrastructure.
             </p>
           </ScrollReveal>
 
           <ScrollReveal variant="fadeUp" delay={0.25}>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link
                 to="/book"
-                className="group inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background hover:opacity-90"
+                className="group inline-flex items-center gap-2.5 rounded-full px-7 py-4 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_12px_32px_-8px_rgba(255,184,0,0.50)]"
+                style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 60%, #E08A00 100%)" }}
               >
                 Book a strategy session
                 <svg
                   viewBox="0 0 16 16"
-                  className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
+                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="2"
+                  strokeWidth="2.5"
                 >
                   <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>
               <Link
                 to="/services"
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-(--surface)/60 px-5 py-3 text-sm font-medium hover:bg-(--surface)"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/06 px-6 py-4 text-[15px] font-medium text-white/80 hover:bg-white/12 hover:text-white transition-colors"
               >
                 Explore services
               </Link>
@@ -131,8 +153,8 @@ function Hero() {
         <div className="lg:col-span-6 pb-16 lg:pb-24">
           <ScrollReveal variant="scaleIn" delay={0.2}>
             <ProductShowcase
-              primarySrc="/Employee Onboarding Process Data Visualization Infographic Presentation (1).png"
-              secondarySrc="/Employee Onboarding Process Data Visualization Infographic Presentation.png"
+              primarySrc="/hero-workflow-primary.png"
+              secondarySrc="/hero-workflow-detail.png"
               secondaryOffset="right-0 -bottom-8 md:-bottom-16"
             />
           </ScrollReveal>
@@ -163,7 +185,7 @@ function TrustBar() {
     L.Supabase,
   ];
   return (
-    <section className="sec-cream border-y border-border">
+    <section className="sec-navy border-y border-white/06">
       <div className="mx-auto max-w-7xl px-6 py-8">
         <div className="flex items-center gap-6">
           <div className="hidden shrink-0 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground sm:block">
@@ -301,9 +323,9 @@ const total = STEPS.length;
 
 const cardColors: { bg: string; accent: string; label: string }[] = [
   { bg: "#EFF6FF", accent: "#1B5EFF", label: "Analyze" },
-  { bg: "#F5F3FF", accent: "#7C3AED", label: "Design" },
+  { bg: "#FFFBEB", accent: "#FFB800", label: "Design" },
   { bg: "#ECFDF5", accent: "#059669", label: "Engineer" },
-  { bg: "#FFFBEB", accent: "#D97706", label: "Scale" },
+  { bg: "#FFF3E0", accent: "#EA580C", label: "Scale" },
 ];
 
 function MethodologyCard({
@@ -424,7 +446,7 @@ function Methodology() {
 /* --------------------------- COMMAND CENTER SEC -------------------------- */
 function CommandCenterSection() {
   return (
-    <section className="sec-cream relative overflow-hidden py-16 lg:py-32">
+    <section className="sec-navy relative overflow-hidden py-16 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="grid items-end gap-10 lg:grid-cols-12">
           <div className="lg:col-span-6">
@@ -461,8 +483,8 @@ function CommandCenterSection() {
           <div className="lg:col-span-6 pb-16 lg:pb-24">
             <ScrollReveal variant="slideLeft">
               <ProductShowcase
-                primarySrc="/Employee Onboarding Process Data Visualization Infographic Presentation (2).png"
-                secondarySrc="/Employee Onboarding Process Data Visualization Infographic Presentation.png"
+                primarySrc="/hero-command-center.png"
+                secondarySrc="/hero-workflow-detail.png"
                 secondaryOffset="right-0 -bottom-8 md:-bottom-16"
               />
             </ScrollReveal>
@@ -638,30 +660,33 @@ function CaseStudiesPreview() {
 /* ------------------------------- FINAL CTA ------------------------------ */
 function FinalCTA() {
   return (
-    <section className="sec-lime relative overflow-hidden border-t border-border py-16 lg:py-32">
+    <section className="sec-gold relative overflow-hidden border-t border-black/10 py-16 lg:py-32">
+      {/* Subtle noise/texture overlay */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.06]"
+        style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")" }} />
       <div className="relative mx-auto max-w-4xl px-4 lg:px-6 text-center">
         <ScrollReveal variant="scaleIn">
-          <Eyebrow>Let's build</Eyebrow>
-          <h2 className="mt-6 font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
-            Ready to build a revenue
-            <br />
-            engine that <span className="text-gradient-brand">runs itself?</span>
+          <div className="inline-flex items-center gap-2 mb-4">
+            <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain" />
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#080D1C]/60">Let's build</span>
+          </div>
+          <h2 className="font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[64px] lg:leading-[1.02]">
+            Ready to build a revenue engine that runs itself?
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
+          <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-[#080D1C]/70">
             A 45-minute working session with a senior RevOps engineer. You leave with a stack
             assessment, three automation wins, and a written roadmap.
           </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/book"
-              className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-full bg-[#080D1C] px-7 py-4 text-[15px] font-bold text-white hover:bg-[#162038] transition-colors"
             >
-              Book a consultation
-              <span aria-hidden>→</span>
+              Book a consultation →
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-(--surface)/60 px-6 py-3 text-sm font-medium"
+              className="inline-flex items-center gap-2 rounded-full border border-black/20 bg-black/08 px-7 py-4 text-[15px] font-medium text-[#080D1C] hover:bg-black/12 transition-colors"
             >
               Contact the team
             </Link>
@@ -672,111 +697,3 @@ function FinalCTA() {
   );
 }
 
-/* -------------------------- WHAT WE WORK ON --------------------------- */
-const WORK_ITEMS = [
-  {
-    title: "Lead generation",
-    desc: "Automate prospect scraping, signal-based filtering, and warm outreach setup.",
-  },
-  {
-    title: "ICP fitness",
-    desc: "Analyze customer data to define, validate, and score your ideal profile.",
-  },
-  {
-    title: "Data entry",
-    desc: "Sync pipeline events and client records with zero human manual input.",
-  },
-  {
-    title: "Virtual assistant",
-    desc: "Build automated agents to support operations, routing, and notifications.",
-  },
-  {
-    title: "Ecommerce support",
-    desc: "Streamline stores, shopping APIs, and customer fulfillment flows.",
-  },
-  {
-    title: "Logistics support",
-    desc: "Connect shipping status trackers, warehouses, and freight logs.",
-  },
-  {
-    title: "Domain setup",
-    desc: "Provision clean sending subdomains and optimize deliverability.",
-  },
-  { title: "DNS record", desc: "Configure SPF, DKIM, DMARC, and MX records for spam prevention." },
-  {
-    title: "Email delivery",
-    desc: "Monitor bounce rates, warm sending profiles, and verify inboxes.",
-  },
-  {
-    title: "Event management",
-    desc: "Automate invitation pipelines, tickets, checks, and post-event syncs.",
-  },
-  {
-    title: "Access control",
-    desc: "Define workspace permissions, roles, API tokens, and SSO policies.",
-  },
-  { title: "RFX", desc: "Parse and generate responses for RFPs, RFQs, and RFIs using AI parsing." },
-] as const;
-
-function WhatWeWorkOn() {
-  return (
-    <section className="sec-navy relative border-t border-border py-16 lg:py-32">
-      <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <SectionHeader
-          eyebrow="Capabilities"
-          title={
-            <>
-              What we work on. <span className="text-muted-foreground">Every day.</span>
-            </>
-          }
-          description="Operational problems solved with software, triggers, and solid engineering. If it can be mapped, it can be automated."
-        />
-
-        <div className="mt-10 md:mt-14">
-          <div className="sm:hidden overflow-x-auto -mx-4 px-4 pb-2">
-            <div className="flex gap-4 w-max">
-              {WORK_ITEMS.map((item, i) => {
-                return (
-                  <div
-                    key={item.title}
-                    className="surface-card group relative w-[260px] shrink-0 p-5 transition duration-300 hover:border-border/80"
-                  >
-                    <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
-                      <span>CAP · {String(i + 1).padStart(2, "0")}</span>
-                    </div>
-                    <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground/90">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                      {item.desc}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          <StaggerReveal className="hidden sm:grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {WORK_ITEMS.map((item, i) => {
-              return (
-                <StaggerChild key={item.title}>
-                  <div className="surface-card group relative p-6 transition duration-300 hover:border-border/80">
-                    <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
-                      <span>CAP · {String(i + 1).padStart(2, "0")}</span>
-                    </div>
-                    <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground/90">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                      {item.desc}
-                    </p>
-                  </div>
-                </StaggerChild>
-              );
-            })}
-          </StaggerReveal>
-        </div>
-      </div>
-    </section>
-  );
-}
