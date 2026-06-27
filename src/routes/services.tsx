@@ -64,7 +64,7 @@ function ServicesPage() {
   return (
     <SiteLayout headerTheme="dark">
       <section className="sec-navy relative overflow-hidden border-b border-border pt-24 md:pt-28">
-        <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-32 lg:px-6">
+        <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-16 lg:px-6">
           <Eyebrow>Services</Eyebrow>
           <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
             Revenue infrastructure, <span className="text-gradient-gold">engineered.</span>
@@ -225,22 +225,27 @@ function ArchitectureDiagram({ code }: { code: string }) {
 
 function CTA() {
   return (
-    <section className="sec-gold border-t border-black/10 py-12 lg:py-20">
-      <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
+    <section className="sec-navy border-t border-white/08 py-12 lg:py-20">
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-48"
+        style={{ background: "radial-gradient(ellipse 50% 80% at 50% 100%, rgba(255,184,0,0.08) 0%, transparent 70%)" }}
+      />
+      <div className="relative mx-auto max-w-4xl px-4 lg:px-6 text-center">
         <ScrollReveal variant="scaleIn">
           <div className="flex items-center justify-center gap-2.5 mb-4">
-            <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain" />
+            <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
           </div>
-          <h2 className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
+          <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
             Not sure where to start?
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-[#080D1C]/70">
+          <p className="mx-auto mt-3 max-w-xl text-white/60">
             Book a 45-minute working session. We'll map your current stack and recommend the next
             three moves.
           </p>
           <Link
             to="/book"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#080D1C] px-6 py-3.5 text-sm font-bold text-white hover:bg-[#162038] transition-colors"
+            className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_12px_28px_-6px_rgba(255,184,0,0.40)]"
+            style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
           >
             Book a strategy session →
           </Link>

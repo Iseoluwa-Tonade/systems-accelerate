@@ -37,32 +37,54 @@ function HomePage() {
   );
 }
 
-function ProductShowcase({
-  primarySrc,
-  secondarySrc,
-  secondaryOffset,
-}: {
-  primarySrc: string;
-  secondarySrc: string;
-  secondaryOffset: string;
-}) {
+function HeroDashboard() {
+  const bars = [45, 62, 38, 71, 55, 83, 67, 49, 78, 91, 63, 72, 85, 58, 94, 77];
+  const metrics = [
+    { l: "Pipeline", v: "$4.2M", d: "+18%", c: "#1B5EFF" },
+    { l: "Active Deals", v: "147", d: "+23%", c: "#14B8A6" },
+    { l: "MQL → SQL", v: "34%", d: "+6pp", c: "#8B5CF6" },
+    { l: "Won QTD", v: "$680K", d: "+41%", c: "#FFB800" },
+  ];
   return (
-    <div className="relative group my-8">
-      <div className="surface-card relative overflow-hidden rounded-2xl border border-border shadow-lg transition-all duration-500 group-hover:scale-[1.01]">
-        <img
-          src={primarySrc}
-          alt="GTM Command Center primary view"
-          className="w-full h-auto object-cover select-none"
-        />
+    <div className="rounded-2xl border border-white/12 bg-white/04 p-5 lg:p-6 backdrop-blur-sm">
+      <div className="flex items-center justify-between mb-5">
+        <div>
+          <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40">Revenue Command · Q2 2026</div>
+          <div className="mt-0.5 font-display text-sm font-semibold text-white">Pipeline Intelligence</div>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          <span className="font-mono text-[10px] text-white/40">live</span>
+        </div>
       </div>
-      <div
-        className={`hidden md:block absolute w-[45%] overflow-hidden rounded-xl border border-border bg-background/80 shadow-md transition-all duration-500 group-hover:translate-y-[-8px] group-hover:scale-[1.03] ${secondaryOffset}`}
-      >
-        <img
-          src={secondarySrc}
-          alt="GTM Command Center detailed perspective"
-          className="w-full h-auto object-cover select-none"
-        />
+      <div className="grid grid-cols-2 gap-2 mb-4">
+        {metrics.map((m) => (
+          <div key={m.l} className="rounded-xl border border-white/08 bg-white/04 p-3">
+            <div className="font-mono text-[10px] text-white/40">{m.l}</div>
+            <div className="mt-1 font-display text-xl font-bold text-white">{m.v}</div>
+            <div className="mt-0.5 font-mono text-[10px]" style={{ color: m.c }}>{m.d} vs prev</div>
+          </div>
+        ))}
+      </div>
+      <div className="rounded-xl border border-white/06 bg-white/02 p-3">
+        <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/30 mb-3">Pipeline · 16-week view</div>
+        <div className="flex items-end gap-[3px] h-16">
+          {bars.map((h, i) => (
+            <div
+              key={i}
+              className="flex-1 rounded-sm"
+              style={{ height: `${h}%`, background: "linear-gradient(to top, rgba(27,94,255,0.75), rgba(79,70,229,0.50))" }}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="mt-3 flex items-center justify-between">
+        <div className="flex items-center gap-1.5 flex-wrap">
+          {["HubSpot", "Clay", "n8n", "Apollo", "Snowflake"].map((t) => (
+            <span key={t} className="rounded px-2 py-0.5 font-mono text-[9px] text-white/45 border border-white/08">{t}</span>
+          ))}
+        </div>
+        <span className="font-mono text-[9px] text-white/25">synced 2s ago</span>
       </div>
     </div>
   );
@@ -128,13 +150,9 @@ function Hero() {
           </ScrollReveal>
         </div>
 
-        <div className="lg:col-span-6 pb-16 lg:pb-24">
+        <div className="lg:col-span-6 pb-8 lg:pb-16">
           <ScrollReveal variant="scaleIn" delay={0.2}>
-            <ProductShowcase
-              primarySrc="/hero-workflow-primary.png"
-              secondarySrc="/hero-workflow-detail.png"
-              secondaryOffset="right-0 -bottom-8 md:-bottom-16"
-            />
+            <HeroDashboard />
           </ScrollReveal>
         </div>
       </div>
@@ -431,30 +449,35 @@ function CaseStudiesPreview() {
 /* ------------------------------- FINAL CTA ------------------------------ */
 function FinalCTA() {
   return (
-    <section className="sec-gold relative overflow-hidden border-t border-black/10 py-16 lg:py-24">
+    <section className="sec-navy relative overflow-hidden border-t border-white/08 py-16 lg:py-24">
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{ background: "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(255,184,0,0.10) 0%, transparent 70%)" }}
+      />
       <div className="relative mx-auto max-w-4xl px-4 lg:px-6 text-center">
         <ScrollReveal variant="scaleIn">
           <div className="inline-flex items-center gap-2 mb-4">
-            <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain" />
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#080D1C]/60">Let's build</span>
+            <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#FFB800]/70">Let's build</span>
           </div>
-          <h2 className="font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[56px] lg:leading-[1.05]">
-            Ready to build a revenue engine that runs itself?
+          <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-[56px] lg:leading-[1.05]">
+            Ready to build a <span className="text-gradient-gold">revenue engine</span> that runs itself?
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-[#080D1C]/70">
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/60">
             A 45-minute working session with a senior RevOps engineer. You leave with a stack
             assessment, three automation wins, and a written roadmap.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/book"
-              className="inline-flex items-center gap-2 rounded-full bg-[#080D1C] px-7 py-4 text-[15px] font-bold text-white hover:bg-[#162038] transition-colors"
+              className="inline-flex items-center gap-2 rounded-full px-7 py-4 text-[15px] font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_12px_32px_-8px_rgba(255,184,0,0.45)]"
+              style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
             >
               Book a consultation →
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 rounded-full border border-black/20 bg-black/08 px-7 py-4 text-[15px] font-medium text-[#080D1C] hover:bg-black/12 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/06 px-7 py-4 text-[15px] font-medium text-white/80 hover:bg-white/12 transition-colors"
             >
               Contact the team
             </Link>

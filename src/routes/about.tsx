@@ -41,7 +41,7 @@ function AboutPage() {
           <div className="absolute -top-32 right-0 h-[500px] w-[500px] rounded-full"
             style={{ background: "radial-gradient(circle, rgba(255,184,0,0.10) 0%, transparent 70%)" }} />
         </div>
-        <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-28 lg:px-6">
+        <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-12 lg:px-6">
           <Eyebrow>About</Eyebrow>
           <h1 className="mt-5 max-w-4xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.02]">
             We are <span className="text-gradient-gold">technical revenue operators</span>,
@@ -133,18 +133,19 @@ function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="sec-gold border-t border-black/10 py-14 lg:py-20">
+      <section className="sec-navy border-t border-white/08 py-14 lg:py-20">
         <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
           <ScrollReveal variant="scaleIn">
             <div className="flex items-center justify-center gap-2.5 mb-4">
-              <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain" />
+              <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
             </div>
-            <h2 className="font-display text-3xl font-extrabold tracking-tight sm:text-5xl">
+            <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
               Let's build something durable.
             </h2>
             <Link
               to="/book"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#080D1C] px-6 py-3.5 text-sm font-bold text-white hover:bg-[#162038] transition-colors"
+              className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_12px_28px_-6px_rgba(255,184,0,0.40)]"
+              style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
             >
               Book a strategy session →
             </Link>
