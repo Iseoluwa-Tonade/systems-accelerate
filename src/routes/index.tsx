@@ -106,29 +106,22 @@ function Hero() {
         />
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-12 lg:grid-cols-12 lg:gap-10 lg:pt-28 lg:px-6">
+      <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-12 lg:grid-cols-12 lg:gap-10 lg:pt-20 lg:px-6">
         <div className="lg:col-span-6">
-          <div className="flex items-center gap-3 mb-6">
-            <img src="/supertelque-logo.png" alt="SuperTelque" className="h-10 w-10 object-contain drop-shadow-[0_0_12px_rgba(255,184,0,0.5)]" />
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#FFB800]/80">Revenue Systems · GTM Engineering</span>
-          </div>
-
-          <h1 className="mt-2 font-display text-[38px] font-extrabold leading-[1.02] tracking-tight sm:text-[52px] lg:text-[76px] lg:leading-[1.0]">
-            Architecting
+          <h1 className="font-display text-[38px] font-extrabold leading-[1.02] tracking-tight sm:text-[52px] lg:text-[72px] lg:leading-[1.0]">
+            Revenue systems
             <br />
-            <span className="text-gradient-gold">revenue systems</span>
-            <br />
-            that scale.
+            <span className="text-gradient-gold">built to scale.</span>
           </h1>
 
           <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-muted-foreground sm:text-[18px]">
+            <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-muted-foreground sm:text-[17px]">
               Better data, cleaner workflows, and a revenue system your whole team can rely on.
             </p>
           </ScrollReveal>
 
           <ScrollReveal variant="fadeUp" delay={0.25}>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-8 flex flex-wrap items-center gap-5">
               <Link
                 to="/book"
                 className="group inline-flex items-center gap-2.5 rounded-full px-7 py-4 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_12px_32px_-8px_rgba(255,184,0,0.50)]"
@@ -141,9 +134,9 @@ function Hero() {
               </Link>
               <Link
                 to="/services"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/06 px-6 py-4 text-[15px] font-medium text-white/80 hover:bg-white/12 hover:text-white transition-colors"
+                className="text-[15px] font-medium text-white/70 hover:text-white transition-colors"
               >
-                Explore services
+                View services →
               </Link>
             </div>
           </ScrollReveal>
