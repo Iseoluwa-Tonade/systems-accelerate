@@ -81,8 +81,8 @@ function ContactPage() {
                 Direct
               </div>
               <dl className="mt-4 space-y-4 text-sm">
-                <Row k="Email" v="support@supertelque.com" />
-                <Row k="LinkedIn" v="linkedin.com/company/supertelque" />
+                <Row k="Email" v="support@supertelque.com" href="mailto:support@supertelque.com" />
+                <Row k="LinkedIn" v="linkedin.com/company/supertelque" href="https://linkedin.com/company/supertelque" />
               </dl>
             </div>
 
@@ -149,11 +149,17 @@ function ContactPage() {
   );
 }
 
-function Row({ k, v }: { k: string; v: string }) {
+function Row({ k, v, href }: { k: string; v: string; href?: string }) {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-6 border-b border-border pb-3 last:border-b-0 last:pb-0">
       <dt className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{k}</dt>
-      <dd className="font-display text-sm break-all text-foreground/90">{v}</dd>
+      <dd className="font-display text-sm break-all text-foreground/90">
+        {href ? (
+          <a href={href} target={href.startsWith("mailto") ? undefined : "_blank"} rel="noopener noreferrer" className="hover:text-primary transition-colors">
+            {v}
+          </a>
+        ) : v}
+      </dd>
     </div>
   );
 }

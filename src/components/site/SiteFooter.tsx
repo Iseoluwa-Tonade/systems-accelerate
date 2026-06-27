@@ -16,18 +16,8 @@ export function SiteFooter() {
               technology companies.
             </p>
 
-            <form className="mt-6 flex flex-col sm:flex-row max-w-sm gap-2" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder="you@company.com"
-                className="w-full sm:flex-1 rounded-md border border-border bg-surface px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-              />
-              <button className="w-full sm:w-auto rounded-md bg-foreground px-4 py-2 text-sm font-medium text-background">
-                Subscribe
-              </button>
-            </form>
-            <p className="mt-2 text-xs text-muted-foreground">
-              One field-tested teardown per month. No fluff.
+            <p className="mt-4 text-xs text-muted-foreground">
+              B2B RevOps · GTM Engineering · Lagos, Nigeria
             </p>
           </div>
 
@@ -74,8 +64,8 @@ export function SiteFooter() {
           <div>© {new Date().getFullYear()} SuperTelque RevOps. All rights reserved.</div>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             <span className="font-mono">SOC2 ready · GDPR compliant</span>
-            <a href="#" className="hover:text-foreground">LinkedIn</a>
-            <a href="#" className="hover:text-foreground">X</a>
+            <a href="https://linkedin.com/company/supertelque" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">LinkedIn</a>
+            <a href="https://x.com/supertelque" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">X</a>
           </div>
         </div>
       </div>

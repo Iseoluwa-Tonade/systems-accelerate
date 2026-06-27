@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://supertelque.com/sitemap.xml

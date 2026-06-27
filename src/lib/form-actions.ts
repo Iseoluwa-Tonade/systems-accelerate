@@ -3,12 +3,12 @@ import { appendToSheet } from "./sheets.server";
 import { z } from "zod";
 
 export const contactFormSchema = z.object({
-  name: z.string(),
-  company: z.string(),
-  role: z.string(),
-  email: z.string(),
+  name: z.string().min(1),
+  company: z.string().min(1),
+  role: z.string().min(1),
+  email: z.string().email(),
   crm: z.string(),
-  message: z.string(),
+  message: z.string().min(1),
 });
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;
@@ -33,15 +33,15 @@ export const submitContactForm = createServerFn({ method: "POST" })
   });
 
 export const bookSessionSchema = z.object({
-  fullName: z.string(),
-  workEmail: z.string(),
-  company: z.string(),
+  fullName: z.string().min(1),
+  workEmail: z.string().email(),
+  company: z.string().min(1),
   companySize: z.string(),
   crm: z.string(),
   challenge: z.string(),
   notes: z.string(),
-  selectedDate: z.string(),
-  selectedSlot: z.string(),
+  selectedDate: z.string().min(1),
+  selectedSlot: z.string().min(1),
 });
 
 export type BookSessionData = z.infer<typeof bookSessionSchema>;
