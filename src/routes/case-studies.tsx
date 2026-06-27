@@ -66,10 +66,10 @@ function CaseStudiesPage() {
       <section className="sec-navy relative overflow-hidden border-b border-border pt-24 md:pt-28">
         <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>Case studies</Eyebrow>
-          <h1 className="mt-5 max-w-4xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
+          <h1 className="mt-5 max-w-4xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
             What we shipped.
             <br />
-            <span className="text-gradient-brand">What it moved.</span>
+            <span className="text-gradient-gold">What it moved.</span>
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
@@ -80,8 +80,8 @@ function CaseStudiesPage() {
         </div>
       </section>
 
-      <section className="sec-white py-16 lg:py-32">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6 space-y-16 lg:space-y-32">
+      <section className="sec-white py-12 lg:py-20">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6 space-y-12 lg:space-y-20">
           {CASES.map((c, i) => (
             <ScrollReveal key={c.title} variant="fadeUp" delay={i * 0.1}>
               <Study c={c} index={i} />
@@ -120,7 +120,7 @@ function Study({ c, index }: { c: (typeof CASES)[number]; index: number }) {
           Case · {String(index + 1).padStart(2, "0")} / {String(CASES.length).padStart(2, "0")} ·{" "}
           {c.tag}
         </div>
-        <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+        <h2 className="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
           {c.title}
         </h2>
         <div className="mt-8 space-y-6 text-[15px] leading-relaxed">
@@ -148,8 +148,8 @@ function Study({ c, index }: { c: (typeof CASES)[number]; index: number }) {
         <DashboardMock c={c} />
         <div className="grid grid-cols-3 gap-3">
           {c.outcomes.map(([v, l]) => (
-            <div key={l} className="surface-card p-4">
-              <div className="font-display text-2xl font-semibold tracking-tight text-gradient-brand">
+            <div key={l} className="rounded-xl border border-border bg-[#F4F6FA] p-4">
+              <div className="font-display text-2xl font-extrabold tracking-tight text-gradient-gold">
                 {v}
               </div>
               <div className="mt-1 text-xs text-muted-foreground">{l}</div>

@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
 import { ScrollReveal } from "@/components/site/ScrollReveal";
-import { WhatWeWorkOn } from "@/components/site/WhatWeWorkOn";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -67,8 +66,8 @@ function ServicesPage() {
       <section className="sec-navy relative overflow-hidden border-b border-border pt-24 md:pt-28">
         <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-32 lg:px-6">
           <Eyebrow>Services</Eyebrow>
-          <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
-            Revenue infrastructure, <span className="text-gradient-brand">engineered.</span>
+          <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
+            Revenue infrastructure, <span className="text-gradient-gold">engineered.</span>
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
@@ -79,15 +78,13 @@ function ServicesPage() {
         </div>
       </section>
 
-      <section className="sec-white py-16 lg:py-32">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6 space-y-16 lg:space-y-32">
+      <section className="sec-white py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6 space-y-16 lg:space-y-24">
           {SERVICES.map((s, i) => (
             <ServiceBlock key={s.id} svc={s} reverse={i % 2 === 1} />
           ))}
         </div>
       </section>
-
-      <WhatWeWorkOn />
 
       <CTA />
     </SiteLayout>
