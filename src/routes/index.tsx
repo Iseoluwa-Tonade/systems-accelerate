@@ -123,8 +123,7 @@ function Hero() {
 
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-muted-foreground sm:text-[18px]">
-              We help your sales, marketing, and customer success teams work from the same
-              playbook. Better data, cleaner workflows, and systems that scale with you.
+              Better data, cleaner workflows, and a revenue system your whole team can rely on.
             </p>
           </ScrollReveal>
 
@@ -286,31 +285,31 @@ function Services() {
 const STEPS = [
   {
     k: "Audit",
-    d: "A thorough look at your pipeline, CRM, data flows, and reporting. We document what's working, what's broken, and what it's costing you.",
-    out: "Findings report · gap analysis · ROI estimate",
+    d: "We review your pipeline, CRM, and data flows to find what's working and what's costing you.",
+    out: "Gap analysis · ROI estimate",
   },
   {
     k: "Architect",
-    d: "We design your ideal setup (the right data model, automations, integrations, and reporting) before touching any configuration.",
+    d: "We map out your data model, automations, and integrations before touching a single setting.",
     out: "Architecture plan · data model",
   },
   {
     k: "Automate",
-    d: "We build everything: workflows in HubSpot or Salesforce, sequences in Clay and Apollo, automations in n8n, and any custom integrations your stack needs.",
+    d: "We build the workflows, sequences, and integrations your stack needs, and document everything.",
     out: "Live automations · documentation",
   },
   {
     k: "Accelerate",
-    d: "We set up dashboards, train your team on the new setup, and keep improving based on your pipeline, win rate, and conversion data.",
+    d: "Dashboards live, team trained. We track what matters and keep improving from there.",
     out: "Dashboards · quarterly reviews",
   },
 ] as const;
 
 const cardColors = [
   { bg: "#EFF6FF", accent: "#1B5EFF", label: "Analyze" },
-  { bg: "#FFFBEB", accent: "#FFB800", label: "Design" },
+  { bg: "#FFF8E1", accent: "#B45309", label: "Design" },
   { bg: "#ECFDF5", accent: "#059669", label: "Engineer" },
-  { bg: "#FFF3E0", accent: "#EA580C", label: "Scale" },
+  { bg: "#FFF3E0", accent: "#C2410C", label: "Scale" },
 ];
 
 function Methodology() {
@@ -464,8 +463,7 @@ function FinalCTA() {
             Ready to fix your <span className="text-gradient-gold">revenue operations</span>?
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/60">
-            A 45-minute call with a senior RevOps engineer. We review your current setup, spot the
-            quick wins, and give you a clear plan to move forward.
+            45 minutes. Your stack reviewed, your next steps mapped. No pitch.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
