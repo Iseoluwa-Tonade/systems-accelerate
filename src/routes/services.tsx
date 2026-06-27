@@ -20,43 +20,43 @@ const SERVICES = [
     id: "revops",
     code: "01",
     title: "Revenue Operations",
-    blurb: "Align sales, marketing, and CS around shared metrics, forecasts and motions.",
-    items: ["Funnel optimization", "Forecasting", "Territory planning", "Revenue analytics"],
+    blurb: "Get your sales, marketing, and CS teams aligned on shared metrics, goals, and a single forecast.",
+    items: ["Pipeline design", "Forecasting", "Territory planning", "Revenue reporting"],
   },
   {
     id: "gtm",
     code: "02",
     title: "GTM Engineering",
-    blurb: "Engineer the operational layer behind every modern revenue motion.",
-    items: ["Workflow automation", "API integrations", "Data synchronization", "Process engineering"],
+    blurb: "Build the workflows and automations that keep your go-to-market running smoothly.",
+    items: ["Workflow automation", "API integrations", "Data syncs", "Process design"],
   },
   {
     id: "crm",
     code: "03",
     title: "CRM Architecture",
-    blurb: "Build HubSpot and Salesforce ecosystems that scale without re-implementation.",
+    blurb: "Set up HubSpot or Salesforce properly so it grows with your business, not against it.",
     items: ["HubSpot implementation", "Salesforce implementation", "Pipeline design", "Lifecycle stages"],
   },
   {
     id: "outbound",
     code: "04",
     title: "Outbound Systems",
-    blurb: "Intent-driven prospecting infrastructure. Pipeline, not vanity activity.",
-    items: ["Clay enrichment", "Apollo sequencing", "Lead routing", "Intent-based outreach"],
+    blurb: "Find the right accounts, enrich them automatically, and get your team into more real conversations.",
+    items: ["Clay enrichment", "Apollo sequencing", "Lead routing", "Targeted outreach"],
   },
   {
     id: "data",
     code: "05",
     title: "Data & Analytics",
-    blurb: "A single source of revenue truth, built for boards, leaders and reps.",
+    blurb: "Clear dashboards and forecasts that every level of your team can actually rely on.",
     items: ["Power BI dashboards", "Attribution modeling", "Data warehouses", "Executive reporting"],
   },
   {
     id: "ai",
     code: "06",
-    title: "AI-Powered Revenue Systems",
-    blurb: "Production-grade AI woven into prospecting, scoring, routing and enablement.",
-    items: ["AI prospect research", "AI lead scoring", "AI workflow automation", "AI sales enablement"],
+    title: "AI in Your Revenue Stack",
+    blurb: "AI that works inside your actual sales process, from finding accounts to prioritizing leads.",
+    items: ["AI prospect research", "AI lead scoring", "AI-powered automation", "Sales enablement"],
   },
 ] as const;
 
@@ -67,12 +67,12 @@ function ServicesPage() {
         <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-16 lg:px-6">
           <Eyebrow>Services</Eyebrow>
           <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
-            Revenue infrastructure, <span className="text-gradient-gold">engineered.</span>
+            Built for revenue.<span className="text-gradient-gold"> Built to last.</span>
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Each capability ships with an architecture diagram, a measurement plan and an
-              owned runbook. Mix what you need, we sequence the rest.
+              Every service comes with a clear plan, measurable outcomes, and documentation
+              your team can own. Tell us what you need and we'll figure out the right starting point.
             </p>
           </ScrollReveal>
         </div>
@@ -236,11 +236,11 @@ function CTA() {
             <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
           </div>
           <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-            Not sure where to start?
+            Not sure where to begin?
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-white/60">
-            Book a 45-minute working session. We'll map your current stack and recommend the next
-            three moves.
+            Book a 45-minute call. We'll review your current setup and tell you exactly where to
+            start. No pressure, no pitch.
           </p>
           <Link
             to="/book"

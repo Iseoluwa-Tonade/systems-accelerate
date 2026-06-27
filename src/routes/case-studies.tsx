@@ -67,14 +67,14 @@ function CaseStudiesPage() {
         <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-16 lg:px-6">
           <Eyebrow>Case studies</Eyebrow>
           <h1 className="mt-5 max-w-4xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
-            What we shipped.
+            Real work.
             <br />
-            <span className="text-gradient-gold">What it moved.</span>
+            <span className="text-gradient-gold">Real results.</span>
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
-              Three field teardowns from recent engagements covering challenge, architecture, stack
-              and the metrics that changed in the boardroom.
+              Three recent engagements with the full picture: the problem, what we built,
+              the tools we used, and the numbers that moved.
             </p>
           </ScrollReveal>
         </div>
@@ -97,7 +97,7 @@ function CaseStudiesPage() {
               <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
             </div>
             <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-              Your engagement could be the next teardown.
+              Your project could be next.
             </h2>
             <Link
               to="/book"

@@ -16,11 +16,11 @@ export const Route = createFileRoute("/about")({
 });
 
 const PRINCIPLES = [
-  { k: "Data first", d: "We build on the integrity of the model. Garbage CRM data isn't a reporting problem — it's a revenue ceiling." },
-  { k: "Automation before headcount", d: "Hire a system before you hire a seat. Every recurring motion is a candidate for engineering." },
-  { k: "Revenue alignment", d: "Marketing, sales and CS share one funnel, one definition, one scoreboard. No exceptions." },
-  { k: "Process scalability", d: "Architect for 10×. Patch work compounds into legacy cost; clean systems compound into leverage." },
-  { k: "Measurable outcomes", d: "Every engagement reports against pipeline, velocity, conversion or cost — never activity." },
+  { k: "Data first", d: "We build on clean data. Bad CRM data isn't a reporting headache. It's what's stopping your team from closing more deals." },
+  { k: "Systems before headcount", d: "Build the system before adding people. If a task repeats every week, it should probably be automated." },
+  { k: "One team, one number", d: "Marketing, sales, and CS work from the same funnel, the same definitions, and the same numbers. No silos." },
+  { k: "Build to last", d: "Build for where you're going, not where you are. Quick fixes become expensive problems. Good systems just get more valuable." },
+  { k: "Measurable outcomes", d: "Every engagement is measured against pipeline growth, conversion rate, or cost savings. Not against tasks or hours." },
 ];
 
 const INDUSTRIES = [
@@ -50,9 +50,9 @@ function AboutPage() {
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <div className="mt-10 grid gap-8 lg:grid-cols-12">
               <p className="lg:col-span-7 text-lg leading-relaxed text-muted-foreground">
-                SuperTelque is a small, senior team of operators who have run RevOps, built GTM
-                engineering functions, and shipped automation inside enterprise revenue orgs.
-                We bring that operating experience to founders and CROs who want infrastructure, not slides.
+                SuperTelque is a small, senior team with real experience running RevOps and building
+                automation inside revenue organizations. We work with founders and CROs who need
+                actual systems built, not more slide decks.
               </p>
               <div className="lg:col-span-5 rounded-2xl border border-white/10 bg-white/05 p-6 flex flex-col justify-center items-center text-center">
                 <img src="/supertelque-logo.png" alt="" className="h-10 w-10 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
@@ -72,12 +72,12 @@ function AboutPage() {
           <ScrollReveal variant="fadeUp">
             <div className="grid gap-10 lg:grid-cols-12">
               <div className="lg:col-span-4">
-                <SectionHeader eyebrow="Mission" title={<>Scale revenue through systems.</>} />
+                <SectionHeader eyebrow="Mission" title={<>Build systems. Grow revenue.</>} />
               </div>
               <blockquote className="lg:col-span-8 border-l-2 border-[#FFB800]/40 pl-6 text-xl leading-relaxed text-white/75 lg:text-2xl">
-                "To help B2B companies scale revenue through systems, automation, and operational
-                excellence — replacing manual work with infrastructure that compounds quarter over
-                quarter."
+                "To help B2B companies grow revenue through better systems and smarter automation.
+                We replace manual, fragile processes with ones that are reliable, measurable,
+                and built to last."
               </blockquote>
             </div>
           </ScrollReveal>
@@ -140,7 +140,7 @@ function AboutPage() {
               <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
             </div>
             <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
-              Let's build something durable.
+              Ready to work with us?
             </h2>
             <Link
               to="/book"

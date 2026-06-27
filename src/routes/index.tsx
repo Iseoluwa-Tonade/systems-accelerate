@@ -123,8 +123,8 @@ function Hero() {
 
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-muted-foreground sm:text-[18px]">
-              We turn disconnected sales, marketing, and customer success operations into a single
-              revenue engine — powered by automation, AI, and modern GTM infrastructure.
+              We help your sales, marketing, and customer success teams work from the same
+              playbook. Better data, cleaner workflows, and systems that scale with you.
             </p>
           </ScrollReveal>
 
@@ -192,37 +192,37 @@ const SERVICES = [
   {
     code: "01",
     title: "Revenue Operations",
-    desc: "Align sales, marketing, and customer success into a unified revenue organization with shared metrics, motions, and forecasts.",
-    bullets: ["Funnel architecture", "Forecasting", "Territory & quota"],
+    desc: "Get your sales, marketing, and CS teams working from the same numbers, the same goals, and a single forecast.",
+    bullets: ["Pipeline design", "Forecasting", "Territory & quota"],
   },
   {
     code: "02",
     title: "GTM Engineering & Automation",
-    desc: "Design and deploy scalable workflows that eliminate manual operations across the entire revenue lifecycle.",
-    bullets: ["n8n · Make · Zapier", "Custom API plumbing", "Lifecycle automation"],
+    desc: "Build and automate the workflows that slow your team down. Less manual work, more time selling.",
+    bullets: ["n8n · Make · Zapier", "Custom API connections", "Lifecycle automation"],
   },
   {
     code: "03",
     title: "CRM Architecture",
-    desc: "Build HubSpot and Salesforce ecosystems that scale from Series A through enterprise without re-implementation.",
+    desc: "Set up HubSpot or Salesforce the right way from day one, so you're not rebuilding it in two years.",
     bullets: ["Object model design", "Bi-directional sync", "Lifecycle stages"],
   },
   {
     code: "04",
     title: "Revenue Intelligence",
-    desc: "Forecasting, attribution, dashboards, and pipeline analytics that give every leader a single source of revenue truth.",
+    desc: "Forecasts, attribution, and dashboards that give your leadership team real numbers to work from.",
     bullets: ["Power BI · Looker", "Multi-touch attribution", "Exec reporting"],
   },
   {
     code: "05",
-    title: "Outbound Infrastructure",
-    desc: "Intent-driven prospecting systems using Clay and Apollo, built to ship pipeline, not vanity activity.",
-    bullets: ["Clay waterfalls", "Apollo sequencing", "Signal-based routing"],
+    title: "Outbound Systems",
+    desc: "Build a prospecting engine with Clay and Apollo that finds the right accounts and gets your team into more real conversations.",
+    bullets: ["Clay enrichment", "Apollo sequencing", "Signal-based routing"],
   },
   {
     code: "06",
-    title: "Fractional Operations",
-    desc: "Embedded RevOps and GTM engineering leadership, providing strategic ownership without full-time overhead.",
+    title: "Fractional RevOps",
+    desc: "Get experienced RevOps leadership embedded in your team. No full-time hire needed.",
     bullets: ["Embedded leadership", "Quarterly roadmaps", "Team enablement"],
   },
 ] as const;
@@ -239,7 +239,7 @@ function Services() {
                 Six disciplines. <span className="text-muted-foreground">One revenue engine.</span>
               </>
             }
-            description="Every engagement combines strategy, engineering and measurement. Pick a starting point, we architect the rest."
+            description="Every engagement covers strategy, build, and results. Tell us where the pain is and we'll handle the rest."
           />
           <Link
             to="/services"
@@ -286,23 +286,23 @@ function Services() {
 const STEPS = [
   {
     k: "Audit",
-    d: "Forensic review of pipeline, CRM, data flows and reporting. We map what exists, what breaks, and what each gap costs in revenue.",
-    out: "Findings deck · risk model · ROI plan",
+    d: "A thorough look at your pipeline, CRM, data flows, and reporting. We document what's working, what's broken, and what it's costing you.",
+    out: "Findings report · gap analysis · ROI estimate",
   },
   {
     k: "Architect",
-    d: "Design the target-state revenue stack, detailing objects, lifecycles, integrations, attribution, and AI layers.",
-    out: "Architecture diagram · data contracts",
+    d: "We design your ideal setup (the right data model, automations, integrations, and reporting) before touching any configuration.",
+    out: "Architecture plan · data model",
   },
   {
     k: "Automate",
-    d: "Engineer workflows across HubSpot, Salesforce, Clay, Apollo, n8n and custom integrations — versioned, monitored, owned.",
-    out: "Production automations · runbooks",
+    d: "We build everything: workflows in HubSpot or Salesforce, sequences in Clay and Apollo, automations in n8n, and any custom integrations your stack needs.",
+    out: "Live automations · documentation",
   },
   {
     k: "Accelerate",
-    d: "Instrument outcomes, enable the team, and run continuous optimisation against pipeline, velocity and conversion.",
-    out: "Exec dashboards · QBR loop",
+    d: "We set up dashboards, train your team on the new setup, and keep improving based on your pipeline, win rate, and conversion data.",
+    out: "Dashboards · quarterly reviews",
   },
 ] as const;
 
@@ -402,7 +402,7 @@ function CaseStudiesPreview() {
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between mb-10">
           <SectionHeader
             eyebrow="Field work"
-            title={<>What we ship, and what it changes.</>}
+            title={<>Work we've done, and what it delivered.</>}
           />
           <Link to="/case-studies" className="hidden lg:block text-sm text-foreground/70 hover:text-foreground transition-colors">
             Full teardowns →
@@ -461,11 +461,11 @@ function FinalCTA() {
             <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#FFB800]/70">Let's build</span>
           </div>
           <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-[56px] lg:leading-[1.05]">
-            Ready to build a <span className="text-gradient-gold">revenue engine</span> that runs itself?
+            Ready to fix your <span className="text-gradient-gold">revenue operations</span>?
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/60">
-            A 45-minute working session with a senior RevOps engineer. You leave with a stack
-            assessment, three automation wins, and a written roadmap.
+            A 45-minute call with a senior RevOps engineer. We review your current setup, spot the
+            quick wins, and give you a clear plan to move forward.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
