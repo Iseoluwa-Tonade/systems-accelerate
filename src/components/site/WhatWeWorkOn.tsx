@@ -38,7 +38,7 @@ export function WhatWeWorkOn() {
                   key={item.title}
                   className="surface-card group relative w-[260px] shrink-0 p-5 transition duration-300 hover:border-border/80"
                 >
-                  <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
+                  <div className="flex items-center justify-between font-mono text-[10px] text-[#FFB800]/60">
                     <span>CAP · {String(i + 1).padStart(2, "0")}</span>
                   </div>
                   <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground/90">
@@ -54,7 +54,7 @@ export function WhatWeWorkOn() {
             {WORK_ITEMS.map((item, i) => (
               <StaggerChild key={item.title}>
                 <div className="surface-card group relative p-6 transition duration-300 hover:border-border/80">
-                  <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground">
+                  <div className="flex items-center justify-between font-mono text-[10px] text-[#FFB800]/60">
                     <span>CAP · {String(i + 1).padStart(2, "0")}</span>
                   </div>
                   <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground/90">

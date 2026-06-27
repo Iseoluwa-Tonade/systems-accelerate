@@ -60,7 +60,7 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="sec-cream border-b border-border py-16 lg:py-32">
+      <section className="sec-navy border-b border-white/08 py-16 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <ScrollReveal variant="fadeUp">
             <div className="grid gap-12 lg:grid-cols-12">
@@ -131,15 +131,18 @@ function AboutPage() {
         </div>
       </section>
 
-      <section className="sec-lime py-16 lg:py-32">
+      <section className="sec-gold border-t border-black/10 py-16 lg:py-32">
       <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
         <ScrollReveal variant="scaleIn">
-          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-5xl">
+          <div className="flex items-center justify-center gap-2.5 mb-4">
+            <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain" />
+          </div>
+          <h2 className="font-display text-3xl font-extrabold tracking-tight sm:text-5xl">
             Let's build something durable.
           </h2>
           <Link
             to="/book"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#080D1C] px-6 py-3.5 text-sm font-bold text-white hover:bg-[#162038] transition-colors"
           >
             Book a strategy session →
           </Link>

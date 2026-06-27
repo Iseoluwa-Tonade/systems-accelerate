@@ -228,19 +228,22 @@ function ArchitectureDiagram({ code }: { code: string }) {
 
 function CTA() {
   return (
-    <section className="sec-lime border-t border-border py-12 lg:py-20">
+    <section className="sec-gold border-t border-black/10 py-12 lg:py-20">
       <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
         <ScrollReveal variant="scaleIn">
-          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+          <div className="flex items-center justify-center gap-2.5 mb-4">
+            <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain" />
+          </div>
+          <h2 className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
             Not sure where to start?
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
+          <p className="mx-auto mt-3 max-w-xl text-[#080D1C]/70">
             Book a 45-minute working session. We'll map your current stack and recommend the next
             three moves.
           </p>
           <Link
             to="/book"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#080D1C] px-6 py-3.5 text-sm font-bold text-white hover:bg-[#162038] transition-colors"
           >
             Book a strategy session →
           </Link>

@@ -23,15 +23,15 @@ export function SiteHeader({ theme = "light" }: { theme?: "light" | "dark" }) {
 
   const headerBg = dark
     ? open
-      ? "bg-[#0B1120]/95 border-white/10 shadow-2xl"
+      ? "bg-[#080D1C]/98 border-white/10 shadow-2xl"
       : scrolled
-        ? "bg-[#0B1120]/75 border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.3)]"
-        : "bg-[#0B1120]/40 border-white/5"
+        ? "bg-[#080D1C]/85 border-white/08 shadow-[0_8px_30px_rgb(0,0,0,0.4)]"
+        : "bg-[#080D1C]/40 border-white/05"
     : open
-      ? "bg-background/95 border-border/80 shadow-2xl"
+      ? "bg-white/98 border-black/10 shadow-2xl"
       : scrolled
-        ? "bg-background/75 border-border/80 shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
-        : "bg-background/40 border-border/40";
+        ? "bg-white/85 border-black/08 shadow-[0_8px_30px_rgb(0,0,0,0.10)]"
+        : "bg-white/40 border-black/06";
 
   return (
     <header
@@ -44,13 +44,17 @@ export function SiteHeader({ theme = "light" }: { theme?: "light" | "dark" }) {
       } ${headerBg}`}
     >
       <div className="flex h-11 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <img src="/supertelque-logo.png" alt="SuperTelque" className="h-7 w-7 rounded-md object-contain transition-transform duration-300 group-hover:scale-105" />
+        <Link to="/" className="flex items-center gap-2.5 group">
+          <img
+            src="/supertelque-logo.png"
+            alt="SuperTelque"
+            className={`h-8 w-8 object-contain transition-all duration-300 group-hover:scale-105 ${dark ? "drop-shadow-[0_0_8px_rgba(255,184,0,0.45)]" : ""}`}
+          />
           <div className="flex items-baseline gap-1.5">
-            <span className={`font-display text-[14.5px] font-semibold tracking-tight transition-colors group-hover:text-primary ${dark ? "text-white" : "text-foreground"}`}>
+            <span className={`font-display text-[15px] font-bold tracking-tight transition-colors ${dark ? "text-white group-hover:text-[#FFD44D]" : "text-[#080D1C] group-hover:text-primary"}`}>
               SuperTelque
             </span>
-            <span className={`text-[10px] font-mono uppercase tracking-[0.18em] ${dark ? "text-white/50" : "text-muted-foreground"}`}>/revops</span>
+            <span className={`text-[10px] font-mono uppercase tracking-[0.18em] ${dark ? "text-white/40" : "text-muted-foreground"}`}>/revops</span>
           </div>
         </Link>
 
@@ -80,11 +84,12 @@ export function SiteHeader({ theme = "light" }: { theme?: "light" | "dark" }) {
           <div className="hidden md:flex items-center gap-2">
             <Link
               to="/book"
-              className={`inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px] font-medium active:scale-95 transition duration-200 ${
+              className={`inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px] font-bold active:scale-95 transition-all duration-200 ${
                 dark
-                  ? "bg-lime text-navy hover:opacity-85"
-                  : "bg-foreground text-background hover:opacity-90"
+                  ? "text-[#080D1C] hover:scale-105 hover:shadow-[0_8px_20px_-4px_rgba(255,184,0,0.45)]"
+                  : "bg-[#080D1C] text-white hover:opacity-90"
               }`}
+              style={dark ? { background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" } : {}}
             >
               Book a session
               <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
@@ -142,11 +147,12 @@ export function SiteHeader({ theme = "light" }: { theme?: "light" | "dark" }) {
             <Link
               to="/book"
               onClick={() => setOpen(false)}
-              className={`mt-3 inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-medium active:scale-95 transition ${
+              className={`mt-3 inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold active:scale-95 transition ${
                 dark
-                  ? "bg-lime text-navy hover:opacity-85"
-                  : "bg-foreground text-background hover:opacity-90"
+                  ? "text-[#080D1C]"
+                  : "bg-[#080D1C] text-white hover:opacity-90"
               }`}
+              style={dark ? { background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" } : {}}
             >
               Book a session
               <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
