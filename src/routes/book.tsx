@@ -87,15 +87,15 @@ function BookPage() {
   return (
     <SiteLayout headerTheme="dark">
       <section className="sec-navy relative overflow-hidden border-b border-border pt-24 md:pt-28">
-        <div className="relative mx-auto max-w-7xl px-4 pb-10 lg:pt-32 lg:px-6">
+        <div className="relative mx-auto max-w-7xl px-4 pb-10 lg:pt-16 lg:px-6">
           <Eyebrow>Book a session</Eyebrow>
-          <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
-            Book a <span className="text-gradient-brand">revenue systems</span> strategy session.
+          <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
+            Book a <span className="text-gradient-gold">free strategy</span> session.
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-              A meeting with a senior RevOps engineer. We audit your stack, identify three
-              automation wins, and leave you with a written roadmap.
+              A 45-minute call with a senior RevOps engineer. We review your setup, spot the quick
+              wins, and leave you with a clear plan to move forward.
             </p>
           </ScrollReveal>
         </div>
@@ -103,8 +103,7 @@ function BookPage() {
 
       <section className="sec-white">
         <div className="mx-auto max-w-7xl px-4 lg:px-6 py-16 lg:py-20">
-          <ScrollReveal variant="fadeUp">
-            <div className="grid gap-8 lg:grid-cols-12">
+          <div className="grid gap-8 lg:grid-cols-12">
               <div className="lg:col-span-8 surface-card p-3 max-[375px]:p-2 sm:p-6 lg:p-8 overflow-hidden">
                 <div className="flex items-center justify-between">
                   <div>
@@ -197,7 +196,8 @@ function BookPage() {
                     <button
                       type="submit"
                       disabled={!selectedDate || !selectedSlot || sending}
-                      className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background disabled:opacity-40 disabled:pointer-events-none transition"
+                      className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold text-[#080D1C] disabled:opacity-40 disabled:pointer-events-none transition hover:scale-[1.02]"
+                      style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
                     >
                       {sending ? "Scheduling..." : "Schedule consultation →"}
                     </button>
@@ -212,11 +212,11 @@ function BookPage() {
                   </div>
                   <ul className="mt-4 space-y-3 text-sm">
                     {[
-                      "Revenue systems audit",
-                      "Three automation opportunities",
-                      "CRM architecture assessment",
-                      "GTM growth recommendations",
-                      "Written 90-day roadmap",
+                      "Full stack audit",
+                      "Three quick wins to act on",
+                      "CRM health check",
+                      "Growth recommendations",
+                      "Written 90-day plan",
                     ].map((i) => (
                       <li key={i} className="flex items-start gap-3">
                         <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-(--accent-teal)" />
@@ -235,22 +235,21 @@ function BookPage() {
                       $2,500
                     </div>
                     <p className="mt-2 text-sm text-muted-foreground">
-                      Strategic assessment. No charge for qualifying B2B teams.
+                      Typical market rate for this assessment. Free for qualifying B2B teams.
                     </p>
                   </div>
                 </div>
 
                 <div className="surface-card p-4 sm:p-6 text-sm text-muted-foreground">
                   <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                    Trusted by operators at
+                    Who it's for
                   </div>
                   <div className="mt-3 font-display text-foreground/85 leading-relaxed">
-                    Series A → C SaaS, fintech and AI companies across Nigeria.
+                    Series A to C companies across Nigeria: SaaS, fintech, and beyond.
                   </div>
                 </div>
               </aside>
             </div>
-          </ScrollReveal>
         </div>
       </section>
     </SiteLayout>

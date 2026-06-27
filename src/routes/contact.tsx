@@ -63,10 +63,10 @@ function ContactPage() {
   return (
     <SiteLayout headerTheme="dark">
       <section className="sec-navy relative overflow-hidden border-b border-border pt-24 md:pt-28">
-        <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-32 lg:px-6">
+        <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-16 lg:px-6">
           <Eyebrow>Contact</Eyebrow>
-          <h1 className="mt-5 max-w-3xl font-display text-3xl font-semibold tracking-tight sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
-            Talk to a <span className="text-gradient-brand">revenue engineer.</span>
+          <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
+            Talk to a <span className="text-gradient-gold">revenue engineer.</span>
           </h1>
         </div>
       </section>
@@ -135,7 +135,8 @@ function ContactPage() {
               <button
                 type="submit"
                 disabled={sending}
-                className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-medium text-background disabled:opacity-40 disabled:pointer-events-none transition"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-[#080D1C] disabled:opacity-40 disabled:pointer-events-none transition hover:scale-[1.02]"
+                style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
               >
                 {sending ? "Sending..." : "Send message →"}
               </button>

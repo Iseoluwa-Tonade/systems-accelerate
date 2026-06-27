@@ -19,8 +19,7 @@ export function SiteFooter() {
               </div>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              Technical revenue operators building the GTM infrastructure behind modern B2B
-              technology companies.
+              A revenue operations team that builds the systems B2B companies run on.
             </p>
 
             <p className="mt-4 text-xs text-[#FFB800]/60">
