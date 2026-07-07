@@ -62,6 +62,7 @@ function ContactPage() {
 
   return (
     <SiteLayout headerTheme="light">
+      {/* Hero */}
       <section className="relative overflow-hidden border-b border-border pt-24 md:pt-28" style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 60%, #FFF9F0 100%)" }}>
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-16 right-1/3 h-[360px] w-[360px] rounded-full opacity-40"
@@ -75,80 +76,125 @@ function ContactPage() {
           <h1 className="mt-5 max-w-3xl font-display text-[34px] font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
             Talk to a <span className="text-gradient-gold">revenue engineer.</span>
           </h1>
+          <ScrollReveal variant="fadeUp" delay={0.15}>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
+              Tell us about your stack and what you're trying to fix. We'll come back with a clear view of where to start.
+            </p>
+          </ScrollReveal>
+          {/* Trust stats */}
+          <ScrollReveal variant="fadeUp" delay={0.25}>
+            <div className="mt-10 flex flex-wrap items-center gap-8 border-t border-border pt-8">
+              {[["<24h", "Avg. response time"], ["50+", "Clients served"], ["100%", "NDA available"]].map(([v, l]) => (
+                <div key={l}>
+                  <div className="font-display text-[22px] font-bold text-[#080D1C] leading-none">{v}</div>
+                  <div className="mt-1 font-mono text-[9.5px] uppercase tracking-[0.18em] text-muted-foreground">{l}</div>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       <section className="sec-white">
         <div className="mx-auto max-w-7xl px-4 lg:px-6 py-16 lg:py-20">
-        <ScrollReveal variant="fadeUp">
           <div className="grid gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-5 space-y-8">
-            <div className="surface-card p-6">
-              <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                Direct
+            {/* Sidebar */}
+            <div className="lg:col-span-4 space-y-4">
+              {/* Direct channels */}
+              <div className="surface-card p-6">
+                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
+                  Direct channels
+                </div>
+                <dl className="space-y-4">
+                  <Row k="Email" v="support@supertelque.com" href="mailto:support@supertelque.com" />
+                  <Row k="LinkedIn" v="linkedin.com/company/supertelque" href="https://linkedin.com/company/supertelque" />
+                </dl>
               </div>
-              <dl className="mt-4 space-y-4 text-sm">
-                <Row k="Email" v="support@supertelque.com" href="mailto:support@supertelque.com" />
-                <Row k="LinkedIn" v="linkedin.com/company/supertelque" href="https://linkedin.com/company/supertelque" />
-              </dl>
+
+              {/* How we work */}
+              <div className="surface-card p-6">
+                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
+                  How we work
+                </div>
+                <ul className="space-y-3">
+                  {[
+                    { icon: "🌍", text: "Remote-first · Global clients" },
+                    { icon: "🔒", text: "GDPR compliant" },
+                    { icon: "📄", text: "NDA on request" },
+                    { icon: "⚡", text: "Response within 24 hours" },
+                    { icon: "🎯", text: "No SDR handoffs, direct to engineers" },
+                  ].map((item) => (
+                    <li key={item.text} className="flex items-center gap-3 text-sm text-foreground/80">
+                      <span className="text-base leading-none">{item.icon}</span>
+                      {item.text}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* What to include */}
+              <div className="surface-card p-6">
+                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
+                  What to include
+                </div>
+                <ul className="space-y-2.5">
+                  {[
+                    "Your current CRM and key tools",
+                    "What's not working right now",
+                    "Team size and growth stage",
+                    "What you'd like to fix first",
+                  ].map((item, i) => (
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/75">
+                      <span className="mt-1 font-mono text-[9px] text-[#FFB800] font-bold shrink-0">0{i + 1}</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            <div className="surface-card p-6">
-              <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                How we work
-              </div>
-              <ul className="mt-4 space-y-3 text-sm text-foreground/80">
-                {[
-                  "Remote-first · Global clients",
-                  "GDPR compliant",
-                  "NDA on request",
-                  "Response within 24 hours",
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#FFB800]" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* Form */}
+            <ScrollReveal variant="fadeUp" className="lg:col-span-8">
+              <form className="surface-card p-6 lg:p-8 grid gap-5 sm:grid-cols-2" onSubmit={handleSubmit}>
+                <div className="sm:col-span-2">
+                  <div className="font-display text-xl font-semibold text-[#080D1C] mb-1">Send us a message</div>
+                  <p className="text-sm text-muted-foreground">We'll review your details and respond within 24 hours.</p>
+                </div>
+                <Field label="Name" placeholder="Alex Morgan" value={name} onChange={(e) => setName(e.target.value)} error={errors.name} />
+                <Field label="Company" placeholder="Acme Inc." value={company} onChange={(e) => setCompany(e.target.value)} error={errors.company} />
+                <Field label="Role" placeholder="CRO / Head of RevOps" value={role} onChange={(e) => setRole(e.target.value)} error={errors.role} />
+                <Field label="Email" placeholder="alex@company.com" type="email" value={email} onChange={(e) => setEmail(e.target.value)} error={errors.email} />
+                <div className="sm:col-span-2">
+                  <Select label="Current CRM" options={["HubSpot", "Salesforce", "Pipedrive", "None / building"]} value={crm} onChange={(e) => setCrm(e.target.value)} />
+                </div>
+                <div className="sm:col-span-2">
+                  <Label>Message</Label>
+                  <textarea
+                    rows={5}
+                    placeholder="Tell us about your revenue stack and what you'd like to fix..."
+                    className="mt-2 w-full resize-none rounded-md border border-border bg-[color:var(--surface)]/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                  />
+                  {errors.message && (
+                    <p className="mt-1 font-mono text-[11px] text-red-500">{errors.message}</p>
+                  )}
+                </div>
+                <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-5">
+                  <div className="font-mono text-[11px] text-muted-foreground">Typical response in under 24 hours.</div>
+                  <button
+                    type="submit"
+                    disabled={sending}
+                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-[#080D1C] disabled:opacity-40 disabled:pointer-events-none transition hover:scale-[1.02] hover:shadow-[0_8px_24px_-6px_rgba(255,184,0,0.40)]"
+                    style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
+                  >
+                    {sending ? "Sending..." : "Send message →"}
+                  </button>
+                </div>
+              </form>
+            </ScrollReveal>
           </div>
-
-          <form className="lg:col-span-7 surface-card p-6 lg:p-8 grid gap-5 sm:grid-cols-2" onSubmit={handleSubmit}>
-            <Field label="Name" placeholder="Alex Morgan" value={name} onChange={(e) => setName(e.target.value)} error={errors.name} />
-            <Field label="Company" placeholder="Acme Inc." value={company} onChange={(e) => setCompany(e.target.value)} error={errors.company} />
-            <Field label="Role" placeholder="CRO / Head of RevOps" value={role} onChange={(e) => setRole(e.target.value)} error={errors.role} />
-            <Field label="Email" placeholder="alex@company.com" type="email" value={email} onChange={(e) => setEmail(e.target.value)} error={errors.email} />
-            <div className="sm:col-span-2">
-              <Select label="Current CRM" options={["HubSpot", "Salesforce", "Pipedrive", "None / building"]} value={crm} onChange={(e) => setCrm(e.target.value)} />
-            </div>
-            <div className="sm:col-span-2">
-              <Label>Message</Label>
-              <textarea
-                rows={5}
-                placeholder="Tell us about your revenue stack and what you'd like to fix..."
-                className="mt-2 w-full resize-none rounded-md border border-border bg-[color:var(--surface)]/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-              />
-              {errors.message && (
-                <p className="mt-1 font-mono text-[11px] text-red-500">{errors.message}</p>
-              )}
-            </div>
-            <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-5">
-              <div className="text-xs text-muted-foreground">Typical response in under 24 hours.</div>
-              <button
-                type="submit"
-                disabled={sending}
-                className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-[#080D1C] disabled:opacity-40 disabled:pointer-events-none transition hover:scale-[1.02]"
-                style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
-              >
-                {sending ? "Sending..." : "Send message →"}
-              </button>
-            </div>
-          </form>
         </div>
-        </ScrollReveal>
-      </div>
       </section>
     </SiteLayout>
   );
@@ -156,11 +202,11 @@ function ContactPage() {
 
 function Row({ k, v, href }: { k: string; v: string; href?: string }) {
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-6 border-b border-border pb-3 last:border-b-0 last:pb-0">
-      <dt className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{k}</dt>
-      <dd className="font-display text-sm break-all text-foreground/90">
+    <div className="flex flex-col gap-1 border-b border-border pb-3.5 last:border-b-0 last:pb-0">
+      <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{k}</dt>
+      <dd className="text-sm text-foreground/90 break-all">
         {href ? (
-          <a href={href} target={href.startsWith("mailto") ? undefined : "_blank"} rel="noopener noreferrer" className="hover:text-primary transition-colors">
+          <a href={href} target={href.startsWith("mailto") ? undefined : "_blank"} rel="noopener noreferrer" className="hover:text-[#1B5EFF] transition-colors">
             {v}
           </a>
         ) : v}
@@ -197,37 +243,6 @@ function Select({ label, options, ...props }: { label: string; options: string[]
           <option key={o} className="bg-background">{o}</option>
         ))}
       </select>
-    </div>
-  );
-}
-
-function RegionsMap() {
-  // Abstract dotted "world" visualization with active pins for US/UK/CA
-  const dots: [number, number][] = [];
-  for (let y = 20; y <= 180; y += 14) {
-    for (let x = 20; x <= 580; x += 14) {
-      if (Math.sin(x * 0.03 + y * 0.04) > -0.2) dots.push([x, y]);
-    }
-  }
-  const pins: { x: number; y: number; label: string }[] = [
-    { x: 290, y: 125, label: "Lagos" },
-  ];
-  return (
-    <div className="relative bg-[color:var(--surface)]/60 overflow-hidden">
-      <svg viewBox="0 0 600 200" className="block w-full h-auto aspect-[3/1]">
-        {dots.map(([x, y], i) => (
-          <circle key={i} cx={x} cy={y} r="1.1" fill="var(--muted-foreground)" opacity="0.35" />
-        ))}
-        {pins.map((p, i) => (
-          <g key={i}>
-            <circle cx={p.x} cy={p.y} r="10" fill="var(--accent-blue)" opacity="0.18" />
-            <circle cx={p.x} cy={p.y} r="3.5" fill="var(--accent-blue)" />
-            <text x={p.x + 8} y={p.y + 4} fill="var(--foreground)" fontSize="9" fontFamily="JetBrains Mono, monospace">
-              {p.label}
-            </text>
-          </g>
-        ))}
-      </svg>
     </div>
   );
 }

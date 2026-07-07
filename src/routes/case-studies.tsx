@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
+import { Eyebrow } from "@/components/site/Eyebrow";
 import { ScrollReveal, StaggerReveal, StaggerChild } from "@/components/site/ScrollReveal";
 
 export const Route = createFileRoute("/case-studies")({
@@ -18,20 +18,22 @@ export const Route = createFileRoute("/case-studies")({
 const CASES = [
   {
     tag: "Enterprise SaaS · Series C",
+    color: "#1B5EFF",
     title: "Forecasting alignment across a 200-rep org",
     challenge:
       "Three forecasting systems disagreed every Monday. CRO meetings opened with reconciliation, not strategy.",
     solution:
-      "Re-architected the HubSpot ↔ Salesforce contract, deployed a versioned object model, and shipped bi-directional sync with a single forecast surface.",
+      "Re-architected the HubSpot / Salesforce contract, deployed a versioned object model, and shipped bi-directional sync with a single forecast surface.",
     stack: ["HubSpot", "Salesforce", "n8n", "Snowflake", "Power BI"],
     outcomes: [
       ["100%", "Forecasting alignment across regions"],
-      ["−72%", "Manual data reconciliation hours"],
+      ["72%", "Reduction in manual reconciliation"],
       ["4.2s", "End-to-end sync latency"],
     ],
   },
   {
     tag: "Fintech · Series B",
+    color: "#14B8A6",
     title: "Outbound automation across 3 GTM motions",
     challenge:
       "Manual enrichment, fragmented sequences, and no signal layer meant reps spent 60% of their week on list-building.",
@@ -40,12 +42,13 @@ const CASES = [
     stack: ["Clay", "Apollo", "Salesforce", "OpenAI", "Slack"],
     outcomes: [
       ["3.5×", "Meeting booking rate"],
-      ["+62%", "Rep selling time"],
-      ["−48%", "Cost per qualified meeting"],
+      ["+62%", "Rep selling time recovered"],
+      ["48%", "Cost per qualified meeting reduced"],
     ],
   },
   {
     tag: "AI Startup · Series A",
+    color: "#8B5CF6",
     title: "Intent-driven lead routing engine",
     challenge:
       "Lead response time over an hour. Hot demo requests landing in shared inboxes and going stale.",
@@ -55,7 +58,7 @@ const CASES = [
     outcomes: [
       ["+22%", "SQL conversion lift"],
       ["<90s", "Hot-lead response time"],
-      ["+38%", "Demo show rate"],
+      ["+38%", "Demo show rate improvement"],
     ],
   },
 ];
@@ -63,6 +66,7 @@ const CASES = [
 function CaseStudiesPage() {
   return (
     <SiteLayout headerTheme="light">
+      {/* Hero */}
       <section className="relative overflow-hidden border-b border-border pt-24 md:pt-28" style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 60%, #FFF9F0 100%)" }}>
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-10 right-0 h-[400px] w-[400px] rounded-full opacity-35"
@@ -84,34 +88,72 @@ function CaseStudiesPage() {
               the tools we used, and the numbers that moved.
             </p>
           </ScrollReveal>
+          {/* Summary stat strip */}
+          <ScrollReveal variant="fadeUp" delay={0.25}>
+            <div className="mt-10 flex flex-wrap items-center gap-8 border-t border-border pt-8">
+              {[["3", "Engagements detailed"], ["9", "Key metrics moved"], ["100%", "Delivered on time"]].map(([v, l]) => (
+                <div key={l}>
+                  <div className="font-display text-2xl font-bold text-[#080D1C] leading-none">{v}</div>
+                  <div className="mt-1 font-mono text-[9.5px] uppercase tracking-[0.18em] text-muted-foreground">{l}</div>
+                </div>
+              ))}
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      <section className="sec-white py-12 lg:py-20">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6 space-y-12 lg:space-y-20">
+      {/* Case study blocks */}
+      <section className="sec-white py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6">
           {CASES.map((c, i) => (
-            <ScrollReveal key={c.title} variant="fadeUp" delay={i * 0.1}>
-              <Study c={c} index={i} />
+            <ScrollReveal key={c.title} variant="fadeUp" delay={0.05}>
+              <div>
+                {i > 0 && (
+                  <div className="my-16 lg:my-24 flex items-center gap-6">
+                    <div className="flex-1 h-px bg-border" />
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                      {String(i + 1).padStart(2, "0")} / {String(CASES.length).padStart(2, "0")}
+                    </span>
+                    <div className="flex-1 h-px bg-border" />
+                  </div>
+                )}
+                <Study c={c} index={i} />
+              </div>
             </ScrollReveal>
           ))}
         </div>
       </section>
 
-      <section className="sec-navy border-t border-white/08 py-12 lg:py-20">
-        <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
+      {/* CTA */}
+      <section className="sec-navy relative overflow-hidden border-t border-white/08 py-20 lg:py-28">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-grid opacity-[0.04]" />
+          <div
+            className="absolute -bottom-10 left-1/2 -translate-x-1/2 h-[350px] w-[700px] rounded-full"
+            style={{ background: "radial-gradient(ellipse, rgba(255,184,0,0.12) 0%, transparent 65%)", filter: "blur(40px)" }}
+          />
+        </div>
+        <div className="relative mx-auto max-w-4xl px-4 lg:px-6 text-center">
           <ScrollReveal variant="scaleIn">
-            <div className="flex items-center justify-center gap-2.5 mb-4">
-              <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
+            <div className="flex items-center justify-center gap-2.5 mb-6">
+              <img src="/supertelque-logo.png" alt="" className="h-7 w-7 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
+              <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/40">SuperTelque RevOps</span>
             </div>
-            <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <h2 className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
               Your project could be next.
             </h2>
+            <p className="mx-auto mt-4 max-w-md text-[17px] leading-relaxed text-white/50">
+              45 minutes. We review your setup and hand you a clear starting point.
+            </p>
             <Link
               to="/book"
-              className="mt-8 inline-flex rounded-full px-6 py-3.5 text-sm font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_12px_28px_-6px_rgba(255,184,0,0.40)]"
-              style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
+              className="mt-10 inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-[15px] font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_16px_40px_-8px_rgba(255,184,0,0.50)]"
+              style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 60%, #E08A00 100%)" }}
             >
-              Book a strategy session →
+              Book a strategy session
+              <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
             </Link>
           </ScrollReveal>
         </div>
@@ -124,16 +166,23 @@ function Study({ c, index }: { c: (typeof CASES)[number]; index: number }) {
   return (
     <article className="grid gap-10 lg:grid-cols-12">
       <div className="lg:col-span-5">
-        <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-          Case · {String(index + 1).padStart(2, "0")} / {String(CASES.length).padStart(2, "0")} ·{" "}
-          {c.tag}
+        <div className="flex items-center gap-3 mb-5">
+          <span
+            className="inline-flex items-center rounded-full px-3 py-1 font-mono text-[10px] font-semibold text-white"
+            style={{ backgroundColor: c.color }}
+          >
+            {c.tag}
+          </span>
+          <span className="font-mono text-[10px] text-muted-foreground">
+            Case · {String(index + 1).padStart(2, "0")} / {String(CASES.length).padStart(2, "0")}
+          </span>
         </div>
-        <h2 className="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
+        <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
           {c.title}
         </h2>
         <div className="mt-8 space-y-6 text-[15px] leading-relaxed">
-          <Field k="Challenge" v={c.challenge} />
-          <Field k="Solution" v={c.solution} />
+          <Field k="Challenge" v={c.challenge} color={c.color} />
+          <Field k="Solution" v={c.solution} color={c.color} />
           <div>
             <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
               Stack
@@ -142,7 +191,7 @@ function Study({ c, index }: { c: (typeof CASES)[number]; index: number }) {
               {c.stack.map((s) => (
                 <span
                   key={s}
-                  className="rounded-full border border-border bg-(--surface)/60 px-2.5 py-1 font-mono text-[11px] text-foreground/85"
+                  className="rounded-full border border-border bg-white px-3 py-1 font-mono text-[11px] text-foreground/80 hover:border-foreground/20 transition-colors"
                 >
                   {s}
                 </span>
@@ -156,11 +205,11 @@ function Study({ c, index }: { c: (typeof CASES)[number]; index: number }) {
         <DashboardMock c={c} />
         <StaggerReveal className="grid grid-cols-3 gap-3">
           {c.outcomes.map(([v, l]) => (
-            <StaggerChild key={l} className="rounded-xl border border-border bg-[#F4F6FA] p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#FFB800]/30">
-              <div className="font-display text-2xl font-extrabold tracking-tight text-gradient-gold animate-count-in">
+            <StaggerChild key={l} className="rounded-xl border border-border bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#FFB800]/30">
+              <div className="font-display text-2xl font-extrabold tracking-tight text-gradient-gold">
                 {v}
               </div>
-              <div className="mt-1 text-xs text-muted-foreground">{l}</div>
+              <div className="mt-2 text-xs leading-snug text-muted-foreground">{l}</div>
             </StaggerChild>
           ))}
         </StaggerReveal>
@@ -169,67 +218,89 @@ function Study({ c, index }: { c: (typeof CASES)[number]; index: number }) {
   );
 }
 
-function Field({ k, v }: { k: string; v: string }) {
+function Field({ k, v, color }: { k: string; v: string; color: string }) {
   return (
-    <div>
-      <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+    <div className="pl-4" style={{ borderLeft: `2px solid ${color}40` }}>
+      <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color }}>
         {k}
       </div>
-      <p className="mt-2 text-foreground/85">{v}</p>
+      <p className="mt-2 text-foreground/80 text-[14px]">{v}</p>
     </div>
   );
 }
 
 function DashboardMock({ c }: { c: (typeof CASES)[number] }) {
-  // procedurally generated bar chart per case
   const seed = c.title.length;
   const bars = Array.from({ length: 16 }, (_, i) => 20 + ((seed * (i + 3)) % 70));
   return (
-    <div className="surface-card overflow-hidden p-5">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-(--accent-teal)" />
-          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+    <div className="rounded-2xl border border-white/10 bg-[#0B1120] shadow-[0_24px_60px_-12px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.06)] overflow-hidden">
+      {/* Header bar */}
+      <div className="flex items-center justify-between border-b border-white/07 px-5 py-3.5">
+        <div className="flex items-center gap-2.5">
+          <div className="flex gap-1.5">
+            <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
+            <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
+            <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
+          </div>
+          <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/30 ml-2">
             pipeline · 16-week view
+          </div>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
           </span>
-        </div>
-        <span className="font-mono text-[11px] text-muted-foreground">USD · normalized</span>
-      </div>
-
-      <div className="mt-6 grid grid-cols-[1fr_auto] gap-4 items-end">
-        <div className="flex h-44 items-end gap-2">
-          {bars.map((h, i) => (
-            <div key={i} className="flex-1 flex flex-col items-stretch gap-1">
-              <div
-                className="w-full rounded-sm bg-linear-to-t from-accent-blue/60 to-accent-indigo/80"
-                style={{ height: `${h}%` }}
-              />
-              <div
-                className="w-full rounded-sm bg-foreground/10"
-                style={{ height: `${100 - h}%` }}
-              />
-            </div>
-          ))}
-        </div>
-        <div className="flex flex-col gap-2 text-right">
-          {["+40%", "+18%", "−12%"].map((d, i) => (
-            <div
-              key={d}
-              className="rounded-md border border-border px-2 py-1 font-mono text-[11px]"
-            >
-              <span className="text-muted-foreground mr-2">Q{i + 1}</span>
-              <span className={d.startsWith("−") ? "text-destructive" : "text-(--accent-teal)"}>
-                {d}
-              </span>
-            </div>
-          ))}
+          <span className="font-mono text-[9px] text-emerald-400/70">live</span>
         </div>
       </div>
 
-      <div className="mt-5 grid grid-cols-4 gap-2 border-t border-border pt-4 font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted-foreground">
-        {["MQL", "SQL", "Opp", "Won"].map((s) => (
-          <div key={s}>{s}</div>
-        ))}
+      <div className="p-5">
+        {/* Outcome metric mini-cards */}
+        <div className="grid grid-cols-3 gap-2 mb-4">
+          {c.outcomes.map(([v, l]) => (
+            <div key={l} className="rounded-xl border border-white/07 bg-white/03 p-3">
+              <div className="font-display text-[20px] font-bold leading-none text-gradient-gold">{v}</div>
+              <div className="mt-1.5 font-mono text-[8.5px] text-white/35 leading-tight">{l}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bar chart */}
+        <div className="rounded-xl border border-white/06 bg-white/02 p-3 mb-3">
+          <div className="flex items-center justify-between mb-2.5">
+            <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/25">Pipeline trend</div>
+            <div className="font-mono text-[9px] text-white/20">USD normalized</div>
+          </div>
+          <div className="flex items-end gap-[3px] h-12">
+            {bars.map((h, i) => (
+              <div key={i} className="flex-1">
+                <div
+                  className="w-full rounded-[2px]"
+                  style={{
+                    height: `${h}%`,
+                    background: i >= 12
+                      ? `linear-gradient(to top, ${c.color}, ${c.color}88)`
+                      : `linear-gradient(to top, ${c.color}45, ${c.color}22)`,
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+          <div className="mt-2 grid grid-cols-4 gap-1 font-mono text-[8.5px] uppercase tracking-[0.15em] text-white/20">
+            {["MQL", "SQL", "Opp", "Won"].map((s) => <div key={s}>{s}</div>)}
+          </div>
+        </div>
+
+        {/* Stack tags */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1 flex-wrap">
+            {c.stack.map((t) => (
+              <span key={t} className="rounded px-1.5 py-0.5 font-mono text-[8.5px] text-white/35 border border-white/07">{t}</span>
+            ))}
+          </div>
+          <span className="font-mono text-[8.5px] text-white/20">synced live</span>
+        </div>
       </div>
     </div>
   );
