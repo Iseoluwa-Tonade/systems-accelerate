@@ -224,10 +224,14 @@ function BookPage() {
                       "CRM health check",
                       "Growth recommendations",
                       "Written 90-day plan",
-                    ].map((i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-(--accent-teal)" />
-                        <span className="text-foreground/85">{i}</span>
+                    ].map((item, idx) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-3 animate-slide-up-fade"
+                        style={{ animationDelay: `${idx * 80}ms` }}
+                      >
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent-teal)" />
+                        <span className="text-foreground/85">{item}</span>
                       </li>
                     ))}
                   </ul>

@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
-import { ScrollReveal } from "@/components/site/ScrollReveal";
+import { ScrollReveal, StaggerReveal, StaggerChild } from "@/components/site/ScrollReveal";
 
 export const Route = createFileRoute("/case-studies")({
   head: () => ({
@@ -68,7 +68,7 @@ function CaseStudiesPage() {
           <div className="absolute -top-10 right-0 h-[400px] w-[400px] rounded-full opacity-35"
             style={{ background: "radial-gradient(circle, rgba(27,94,255,0.09) 0%, transparent 70%)" }} />
           <svg className="absolute left-8 bottom-4 h-[140px] w-[140px] opacity-[0.05]" viewBox="0 0 100 100">
-            <polygon points="50,5 95,95 5,95" fill="none" stroke="#FFB800" strokeWidth="1.5" />
+            <polygon points="50,5 95,95 5,95" fill="none" stroke="#FFB800" strokeWidth="1.5" className="animate-spin-slow" style={{ transformOrigin: "50px 50px" }} />
           </svg>
         </div>
         <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pt-16 lg:px-6">
@@ -154,16 +154,16 @@ function Study({ c, index }: { c: (typeof CASES)[number]; index: number }) {
 
       <div className="lg:col-span-7 space-y-4">
         <DashboardMock c={c} />
-        <div className="grid grid-cols-3 gap-3">
+        <StaggerReveal className="grid grid-cols-3 gap-3">
           {c.outcomes.map(([v, l]) => (
-            <div key={l} className="rounded-xl border border-border bg-[#F4F6FA] p-4">
-              <div className="font-display text-2xl font-extrabold tracking-tight text-gradient-gold">
+            <StaggerChild key={l} className="rounded-xl border border-border bg-[#F4F6FA] p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#FFB800]/30">
+              <div className="font-display text-2xl font-extrabold tracking-tight text-gradient-gold animate-count-in">
                 {v}
               </div>
               <div className="mt-1 text-xs text-muted-foreground">{l}</div>
-            </div>
+            </StaggerChild>
           ))}
-        </div>
+        </StaggerReveal>
       </div>
     </article>
   );

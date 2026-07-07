@@ -131,13 +131,13 @@ function AboutPage() {
           <SectionHeader eyebrow="Core principles" title={<>How we operate.</>} />
           <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-5">
             {PRINCIPLES.map((p, i) => (
-              <div key={p.k} className="rounded-xl border border-border bg-[#F4F6FA] p-5 transition-colors hover:bg-[#EEF3FF]">
+              <ScrollReveal key={p.k} variant="fadeUp" delay={i * 0.09} className="rounded-xl border border-border bg-[#F4F6FA] p-5 transition-all duration-300 hover:bg-[#EEF3FF] hover:-translate-y-1 hover:shadow-md">
                 <div className="font-mono text-[11px] tracking-[0.2em] text-[#FFB800]">
                   0{i + 1}
                 </div>
                 <h3 className="mt-3 font-display text-base font-bold tracking-tight text-[#080D1C]">{p.k}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.d}</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -157,8 +157,8 @@ function AboutPage() {
           />
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {TEAM.map((member, i) => (
-              <ScrollReveal key={member.name} variant="fadeUp" delay={i * 0.1}>
-                <div className="rounded-2xl border border-border bg-[#F8FAFF] p-8 flex flex-col items-center text-center">
+              <ScrollReveal key={member.name} variant="zoomIn" delay={i * 0.12}>
+                <div className="rounded-2xl border border-border bg-[#F8FAFF] p-8 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-[#FFB800]/30">
                   <AgentAvatar v={member.v} size={108} />
                   <div className="mt-5 font-display text-xl font-bold tracking-tight text-[#080D1C]">{member.name}</div>
                   <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{member.role}</div>
@@ -185,9 +185,11 @@ function AboutPage() {
           />
           <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
             {INDUSTRIES.map((ind, i) => (
-              <div
+              <ScrollReveal
                 key={ind.title}
-                className="rounded-xl border border-border bg-white p-6 transition duration-200 hover:shadow-md"
+                variant="fadeUp"
+                delay={i * 0.08}
+                className="rounded-xl border border-border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
               >
                 <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground mb-3">
                   <span style={{ color: ind.accent }}>SECTOR · 0{i + 1}</span>
@@ -195,7 +197,7 @@ function AboutPage() {
                 </div>
                 <h3 className="font-display text-lg font-bold tracking-tight text-[#080D1C]">{ind.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{ind.desc}</p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>

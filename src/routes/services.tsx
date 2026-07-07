@@ -68,7 +68,7 @@ function ServicesPage() {
           <div className="absolute -top-16 right-0 h-[380px] w-[380px] rounded-full opacity-40"
             style={{ background: "radial-gradient(circle, rgba(27,94,255,0.10) 0%, transparent 70%)" }} />
           <svg className="absolute right-8 bottom-0 h-[200px] w-[200px] opacity-[0.05]" viewBox="0 0 200 200">
-            <circle cx="100" cy="100" r="88" fill="none" stroke="#1B5EFF" strokeWidth="1.5" strokeDasharray="4 10" />
+            <circle cx="100" cy="100" r="88" fill="none" stroke="#1B5EFF" strokeWidth="1.5" strokeDasharray="4 10" className="animate-spin-slow" style={{ transformOrigin: "100px 100px" }} />
           </svg>
         </div>
         <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pt-16 lg:px-6">
@@ -117,9 +117,13 @@ function ServiceBlock({
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">{svc.blurb}</p>
           <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
-            {svc.items.map((it) => (
-              <li key={it} className="flex items-center gap-2 text-foreground/85">
-                <span className="h-1 w-1 rounded-full bg-accent-blue" />
+            {svc.items.map((it, idx) => (
+              <li
+                key={it}
+                className="flex items-center gap-2 text-foreground/85 animate-slide-up-fade"
+                style={{ animationDelay: `${idx * 70 + 200}ms` }}
+              >
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent-blue transition-transform hover:scale-150" />
                 {it}
               </li>
             ))}

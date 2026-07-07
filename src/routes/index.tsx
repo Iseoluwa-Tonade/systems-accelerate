@@ -116,8 +116,8 @@ function Hero() {
           style={{ background: "radial-gradient(circle, rgba(255,184,0,0.12) 0%, transparent 70%)" }}
         />
         <svg className="absolute right-4 top-1/2 -translate-y-1/3 h-[340px] w-[340px] opacity-[0.055]" viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="90" fill="none" stroke="#1B5EFF" strokeWidth="1.5" strokeDasharray="4 10" />
-          <circle cx="100" cy="100" r="62" fill="none" stroke="#1B5EFF" strokeWidth="1" strokeDasharray="2 8" />
+          <circle cx="100" cy="100" r="90" fill="none" stroke="#1B5EFF" strokeWidth="1.5" strokeDasharray="4 10" className="animate-spin-slow" style={{ transformOrigin: "100px 100px" }} />
+          <circle cx="100" cy="100" r="62" fill="none" stroke="#1B5EFF" strokeWidth="1" strokeDasharray="2 8" className="animate-spin-slow-rev" style={{ transformOrigin: "100px 100px" }} />
         </svg>
         <svg className="absolute left-1/3 bottom-4 h-[140px] w-[140px] opacity-[0.045]" viewBox="0 0 100 100">
           <polygon points="50,5 95,95 5,95" fill="none" stroke="#FFB800" strokeWidth="1.5" />
@@ -147,7 +147,7 @@ function Hero() {
                 style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 60%, #E08A00 100%)" }}
               >
                 Book a strategy session
-                <svg viewBox="0 0 16 16" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <svg viewBox="0 0 16 16" className="h-4 w-4 animate-bounce-x" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>
@@ -268,10 +268,11 @@ function Services() {
 
         <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s, i) => (
-            <div
+            <ScrollReveal
               key={s.code}
-              className="group relative bg-white p-7 transition-colors hover:bg-[#F4F6FA]"
-              style={{ transitionDelay: `${i * 40}ms` }}
+              variant="fadeUp"
+              delay={i * 0.07}
+              className="group relative bg-white p-7 transition-all duration-300 hover:bg-[#F4F6FA] hover:-translate-y-px hover:shadow-[inset_0_-2px_0_0_rgba(255,184,0,0.35)]"
             >
               <span className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground">
                 {s.code}
@@ -281,12 +282,12 @@ function Services() {
               <ul className="mt-5 space-y-1.5 font-mono text-[12px] text-foreground/70">
                 {s.bullets.map((b) => (
                   <li key={b} className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#FFB800]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#FFB800] transition-transform group-hover:scale-125" />
                     {b}
                   </li>
                 ))}
               </ul>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 
@@ -336,8 +337,8 @@ function Methodology() {
     <section className="sec-mid relative overflow-hidden py-16 lg:py-24">
       <div className="pointer-events-none absolute inset-0">
         <svg className="absolute -left-20 top-1/2 -translate-y-1/2 h-[280px] w-[280px] opacity-[0.06]" viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="88" fill="none" stroke="#1B5EFF" strokeWidth="1.2" strokeDasharray="3 8" />
-          <circle cx="100" cy="100" r="60" fill="none" stroke="#1B5EFF" strokeWidth="0.7" strokeDasharray="2 7" />
+          <circle cx="100" cy="100" r="88" fill="none" stroke="#1B5EFF" strokeWidth="1.2" strokeDasharray="3 8" className="animate-spin-slow" style={{ transformOrigin: "100px 100px" }} />
+          <circle cx="100" cy="100" r="60" fill="none" stroke="#1B5EFF" strokeWidth="0.7" strokeDasharray="2 7" className="animate-spin-slow-rev" style={{ transformOrigin: "100px 100px" }} />
         </svg>
         <svg className="absolute -right-16 bottom-0 h-[200px] w-[200px] opacity-[0.05]" viewBox="0 0 200 200">
           <rect x="20" y="20" width="160" height="160" rx="18" fill="none" stroke="#FFB800" strokeWidth="1.5" strokeDasharray="4 9" />
@@ -358,9 +359,11 @@ function Methodology() {
           {STEPS.map((s, i) => {
             const c = cardColors[i];
             return (
-              <div
+              <ScrollReveal
                 key={s.k}
-                className="rounded-2xl p-6 flex flex-col"
+                variant="fadeUp"
+                delay={i * 0.09}
+                className="rounded-2xl p-6 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
                 style={{
                   backgroundColor: c.bg,
                   border: `1px solid ${c.accent}22`,
@@ -389,7 +392,7 @@ function Methodology() {
                 >
                   {s.out}
                 </div>
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>
@@ -464,8 +467,8 @@ function CaseStudiesPreview() {
         </div>
 
         <div className="grid gap-5 sm:grid-cols-3">
-          {CASES.map((c) => (
-            <div key={c.title} className="rounded-2xl border border-border bg-[#F4F6FA] p-6 flex flex-col">
+          {CASES.map((c, i) => (
+            <ScrollReveal key={c.title} variant="fadeUp" delay={i * 0.1} className="rounded-2xl border border-border bg-[#F4F6FA] p-6 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#FFB800]/30">
               <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
                 {c.tag}
               </span>
@@ -484,7 +487,7 @@ function CaseStudiesPreview() {
                   </span>
                 ))}
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 
@@ -843,13 +846,16 @@ function FinalCTA() {
             45 minutes. We review your setup and tell you exactly where to start.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              to="/book"
-              className="inline-flex items-center gap-2 rounded-full px-7 py-4 text-[15px] font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_12px_32px_-8px_rgba(255,184,0,0.45)]"
-              style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
-            >
-              Book a consultation →
-            </Link>
+            <div className="relative">
+              <span className="absolute inset-0 rounded-full bg-[#FFB800]/30 animate-ping-ring" />
+              <Link
+                to="/book"
+                className="relative inline-flex items-center gap-2 rounded-full px-7 py-4 text-[15px] font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_12px_32px_-8px_rgba(255,184,0,0.45)]"
+                style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
+              >
+                Book a consultation →
+              </Link>
+            </div>
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/06 px-7 py-4 text-[15px] font-medium text-white/80 hover:bg-white/12 transition-colors"
