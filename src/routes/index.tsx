@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeader } from "@/components/site/Eyebrow";
 import { ScrollReveal } from "@/components/site/ScrollReveal";
+import { AgentAvatar } from "@/components/site/AgentAvatar";
 import * as L from "@/components/site/Logos";
 
 export const Route = createFileRoute("/")({
@@ -33,6 +34,7 @@ function HomePage() {
       <Services />
       <Methodology />
       <CaseStudiesPreview />
+      <TeamStrip />
       <Testimonials />
       <LeadMagnet />
       <FinalCTA />
@@ -496,6 +498,48 @@ function CaseStudiesPreview() {
   );
 }
 
+/* ─────────────── TEAM STRIP ─────────────── */
+const TEAM_MEMBERS = [
+  { v: 1 as const, name: "Seun A.", role: "RevOps Lead", specialty: "HubSpot · Salesforce · Forecasting" },
+  { v: 2 as const, name: "Temi O.", role: "GTM Engineer", specialty: "Clay · Apollo · Outbound Systems" },
+  { v: 3 as const, name: "Kola B.", role: "Automation Engineer", specialty: "n8n · Make · AI Integrations" },
+];
+
+function TeamStrip() {
+  return (
+    <section className="sec-white border-t border-border py-14 lg:py-20">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
+        <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-16">
+          <div className="shrink-0 lg:w-72">
+            <SectionHeader
+              eyebrow="The team"
+              title={
+                <>
+                  Senior operators.{" "}
+                  <span className="text-gradient-gold">Not juniors.</span>
+                </>
+              }
+              description="You work directly with the engineers building your system — not an account manager passing notes down."
+            />
+          </div>
+          <div className="flex-1 grid gap-5 sm:grid-cols-3">
+            {TEAM_MEMBERS.map((t, i) => (
+              <ScrollReveal key={t.name} variant="fadeUp" delay={i * 0.1}>
+                <div className="flex flex-col items-center text-center rounded-2xl border border-border bg-[#F8FAFF] p-6 hover:bg-[#EEF3FF] transition-colors">
+                  <AgentAvatar v={t.v} size={88} />
+                  <div className="mt-4 font-display text-base font-bold text-[#080D1C]">{t.name}</div>
+                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{t.role}</div>
+                  <div className="mt-2 text-xs leading-relaxed text-muted-foreground">{t.specialty}</div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─────────────── AVATAR FACES ─────────────── */
 function Avatar({ v }: { v: 1 | 2 | 3 }) {
   if (v === 1) {
@@ -618,6 +662,41 @@ function Testimonials() {
 }
 
 /* ─────────────── LEAD MAGNET ─────────────── */
+const FREE_RESOURCES = [
+  {
+    tag: "Checklist",
+    title: "RevOps Audit Checklist",
+    desc: "The 12-point checklist we run on every engagement — CRM hygiene, pipeline design, and automation priorities.",
+    color: "#1B5EFF",
+    bg: "#EFF6FF",
+    border: "rgba(27,94,255,0.15)",
+  },
+  {
+    tag: "Guide",
+    title: "GTM Stack Guide",
+    desc: "Tools we recommend at each funnel stage, mapped to your team size. From awareness to expansion.",
+    color: "#059669",
+    bg: "#ECFDF5",
+    border: "rgba(5,150,105,0.15)",
+  },
+  {
+    tag: "Template",
+    title: "Lead Scoring Framework",
+    desc: "A Google Sheets template to qualify leads consistently. Import your CRM data and score in minutes.",
+    color: "#7C3AED",
+    bg: "#F5F3FF",
+    border: "rgba(124,58,237,0.15)",
+  },
+  {
+    tag: "Playbook",
+    title: "Outbound Automation Playbook",
+    desc: "Five automation flows that cut list-building time by 60% — with exact tool configs and sequences.",
+    color: "#B45309",
+    bg: "#FFFBEB",
+    border: "rgba(180,83,9,0.15)",
+  },
+] as const;
+
 function LeadMagnet() {
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
@@ -629,63 +708,83 @@ function LeadMagnet() {
   }
 
   return (
-    <section className="sec-mid relative overflow-hidden border-t border-border py-16 lg:py-20">
+    <section className="sec-mid relative overflow-hidden border-t border-border py-16 lg:py-24">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full opacity-25"
-          style={{ background: "radial-gradient(circle, rgba(255,184,0,0.18) 0%, transparent 70%)" }} />
-        <div className="absolute -left-10 bottom-0 h-52 w-52 rounded-full opacity-20"
-          style={{ background: "radial-gradient(circle, rgba(27,94,255,0.12) 0%, transparent 70%)" }} />
+        <div
+          className="absolute -right-20 -top-20 h-80 w-80 rounded-full opacity-25"
+          style={{ background: "radial-gradient(circle, rgba(255,184,0,0.18) 0%, transparent 70%)" }}
+        />
+        <div
+          className="absolute -left-10 bottom-0 h-56 w-56 rounded-full opacity-20"
+          style={{ background: "radial-gradient(circle, rgba(27,94,255,0.12) 0%, transparent 70%)" }}
+        />
         <svg className="absolute right-1/4 bottom-0 h-[160px] w-[160px] opacity-[0.04]" viewBox="0 0 100 100">
           <circle cx="50" cy="50" r="45" fill="none" stroke="#1B5EFF" strokeWidth="1" strokeDasharray="3 7" />
         </svg>
       </div>
+
       <div className="relative mx-auto max-w-7xl px-4 lg:px-6">
         <ScrollReveal variant="fadeUp">
-          <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-soft">
-            <div className="grid lg:grid-cols-2">
-              <div className="px-8 py-12 lg:px-12 lg:py-14">
-                <div className="inline-flex items-center gap-2 rounded-full border border-[#FFB800]/30 bg-[#FFB800]/10 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-[#B45309]">
-                  Free resource
-                </div>
-                <h2 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-[#080D1C] sm:text-4xl">
-                  RevOps Audit Checklist
-                </h2>
-                <p className="mt-4 text-base leading-relaxed text-[#4C5670]">
-                  The 12-point checklist our team runs on every engagement —
-                  CRM hygiene, pipeline stage design, and automation priorities.
-                </p>
-                <ul className="mt-6 space-y-2.5 text-sm text-[#4C5670]">
-                  {[
-                    "CRM data quality audit framework",
-                    "Pipeline stage benchmark guide",
-                    "Top 5 automation quick wins",
-                    "Dashboard KPI template",
-                  ].map((item) => (
-                    <li key={item} className="flex items-center gap-2.5">
-                      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#FFB800]" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#FFB800]/30 bg-[#FFB800]/10 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-[#B45309]">
+              Free resources
+            </div>
+            <h2 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-[#080D1C] sm:text-4xl">
+              Four resources. <span className="text-gradient-gold">One email.</span>
+            </h2>
+            <p className="mt-3 mx-auto max-w-lg text-base leading-relaxed text-[#4C5670]">
+              Templates, playbooks, and guides we use with real clients — free to download.
+            </p>
+          </div>
+        </ScrollReveal>
 
-              <div className="flex items-center border-t border-border bg-[#F8FAFF] px-8 py-12 lg:border-l lg:border-t-0 lg:px-12 lg:py-14">
-                {sent ? (
-                  <div className="w-full rounded-2xl border border-[#FFB800]/25 bg-[#FFFBEB] p-8 text-center">
-                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#FFB800]/15">
-                      <svg viewBox="0 0 20 20" fill="none" className="h-6 w-6 stroke-[#B45309]" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M4 10l4 4 8-8" />
-                      </svg>
-                    </div>
-                    <div className="mt-4 font-display text-xl font-bold text-[#080D1C]">It's on its way</div>
-                    <p className="mt-2 text-sm text-[#4C5670]">
-                      Check your inbox. The checklist is free — no strings attached.
-                    </p>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {FREE_RESOURCES.map((r, i) => (
+            <ScrollReveal key={r.title} variant="fadeUp" delay={i * 0.08}>
+              <div
+                className="rounded-2xl p-6 h-full flex flex-col"
+                style={{ backgroundColor: r.bg, border: `1px solid ${r.border}` }}
+              >
+                <div
+                  className="self-start rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em]"
+                  style={{ backgroundColor: `${r.color}18`, color: r.color, border: `1px solid ${r.color}25` }}
+                >
+                  {r.tag}
+                </div>
+                <h3 className="mt-4 font-display text-base font-bold tracking-tight text-[#080D1C]">
+                  {r.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#4C5670] flex-1">{r.desc}</p>
+                <div className="mt-4 flex items-center gap-1.5 font-mono text-[11px]" style={{ color: r.color }}>
+                  <svg viewBox="0 0 12 12" className="h-3 w-3" fill="currentColor">
+                    <path d="M6 0a1 1 0 011 1v5.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414L5 6.586V1a1 1 0 011-1z" />
+                    <rect x="1" y="10" width="10" height="1.5" rx="0.75" />
+                  </svg>
+                  Free download
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        <ScrollReveal variant="fadeUp" delay={0.2}>
+          <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-white shadow-soft">
+            <div className="px-8 py-8 lg:px-12 lg:py-10">
+              {sent ? (
+                <div className="flex flex-col items-center text-center py-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#FFB800]/15">
+                    <svg viewBox="0 0 20 20" fill="none" className="h-6 w-6 stroke-[#B45309]" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M4 10l4 4 8-8" />
+                    </svg>
                   </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="w-full">
+                  <div className="mt-4 font-display text-xl font-bold text-[#080D1C]">All four resources are on their way</div>
+                  <p className="mt-2 text-sm text-[#4C5670]">Check your inbox. Free — no strings attached.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:flex-row sm:items-end">
+                  <div className="flex-1">
                     <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                      Get the checklist free
+                      Get all 4 resources — one email
                     </div>
                     <input
                       type="email"
@@ -693,21 +792,23 @@ function LeadMagnet() {
                       placeholder="your@company.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="mt-3 w-full rounded-xl border border-border bg-white px-4 py-3.5 text-sm shadow-[0_1px_3px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-2 focus:ring-[#1B5EFF]/25"
+                      className="mt-2 w-full rounded-xl border border-border bg-[#F8FAFF] px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B5EFF]/25"
                     />
-                    <button
-                      type="submit"
-                      className="mt-3 w-full rounded-full py-3.5 text-sm font-bold text-[#080D1C] transition-all hover:scale-[1.02] hover:shadow-[0_8px_24px_-6px_rgba(255,184,0,0.40)]"
-                      style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
-                    >
-                      Download the checklist →
-                    </button>
-                    <p className="mt-3 text-center font-mono text-[10px] text-muted-foreground">
-                      No spam · GDPR compliant · Unsubscribe anytime
-                    </p>
-                  </form>
-                )}
-              </div>
+                  </div>
+                  <button
+                    type="submit"
+                    className="shrink-0 rounded-full px-7 py-3.5 text-sm font-bold text-[#080D1C] transition-all hover:scale-[1.02] hover:shadow-[0_8px_24px_-6px_rgba(255,184,0,0.40)]"
+                    style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
+                  >
+                    Send me the resources →
+                  </button>
+                </form>
+              )}
+              {!sent && (
+                <p className="mt-3 font-mono text-[10px] text-muted-foreground">
+                  No spam · GDPR compliant · Unsubscribe anytime
+                </p>
+              )}
             </div>
           </div>
         </ScrollReveal>

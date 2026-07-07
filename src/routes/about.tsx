@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
 import { ScrollReveal } from "@/components/site/ScrollReveal";
+import { AgentAvatar } from "@/components/site/AgentAvatar";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -14,6 +15,30 @@ export const Route = createFileRoute("/about")({
   }),
   component: AboutPage,
 });
+
+const TEAM = [
+  {
+    v: 1 as const,
+    name: "Seun A.",
+    role: "RevOps Lead",
+    specialty: "HubSpot · Salesforce · Forecasting",
+    bio: "10+ years building revenue systems inside Series A–D B2B companies. Expert in CRM architecture, pipeline design, and GTM alignment.",
+  },
+  {
+    v: 2 as const,
+    name: "Temi O.",
+    role: "GTM Engineer",
+    specialty: "Clay · Apollo · Outbound Systems",
+    bio: "Built outbound machines that consistently deliver 400+ meetings per month. Deep specialist in intent enrichment, sequencing, and ICP targeting.",
+  },
+  {
+    v: 3 as const,
+    name: "Kola B.",
+    role: "Automation Engineer",
+    specialty: "n8n · Make · AI Integrations",
+    bio: "Full-stack automation engineer. Specialises in no-code pipelines, AI-powered workflows, and integrations across the full revenue stack.",
+  },
+] as const;
 
 const PRINCIPLES = [
   { k: "Data first", d: "We build on clean data. Bad CRM data isn't a reporting headache — it's what stops deals from closing." },
@@ -102,6 +127,34 @@ function AboutPage() {
                 <h3 className="mt-3 font-display text-base font-bold tracking-tight text-[#080D1C]">{p.k}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.d}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Team */}
+      <section className="sec-white border-t border-border py-14 lg:py-20">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6">
+          <SectionHeader
+            eyebrow="Meet the team"
+            title={
+              <>
+                The people who <span className="text-gradient-gold">build your systems.</span>
+              </>
+            }
+            description="A small, senior team. Every engagement is staffed by the specialists who know your stack."
+          />
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            {TEAM.map((member, i) => (
+              <ScrollReveal key={member.name} variant="fadeUp" delay={i * 0.1}>
+                <div className="rounded-2xl border border-border bg-[#F8FAFF] p-8 flex flex-col items-center text-center">
+                  <AgentAvatar v={member.v} size={108} />
+                  <div className="mt-5 font-display text-xl font-bold tracking-tight text-[#080D1C]">{member.name}</div>
+                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{member.role}</div>
+                  <div className="mt-2 text-xs font-mono text-[#1B5EFF]">{member.specialty}</div>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{member.bio}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
