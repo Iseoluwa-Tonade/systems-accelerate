@@ -149,56 +149,65 @@ function HeroDashboard() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#080D1C] pt-20 md:pt-24">
-      {/* Background depth layers */}
-      <div className="pointer-events-none absolute inset-0">
-        {/* Primary color glows */}
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[700px] w-[700px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(27,94,255,0.14) 0%, transparent 65%)" }} />
-        <div className="absolute -bottom-20 -left-20 h-[500px] w-[500px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(255,184,0,0.09) 0%, transparent 65%)" }} />
-        <div className="absolute top-1/3 right-0 h-[400px] w-[400px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(124,58,237,0.10) 0%, transparent 65%)" }} />
+    <section className="relative overflow-hidden bg-[#060B17] pt-20 md:pt-24">
+      {/* ── Beautiful aurora background ── */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {/* Aurora blob 1 — blue-indigo, top-left */}
+        <div
+          className="absolute -top-60 -left-40 h-[800px] w-[800px] rounded-full animate-aurora-1"
+          style={{ background: "radial-gradient(circle at 45% 45%, rgba(27,94,255,0.50), rgba(79,70,229,0.25) 45%, transparent 70%)", filter: "blur(100px)" }}
+        />
+        {/* Aurora blob 2 — warm gold, right */}
+        <div
+          className="absolute -top-20 right-[-180px] h-[650px] w-[650px] rounded-full animate-aurora-2"
+          style={{ background: "radial-gradient(circle at 55% 40%, rgba(255,184,0,0.28), rgba(251,146,60,0.12) 50%, transparent 70%)", filter: "blur(90px)" }}
+        />
+        {/* Aurora blob 3 — purple, bottom-center */}
+        <div
+          className="absolute bottom-[-140px] left-[25%] h-[550px] w-[550px] rounded-full animate-aurora-1"
+          style={{ background: "radial-gradient(circle at 50% 55%, rgba(124,58,237,0.28), rgba(79,70,229,0.12) 50%, transparent 70%)", filter: "blur(100px)", animationDelay: "-10s" }}
+        />
+        {/* Aurora blob 4 — teal accent, center-left */}
+        <div
+          className="absolute top-1/2 -left-20 h-[400px] w-[400px] rounded-full animate-aurora-2"
+          style={{ background: "radial-gradient(circle at 40% 50%, rgba(20,184,166,0.15), transparent 65%)", filter: "blur(80px)", animationDelay: "-18s" }}
+        />
 
-        {/* Subtle grid */}
-        <div className="absolute inset-0 bg-grid opacity-[0.07]" />
-
-        {/* Network graph lines (decorative) */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.18]" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" fill="none">
-          <line x1="60" y1="580" x2="260" y2="420" stroke="rgba(27,94,255,0.5)" strokeWidth="0.7" />
-          <line x1="260" y1="420" x2="120" y2="290" stroke="rgba(27,94,255,0.4)" strokeWidth="0.7" />
-          <line x1="120" y1="290" x2="350" y2="180" stroke="rgba(255,184,0,0.4)" strokeWidth="0.7" />
-          <line x1="350" y1="180" x2="200" y2="80" stroke="rgba(27,94,255,0.35)" strokeWidth="0.7" />
-          <line x1="260" y1="420" x2="420" y2="320" stroke="rgba(124,58,237,0.4)" strokeWidth="0.7" />
-          <line x1="420" y1="320" x2="350" y2="180" stroke="rgba(124,58,237,0.3)" strokeWidth="0.7" />
-          <circle cx="60" cy="580" r="3" fill="rgba(27,94,255,0.6)" />
-          <circle cx="260" cy="420" r="4.5" fill="rgba(255,184,0,0.55)" />
-          <circle cx="120" cy="290" r="3" fill="rgba(27,94,255,0.55)" />
-          <circle cx="350" cy="180" r="5" fill="rgba(27,94,255,0.65)" />
-          <circle cx="200" cy="80" r="3" fill="rgba(255,184,0,0.50)" />
-          <circle cx="420" cy="320" r="3.5" fill="rgba(124,58,237,0.55)" />
-          {/* Halo rings around key nodes */}
-          <circle cx="350" cy="180" r="14" stroke="rgba(27,94,255,0.18)" strokeWidth="1" />
-          <circle cx="260" cy="420" r="12" stroke="rgba(255,184,0,0.15)" strokeWidth="1" />
+        {/* Film grain texture */}
+        <svg className="absolute inset-0 h-full w-full" xmlns="http://www.w3.org/2000/svg">
+          <filter id="hero-grain">
+            <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" />
+            <feColorMatrix type="saturate" values="0" />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#hero-grain)" opacity="0.028" />
         </svg>
 
-        {/* Spinning orbit rings */}
-        <svg className="absolute -right-16 top-1/2 -translate-y-1/2 h-[420px] w-[420px] opacity-[0.08]" viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="90" fill="none" stroke="#1B5EFF" strokeWidth="1.2" strokeDasharray="4 10" className="animate-spin-slow" style={{ transformOrigin: "100px 100px" }} />
-          <circle cx="100" cy="100" r="66" fill="none" stroke="#FFB800" strokeWidth="0.8" strokeDasharray="2 8" className="animate-spin-slow-rev" style={{ transformOrigin: "100px 100px" }} />
-          <circle cx="100" cy="100" r="44" fill="none" stroke="#8B5CF6" strokeWidth="0.6" strokeDasharray="1.5 7" className="animate-spin-slow" style={{ transformOrigin: "100px 100px", animationDuration: "38s" }} />
-        </svg>
+        {/* Dot grid overlay */}
+        <div className="absolute inset-0 bg-grid opacity-[0.055]" />
 
-        {/* Bottom gradient fade to first section */}
-        <div className="absolute bottom-0 inset-x-0 h-24"
-          style={{ background: "linear-gradient(to bottom, transparent, rgba(8,13,28,0.0))" }} />
+        {/* Top edge light seam */}
+        <div
+          className="absolute inset-x-0 top-0 h-px"
+          style={{ background: "linear-gradient(to right, transparent 5%, rgba(27,94,255,0.70) 35%, rgba(255,184,0,0.50) 65%, transparent 95%)" }}
+        />
+
+        {/* Inner vignette to keep edges dark and focused */}
+        <div
+          className="absolute inset-0"
+          style={{ background: "radial-gradient(ellipse 90% 90% at 50% 50%, transparent 50%, rgba(6,11,23,0.55) 100%)" }}
+        />
       </div>
 
+      {/* ── Hero content ── */}
       <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-16 lg:grid-cols-12 lg:gap-12 lg:px-6">
         <div className="lg:col-span-6 flex flex-col justify-center pt-6 lg:pt-10">
-          <div className="inline-flex items-center gap-2 w-fit rounded-full border border-white/12 bg-white/06 px-4 py-1.5 mb-6 backdrop-blur-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/55">B2B RevOps & GTM Engineering</span>
+          {/* Live badge */}
+          <div className="inline-flex items-center gap-2.5 w-fit rounded-full border border-white/12 bg-white/06 px-4 py-1.5 mb-7 backdrop-blur-sm">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500 shadow-[0_0_6px_rgba(52,211,153,0.9)]" />
+            </span>
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/50">B2B RevOps & GTM Engineering</span>
           </div>
 
           <h1 className="font-display text-[40px] font-extrabold leading-[1.02] tracking-tight text-white sm:text-[54px] lg:text-[70px] lg:leading-[1.0]">
@@ -208,7 +217,7 @@ function Hero() {
           </h1>
 
           <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-white/55 sm:text-[17px]">
+            <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-white/48 sm:text-[17px]">
               Better data, cleaner workflows, and a revenue system your whole team can rely on.
             </p>
           </ScrollReveal>
@@ -217,7 +226,7 @@ function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-5">
               <Link
                 to="/book"
-                className="inline-flex items-center gap-2.5 rounded-full px-7 py-4 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_12px_32px_-8px_rgba(255,184,0,0.55)]"
+                className="inline-flex items-center gap-2.5 rounded-full px-7 py-4 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_14px_36px_-8px_rgba(255,184,0,0.60)]"
                 style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 60%, #E08A00 100%)" }}
               >
                 Book a strategy session
@@ -225,18 +234,18 @@ function Hero() {
                   <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>
-              <Link to="/services" className="text-[15px] font-medium text-white/40 hover:text-white/80 transition-colors">
+              <Link to="/services" className="text-[15px] font-medium text-white/38 hover:text-white/75 transition-colors">
                 View services →
               </Link>
             </div>
           </ScrollReveal>
 
           <ScrollReveal variant="fadeUp" delay={0.35}>
-            <div className="mt-10 flex items-center gap-6 border-t border-white/08 pt-8">
-              {[["50+", "Clients served"], ["$12M+", "Pipeline influenced"], ["4.9", "Avg. rating"]].map(([v, l]) => (
+            <div className="mt-10 flex items-center gap-8 border-t border-white/07 pt-8">
+              {[["50+", "Clients served"], ["$12M+", "Pipeline influenced"], ["4.9★", "Avg. rating"]].map(([v, l]) => (
                 <div key={l}>
-                  <div className="font-display text-xl font-bold text-white">{v}</div>
-                  <div className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.15em] text-white/35">{l}</div>
+                  <div className="font-display text-[22px] font-bold text-white leading-none">{v}</div>
+                  <div className="mt-1 font-mono text-[9.5px] uppercase tracking-[0.18em] text-white/32">{l}</div>
                 </div>
               ))}
             </div>
@@ -251,6 +260,12 @@ function Hero() {
           </ScrollReveal>
         </div>
       </div>
+
+      {/* Bottom blend into TrustBar (navy) */}
+      <div
+        className="pointer-events-none absolute bottom-0 inset-x-0 h-20"
+        style={{ background: "linear-gradient(to bottom, transparent, #080D1C)" }}
+      />
     </section>
   );
 }
