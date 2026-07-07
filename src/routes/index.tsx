@@ -31,6 +31,7 @@ function HomePage() {
     <SiteLayout headerTheme="light">
       <Hero />
       <TrustBar />
+      <WhyUs />
       <Services />
       <Methodology />
       <CaseStudiesPreview />
@@ -285,6 +286,83 @@ function TrustBar() {
   );
 }
 
+/* ─────────────── WHY US ─────────────── */
+const PAIN_POINTS = [
+  {
+    no: "01",
+    problem: "Your CRM has data nobody trusts",
+    solution: "We fix the foundation first. No automation layer until the data is clean and consistent.",
+    color: "#1B5EFF",
+  },
+  {
+    no: "02",
+    problem: "Reps spend more time on admin than selling",
+    solution: "We automate every repetitive handoff, data entry, and follow-up so your team stays on deals.",
+    color: "#14B8A6",
+  },
+  {
+    no: "03",
+    problem: "Your forecast is always wrong",
+    solution: "We build one unified pipeline view with shared definitions across all revenue teams.",
+    color: "#8B5CF6",
+  },
+  {
+    no: "04",
+    problem: "Agencies that deliver decks, not systems",
+    solution: "We're ex-operators with 10+ years inside revenue orgs. We build, document, and hand over.",
+    color: "#FFB800",
+  },
+] as const;
+
+function WhyUs() {
+  return (
+    <section className="bg-[#080D1C] relative overflow-hidden py-16 lg:py-24">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-40 -right-32 h-[500px] w-[500px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(27,94,255,0.13) 0%, transparent 65%)", filter: "blur(70px)" }} />
+        <div className="absolute -bottom-20 left-10 h-[350px] w-[350px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(255,184,0,0.09) 0%, transparent 65%)", filter: "blur(60px)" }} />
+        <div className="absolute inset-0 bg-grid opacity-[0.04]" />
+      </div>
+      <div className="relative mx-auto max-w-7xl px-4 lg:px-6">
+        <ScrollReveal variant="fadeUp">
+          <div className="mb-12 lg:mb-16">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/05 px-4 py-1.5 mb-6">
+              <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/45">Why SuperTelque</span>
+            </div>
+            <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-[50px] lg:leading-[1.05]">
+              We solve what other agencies<br className="hidden lg:block" />{" "}
+              <span className="text-gradient-gold">leave broken.</span>
+            </h2>
+          </div>
+        </ScrollReveal>
+        <div className="grid gap-px overflow-hidden rounded-2xl border border-white/07 sm:grid-cols-2">
+          {PAIN_POINTS.map((p, i) => (
+            <ScrollReveal key={p.no} variant="fadeUp" delay={i * 0.07}>
+              <div className="bg-white/[0.03] hover:bg-white/[0.055] transition-colors duration-300 p-7 lg:p-9 h-full flex flex-col">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="font-mono text-[10px] tracking-[0.18em] text-white/25">{p.no}</span>
+                  <div className="flex-1 h-px bg-white/07" />
+                  <span className="h-2 w-2 rounded-full" style={{ backgroundColor: p.color }} />
+                </div>
+                <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em] text-red-400/60">The problem</div>
+                <p className="font-display text-lg font-semibold text-white leading-snug mb-6">
+                  &ldquo;{p.problem}&rdquo;
+                </p>
+                <div className="w-8 h-px mb-5" style={{ backgroundColor: p.color + "55" }} />
+                <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.18em]" style={{ color: p.color + "cc" }}>
+                  Our answer
+                </div>
+                <p className="text-sm text-white/50 leading-relaxed flex-1">{p.solution}</p>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ─────────────── SERVICES ─────────────── */
 const SERVICES = [
   {
@@ -327,62 +405,54 @@ const SERVICES = [
 
 function Services() {
   return (
-    <section className="sec-white relative overflow-hidden py-16 lg:py-24">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute right-0 top-12 h-72 w-72 rounded-full opacity-[0.035]"
-          style={{ background: "radial-gradient(circle, #1B5EFF 0%, transparent 70%)" }} />
-        <svg className="absolute left-8 bottom-8 h-[120px] w-[120px] opacity-[0.04]" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="44" fill="none" stroke="#FFB800" strokeWidth="1.5" strokeDasharray="3 8" />
-        </svg>
-      </div>
+    <section className="sec-white py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHeader
-            eyebrow="What we do"
-            title={
-              <>
-                Six services. <span className="text-muted-foreground">One accountable partner.</span>
-              </>
-            }
-            description="From sales and operations to RevOps and automation: one team, one relationship, measurable results."
-          />
-          <Link
-            to="/services"
-            className="hidden lg:inline-flex items-center gap-1.5 text-sm text-foreground/80 hover:text-foreground"
-          >
-            See all services <span aria-hidden>→</span>
-          </Link>
-        </div>
-
-        <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s, i) => (
-            <ScrollReveal
-              key={s.code}
-              variant="fadeUp"
-              delay={i * 0.07}
-              className="group relative bg-white p-7 transition-all duration-300 hover:bg-[#F4F6FA] hover:-translate-y-px hover:shadow-[inset_0_-2px_0_0_rgba(255,184,0,0.35)]"
-            >
-              <span className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground">
-                {s.code}
-              </span>
-              <h3 className="mt-6 font-display text-xl font-bold tracking-tight">{s.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
-              <ul className="mt-5 space-y-1.5 font-mono text-[12px] text-foreground/70">
-                {s.bullets.map((b) => (
-                  <li key={b} className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#FFB800] transition-transform group-hover:scale-125" />
-                    {b}
-                  </li>
-                ))}
-              </ul>
-            </ScrollReveal>
-          ))}
-        </div>
-
-        <div className="mt-6 text-center lg:hidden">
-          <Link to="/services" className="text-sm text-foreground/70 hover:text-foreground">
-            See all services →
-          </Link>
+        <div className="flex flex-col lg:flex-row lg:gap-20">
+          {/* Sticky left header */}
+          <div className="lg:w-72 xl:w-80 shrink-0 mb-12 lg:mb-0">
+            <div className="lg:sticky lg:top-28">
+              <SectionHeader
+                eyebrow="What we do"
+                title={<>Six services.<br /><span className="text-gradient-gold">One partner.</span></>}
+                description="From sales ops to AI automation, one senior team delivers it all."
+              />
+              <Link
+                to="/services"
+                className="mt-8 inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground/70 hover:bg-[#F4F6FA] hover:text-foreground transition-all"
+              >
+                Explore all services →
+              </Link>
+            </div>
+          </div>
+          {/* Editorial list */}
+          <div className="flex-1 divide-y divide-border">
+            {SERVICES.map((s, i) => (
+              <ScrollReveal key={s.code} variant="slideRight" delay={i * 0.05}>
+                <Link
+                  to="/services"
+                  className="group flex items-start gap-5 py-7 transition-all duration-200 hover:pl-3"
+                >
+                  <span className="pt-1.5 font-mono text-[11px] tracking-[0.18em] text-muted-foreground shrink-0 w-6">{s.code}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-display text-xl font-bold tracking-tight text-[#080D1C] group-hover:text-[#1B5EFF] transition-colors">
+                      {s.title}
+                    </div>
+                    <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                    <div className="mt-3 flex flex-wrap gap-1.5">
+                      {s.bullets.map((b) => (
+                        <span key={b} className="rounded-full border border-border px-2.5 py-0.5 font-mono text-[10px] text-foreground/55 group-hover:border-[#1B5EFF]/20 transition-colors">
+                          {b}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <svg viewBox="0 0 16 16" className="mt-1.5 h-4 w-4 shrink-0 text-muted-foreground group-hover:text-[#1B5EFF] group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -542,47 +612,58 @@ function AnimatedMetric({ metric }: { metric: string }) {
 
 function CaseStudiesPreview() {
   return (
-    <section className="sec-white border-t border-border py-16 lg:py-24">
+    <section className="sec-mid border-t border-border py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between mb-10">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between mb-12">
           <SectionHeader
             eyebrow="Field work"
-            title={<>Work we've done, and what it delivered.</>}
+            title={<>Real work. Real numbers.</>}
           />
-          <Link to="/case-studies" className="hidden lg:block text-sm text-foreground/70 hover:text-foreground transition-colors">
+          <Link to="/case-studies" className="hidden lg:inline-flex items-center gap-1.5 text-sm text-foreground/70 hover:text-foreground transition-colors">
             Full teardowns →
           </Link>
         </div>
 
-        <div className="grid gap-5 sm:grid-cols-3">
+        <div className="space-y-3">
           {CASES.map((c, i) => (
-            <ScrollReveal key={c.title} variant="fadeUp" delay={i * 0.1} className="rounded-2xl border border-border bg-[#F4F6FA] p-6 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#FFB800]/30">
-              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                {c.tag}
-              </span>
-              <AnimatedMetric metric={c.metric} />
-              <p className="mt-1 text-xs text-muted-foreground">{c.label}</p>
-              <h3 className="mt-4 text-sm font-semibold text-foreground/90 flex-1 leading-snug">
-                {c.title}
-              </h3>
-              <div className="mt-4 flex flex-wrap gap-1">
-                {c.stack.map((s) => (
-                  <span
-                    key={s}
-                    className="font-mono text-[10px] text-muted-foreground border border-border rounded-full px-2 py-0.5"
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
+            <ScrollReveal key={c.title} variant="fadeUp" delay={i * 0.08}>
+              <Link
+                to="/case-studies"
+                className="group flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-8 rounded-2xl border border-border bg-white px-6 py-6 lg:px-8 lg:py-7 transition-all hover:shadow-lg hover:border-[#FFB800]/40 hover:-translate-y-0.5"
+              >
+                {/* Big metric */}
+                <div className="shrink-0 lg:w-36 text-left">
+                  <div className="font-display text-5xl lg:text-6xl font-extrabold text-gradient-gold leading-none">
+                    {c.metric}
+                  </div>
+                </div>
+                <div className="hidden lg:block self-stretch w-px bg-border" />
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{c.tag}</div>
+                  <h3 className="mt-1.5 font-display text-lg font-bold tracking-tight text-[#080D1C] group-hover:text-[#1B5EFF] transition-colors leading-snug">
+                    {c.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{c.label}</p>
+                </div>
+                {/* Stack badges */}
+                <div className="flex flex-wrap gap-1.5 lg:max-w-48 shrink-0">
+                  {c.stack.map((s) => (
+                    <span key={s} className="rounded-full border border-border bg-[#F8FAFF] px-2.5 py-0.5 font-mono text-[10px] text-foreground/60">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+                <svg viewBox="0 0 16 16" className="hidden lg:block h-5 w-5 shrink-0 text-muted-foreground group-hover:text-[#FFB800] group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
             </ScrollReveal>
           ))}
         </div>
 
         <div className="mt-8 text-center lg:hidden">
-          <Link to="/case-studies" className="text-sm text-foreground/70 hover:text-foreground">
-            Full teardowns →
-          </Link>
+          <Link to="/case-studies" className="text-sm text-foreground/70 hover:text-foreground">Full teardowns →</Link>
         </div>
       </div>
     </section>
@@ -598,34 +679,47 @@ const TEAM_MEMBERS = [
 
 function TeamStrip() {
   return (
-    <section className="sec-white border-t border-border py-14 lg:py-20">
-      <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-16">
-          <div className="shrink-0 lg:w-72">
-            <SectionHeader
-              eyebrow="The team"
-              title={
-                <>
-                  Senior operators.{" "}
-                  <span className="text-gradient-gold">Not juniors.</span>
-                </>
-              }
-              description="You work directly with the engineers building your system, not an account manager passing notes down."
-            />
+    <section
+      className="relative overflow-hidden border-t border-border py-16 lg:py-24"
+      style={{ background: "linear-gradient(160deg, #F0F5FF 0%, #FFFFFF 50%, #FFF8F0 100%)" }}
+    >
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[300px] w-[600px] rounded-full opacity-40"
+          style={{ background: "radial-gradient(circle, rgba(27,94,255,0.08) 0%, transparent 70%)" }} />
+      </div>
+      <div className="relative mx-auto max-w-7xl px-4 lg:px-6">
+        <ScrollReveal variant="fadeUp">
+          <div className="mb-12 text-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#1B5EFF]/15 bg-[#1B5EFF]/06 px-4 py-1.5 mb-5">
+              <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#1B5EFF]/70">The team</span>
+            </div>
+            <h2 className="font-display text-3xl font-extrabold tracking-tight text-[#080D1C] sm:text-4xl">
+              Senior operators. <span className="text-gradient-gold">Not juniors.</span>
+            </h2>
+            <p className="mt-3 mx-auto max-w-md text-base text-[#4C5670]">
+              You work directly with the engineers building your system.
+            </p>
           </div>
-          <div className="flex-1 grid gap-5 sm:grid-cols-3">
-            {TEAM_MEMBERS.map((t, i) => (
-              <ScrollReveal key={t.name} variant="fadeUp" delay={i * 0.1}>
-                <div className="flex flex-col items-center text-center rounded-2xl border border-border bg-[#F8FAFF] p-6 hover:bg-[#EEF3FF] transition-colors">
-                  <AgentAvatar v={t.v} size={88} />
-                  <div className="mt-4 font-display text-base font-bold text-[#080D1C]">{t.name}</div>
-                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{t.role}</div>
-                  <div className="mt-2 text-xs leading-relaxed text-muted-foreground">{t.specialty}</div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+        </ScrollReveal>
+        <div className="grid gap-5 sm:grid-cols-3">
+          {TEAM_MEMBERS.map((t, i) => (
+            <ScrollReveal key={t.name} variant="zoomIn" delay={i * 0.1}>
+              <div className="flex flex-col items-center text-center rounded-2xl border border-white bg-white/90 p-8 shadow-[0_2px_24px_rgba(0,0,0,0.06)] transition-all hover:-translate-y-1.5 hover:shadow-[0_12px_40px_rgba(0,0,0,0.10)] hover:border-[#FFB800]/30">
+                <AgentAvatar v={t.v} size={96} />
+                <div className="mt-5 font-display text-lg font-bold text-[#080D1C]">{t.name}</div>
+                <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{t.role}</div>
+                <div className="mt-2.5 text-xs text-[#1B5EFF] font-mono">{t.specialty}</div>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
+        <ScrollReveal variant="fadeUp" delay={0.3}>
+          <div className="mt-10 text-center">
+            <Link to="/about" className="inline-flex items-center gap-1.5 text-sm text-foreground/60 hover:text-foreground transition-colors">
+              Meet the full team →
+            </Link>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
@@ -719,24 +813,35 @@ function Testimonials() {
   return (
     <section className="sec-white border-t border-border py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <SectionHeader
-          eyebrow="Client voices"
-          title="What our clients say."
-        />
-        <div className="mt-10 grid gap-5 sm:grid-cols-3">
+        <ScrollReveal variant="fadeUp">
+          <div className="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            <div>
+              <div className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-3">Client voices</div>
+              <h2 className="font-display text-3xl font-extrabold tracking-tight text-[#080D1C] sm:text-4xl">
+                What operators say about us.
+              </h2>
+            </div>
+            <div className="flex gap-1 shrink-0">
+              {Array.from({ length: 5 }).map((_, si) => (
+                <svg key={si} viewBox="0 0 12 12" className="h-4 w-4 fill-[#FFB800]">
+                  <path d="M6 0l1.5 4H12L8.5 6.5l1.5 4L6 8 2 10.5l1.5-4L0 4h4.5z" />
+                </svg>
+              ))}
+              <span className="ml-2 font-mono text-[11px] text-muted-foreground">4.9 / 5.0</span>
+            </div>
+          </div>
+        </ScrollReveal>
+        <div className="grid gap-5 sm:grid-cols-3">
           {TESTIMONIALS.map((t, i) => (
             <ScrollReveal key={t.name} variant="fadeUp" delay={i * 0.1}>
-              <div className="rounded-2xl border border-border bg-[#F4F6FA] p-6 flex flex-col gap-4 h-full">
-                <div className="flex gap-1 mb-1">
-                  {Array.from({ length: 5 }).map((_, si) => (
-                    <svg key={si} viewBox="0 0 12 12" className="h-3 w-3 fill-[#FFB800]">
-                      <path d="M6 0l1.5 4H12L8.5 6.5l1.5 4L6 8 2 10.5l1.5-4L0 4h4.5z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-sm leading-relaxed text-foreground/80 flex-1">"{t.quote}"</p>
-                <div className="flex items-center gap-3 pt-3 border-t border-border">
-                  <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-[#F0F4FF]">
+              <div className="relative rounded-2xl border border-border bg-white p-7 flex flex-col h-full overflow-hidden shadow-[0_2px_16px_rgba(0,0,0,0.04)]">
+                {/* Giant background quote mark */}
+                <span className="pointer-events-none absolute -top-5 -left-1 font-display text-[110px] font-black text-[#EEF3FF] leading-none select-none">&ldquo;</span>
+                <p className="relative text-[15px] font-medium leading-relaxed text-[#080D1C]/80 flex-1">
+                  {t.quote}
+                </p>
+                <div className="mt-6 flex items-center gap-3 pt-5 border-t border-border">
+                  <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full ring-2 ring-[#FFB800]/30">
                     {"photo" in t && t.photo ? (
                       <img src={t.photo} alt={t.name} className="h-full w-full object-cover object-top" />
                     ) : (
@@ -744,8 +849,8 @@ function Testimonials() {
                     )}
                   </div>
                   <div>
-                    <div className="text-sm font-semibold text-foreground">{t.name}</div>
-                    <div className="text-xs text-muted-foreground">{t.role}</div>
+                    <div className="text-sm font-bold text-[#080D1C]">{t.name}</div>
+                    <div className="text-xs text-muted-foreground mt-0.5">{t.role}</div>
                   </div>
                 </div>
               </div>
@@ -916,39 +1021,60 @@ function LeadMagnet() {
 /* ─────────────── FINAL CTA ─────────────── */
 function FinalCTA() {
   return (
-    <section className="sec-navy relative overflow-hidden border-t border-white/08 py-16 lg:py-24">
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ background: "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(255,184,0,0.10) 0%, transparent 70%)" }}
-      />
+    <section className="sec-navy relative overflow-hidden border-t border-white/08 py-20 lg:py-32">
+      {/* Background depth */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-grid opacity-[0.04]" />
+        <div
+          className="absolute -bottom-10 left-1/2 -translate-x-1/2 h-[400px] w-[800px] rounded-full"
+          style={{ background: "radial-gradient(ellipse, rgba(255,184,0,0.12) 0%, transparent 65%)", filter: "blur(40px)" }}
+        />
+        <div
+          className="absolute top-0 right-0 h-[300px] w-[300px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(27,94,255,0.12) 0%, transparent 65%)", filter: "blur(60px)" }}
+        />
+      </div>
       <div className="relative mx-auto max-w-4xl px-4 lg:px-6 text-center">
         <ScrollReveal variant="scaleIn">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#FFB800]/70">Let's build</span>
+          <div className="inline-flex items-center gap-2.5 mb-6 rounded-full border border-white/10 bg-white/05 px-5 py-2">
+            <img src="/supertelque-logo.png" alt="" className="h-5 w-5 object-contain" />
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/45">SuperTelque RevOps</span>
           </div>
-          <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-[56px] lg:leading-[1.05]">
-            Ready to build a <span className="text-gradient-gold">better business</span>?
+          <h2 className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-[60px] lg:leading-[1.04]">
+            Ready to build a<br />
+            <span className="text-gradient-gold">better revenue system?</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/60">
-            45 minutes. We review your setup and tell you exactly where to start.
+          <p className="mx-auto mt-5 max-w-lg text-[17px] leading-relaxed text-white/50">
+            45 minutes with a senior RevOps engineer. We review your setup and hand you a clear starting point.
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          {/* Trust strip */}
+          <div className="mt-8 flex items-center justify-center gap-6 text-white/30">
+            {["Free · no pressure", "Response in 24 hours", "Senior engineer, not an SDR"].map((t, i) => (
+              <span key={t} className="flex items-center gap-2 font-mono text-[11px]">
+                {i > 0 && <span className="h-px w-3 bg-white/20" />}
+                {t}
+              </span>
+            ))}
+          </div>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <div className="relative">
-              <span className="absolute inset-0 rounded-full bg-[#FFB800]/30 animate-ping-ring" />
+              <span className="absolute inset-0 rounded-full bg-[#FFB800]/25 animate-ping-ring" />
               <Link
                 to="/book"
-                className="relative inline-flex items-center gap-2 rounded-full px-7 py-4 text-[15px] font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_12px_32px_-8px_rgba(255,184,0,0.45)]"
-                style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
+                className="relative inline-flex items-center gap-2.5 rounded-full px-8 py-4.5 text-[15px] font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_16px_40px_-8px_rgba(255,184,0,0.50)]"
+                style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 60%, #E08A00 100%)" }}
               >
-                Book a consultation →
+                Book a free strategy session
+                <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </Link>
             </div>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/06 px-7 py-4 text-[15px] font-medium text-white/80 hover:bg-white/12 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/05 px-7 py-4.5 text-[15px] font-medium text-white/70 hover:bg-white/10 hover:text-white transition-all"
             >
-              Contact the team
+              Send a message
             </Link>
           </div>
         </ScrollReveal>
