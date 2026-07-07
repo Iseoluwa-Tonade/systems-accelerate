@@ -19,21 +19,21 @@ export const Route = createFileRoute("/about")({
 const TEAM = [
   {
     v: 1 as const,
-    name: "Seun A.",
+    name: "Sunny T.",
     role: "RevOps Lead",
     specialty: "HubSpot · Salesforce · Forecasting",
     bio: "10+ years building revenue systems inside Series A–D B2B companies. Expert in CRM architecture, pipeline design, and GTM alignment.",
   },
   {
     v: 2 as const,
-    name: "Temi O.",
-    role: "GTM Engineer",
-    specialty: "Clay · Apollo · Outbound Systems",
-    bio: "Built outbound machines that consistently deliver 400+ meetings per month. Deep specialist in intent enrichment, sequencing, and ICP targeting.",
+    name: "Rhoda O.",
+    role: "Community Manager",
+    specialty: "Social Media · Community · Content",
+    bio: "Builds engaged communities and consistent brand presence across channels. Specialist in social media strategy, scheduling, and audience growth.",
   },
   {
     v: 3 as const,
-    name: "Kola B.",
+    name: "Israel O.",
     role: "Automation Engineer",
     specialty: "n8n · Make · AI Integrations",
     bio: "Full-stack automation engineer. Specialises in no-code pipelines, AI-powered workflows, and integrations across the full revenue stack.",

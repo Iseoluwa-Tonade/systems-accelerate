@@ -500,9 +500,9 @@ function CaseStudiesPreview() {
 
 /* ─────────────── TEAM STRIP ─────────────── */
 const TEAM_MEMBERS = [
-  { v: 1 as const, name: "Seun A.", role: "RevOps Lead", specialty: "HubSpot · Salesforce · Forecasting" },
-  { v: 2 as const, name: "Temi O.", role: "GTM Engineer", specialty: "Clay · Apollo · Outbound Systems" },
-  { v: 3 as const, name: "Kola B.", role: "Automation Engineer", specialty: "n8n · Make · AI Integrations" },
+  { v: 1 as const, name: "Sunny T.", role: "RevOps Lead", specialty: "HubSpot · Salesforce · Forecasting" },
+  { v: 2 as const, name: "Rhoda O.", role: "Community Manager", specialty: "Social Media · Community · Content" },
+  { v: 3 as const, name: "Israel O.", role: "Automation Engineer", specialty: "n8n · Make · AI Integrations" },
 ];
 
 function TeamStrip() {
