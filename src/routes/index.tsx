@@ -28,7 +28,7 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   return (
-    <SiteLayout headerTheme="light">
+    <SiteLayout headerTheme="dark">
       <Hero />
       <TrustBar />
       <Services />
@@ -44,97 +44,171 @@ function HomePage() {
 
 /* ─────────────── HERO DASHBOARD ─────────────── */
 function HeroDashboard() {
-  const bars = [45, 62, 38, 71, 55, 83, 67, 49, 78, 91, 63, 72, 85, 58, 94, 77];
+  const bars = [32, 45, 38, 55, 48, 62, 58, 71, 65, 78, 72, 85, 80, 88, 94, 91];
   const metrics = [
-    { l: "Pipeline", v: "$4.2M", d: "+18%", c: "#1B5EFF" },
-    { l: "Active Deals", v: "147", d: "+23%", c: "#14B8A6" },
-    { l: "MQL → SQL", v: "34%", d: "+6pp", c: "#8B5CF6" },
-    { l: "Won QTD", v: "$680K", d: "+41%", c: "#FFB800" },
+    { l: "Pipeline", v: "$4.2M", d: "+18%", c: "#1B5EFF", spark: [30, 45, 38, 55, 62, 70, 68, 80] },
+    { l: "Active Deals", v: "147", d: "+23%", c: "#14B8A6", spark: [40, 52, 48, 60, 65, 72, 70, 85] },
+    { l: "MQL to SQL", v: "34%", d: "+6pp", c: "#8B5CF6", spark: [20, 28, 25, 32, 30, 38, 35, 44] },
+    { l: "Won QTD", v: "$680K", d: "+41%", c: "#FFB800", spark: [15, 28, 35, 42, 50, 58, 68, 80] },
+  ];
+  const feed = [
+    { dot: "#14B8A6", text: "New SQL: Fintech Series B", time: "2m ago" },
+    { dot: "#1B5EFF", text: "Deal moved to Proposal", time: "11m ago" },
+    { dot: "#FFB800", text: "AE assigned via routing", time: "28m ago" },
   ];
   return (
-    <div className="rounded-2xl border border-white/12 bg-[#080D1C] p-5 lg:p-6 shadow-[0_24px_60px_-12px_rgba(0,0,0,0.35)]">
-      <div className="flex items-center justify-between mb-5">
-        <div>
-          <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40">Revenue Command · Q2 2026</div>
-          <div className="mt-0.5 font-display text-sm font-semibold text-white">Pipeline Intelligence</div>
+    <div className="rounded-2xl border border-white/10 bg-[#0B1120] shadow-[0_32px_80px_-16px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.06)]">
+      {/* Header bar */}
+      <div className="flex items-center justify-between border-b border-white/07 px-5 py-3.5">
+        <div className="flex items-center gap-2.5">
+          <div className="flex gap-1.5">
+            <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
+            <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
+            <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
+          </div>
+          <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/30 ml-2">Revenue Command / Q2 2026</div>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
           </span>
-          <span className="font-mono text-[10px] text-white/40">live</span>
+          <span className="font-mono text-[9px] text-emerald-400/70">live</span>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-2 mb-4">
-        {metrics.map((m) => (
-          <div key={m.l} className="rounded-xl border border-white/08 bg-white/04 p-3">
-            <div className="font-mono text-[10px] text-white/40">{m.l}</div>
-            <div className="mt-1 font-display text-xl font-bold text-white">{m.v}</div>
-            <div className="mt-0.5 font-mono text-[10px]" style={{ color: m.c }}>{m.d} vs prev</div>
+
+      <div className="p-5 lg:p-6">
+        {/* Metric cards */}
+        <div className="grid grid-cols-2 gap-2 mb-4">
+          {metrics.map((m) => (
+            <div key={m.l} className="rounded-xl border border-white/07 bg-white/03 p-3 relative overflow-hidden">
+              <div className="font-mono text-[9px] uppercase tracking-[0.15em] text-white/35">{m.l}</div>
+              <div className="mt-1.5 font-display text-[22px] font-bold leading-none text-white">{m.v}</div>
+              <div className="mt-1 font-mono text-[10px]" style={{ color: m.c }}>{m.d} vs prev qtr</div>
+              {/* Sparkline */}
+              <svg viewBox={`0 0 80 28`} className="absolute bottom-2 right-2 h-7 w-16 opacity-40">
+                <polyline
+                  points={m.spark.map((v, i) => `${i * (80 / 7)},${28 - (v / 100) * 24}`).join(" ")}
+                  fill="none"
+                  stroke={m.c}
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+          ))}
+        </div>
+
+        {/* Bar chart */}
+        <div className="rounded-xl border border-white/06 bg-white/02 p-3 mb-3">
+          <div className="flex items-center justify-between mb-2.5">
+            <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/25">Pipeline 16-week view</div>
+            <div className="font-mono text-[9px] text-white/20">USD normalized</div>
           </div>
-        ))}
-      </div>
-      <div className="rounded-xl border border-white/06 bg-white/02 p-3">
-        <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/30 mb-3">Pipeline · 16-week view</div>
-        <div className="flex items-end gap-[3px] h-16">
-          {bars.map((h, i) => (
-            <div
-              key={i}
-              className="flex-1 rounded-sm"
-              style={{ height: `${h}%`, background: "linear-gradient(to top, rgba(27,94,255,0.75), rgba(79,70,229,0.50))" }}
-            />
+          <div className="flex items-end gap-[3px] h-14">
+            {bars.map((h, i) => (
+              <div key={i} className="flex-1 flex flex-col gap-[2px] items-stretch">
+                <div
+                  className="w-full rounded-[2px]"
+                  style={{ height: `${h}%`, background: i >= 12 ? "linear-gradient(to top, #1B5EFF, #818CF8)" : "linear-gradient(to top, rgba(27,94,255,0.40), rgba(79,70,229,0.25))" }}
+                />
+              </div>
+            ))}
+          </div>
+          <div className="mt-2 grid grid-cols-4 gap-1 font-mono text-[8.5px] uppercase tracking-[0.15em] text-white/20">
+            {["MQL", "SQL", "Opp", "Won"].map((s) => <div key={s}>{s}</div>)}
+          </div>
+        </div>
+
+        {/* Activity feed */}
+        <div className="rounded-xl border border-white/06 bg-white/02 px-3 py-2.5 space-y-2">
+          {feed.map((f) => (
+            <div key={f.text} className="flex items-center gap-2.5">
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: f.dot }} />
+              <span className="flex-1 font-mono text-[10px] text-white/50 truncate">{f.text}</span>
+              <span className="font-mono text-[9px] text-white/20 shrink-0">{f.time}</span>
+            </div>
           ))}
         </div>
-      </div>
-      <div className="mt-3 flex items-center justify-between">
-        <div className="flex items-center gap-1.5 flex-wrap">
-          {["HubSpot", "Clay", "n8n", "Apollo", "Snowflake"].map((t) => (
-            <span key={t} className="rounded px-2 py-0.5 font-mono text-[9px] text-white/45 border border-white/08">{t}</span>
-          ))}
+
+        <div className="mt-3 flex items-center justify-between">
+          <div className="flex items-center gap-1 flex-wrap">
+            {["HubSpot", "Clay", "n8n", "Apollo"].map((t) => (
+              <span key={t} className="rounded px-1.5 py-0.5 font-mono text-[8.5px] text-white/35 border border-white/07">{t}</span>
+            ))}
+          </div>
+          <span className="font-mono text-[8.5px] text-white/20">synced 2s ago</span>
         </div>
-        <span className="font-mono text-[9px] text-white/25">synced 2s ago</span>
       </div>
     </div>
   );
 }
 
 /* ─────────────── HERO ─────────────── */
+
 function Hero() {
   return (
-    <section
-      className="relative overflow-hidden pt-20 md:pt-24"
-      style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 50%, #FFF9F0 100%)" }}
-    >
+    <section className="relative overflow-hidden bg-[#080D1C] pt-20 md:pt-24">
+      {/* Background depth layers */}
       <div className="pointer-events-none absolute inset-0">
-        <div
-          className="absolute -top-20 right-1/4 h-[500px] w-[500px] rounded-full opacity-50"
-          style={{ background: "radial-gradient(circle, rgba(27,94,255,0.10) 0%, transparent 70%)" }}
-        />
-        <div
-          className="absolute bottom-0 -left-20 h-[400px] w-[400px] rounded-full opacity-40"
-          style={{ background: "radial-gradient(circle, rgba(255,184,0,0.12) 0%, transparent 70%)" }}
-        />
-        <svg className="absolute right-4 top-1/2 -translate-y-1/3 h-[340px] w-[340px] opacity-[0.055]" viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="90" fill="none" stroke="#1B5EFF" strokeWidth="1.5" strokeDasharray="4 10" className="animate-spin-slow" style={{ transformOrigin: "100px 100px" }} />
-          <circle cx="100" cy="100" r="62" fill="none" stroke="#1B5EFF" strokeWidth="1" strokeDasharray="2 8" className="animate-spin-slow-rev" style={{ transformOrigin: "100px 100px" }} />
+        {/* Primary color glows */}
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[700px] w-[700px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(27,94,255,0.14) 0%, transparent 65%)" }} />
+        <div className="absolute -bottom-20 -left-20 h-[500px] w-[500px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(255,184,0,0.09) 0%, transparent 65%)" }} />
+        <div className="absolute top-1/3 right-0 h-[400px] w-[400px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(124,58,237,0.10) 0%, transparent 65%)" }} />
+
+        {/* Subtle grid */}
+        <div className="absolute inset-0 bg-grid opacity-[0.07]" />
+
+        {/* Network graph lines (decorative) */}
+        <svg className="absolute inset-0 w-full h-full opacity-[0.18]" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" fill="none">
+          <line x1="60" y1="580" x2="260" y2="420" stroke="rgba(27,94,255,0.5)" strokeWidth="0.7" />
+          <line x1="260" y1="420" x2="120" y2="290" stroke="rgba(27,94,255,0.4)" strokeWidth="0.7" />
+          <line x1="120" y1="290" x2="350" y2="180" stroke="rgba(255,184,0,0.4)" strokeWidth="0.7" />
+          <line x1="350" y1="180" x2="200" y2="80" stroke="rgba(27,94,255,0.35)" strokeWidth="0.7" />
+          <line x1="260" y1="420" x2="420" y2="320" stroke="rgba(124,58,237,0.4)" strokeWidth="0.7" />
+          <line x1="420" y1="320" x2="350" y2="180" stroke="rgba(124,58,237,0.3)" strokeWidth="0.7" />
+          <circle cx="60" cy="580" r="3" fill="rgba(27,94,255,0.6)" />
+          <circle cx="260" cy="420" r="4.5" fill="rgba(255,184,0,0.55)" />
+          <circle cx="120" cy="290" r="3" fill="rgba(27,94,255,0.55)" />
+          <circle cx="350" cy="180" r="5" fill="rgba(27,94,255,0.65)" />
+          <circle cx="200" cy="80" r="3" fill="rgba(255,184,0,0.50)" />
+          <circle cx="420" cy="320" r="3.5" fill="rgba(124,58,237,0.55)" />
+          {/* Halo rings around key nodes */}
+          <circle cx="350" cy="180" r="14" stroke="rgba(27,94,255,0.18)" strokeWidth="1" />
+          <circle cx="260" cy="420" r="12" stroke="rgba(255,184,0,0.15)" strokeWidth="1" />
         </svg>
-        <svg className="absolute left-1/3 bottom-4 h-[140px] w-[140px] opacity-[0.045]" viewBox="0 0 100 100">
-          <polygon points="50,5 95,95 5,95" fill="none" stroke="#FFB800" strokeWidth="1.5" />
-          <polygon points="50,20 80,80 20,80" fill="none" stroke="#FFB800" strokeWidth="0.8" />
+
+        {/* Spinning orbit rings */}
+        <svg className="absolute -right-16 top-1/2 -translate-y-1/2 h-[420px] w-[420px] opacity-[0.08]" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="#1B5EFF" strokeWidth="1.2" strokeDasharray="4 10" className="animate-spin-slow" style={{ transformOrigin: "100px 100px" }} />
+          <circle cx="100" cy="100" r="66" fill="none" stroke="#FFB800" strokeWidth="0.8" strokeDasharray="2 8" className="animate-spin-slow-rev" style={{ transformOrigin: "100px 100px" }} />
+          <circle cx="100" cy="100" r="44" fill="none" stroke="#8B5CF6" strokeWidth="0.6" strokeDasharray="1.5 7" className="animate-spin-slow" style={{ transformOrigin: "100px 100px", animationDuration: "38s" }} />
         </svg>
+
+        {/* Bottom gradient fade to first section */}
+        <div className="absolute bottom-0 inset-x-0 h-24"
+          style={{ background: "linear-gradient(to bottom, transparent, rgba(8,13,28,0.0))" }} />
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-16 lg:grid-cols-12 lg:gap-10 lg:px-6">
-        <div className="lg:col-span-6 flex flex-col justify-center">
-          <h1 className="font-display text-[40px] font-extrabold leading-[1.02] tracking-tight text-[#080D1C] sm:text-[54px] lg:text-[72px] lg:leading-[1.0]">
+      <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-16 lg:grid-cols-12 lg:gap-12 lg:px-6">
+        <div className="lg:col-span-6 flex flex-col justify-center pt-6 lg:pt-10">
+          <div className="inline-flex items-center gap-2 w-fit rounded-full border border-white/12 bg-white/06 px-4 py-1.5 mb-6 backdrop-blur-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-white/55">B2B RevOps & GTM Engineering</span>
+          </div>
+
+          <h1 className="font-display text-[40px] font-extrabold leading-[1.02] tracking-tight text-white sm:text-[54px] lg:text-[70px] lg:leading-[1.0]">
             Revenue systems
             <br />
             <span className="text-gradient-gold">built to scale.</span>
           </h1>
 
           <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-[#4C5670] sm:text-[17px]">
+            <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-white/55 sm:text-[17px]">
               Better data, cleaner workflows, and a revenue system your whole team can rely on.
             </p>
           </ScrollReveal>
@@ -143,7 +217,7 @@ function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-5">
               <Link
                 to="/book"
-                className="group inline-flex items-center gap-2.5 rounded-full px-7 py-4 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_12px_32px_-8px_rgba(255,184,0,0.50)]"
+                className="inline-flex items-center gap-2.5 rounded-full px-7 py-4 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_12px_32px_-8px_rgba(255,184,0,0.55)]"
                 style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 60%, #E08A00 100%)" }}
               >
                 Book a strategy session
@@ -151,9 +225,20 @@ function Hero() {
                   <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>
-              <Link to="/services" className="text-[15px] font-medium text-[#080D1C]/50 hover:text-[#080D1C] transition-colors">
+              <Link to="/services" className="text-[15px] font-medium text-white/40 hover:text-white/80 transition-colors">
                 View services →
               </Link>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal variant="fadeUp" delay={0.35}>
+            <div className="mt-10 flex items-center gap-6 border-t border-white/08 pt-8">
+              {[["50+", "Clients served"], ["$12M+", "Pipeline influenced"], ["4.9", "Avg. rating"]].map(([v, l]) => (
+                <div key={l}>
+                  <div className="font-display text-xl font-bold text-white">{v}</div>
+                  <div className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.15em] text-white/35">{l}</div>
+                </div>
+              ))}
             </div>
           </ScrollReveal>
         </div>
