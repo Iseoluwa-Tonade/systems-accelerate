@@ -19,11 +19,11 @@ export function SiteFooter() {
               </div>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              A revenue operations team that builds the systems B2B companies run on.
+              A revenue operations team that builds the systems B2B companies run on. Remote-first. Global clients.
             </p>
 
             <p className="mt-4 text-xs text-[#FFB800]/60">
-              B2B RevOps · GTM Engineering · Lagos, Nigeria
+              B2B RevOps · GTM Engineering · Automation
             </p>
           </div>
 
@@ -57,10 +57,13 @@ export function SiteFooter() {
             />
             <div>
               <div className="text-xs font-medium uppercase tracking-[0.18em] text-[#FFB800]/70">
-                Regions
+                Work with us
               </div>
               <ul className="mt-4 space-y-2 text-sm text-white/60">
-                <li>Nigeria (Lagos)</li>
+                <li>Remote-first</li>
+                <li>Global clients</li>
+                <li>GDPR compliant</li>
+                <li>NDA on request</li>
               </ul>
             </div>
           </div>
@@ -73,12 +76,7 @@ export function SiteFooter() {
               GDPR compliant
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/05 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-white/50">
-              <svg viewBox="0 0 12 12" className="h-2.5 w-2.5 fill-blue-400"><path d="M6 0L1 3v4c0 2.8 2.1 5.4 5 6 2.9-.6 5-3.2 5-6V3L6 0z"/></svg>
-              SOC2 ready
-            </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/05 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-white/50">
-              <svg viewBox="0 0 12 12" className="h-2.5 w-2.5 fill-yellow-400"><path d="M6 1l1.5 3h3l-2.5 2 1 3L6 7.5 3 9l1-3L1.5 4h3z"/></svg>
-              Insured engagements
+              NDA on request
             </span>
           </div>
           <div className="flex flex-col-reverse items-start justify-between gap-4 text-xs text-muted-foreground md:flex-row md:items-center">

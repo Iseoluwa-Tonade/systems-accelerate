@@ -64,9 +64,16 @@ function ServicesPage() {
   return (
     <SiteLayout headerTheme="light">
       <section className="relative overflow-hidden border-b border-border pt-24 md:pt-28" style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 60%, #FFF9F0 100%)" }}>
-        <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-16 lg:px-6">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-16 right-0 h-[380px] w-[380px] rounded-full opacity-40"
+            style={{ background: "radial-gradient(circle, rgba(27,94,255,0.10) 0%, transparent 70%)" }} />
+          <svg className="absolute right-8 bottom-0 h-[200px] w-[200px] opacity-[0.05]" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="88" fill="none" stroke="#1B5EFF" strokeWidth="1.5" strokeDasharray="4 10" />
+          </svg>
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pt-16 lg:px-6">
           <Eyebrow>Services</Eyebrow>
-          <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
+          <h1 className="mt-5 max-w-3xl font-display text-[34px] font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
             Everything your business<span className="text-gradient-gold"> needs to grow.</span>
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>

@@ -46,7 +46,7 @@ function AboutPage() {
             style={{ background: "radial-gradient(circle, rgba(255,184,0,0.12) 0%, transparent 70%)" }}
           />
         </div>
-        <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-14 lg:px-6">
+        <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pt-16 lg:px-6">
           <Eyebrow>About</Eyebrow>
           <h1 className="mt-5 max-w-4xl font-display text-3xl font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[68px] lg:leading-[1.02]">
             We are <span className="text-gradient-gold">technical revenue operators</span>,
@@ -61,9 +61,9 @@ function AboutPage() {
               </p>
               <div className="lg:col-span-5 rounded-2xl border border-border bg-[#F4F7FF] p-6 flex flex-col justify-center items-center text-center">
                 <img src="/supertelque-logo.png" alt="" className="h-10 w-10 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
-                <div className="mt-3 font-display text-xl font-bold text-[#080D1C]">Based in</div>
+                <div className="mt-3 font-display text-xl font-bold text-[#080D1C]">Remote-first</div>
                 <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-[#B45309]">
-                  Lagos, Nigeria
+                  Global clients
                 </div>
               </div>
             </div>

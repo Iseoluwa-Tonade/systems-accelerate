@@ -63,9 +63,16 @@ function ContactPage() {
   return (
     <SiteLayout headerTheme="light">
       <section className="relative overflow-hidden border-b border-border pt-24 md:pt-28" style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 60%, #FFF9F0 100%)" }}>
-        <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-16 lg:px-6">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-16 right-1/3 h-[360px] w-[360px] rounded-full opacity-40"
+            style={{ background: "radial-gradient(circle, rgba(255,184,0,0.10) 0%, transparent 70%)" }} />
+          <svg className="absolute left-0 bottom-0 h-[160px] w-[160px] opacity-[0.05]" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="44" fill="none" stroke="#1B5EFF" strokeWidth="1.2" strokeDasharray="3 7" />
+          </svg>
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pt-16 lg:px-6">
           <Eyebrow>Contact</Eyebrow>
-          <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
+          <h1 className="mt-5 max-w-3xl font-display text-[34px] font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
             Talk to a <span className="text-gradient-gold">revenue engineer.</span>
           </h1>
         </div>
@@ -86,25 +93,22 @@ function ContactPage() {
               </dl>
             </div>
 
-            <div className="surface-card overflow-hidden">
-              <RegionsMap />
-              <div className="border-t border-border">
-                <div className="p-4 text-center">
-                  <div className="font-display text-sm font-semibold">Nigeria</div>
-                  <div className="font-mono text-[11px] text-muted-foreground">Lagos</div>
-                </div>
-              </div>
-            </div>
-
             <div className="surface-card p-6">
               <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                Operating standards
+                How we work
               </div>
-              <ul className="mt-4 grid grid-cols-2 gap-3 font-mono text-[12px] text-foreground/80">
-                <li>SOC2 ready</li>
-                <li>GDPR compliant</li>
-                <li>Insured engagements</li>
-                <li>NDA on request</li>
+              <ul className="mt-4 space-y-3 text-sm text-foreground/80">
+                {[
+                  "Remote-first · Global clients",
+                  "GDPR compliant",
+                  "NDA on request",
+                  "Response within 24 hours",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#FFB800]" />
+                    {item}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

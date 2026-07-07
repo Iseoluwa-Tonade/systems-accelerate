@@ -56,6 +56,13 @@
   --color-gold-light:   #FFD44D;
   --color-navy:         #080D1C;
 
+  /* ── Accent Colors (generate bg-accent-*, text-accent-* utilities) ── */
+  --color-accent-blue:   var(--accent-blue);
+  --color-accent-indigo: var(--accent-indigo);
+  --color-accent-teal:   var(--accent-teal);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-gold:   var(--accent-gold);
+
   /* ── Typography ── */
   --font-sans:    "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Inter Tight", "Inter", ui-sans-serif, system-ui, sans-serif;

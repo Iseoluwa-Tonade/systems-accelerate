@@ -87,9 +87,16 @@ function BookPage() {
   return (
     <SiteLayout headerTheme="light">
       <section className="relative overflow-hidden border-b border-border pt-24 md:pt-28" style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 60%, #FFF9F0 100%)" }}>
-        <div className="relative mx-auto max-w-7xl px-4 pb-10 lg:pt-16 lg:px-6">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-16 right-1/4 h-[360px] w-[360px] rounded-full opacity-40"
+            style={{ background: "radial-gradient(circle, rgba(255,184,0,0.11) 0%, transparent 70%)" }} />
+          <svg className="absolute right-4 bottom-0 h-[180px] w-[180px] opacity-[0.05]" viewBox="0 0 200 200">
+            <rect x="20" y="20" width="160" height="160" rx="20" fill="none" stroke="#1B5EFF" strokeWidth="1.5" strokeDasharray="4 9" />
+          </svg>
+        </div>
+        <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pt-16 lg:px-6">
           <Eyebrow>Book a session</Eyebrow>
-          <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
+          <h1 className="mt-5 max-w-3xl font-display text-[34px] font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
             Book a <span className="text-gradient-gold">free strategy</span> session.
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
@@ -245,7 +252,7 @@ function BookPage() {
                     Who it's for
                   </div>
                   <div className="mt-3 font-display text-foreground/85 leading-relaxed">
-                    Series A to C companies across Nigeria: SaaS, fintech, and beyond.
+                    Series A to C B2B companies — SaaS, fintech, ecommerce, and beyond.
                   </div>
                 </div>
               </aside>
