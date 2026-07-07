@@ -62,8 +62,8 @@ const SERVICES = [
 
 function ServicesPage() {
   return (
-    <SiteLayout headerTheme="dark">
-      <section className="sec-navy relative overflow-hidden border-b border-border pt-24 md:pt-28">
+    <SiteLayout headerTheme="light">
+      <section className="relative overflow-hidden border-b border-border pt-24 md:pt-28" style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 60%, #FFF9F0 100%)" }}>
         <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-16 lg:px-6">
           <Eyebrow>Services</Eyebrow>
           <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
@@ -145,12 +145,12 @@ function ArchitectureDiagram({ code }: { code: string }) {
   const [c1, c2, c3] = palettes[code] ?? palettes["01"];
 
   const labelsByCode: Record<string, string[]> = {
-    "01": ["Pipeline", "Forecast", "Quota", "Reporting"],
-    "02": ["Source", "Transform", "Route", "Activate"],
-    "03": ["Contacts", "Companies", "Deals", "Lifecycle"],
-    "04": ["Signal", "Enrich", "Sequence", "Meeting"],
-    "05": ["Warehouse", "Model", "Dashboard", "Decision"],
-    "06": ["Prompt", "Score", "Decide", "Execute"],
+    "01": ["Prospect", "Reach Out", "Book", "Convert"],
+    "02": ["Import", "Clean", "Structure", "Activate"],
+    "03": ["Align", "Forecast", "Report", "Scale"],
+    "04": ["Trigger", "Automate", "Sync", "Optimise"],
+    "05": ["Create", "Schedule", "Engage", "Grow"],
+    "06": ["Task", "Assign", "Execute", "Deliver"],
   };
   const labels = labelsByCode[code] ?? labelsByCode["01"];
 

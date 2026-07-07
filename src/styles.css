@@ -420,3 +420,20 @@
 }
 .animate-pulse-dot { animation: pulse-dot 2.4s ease-in-out infinite; }
 
+@utility bg-grid {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@keyframes flow {
+  0%   { stroke-dashoffset: 24; opacity: 0.2; }
+  50%  { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0.2; }
+}
+.animate-flow {
+  stroke-dasharray: 6 6;
+  animation: flow 1.6s linear infinite;
+}
+

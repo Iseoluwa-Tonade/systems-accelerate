@@ -62,8 +62,8 @@ const CASES = [
 
 function CaseStudiesPage() {
   return (
-    <SiteLayout headerTheme="dark">
-      <section className="sec-navy relative overflow-hidden border-b border-border pt-24 md:pt-28">
+    <SiteLayout headerTheme="light">
+      <section className="relative overflow-hidden border-b border-border pt-24 md:pt-28" style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 60%, #FFF9F0 100%)" }}>
         <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-16 lg:px-6">
           <Eyebrow>Case studies</Eyebrow>
           <h1 className="mt-5 max-w-4xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">

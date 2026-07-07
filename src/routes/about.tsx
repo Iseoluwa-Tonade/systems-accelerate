@@ -6,25 +6,25 @@ import { ScrollReveal } from "@/components/site/ScrollReveal";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About | SuperTelque RevOps" },
-      { name: "description", content: "Technical revenue operators building the GTM infrastructure behind B2B technology companies in Nigeria." },
-      { property: "og:title", content: "About | SuperTelque RevOps" },
-      { property: "og:description", content: "RevOps expertise. GTM systems thinking. Automation engineering. AI implementation." },
+      { title: "About | SuperTelque" },
+      { name: "description", content: "A small, senior team helping B2B companies grow revenue through better systems and smarter automation." },
+      { property: "og:title", content: "About | SuperTelque" },
+      { property: "og:description", content: "RevOps expertise. GTM systems thinking. Automation engineering." },
     ],
   }),
   component: AboutPage,
 });
 
 const PRINCIPLES = [
-  { k: "Data first", d: "We build on clean data. Bad CRM data isn't a reporting headache. It's what's stopping your team from closing more deals." },
+  { k: "Data first", d: "We build on clean data. Bad CRM data isn't a reporting headache — it's what stops deals from closing." },
   { k: "Systems before headcount", d: "Build the system before adding people. If a task repeats every week, it should probably be automated." },
-  { k: "One team, one number", d: "Marketing, sales, and CS work from the same funnel, the same definitions, and the same numbers. No silos." },
-  { k: "Build to last", d: "Build for where you're going, not where you are. Quick fixes become expensive problems. Good systems just get more valuable." },
-  { k: "Measurable outcomes", d: "Every engagement is measured against pipeline growth, conversion rate, or cost savings. Not against tasks or hours." },
+  { k: "One team, one number", d: "Sales, marketing, and CS work from the same funnel, the same definitions, and the same numbers." },
+  { k: "Build to last", d: "Build for where you're going, not where you are. Good systems get more valuable over time." },
+  { k: "Measurable outcomes", d: "Every engagement is measured against pipeline, conversion rate, or cost savings — not hours." },
 ];
 
 const INDUSTRIES = [
-  { title: "Manufacturing", desc: "Automating inventory tracking, RFX routing, and vendor communication portals.", accent: "#1B5EFF" },
+  { title: "Manufacturing", desc: "Automating inventory tracking, RFX routing, and vendor communication.", accent: "#1B5EFF" },
   { title: "Real Estate", desc: "Lead intake, property database ingestion, and automated client sequencing.", accent: "#4F46E5" },
   { title: "Ecommerce", desc: "Shopping platform syncs, order automation, and customer feedback triggers.", accent: "#14B8A6" },
   { title: "Logistics & Supply Chain", desc: "Waybill processing, real-time dispatch alerts, and tracking integrations.", accent: "#8B5CF6" },
@@ -34,30 +34,35 @@ const INDUSTRIES = [
 
 function AboutPage() {
   return (
-    <SiteLayout headerTheme="dark">
+    <SiteLayout headerTheme="light">
       {/* Hero */}
-      <section className="sec-navy relative overflow-hidden border-b border-white/08 pt-24 md:pt-28">
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -top-32 right-0 h-[500px] w-[500px] rounded-full"
-            style={{ background: "radial-gradient(circle, rgba(255,184,0,0.10) 0%, transparent 70%)" }} />
+      <section
+        className="relative overflow-hidden border-b border-border pt-24 md:pt-28"
+        style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 60%, #FFF9F0 100%)" }}
+      >
+        <div className="pointer-events-none absolute inset-0">
+          <div
+            className="absolute -top-20 right-0 h-[400px] w-[400px] rounded-full opacity-40"
+            style={{ background: "radial-gradient(circle, rgba(255,184,0,0.12) 0%, transparent 70%)" }}
+          />
         </div>
-        <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-12 lg:px-6">
+        <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-14 lg:px-6">
           <Eyebrow>About</Eyebrow>
-          <h1 className="mt-5 max-w-4xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.02]">
+          <h1 className="mt-5 max-w-4xl font-display text-3xl font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[68px] lg:leading-[1.02]">
             We are <span className="text-gradient-gold">technical revenue operators</span>,
             <br className="hidden lg:block" /> not a marketing agency.
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
-            <div className="mt-10 grid gap-8 lg:grid-cols-12">
-              <p className="lg:col-span-7 text-lg leading-relaxed text-muted-foreground">
+            <div className="mt-10 grid gap-6 lg:grid-cols-12">
+              <p className="lg:col-span-7 text-lg leading-relaxed text-[#4C5670]">
                 SuperTelque is a small, senior team with real experience running RevOps and building
-                automation inside revenue organizations. We work with founders and CROs who need
+                automation inside revenue organizations. We work with founders and operators who need
                 actual systems built, not more slide decks.
               </p>
-              <div className="lg:col-span-5 rounded-2xl border border-white/10 bg-white/05 p-6 flex flex-col justify-center items-center text-center">
+              <div className="lg:col-span-5 rounded-2xl border border-border bg-[#F4F7FF] p-6 flex flex-col justify-center items-center text-center">
                 <img src="/supertelque-logo.png" alt="" className="h-10 w-10 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
-                <div className="mt-3 font-display text-2xl font-bold text-white">HQ</div>
-                <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-[#FFB800]/70">
+                <div className="mt-3 font-display text-xl font-bold text-[#080D1C]">Based in</div>
+                <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-[#B45309]">
                   Lagos, Nigeria
                 </div>
               </div>
@@ -67,15 +72,15 @@ function AboutPage() {
       </section>
 
       {/* Mission */}
-      <section className="sec-navy border-b border-white/08 py-14 lg:py-20">
+      <section className="sec-white border-b border-border py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <ScrollReveal variant="fadeUp">
             <div className="grid gap-10 lg:grid-cols-12">
               <div className="lg:col-span-4">
                 <SectionHeader eyebrow="Mission" title={<>Build systems. Grow revenue.</>} />
               </div>
-              <blockquote className="lg:col-span-8 border-l-2 border-[#FFB800]/40 pl-6 text-xl leading-relaxed text-white/75 lg:text-2xl">
-                "To help B2B companies grow revenue through better systems and smarter automation.
+              <blockquote className="lg:col-span-8 border-l-2 border-[#FFB800] pl-6 text-lg leading-relaxed text-[#4C5670] lg:text-xl">
+                "To help companies grow revenue through better systems and smarter automation.
                 We replace manual, fragile processes with ones that are reliable, measurable,
                 and built to last."
               </blockquote>
@@ -90,7 +95,7 @@ function AboutPage() {
           <SectionHeader eyebrow="Core principles" title={<>How we operate.</>} />
           <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-5">
             {PRINCIPLES.map((p, i) => (
-              <div key={p.k} className="rounded-xl border border-border bg-[#F4F6FA] p-5">
+              <div key={p.k} className="rounded-xl border border-border bg-[#F4F6FA] p-5 transition-colors hover:bg-[#EEF3FF]">
                 <div className="font-mono text-[11px] tracking-[0.2em] text-[#FFB800]">
                   0{i + 1}
                 </div>
@@ -103,28 +108,28 @@ function AboutPage() {
       </section>
 
       {/* Industries */}
-      <section className="sec-navy border-t border-white/08 py-14 lg:py-20">
+      <section className="sec-mid border-y border-border py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <SectionHeader
             eyebrow="Industries"
             title={
               <>
-                Sectors of <span className="text-gradient-gold">expertise.</span>
+                Sectors we <span className="text-gradient-gold">work in.</span>
               </>
             }
-            description="Our systems-engineered approach is sector-agnostic. These are the industries we've shipped revenue operations for."
+            description="Our approach is sector-agnostic. These are industries where we've shipped revenue operations."
           />
           <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
             {INDUSTRIES.map((ind, i) => (
               <div
                 key={ind.title}
-                className="rounded-xl border border-white/08 bg-white/04 p-6 transition duration-300 hover:bg-white/07"
+                className="rounded-xl border border-border bg-white p-6 transition duration-200 hover:shadow-md"
               >
                 <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground mb-3">
                   <span style={{ color: ind.accent }}>SECTOR · 0{i + 1}</span>
-                  <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: ind.accent, opacity: 0.6 }} />
+                  <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: ind.accent, opacity: 0.7 }} />
                 </div>
-                <h3 className="font-display text-lg font-bold tracking-tight text-white">{ind.title}</h3>
+                <h3 className="font-display text-lg font-bold tracking-tight text-[#080D1C]">{ind.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{ind.desc}</p>
               </div>
             ))}
@@ -133,15 +138,18 @@ function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="sec-navy border-t border-white/08 py-14 lg:py-20">
+      <section className="sec-navy py-14 lg:py-20">
         <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
           <ScrollReveal variant="scaleIn">
             <div className="flex items-center justify-center gap-2.5 mb-4">
               <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
             </div>
-            <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
+            <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
               Ready to work with us?
             </h2>
+            <p className="mx-auto mt-3 max-w-md text-base text-white/60">
+              45 minutes. We review your setup and tell you where to start.
+            </p>
             <Link
               to="/book"
               className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_12px_28px_-6px_rgba(255,184,0,0.40)]"

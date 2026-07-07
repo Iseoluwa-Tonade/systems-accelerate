@@ -85,8 +85,8 @@ function BookPage() {
         : "Select a date and time";
 
   return (
-    <SiteLayout headerTheme="dark">
-      <section className="sec-navy relative overflow-hidden border-b border-border pt-24 md:pt-28">
+    <SiteLayout headerTheme="light">
+      <section className="relative overflow-hidden border-b border-border pt-24 md:pt-28" style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 60%, #FFF9F0 100%)" }}>
         <div className="relative mx-auto max-w-7xl px-4 pb-10 lg:pt-16 lg:px-6">
           <Eyebrow>Book a session</Eyebrow>
           <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
