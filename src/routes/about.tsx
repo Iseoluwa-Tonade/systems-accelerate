@@ -84,11 +84,22 @@ function AboutPage() {
                 automation inside revenue organizations. We work with founders and operators who need
                 actual systems built, not more slide decks.
               </p>
-              <div className="lg:col-span-5 rounded-2xl border border-border bg-[#F4F7FF] p-6 flex flex-col justify-center items-center text-center">
-                <img src="/supertelque-logo.png" alt="" className="h-10 w-10 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
-                <div className="mt-3 font-display text-xl font-bold text-[#080D1C]">Remote-first</div>
-                <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-[#B45309]">
-                  Global clients
+              <div className="lg:col-span-5 rounded-2xl border border-border bg-[#F4F7FF] overflow-hidden">
+                <div className="relative h-48 lg:h-56 overflow-hidden">
+                  <img
+                    src="/advisor-2.png"
+                    alt="Senior RevOps operator"
+                    className="w-full h-full object-cover object-[center_15%]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080D1C]/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Senior operator</div>
+                    <div className="mt-0.5 font-display text-sm font-bold text-white">Revenue systems, built hands-on.</div>
+                  </div>
+                </div>
+                <div className="px-5 py-4 flex items-center gap-3">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#B45309]">Remote-first · Global clients</span>
                 </div>
               </div>
             </div>

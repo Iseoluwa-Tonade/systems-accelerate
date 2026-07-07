@@ -103,7 +103,7 @@ function HeroDashboard() {
 function Hero() {
   return (
     <section
-      className="relative overflow-hidden pt-24 md:pt-28"
+      className="relative overflow-hidden pt-20 md:pt-24"
       style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 50%, #FFF9F0 100%)" }}
     >
       <div className="pointer-events-none absolute inset-0">
@@ -125,7 +125,7 @@ function Hero() {
         </svg>
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-16 lg:grid-cols-12 lg:gap-10 lg:pt-20 lg:px-6">
+      <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-16 lg:grid-cols-12 lg:gap-10 lg:px-6">
         <div className="lg:col-span-6 flex flex-col justify-center">
           <h1 className="font-display text-[40px] font-extrabold leading-[1.02] tracking-tight text-[#080D1C] sm:text-[54px] lg:text-[72px] lg:leading-[1.0]">
             Revenue systems
@@ -607,18 +607,19 @@ const TESTIMONIALS = [
     quote: "They understood our pipeline problem in the first week and had automated solutions running within the month.",
     name: "Amara O.",
     role: "Head of Sales, Series B Fintech",
-    avatar: 1 as const,
+    photo: "/advisor-2.png",
   },
   {
     quote: "Our HubSpot was a mess. SuperTelque cleaned it up and built the reporting our board actually trusts.",
     name: "David K.",
     role: "COO, SaaS Platform",
-    avatar: 2 as const,
+    photo: "/advisor-1.png",
   },
   {
     quote: "Having a dedicated VA plus automation cut 30 hours of admin work per week in the first month.",
     name: "Chisom E.",
     role: "Founder, E-commerce Brand",
+    photo: null,
     avatar: 3 as const,
   },
 ] as const;
@@ -644,8 +645,12 @@ function Testimonials() {
                 </div>
                 <p className="text-sm leading-relaxed text-foreground/80 flex-1">"{t.quote}"</p>
                 <div className="flex items-center gap-3 pt-3 border-t border-border">
-                  <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full">
-                    <Avatar v={t.avatar} />
+                  <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-[#F0F4FF]">
+                    {"photo" in t && t.photo ? (
+                      <img src={t.photo} alt={t.name} className="h-full w-full object-cover object-top" />
+                    ) : (
+                      <Avatar v={(t as { avatar: 1 | 2 | 3 }).avatar} />
+                    )}
                   </div>
                   <div>
                     <div className="text-sm font-semibold text-foreground">{t.name}</div>

@@ -247,6 +247,24 @@ function BookPage() {
                   </div>
                 </div>
 
+                <div className="surface-card overflow-hidden p-4 sm:p-6">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                    Who you'll speak with
+                  </div>
+                  <div className="mt-4 flex items-center gap-4">
+                    <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full shadow-[0_0_0_3px_rgba(255,184,0,0.30)]">
+                      <img src="/advisor-1.png" alt="Senior RevOps Engineer" className="h-full w-full object-cover object-top" />
+                    </div>
+                    <div>
+                      <div className="font-display text-sm font-bold text-foreground">Senior RevOps Engineer</div>
+                      <div className="mt-0.5 text-xs text-muted-foreground">10+ years · HubSpot & Salesforce</div>
+                    </div>
+                  </div>
+                  <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+                    You'll meet directly with the engineer reviewing your stack — not an SDR.
+                  </p>
+                </div>
+
                 <div className="surface-card p-4 sm:p-6 text-sm text-muted-foreground">
                   <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
                     Who it's for
