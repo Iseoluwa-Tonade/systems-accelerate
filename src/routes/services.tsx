@@ -17,46 +17,46 @@ export const Route = createFileRoute("/services")({
 
 const SERVICES = [
   {
-    id: "revops",
+    id: "sales",
     code: "01",
-    title: "Revenue Operations",
-    blurb: "Get your sales, marketing, and CS teams aligned on shared metrics, goals, and a single forecast.",
-    items: ["Pipeline design", "Forecasting", "Territory planning", "Revenue reporting"],
-  },
-  {
-    id: "gtm",
-    code: "02",
-    title: "GTM Engineering",
-    blurb: "Build the workflows and automations that keep your go-to-market running smoothly.",
-    items: ["Workflow automation", "API integrations", "Data syncs", "Process design"],
+    title: "Sales & Lead Generation",
+    blurb: "Fill your pipeline with the right people. We handle lead generation, outreach, and appointment setting so your team shows up to conversations that matter.",
+    items: ["Lead generation", "Appointment setting", "Sales development", "Outbound outreach"],
   },
   {
     id: "crm",
+    code: "02",
+    title: "CRM & Sales Operations",
+    blurb: "Set up HubSpot or Salesforce the right way and keep your sales process clean, consistent, and easy to manage.",
+    items: ["CRM implementation", "Sales process optimisation", "Pipeline design", "Data hygiene"],
+  },
+  {
+    id: "revops",
     code: "03",
-    title: "CRM Architecture",
-    blurb: "Set up HubSpot or Salesforce properly so it grows with your business, not against it.",
-    items: ["HubSpot implementation", "Salesforce implementation", "Pipeline design", "Lifecycle stages"],
+    title: "RevOps & GTM Engineering",
+    blurb: "Get your revenue teams aligned on shared metrics, forecasts, and a pipeline your leadership can trust.",
+    items: ["Revenue operations", "GTM engineering", "Forecasting", "Revenue dashboards"],
   },
   {
-    id: "outbound",
+    id: "automation",
     code: "04",
-    title: "Outbound Systems",
-    blurb: "Find the right accounts, enrich them automatically, and get your team into more real conversations.",
-    items: ["Clay enrichment", "Apollo sequencing", "Lead routing", "Targeted outreach"],
+    title: "Workflow Automation & AI",
+    blurb: "Automate the work that slows your team down and use AI where it creates real leverage across your operations.",
+    items: ["Workflow automation", "AI-powered solutions", "n8n · Make · Zapier", "Process optimisation"],
   },
   {
-    id: "data",
+    id: "social",
     code: "05",
-    title: "Data & Analytics",
-    blurb: "Clear dashboards and forecasts that every level of your team can actually rely on.",
-    items: ["Power BI dashboards", "Attribution modeling", "Data warehouses", "Executive reporting"],
+    title: "Social Media & Community",
+    blurb: "Build a consistent presence and an engaged community around your brand across every channel your audience uses.",
+    items: ["Social media management", "Community management", "Content scheduling", "Engagement strategy"],
   },
   {
-    id: "ai",
+    id: "backoffice",
     code: "06",
-    title: "AI in Your Revenue Stack",
-    blurb: "AI that works inside your actual sales process, from finding accounts to prioritizing leads.",
-    items: ["AI prospect research", "AI lead scoring", "AI-powered automation", "Sales enablement"],
+    title: "Virtual Assistance & Back Office",
+    blurb: "Skilled remote talent for the admin, orders, and back-office operations that keep your business running.",
+    items: ["Virtual assistance", "Order management", "Back-office operations", "Remote team solutions"],
   },
 ] as const;
 
@@ -67,7 +67,7 @@ function ServicesPage() {
         <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-16 lg:px-6">
           <Eyebrow>Services</Eyebrow>
           <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
-            Built for revenue.<span className="text-gradient-gold"> Built to last.</span>
+            Everything your business<span className="text-gradient-gold"> needs to grow.</span>
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">

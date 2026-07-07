@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { Eyebrow, SectionHeader } from "@/components/site/Eyebrow";
+import { SectionHeader } from "@/components/site/Eyebrow";
 import { ScrollReveal } from "@/components/site/ScrollReveal";
 import * as L from "@/components/site/Logos";
 
@@ -17,7 +18,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "SuperTelque | Revenue Systems Engineered for Scale" },
       {
         property: "og:description",
-        content: "Architecting revenue systems that scale for B2B technology companies in Nigeria.",
+        content: "Skilled remote talent plus automation and data-driven systems, delivered as one accountable partner.",
       },
     ],
   }),
@@ -26,17 +27,19 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   return (
-    <SiteLayout headerTheme="dark">
+    <SiteLayout headerTheme="light">
       <Hero />
       <TrustBar />
       <Services />
       <Methodology />
       <CaseStudiesPreview />
+      <Testimonials />
       <FinalCTA />
     </SiteLayout>
   );
 }
 
+/* ─────────────── HERO DASHBOARD ─────────────── */
 function HeroDashboard() {
   const bars = [45, 62, 38, 71, 55, 83, 67, 49, 78, 91, 63, 72, 85, 58, 94, 77];
   const metrics = [
@@ -46,14 +49,17 @@ function HeroDashboard() {
     { l: "Won QTD", v: "$680K", d: "+41%", c: "#FFB800" },
   ];
   return (
-    <div className="rounded-2xl border border-white/12 bg-white/04 p-5 lg:p-6 backdrop-blur-sm">
+    <div className="rounded-2xl border border-white/12 bg-[#080D1C] p-5 lg:p-6 shadow-[0_24px_60px_-12px_rgba(0,0,0,0.35)]">
       <div className="flex items-center justify-between mb-5">
         <div>
           <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40">Revenue Command · Q2 2026</div>
           <div className="mt-0.5 font-display text-sm font-semibold text-white">Pipeline Intelligence</div>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+          </span>
           <span className="font-mono text-[10px] text-white/40">live</span>
         </div>
       </div>
@@ -90,32 +96,34 @@ function HeroDashboard() {
   );
 }
 
-/* --------------------------------- HERO --------------------------------- */
+/* ─────────────── HERO ─────────────── */
 function Hero() {
   return (
-    <section className="sec-navy relative overflow-hidden pt-24 md:pt-28">
-      {/* Background glow orbs */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <section
+      className="relative overflow-hidden pt-24 md:pt-28"
+      style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 50%, #FFF9F0 100%)" }}
+    >
+      <div className="pointer-events-none absolute inset-0">
         <div
-          className="absolute -top-32 right-0 h-[600px] w-[600px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(255,184,0,0.12) 0%, transparent 70%)" }}
+          className="absolute -top-20 right-1/4 h-[500px] w-[500px] rounded-full opacity-50"
+          style={{ background: "radial-gradient(circle, rgba(27,94,255,0.10) 0%, transparent 70%)" }}
         />
         <div
-          className="absolute bottom-0 -left-32 h-[500px] w-[500px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(27,94,255,0.14) 0%, transparent 70%)" }}
+          className="absolute bottom-0 -left-20 h-[400px] w-[400px] rounded-full opacity-40"
+          style={{ background: "radial-gradient(circle, rgba(255,184,0,0.12) 0%, transparent 70%)" }}
         />
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-12 lg:grid-cols-12 lg:gap-10 lg:pt-20 lg:px-6">
-        <div className="lg:col-span-6">
-          <h1 className="font-display text-[38px] font-extrabold leading-[1.02] tracking-tight sm:text-[52px] lg:text-[72px] lg:leading-[1.0]">
+      <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-16 lg:grid-cols-12 lg:gap-10 lg:pt-20 lg:px-6">
+        <div className="lg:col-span-6 flex flex-col justify-center">
+          <h1 className="font-display text-[40px] font-extrabold leading-[1.02] tracking-tight text-[#080D1C] sm:text-[54px] lg:text-[72px] lg:leading-[1.0]">
             Revenue systems
             <br />
             <span className="text-gradient-gold">built to scale.</span>
           </h1>
 
           <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-muted-foreground sm:text-[17px]">
+            <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-[#4C5670] sm:text-[17px]">
               Better data, cleaner workflows, and a revenue system your whole team can rely on.
             </p>
           </ScrollReveal>
@@ -132,19 +140,18 @@ function Hero() {
                   <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>
-              <Link
-                to="/services"
-                className="text-[15px] font-medium text-white/70 hover:text-white transition-colors"
-              >
+              <Link to="/services" className="text-[15px] font-medium text-[#080D1C]/50 hover:text-[#080D1C] transition-colors">
                 View services →
               </Link>
             </div>
           </ScrollReveal>
         </div>
 
-        <div className="lg:col-span-6 pb-8 lg:pb-16">
-          <ScrollReveal variant="scaleIn" delay={0.2}>
-            <HeroDashboard />
+        <div className="lg:col-span-6 flex items-center pb-8 lg:pb-0">
+          <ScrollReveal variant="scaleIn" delay={0.2} className="w-full">
+            <div className="animate-float">
+              <HeroDashboard />
+            </div>
           </ScrollReveal>
         </div>
       </div>
@@ -152,7 +159,7 @@ function Hero() {
   );
 }
 
-/* ------------------------------- TRUST BAR ------------------------------ */
+/* ─────────────── TRUST BAR ─────────────── */
 function TrustBar() {
   const items = [
     L.HubSpot, L.Salesforce, L.Apollo, L.Clay, L.OpenAI, L.Stripe,
@@ -179,43 +186,43 @@ function TrustBar() {
   );
 }
 
-/* -------------------------------- SERVICES ------------------------------ */
+/* ─────────────── SERVICES ─────────────── */
 const SERVICES = [
   {
     code: "01",
-    title: "Revenue Operations",
-    desc: "Get your sales, marketing, and CS teams working from the same numbers, the same goals, and a single forecast.",
-    bullets: ["Pipeline design", "Forecasting", "Territory & quota"],
+    title: "Sales & Lead Generation",
+    desc: "Fill your pipeline with the right people. We handle lead generation, outreach, and appointment setting.",
+    bullets: ["Lead generation", "Appointment setting", "Sales development"],
   },
   {
     code: "02",
-    title: "GTM Engineering & Automation",
-    desc: "Build and automate the workflows that slow your team down. Less manual work, more time selling.",
-    bullets: ["n8n · Make · Zapier", "Custom API connections", "Lifecycle automation"],
+    title: "CRM & Sales Operations",
+    desc: "Implement and optimise HubSpot or Salesforce so your sales process runs cleanly from day one.",
+    bullets: ["CRM implementation", "Sales process optimisation", "Pipeline reporting"],
   },
   {
     code: "03",
-    title: "CRM Architecture",
-    desc: "Set up HubSpot or Salesforce the right way from day one, so you're not rebuilding it in two years.",
-    bullets: ["Object model design", "Bi-directional sync", "Lifecycle stages"],
+    title: "RevOps & GTM Engineering",
+    desc: "Align your revenue teams on shared metrics, forecasts, and a pipeline your leadership can trust.",
+    bullets: ["Revenue operations", "GTM engineering", "Forecasting & dashboards"],
   },
   {
     code: "04",
-    title: "Revenue Intelligence",
-    desc: "Forecasts, attribution, and dashboards that give your leadership team real numbers to work from.",
-    bullets: ["Power BI · Looker", "Multi-touch attribution", "Exec reporting"],
+    title: "Workflow Automation & AI",
+    desc: "Automate the repetitive work and use AI where it creates real leverage across your operations.",
+    bullets: ["Workflow automation", "AI-powered solutions", "Process optimisation"],
   },
   {
     code: "05",
-    title: "Outbound Systems",
-    desc: "Build a prospecting engine with Clay and Apollo that finds the right accounts and gets your team into more real conversations.",
-    bullets: ["Clay enrichment", "Apollo sequencing", "Signal-based routing"],
+    title: "Social Media & Community",
+    desc: "Build a consistent presence and an active community around your brand across every channel.",
+    bullets: ["Social media management", "Community management", "Content scheduling"],
   },
   {
     code: "06",
-    title: "Fractional RevOps",
-    desc: "Get experienced RevOps leadership embedded in your team. No full-time hire needed.",
-    bullets: ["Embedded leadership", "Quarterly roadmaps", "Team enablement"],
+    title: "Virtual Assistance & Back Office",
+    desc: "Skilled remote talent for the admin, orders, and operations that keep your business running.",
+    bullets: ["Virtual assistance", "Order management", "Back-office operations"],
   },
 ] as const;
 
@@ -225,27 +232,28 @@ function Services() {
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeader
-            eyebrow="What we build"
+            eyebrow="What we do"
             title={
               <>
-                Six disciplines. <span className="text-muted-foreground">One revenue engine.</span>
+                Six services. <span className="text-muted-foreground">One accountable partner.</span>
               </>
             }
-            description="Every engagement covers strategy, build, and results. Tell us where the pain is and we'll handle the rest."
+            description="From sales and operations to RevOps and automation — one team, one relationship, measurable results."
           />
           <Link
             to="/services"
             className="hidden lg:inline-flex items-center gap-1.5 text-sm text-foreground/80 hover:text-foreground"
           >
-            See all capabilities <span aria-hidden>→</span>
+            See all services <span aria-hidden>→</span>
           </Link>
         </div>
 
         <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s) => (
+          {SERVICES.map((s, i) => (
             <div
               key={s.code}
               className="group relative bg-white p-7 transition-colors hover:bg-[#F4F6FA]"
+              style={{ transitionDelay: `${i * 40}ms` }}
             >
               <span className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground">
                 {s.code}
@@ -266,7 +274,7 @@ function Services() {
 
         <div className="mt-6 text-center lg:hidden">
           <Link to="/services" className="text-sm text-foreground/70 hover:text-foreground">
-            See all capabilities →
+            See all services →
           </Link>
         </div>
       </div>
@@ -274,7 +282,7 @@ function Services() {
   );
 }
 
-/* ------------------------------- METHODOLOGY ---------------------------- */
+/* ─────────────── METHODOLOGY ─────────────── */
 const STEPS = [
   {
     k: "Audit",
@@ -307,7 +315,7 @@ const cardColors = [
 
 function Methodology() {
   return (
-    <section className="sec-navy py-16 lg:py-24">
+    <section className="sec-mid py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <SectionHeader
           eyebrow="Methodology"
@@ -335,7 +343,7 @@ function Methodology() {
                   <span className="font-mono text-[11px] tracking-[0.2em]" style={{ color: c.accent }}>
                     {c.label}
                   </span>
-                  <span className="ml-auto font-mono text-[10px] text-muted-foreground">
+                  <span className="ml-auto font-mono text-[10px] text-[#080D1C]/40">
                     {String(i + 1).padStart(2, "0")}/{String(STEPS.length).padStart(2, "0")}
                   </span>
                 </div>
@@ -351,7 +359,7 @@ function Methodology() {
                     border: `1px solid ${c.accent}25`,
                   }}
                 >
-                  ↳ {s.out}
+                  {s.out}
                 </div>
               </div>
             );
@@ -362,7 +370,7 @@ function Methodology() {
   );
 }
 
-/* ----------------------------- CASE STUDIES PREVIEW --------------------- */
+/* ─────────────── CASE STUDIES PREVIEW ─────────────── */
 const CASES = [
   {
     tag: "B2B SaaS",
@@ -387,6 +395,32 @@ const CASES = [
   },
 ] as const;
 
+function AnimatedMetric({ metric }: { metric: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.7 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className="mt-4 font-display text-4xl font-extrabold tracking-tight text-gradient-gold"
+      style={visible ? { animation: "pop-in 0.65s cubic-bezier(0.34,1.56,0.64,1) both" } : { opacity: 0 }}
+    >
+      {metric}
+    </div>
+  );
+}
+
 function CaseStudiesPreview() {
   return (
     <section className="sec-white border-t border-border py-16 lg:py-24">
@@ -407,9 +441,7 @@ function CaseStudiesPreview() {
               <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
                 {c.tag}
               </span>
-              <div className="mt-4 font-display text-4xl font-extrabold tracking-tight text-gradient-gold">
-                {c.metric}
-              </div>
+              <AnimatedMetric metric={c.metric} />
               <p className="mt-1 text-xs text-muted-foreground">{c.label}</p>
               <h3 className="mt-4 text-sm font-semibold text-foreground/90 flex-1 leading-snug">
                 {c.title}
@@ -438,7 +470,128 @@ function CaseStudiesPreview() {
   );
 }
 
-/* ------------------------------- FINAL CTA ------------------------------ */
+/* ─────────────── AVATAR FACES ─────────────── */
+function Avatar({ v }: { v: 1 | 2 | 3 }) {
+  if (v === 1) {
+    return (
+      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="40" fill="#ECFDF5" />
+        <path d="M0,80 Q0,60 40,60 Q80,60 80,80" fill="#059669" />
+        <rect x="35" y="52" width="10" height="10" rx="2" fill="#5C2A18" />
+        <circle cx="40" cy="35" r="21" fill="#6B3A2A" />
+        <path d="M19,30 Q21,10 40,10 Q59,10 61,30 Q55,14 40,13 Q25,14 19,30Z" fill="#1A0800" />
+        <ellipse cx="32" cy="34" rx="3.5" ry="3" fill="white" />
+        <circle cx="32.5" cy="34.5" r="2" fill="#1A0800" />
+        <circle cx="33.5" cy="33.5" r="0.7" fill="white" />
+        <ellipse cx="48" cy="34" rx="3.5" ry="3" fill="white" />
+        <circle cx="48.5" cy="34.5" r="2" fill="#1A0800" />
+        <circle cx="49.5" cy="33.5" r="0.7" fill="white" />
+        <path d="M37,39 Q40,42 43,39" fill="none" stroke="#3D1808" strokeWidth="1.2" strokeLinecap="round" />
+        <path d="M33,45 Q40,50 47,45" fill="none" stroke="#3D1808" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    );
+  }
+  if (v === 2) {
+    return (
+      <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="40" fill="#EFF6FF" />
+        <path d="M0,80 Q0,60 40,60 Q80,60 80,80" fill="#1B5EFF" />
+        <rect x="35" y="52" width="10" height="10" rx="2" fill="#C0784A" />
+        <circle cx="40" cy="35" r="21" fill="#D4956A" />
+        <path d="M19,31 Q21,12 40,11 Q59,12 61,31 Q56,16 40,15 Q24,16 19,31Z" fill="#2D1A0E" />
+        <ellipse cx="32" cy="34" rx="3.5" ry="3" fill="white" />
+        <circle cx="32.5" cy="34.5" r="2" fill="#2D1A0E" />
+        <circle cx="33.5" cy="33.5" r="0.7" fill="white" />
+        <ellipse cx="48" cy="34" rx="3.5" ry="3" fill="white" />
+        <circle cx="48.5" cy="34.5" r="2" fill="#2D1A0E" />
+        <circle cx="49.5" cy="33.5" r="0.7" fill="white" />
+        <path d="M37,39 Q40,42 43,39" fill="none" stroke="#A06030" strokeWidth="1.2" strokeLinecap="round" />
+        <path d="M33,45 Q40,50 47,45" fill="none" stroke="#8B4A20" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="40" fill="#F5F3FF" />
+      <path d="M0,80 Q0,60 40,60 Q80,60 80,80" fill="#7C3AED" />
+      <rect x="35" y="52" width="10" height="10" rx="2" fill="#E8956E" />
+      <circle cx="40" cy="35" r="21" fill="#F4A07A" />
+      <path d="M19,30 Q20,10 40,10 Q60,10 61,30 Q56,15 40,14 Q24,15 19,30Z" fill="#7B3810" />
+      <path d="M19,30 Q17,50 19,58" stroke="#7B3810" strokeWidth="6" strokeLinecap="round" />
+      <path d="M61,30 Q63,50 61,58" stroke="#7B3810" strokeWidth="6" strokeLinecap="round" />
+      <ellipse cx="32" cy="34" rx="3.5" ry="3" fill="white" />
+      <circle cx="32.5" cy="34.5" r="2" fill="#3D2010" />
+      <circle cx="33.5" cy="33.5" r="0.7" fill="white" />
+      <ellipse cx="48" cy="34" rx="3.5" ry="3" fill="white" />
+      <circle cx="48.5" cy="34.5" r="2" fill="#3D2010" />
+      <circle cx="49.5" cy="33.5" r="0.7" fill="white" />
+      <path d="M37,39 Q40,42 43,39" fill="none" stroke="#C07050" strokeWidth="1.2" strokeLinecap="round" />
+      <path d="M33,45 Q40,50 47,45" fill="none" stroke="#A05840" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/* ─────────────── TESTIMONIALS ─────────────── */
+const TESTIMONIALS = [
+  {
+    quote: "They understood our pipeline problem in the first week and had automated solutions running within the month.",
+    name: "Amara O.",
+    role: "Head of Sales, Series B Fintech",
+    avatar: 1 as const,
+  },
+  {
+    quote: "Our HubSpot was a mess. SuperTelque cleaned it up and built the reporting our board actually trusts.",
+    name: "David K.",
+    role: "COO, SaaS Platform",
+    avatar: 2 as const,
+  },
+  {
+    quote: "Having a dedicated VA plus automation cut 30 hours of admin work per week in the first month.",
+    name: "Chisom E.",
+    role: "Founder, E-commerce Brand",
+    avatar: 3 as const,
+  },
+] as const;
+
+function Testimonials() {
+  return (
+    <section className="sec-white border-t border-border py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
+        <SectionHeader
+          eyebrow="Client voices"
+          title="What our clients say."
+        />
+        <div className="mt-10 grid gap-5 sm:grid-cols-3">
+          {TESTIMONIALS.map((t, i) => (
+            <ScrollReveal key={t.name} variant="fadeUp" delay={i * 0.1}>
+              <div className="rounded-2xl border border-border bg-[#F4F6FA] p-6 flex flex-col gap-4 h-full">
+                <div className="flex gap-1 mb-1">
+                  {Array.from({ length: 5 }).map((_, si) => (
+                    <svg key={si} viewBox="0 0 12 12" className="h-3 w-3 fill-[#FFB800]">
+                      <path d="M6 0l1.5 4H12L8.5 6.5l1.5 4L6 8 2 10.5l1.5-4L0 4h4.5z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-sm leading-relaxed text-foreground/80 flex-1">"{t.quote}"</p>
+                <div className="flex items-center gap-3 pt-3 border-t border-border">
+                  <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full">
+                    <Avatar v={t.avatar} />
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold text-foreground">{t.name}</div>
+                    <div className="text-xs text-muted-foreground">{t.role}</div>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────── FINAL CTA ─────────────── */
 function FinalCTA() {
   return (
     <section className="sec-navy relative overflow-hidden border-t border-white/08 py-16 lg:py-24">
@@ -453,10 +606,10 @@ function FinalCTA() {
             <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#FFB800]/70">Let's build</span>
           </div>
           <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-[56px] lg:leading-[1.05]">
-            Ready to fix your <span className="text-gradient-gold">revenue operations</span>?
+            Ready to build a <span className="text-gradient-gold">better business</span>?
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/60">
-            45 minutes. Your stack reviewed, your next steps mapped. No pitch.
+            45 minutes. We review your setup and tell you exactly where to start.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
