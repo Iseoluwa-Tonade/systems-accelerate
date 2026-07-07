@@ -75,6 +75,10 @@
   --shadow-gold:   0 8px 32px -8px rgba(255, 184, 0, 0.40);
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 :root {
   --radius: 1rem;
 

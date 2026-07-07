@@ -235,16 +235,6 @@ function Hero() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal variant="fadeUp" delay={0.35}>
-            <div className="mt-10 flex items-center gap-8 border-t border-black/07 pt-8">
-              {[["50+", "Clients served"], ["$12M+", "Pipeline influenced"], ["4.9★", "Avg. rating"]].map(([v, l]) => (
-                <div key={l}>
-                  <div className="font-display text-[22px] font-bold text-[#080D1C] leading-none">{v}</div>
-                  <div className="mt-1 font-mono text-[9.5px] uppercase tracking-[0.18em] text-[#4C5670]/60">{l}</div>
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
         </div>
 
         <div className="lg:col-span-6 flex items-center pb-8 lg:pb-0">
