@@ -40,12 +40,12 @@ export function SiteFooter() {
             <FooterCol
               title="Services"
               links={[
-                { to: "/services", label: "Revenue Operations" },
-                { to: "/services", label: "GTM Engineering" },
-                { to: "/services", label: "CRM Architecture" },
-                { to: "/services", label: "Automation" },
-                { to: "/services", label: "Data & Analytics" },
-                { to: "/services", label: "AI Revenue Systems" },
+                { to: "/services#sales", label: "Sales & Lead Generation" },
+                { to: "/services#crm", label: "CRM & Sales Operations" },
+                { to: "/services#revops", label: "RevOps & GTM Engineering" },
+                { to: "/services#automation", label: "Workflow Automation & AI" },
+                { to: "/services#social", label: "Social Media & Community" },
+                { to: "/services#backoffice", label: "Virtual Assistance" },
               ]}
             />
             <FooterCol
@@ -66,12 +66,27 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col-reverse items-start justify-between gap-4 border-t border-white/08 pt-6 text-xs text-muted-foreground md:mt-14 md:flex-row md:items-center">
-          <div>© {new Date().getFullYear()} SuperTelque RevOps. All rights reserved.</div>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            <span className="font-mono">SOC2 ready · GDPR compliant</span>
-            <a href="https://linkedin.com/company/supertelque" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFB800] transition-colors">LinkedIn</a>
-            <a href="https://x.com/supertelque" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFB800] transition-colors">X</a>
+        <div className="mt-10 border-t border-white/08 pt-6 md:mt-14">
+          <div className="flex flex-wrap items-center gap-2 mb-5">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/05 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-white/50">
+              <svg viewBox="0 0 12 12" className="h-2.5 w-2.5 fill-emerald-400"><path d="M6 0C2.7 0 0 2.7 0 6s2.7 6 6 6 6-2.7 6-6S9.3 0 6 0zm2.8 4.6L5.3 8.1 3.2 6l.9-.9 1.2 1.2 2.6-3.6.9.9z"/></svg>
+              GDPR compliant
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/05 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-white/50">
+              <svg viewBox="0 0 12 12" className="h-2.5 w-2.5 fill-blue-400"><path d="M6 0L1 3v4c0 2.8 2.1 5.4 5 6 2.9-.6 5-3.2 5-6V3L6 0z"/></svg>
+              SOC2 ready
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/05 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-white/50">
+              <svg viewBox="0 0 12 12" className="h-2.5 w-2.5 fill-yellow-400"><path d="M6 1l1.5 3h3l-2.5 2 1 3L6 7.5 3 9l1-3L1.5 4h3z"/></svg>
+              Insured engagements
+            </span>
+          </div>
+          <div className="flex flex-col-reverse items-start justify-between gap-4 text-xs text-muted-foreground md:flex-row md:items-center">
+            <div>© {new Date().getFullYear()} SuperTelque RevOps. All rights reserved.</div>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+              <a href="https://linkedin.com/company/supertelque" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFB800] transition-colors">LinkedIn</a>
+              <a href="https://x.com/supertelque" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFB800] transition-colors">X</a>
+            </div>
           </div>
         </div>
       </div>

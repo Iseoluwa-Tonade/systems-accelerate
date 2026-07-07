@@ -34,6 +34,7 @@ function HomePage() {
       <Methodology />
       <CaseStudiesPreview />
       <Testimonials />
+      <LeadMagnet />
       <FinalCTA />
     </SiteLayout>
   );
@@ -112,6 +113,14 @@ function Hero() {
           className="absolute bottom-0 -left-20 h-[400px] w-[400px] rounded-full opacity-40"
           style={{ background: "radial-gradient(circle, rgba(255,184,0,0.12) 0%, transparent 70%)" }}
         />
+        <svg className="absolute right-4 top-1/2 -translate-y-1/3 h-[340px] w-[340px] opacity-[0.055]" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="#1B5EFF" strokeWidth="1.5" strokeDasharray="4 10" />
+          <circle cx="100" cy="100" r="62" fill="none" stroke="#1B5EFF" strokeWidth="1" strokeDasharray="2 8" />
+        </svg>
+        <svg className="absolute left-1/3 bottom-4 h-[140px] w-[140px] opacity-[0.045]" viewBox="0 0 100 100">
+          <polygon points="50,5 95,95 5,95" fill="none" stroke="#FFB800" strokeWidth="1.5" />
+          <polygon points="50,20 80,80 20,80" fill="none" stroke="#FFB800" strokeWidth="0.8" />
+        </svg>
       </div>
 
       <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-16 lg:grid-cols-12 lg:gap-10 lg:pt-20 lg:px-6">
@@ -228,7 +237,14 @@ const SERVICES = [
 
 function Services() {
   return (
-    <section className="sec-white relative py-16 lg:py-24">
+    <section className="sec-white relative overflow-hidden py-16 lg:py-24">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute right-0 top-12 h-72 w-72 rounded-full opacity-[0.035]"
+          style={{ background: "radial-gradient(circle, #1B5EFF 0%, transparent 70%)" }} />
+        <svg className="absolute left-8 bottom-8 h-[120px] w-[120px] opacity-[0.04]" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#FFB800" strokeWidth="1.5" strokeDasharray="3 8" />
+        </svg>
+      </div>
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeader
@@ -315,7 +331,17 @@ const cardColors = [
 
 function Methodology() {
   return (
-    <section className="sec-mid py-16 lg:py-24">
+    <section className="sec-mid relative overflow-hidden py-16 lg:py-24">
+      <div className="pointer-events-none absolute inset-0">
+        <svg className="absolute -left-20 top-1/2 -translate-y-1/2 h-[280px] w-[280px] opacity-[0.06]" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="88" fill="none" stroke="#1B5EFF" strokeWidth="1.2" strokeDasharray="3 8" />
+          <circle cx="100" cy="100" r="60" fill="none" stroke="#1B5EFF" strokeWidth="0.7" strokeDasharray="2 7" />
+        </svg>
+        <svg className="absolute -right-16 bottom-0 h-[200px] w-[200px] opacity-[0.05]" viewBox="0 0 200 200">
+          <rect x="20" y="20" width="160" height="160" rx="18" fill="none" stroke="#FFB800" strokeWidth="1.5" strokeDasharray="4 9" />
+          <rect x="48" y="48" width="104" height="104" rx="12" fill="none" stroke="#FFB800" strokeWidth="1" strokeDasharray="3 6" />
+        </svg>
+      </div>
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <SectionHeader
           eyebrow="Methodology"
@@ -586,6 +612,105 @@ function Testimonials() {
             </ScrollReveal>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────── LEAD MAGNET ─────────────── */
+function LeadMagnet() {
+  const [email, setEmail] = useState("");
+  const [sent, setSent] = useState(false);
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setSent(true);
+  }
+
+  return (
+    <section className="sec-mid relative overflow-hidden border-t border-border py-16 lg:py-20">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full opacity-25"
+          style={{ background: "radial-gradient(circle, rgba(255,184,0,0.18) 0%, transparent 70%)" }} />
+        <div className="absolute -left-10 bottom-0 h-52 w-52 rounded-full opacity-20"
+          style={{ background: "radial-gradient(circle, rgba(27,94,255,0.12) 0%, transparent 70%)" }} />
+        <svg className="absolute right-1/4 bottom-0 h-[160px] w-[160px] opacity-[0.04]" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="#1B5EFF" strokeWidth="1" strokeDasharray="3 7" />
+        </svg>
+      </div>
+      <div className="relative mx-auto max-w-7xl px-4 lg:px-6">
+        <ScrollReveal variant="fadeUp">
+          <div className="overflow-hidden rounded-3xl border border-border bg-white shadow-soft">
+            <div className="grid lg:grid-cols-2">
+              <div className="px-8 py-12 lg:px-12 lg:py-14">
+                <div className="inline-flex items-center gap-2 rounded-full border border-[#FFB800]/30 bg-[#FFB800]/10 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-[#B45309]">
+                  Free resource
+                </div>
+                <h2 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-[#080D1C] sm:text-4xl">
+                  RevOps Audit Checklist
+                </h2>
+                <p className="mt-4 text-base leading-relaxed text-[#4C5670]">
+                  The 12-point checklist our team runs on every engagement —
+                  CRM hygiene, pipeline stage design, and automation priorities.
+                </p>
+                <ul className="mt-6 space-y-2.5 text-sm text-[#4C5670]">
+                  {[
+                    "CRM data quality audit framework",
+                    "Pipeline stage benchmark guide",
+                    "Top 5 automation quick wins",
+                    "Dashboard KPI template",
+                  ].map((item) => (
+                    <li key={item} className="flex items-center gap-2.5">
+                      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#FFB800]" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex items-center border-t border-border bg-[#F8FAFF] px-8 py-12 lg:border-l lg:border-t-0 lg:px-12 lg:py-14">
+                {sent ? (
+                  <div className="w-full rounded-2xl border border-[#FFB800]/25 bg-[#FFFBEB] p-8 text-center">
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#FFB800]/15">
+                      <svg viewBox="0 0 20 20" fill="none" className="h-6 w-6 stroke-[#B45309]" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M4 10l4 4 8-8" />
+                      </svg>
+                    </div>
+                    <div className="mt-4 font-display text-xl font-bold text-[#080D1C]">It's on its way</div>
+                    <p className="mt-2 text-sm text-[#4C5670]">
+                      Check your inbox. The checklist is free — no strings attached.
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="w-full">
+                    <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                      Get the checklist free
+                    </div>
+                    <input
+                      type="email"
+                      required
+                      placeholder="your@company.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="mt-3 w-full rounded-xl border border-border bg-white px-4 py-3.5 text-sm shadow-[0_1px_3px_rgba(0,0,0,0.06)] focus:outline-none focus:ring-2 focus:ring-[#1B5EFF]/25"
+                    />
+                    <button
+                      type="submit"
+                      className="mt-3 w-full rounded-full py-3.5 text-sm font-bold text-[#080D1C] transition-all hover:scale-[1.02] hover:shadow-[0_8px_24px_-6px_rgba(255,184,0,0.40)]"
+                      style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
+                    >
+                      Download the checklist →
+                    </button>
+                    <p className="mt-3 text-center font-mono text-[10px] text-muted-foreground">
+                      No spam · GDPR compliant · Unsubscribe anytime
+                    </p>
+                  </form>
+                )}
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
