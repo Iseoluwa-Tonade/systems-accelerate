@@ -265,7 +265,7 @@ function BookPage() {
                     </div>
                   </div>
                   <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-                    You'll meet directly with the engineer reviewing your stack — not an SDR.
+                    You'll meet directly with the engineer reviewing your stack, not an SDR.
                   </p>
                 </div>
 
@@ -274,7 +274,7 @@ function BookPage() {
                     Who it's for
                   </div>
                   <div className="mt-3 font-display text-foreground/85 leading-relaxed">
-                    Series A to C B2B companies — SaaS, fintech, ecommerce, and beyond.
+                    Series A to C B2B companies: SaaS, fintech, ecommerce, and beyond.
                   </div>
                 </div>
               </aside>

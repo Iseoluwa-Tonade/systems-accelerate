@@ -183,7 +183,7 @@ export function BookingCalendar({
       });
     }
 
-    // Next month overflow (fill to complete the grid — always 6 rows × 7 cols = 42)
+    // Next month overflow (fill to complete the grid; always 6 rows x 7 cols = 42)
     const remaining = 42 - cells.length;
     for (let d = 1; d <= remaining; d++) {
       const nextMonth = viewMonth === 11 ? 0 : viewMonth + 1;

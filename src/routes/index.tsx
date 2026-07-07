@@ -256,7 +256,7 @@ function Services() {
                 Six services. <span className="text-muted-foreground">One accountable partner.</span>
               </>
             }
-            description="From sales and operations to RevOps and automation — one team, one relationship, measurable results."
+            description="From sales and operations to RevOps and automation: one team, one relationship, measurable results."
           />
           <Link
             to="/services"
@@ -522,7 +522,7 @@ function TeamStrip() {
                   <span className="text-gradient-gold">Not juniors.</span>
                 </>
               }
-              description="You work directly with the engineers building your system — not an account manager passing notes down."
+              description="You work directly with the engineers building your system, not an account manager passing notes down."
             />
           </div>
           <div className="flex-1 grid gap-5 sm:grid-cols-3">
@@ -674,7 +674,7 @@ const FREE_RESOURCES = [
   {
     tag: "Checklist",
     title: "RevOps Audit Checklist",
-    desc: "The 12-point checklist we run on every engagement — CRM hygiene, pipeline design, and automation priorities.",
+    desc: "The 12-point checklist we run on every engagement: CRM hygiene, pipeline design, and automation priorities.",
     color: "#1B5EFF",
     bg: "#EFF6FF",
     border: "rgba(27,94,255,0.15)",
@@ -698,7 +698,7 @@ const FREE_RESOURCES = [
   {
     tag: "Playbook",
     title: "Outbound Automation Playbook",
-    desc: "Five automation flows that cut list-building time by 60% — with exact tool configs and sequences.",
+    desc: "Five automation flows that cut list-building time by 60%, with exact tool configs and sequences.",
     color: "#B45309",
     bg: "#FFFBEB",
     border: "rgba(180,83,9,0.15)",
@@ -741,7 +741,7 @@ function LeadMagnet() {
               Four resources. <span className="text-gradient-gold">One email.</span>
             </h2>
             <p className="mt-3 mx-auto max-w-lg text-base leading-relaxed text-[#4C5670]">
-              Templates, playbooks, and guides we use with real clients — free to download.
+              Templates, playbooks, and guides we use with real clients, free to download.
             </p>
           </div>
         </ScrollReveal>
@@ -786,13 +786,13 @@ function LeadMagnet() {
                     </svg>
                   </div>
                   <div className="mt-4 font-display text-xl font-bold text-[#080D1C]">All four resources are on their way</div>
-                  <p className="mt-2 text-sm text-[#4C5670]">Check your inbox. Free — no strings attached.</p>
+                  <p className="mt-2 text-sm text-[#4C5670]">Check your inbox. Free, no strings attached.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:flex-row sm:items-end">
                   <div className="flex-1">
                     <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                      Get all 4 resources — one email
+                      Get all 4 resources, one email
                     </div>
                     <input
                       type="email"

@@ -41,11 +41,11 @@ const TEAM = [
 ] as const;
 
 const PRINCIPLES = [
-  { k: "Data first", d: "We build on clean data. Bad CRM data isn't a reporting headache — it's what stops deals from closing." },
+  { k: "Data first", d: "We build on clean data. Bad CRM data isn't a reporting headache. It's what stops deals from closing." },
   { k: "Systems before headcount", d: "Build the system before adding people. If a task repeats every week, it should probably be automated." },
   { k: "One team, one number", d: "Sales, marketing, and CS work from the same funnel, the same definitions, and the same numbers." },
   { k: "Build to last", d: "Build for where you're going, not where you are. Good systems get more valuable over time." },
-  { k: "Measurable outcomes", d: "Every engagement is measured against pipeline, conversion rate, or cost savings — not hours." },
+  { k: "Measurable outcomes", d: "Every engagement is measured against pipeline, conversion rate, or cost savings. Not hours." },
 ];
 
 const INDUSTRIES = [
