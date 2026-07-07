@@ -28,7 +28,7 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   return (
-    <SiteLayout headerTheme="dark">
+    <SiteLayout headerTheme="light">
       <Hero />
       <TrustBar />
       <Services />
@@ -149,75 +149,69 @@ function HeroDashboard() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#060B17] pt-20 md:pt-24">
-      {/* ── Beautiful aurora background ── */}
+    <section className="relative overflow-hidden pt-20 md:pt-24" style={{ background: "#FAFBFF" }}>
+      {/* ── Beautiful light aurora background ── */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {/* Aurora blob 1 — blue-indigo, top-left */}
+        {/* Blob 1 — soft blue, top-right */}
         <div
-          className="absolute -top-60 -left-40 h-[800px] w-[800px] rounded-full animate-aurora-1"
-          style={{ background: "radial-gradient(circle at 45% 45%, rgba(27,94,255,0.50), rgba(79,70,229,0.25) 45%, transparent 70%)", filter: "blur(100px)" }}
+          className="absolute -top-52 right-[-120px] h-[750px] w-[750px] rounded-full animate-aurora-2"
+          style={{ background: "radial-gradient(circle at 55% 40%, rgba(27,94,255,0.11), rgba(99,102,241,0.06) 50%, transparent 70%)", filter: "blur(90px)" }}
         />
-        {/* Aurora blob 2 — warm gold, right */}
+        {/* Blob 2 — warm gold, bottom-left */}
         <div
-          className="absolute -top-20 right-[-180px] h-[650px] w-[650px] rounded-full animate-aurora-2"
-          style={{ background: "radial-gradient(circle at 55% 40%, rgba(255,184,0,0.28), rgba(251,146,60,0.12) 50%, transparent 70%)", filter: "blur(90px)" }}
+          className="absolute bottom-[-100px] -left-32 h-[600px] w-[600px] rounded-full animate-aurora-1"
+          style={{ background: "radial-gradient(circle at 40% 60%, rgba(255,184,0,0.14), rgba(255,220,80,0.07) 50%, transparent 70%)", filter: "blur(80px)" }}
         />
-        {/* Aurora blob 3 — purple, bottom-center */}
+        {/* Blob 3 — lavender, center */}
         <div
-          className="absolute bottom-[-140px] left-[25%] h-[550px] w-[550px] rounded-full animate-aurora-1"
-          style={{ background: "radial-gradient(circle at 50% 55%, rgba(124,58,237,0.28), rgba(79,70,229,0.12) 50%, transparent 70%)", filter: "blur(100px)", animationDelay: "-10s" }}
+          className="absolute top-[10%] left-[35%] h-[500px] w-[500px] rounded-full animate-aurora-1"
+          style={{ background: "radial-gradient(circle at 50% 50%, rgba(124,58,237,0.07), transparent 65%)", filter: "blur(100px)", animationDelay: "-12s" }}
         />
-        {/* Aurora blob 4 — teal accent, center-left */}
+        {/* Blob 4 — teal, right-bottom */}
         <div
-          className="absolute top-1/2 -left-20 h-[400px] w-[400px] rounded-full animate-aurora-2"
-          style={{ background: "radial-gradient(circle at 40% 50%, rgba(20,184,166,0.15), transparent 65%)", filter: "blur(80px)", animationDelay: "-18s" }}
+          className="absolute bottom-0 right-[10%] h-[380px] w-[380px] rounded-full animate-aurora-2"
+          style={{ background: "radial-gradient(circle at 50% 60%, rgba(20,184,166,0.09), transparent 65%)", filter: "blur(70px)", animationDelay: "-8s" }}
         />
 
-        {/* Film grain texture */}
+        {/* Film grain for richness */}
         <svg className="absolute inset-0 h-full w-full" xmlns="http://www.w3.org/2000/svg">
           <filter id="hero-grain">
-            <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" />
+            <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch" />
             <feColorMatrix type="saturate" values="0" />
           </filter>
-          <rect width="100%" height="100%" filter="url(#hero-grain)" opacity="0.028" />
+          <rect width="100%" height="100%" filter="url(#hero-grain)" opacity="0.022" />
         </svg>
 
-        {/* Dot grid overlay */}
-        <div className="absolute inset-0 bg-grid opacity-[0.055]" />
+        {/* Subtle dot grid */}
+        <div className="absolute inset-0 bg-grid opacity-[0.045]" />
 
-        {/* Top edge light seam */}
+        {/* Top edge seam */}
         <div
           className="absolute inset-x-0 top-0 h-px"
-          style={{ background: "linear-gradient(to right, transparent 5%, rgba(27,94,255,0.70) 35%, rgba(255,184,0,0.50) 65%, transparent 95%)" }}
-        />
-
-        {/* Inner vignette to keep edges dark and focused */}
-        <div
-          className="absolute inset-0"
-          style={{ background: "radial-gradient(ellipse 90% 90% at 50% 50%, transparent 50%, rgba(6,11,23,0.55) 100%)" }}
+          style={{ background: "linear-gradient(to right, transparent 5%, rgba(27,94,255,0.35) 35%, rgba(255,184,0,0.35) 65%, transparent 95%)" }}
         />
       </div>
 
-      {/* ── Hero content ── */}
+      {/* ── Content ── */}
       <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-16 lg:grid-cols-12 lg:gap-12 lg:px-6">
         <div className="lg:col-span-6 flex flex-col justify-center pt-6 lg:pt-10">
-          {/* Live badge */}
-          <div className="inline-flex items-center gap-2.5 w-fit rounded-full border border-white/12 bg-white/06 px-4 py-1.5 mb-7 backdrop-blur-sm">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2.5 w-fit rounded-full border border-[#1B5EFF]/15 bg-[#1B5EFF]/06 px-4 py-1.5 mb-7">
             <span className="relative flex h-1.5 w-1.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500 shadow-[0_0_6px_rgba(52,211,153,0.9)]" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
             </span>
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/50">B2B RevOps & GTM Engineering</span>
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#1B5EFF]/70">B2B RevOps & GTM Engineering</span>
           </div>
 
-          <h1 className="font-display text-[40px] font-extrabold leading-[1.02] tracking-tight text-white sm:text-[54px] lg:text-[70px] lg:leading-[1.0]">
+          <h1 className="font-display text-[40px] font-extrabold leading-[1.02] tracking-tight text-[#080D1C] sm:text-[54px] lg:text-[70px] lg:leading-[1.0]">
             Revenue systems
             <br />
             <span className="text-gradient-gold">built to scale.</span>
           </h1>
 
           <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-white/48 sm:text-[17px]">
+            <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-[#4C5670] sm:text-[17px]">
               Better data, cleaner workflows, and a revenue system your whole team can rely on.
             </p>
           </ScrollReveal>
@@ -226,7 +220,7 @@ function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-5">
               <Link
                 to="/book"
-                className="inline-flex items-center gap-2.5 rounded-full px-7 py-4 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_14px_36px_-8px_rgba(255,184,0,0.60)]"
+                className="inline-flex items-center gap-2.5 rounded-full px-7 py-4 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_14px_36px_-8px_rgba(255,184,0,0.55)]"
                 style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 60%, #E08A00 100%)" }}
               >
                 Book a strategy session
@@ -234,18 +228,18 @@ function Hero() {
                   <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>
-              <Link to="/services" className="text-[15px] font-medium text-white/38 hover:text-white/75 transition-colors">
+              <Link to="/services" className="text-[15px] font-medium text-[#080D1C]/45 hover:text-[#080D1C] transition-colors">
                 View services →
               </Link>
             </div>
           </ScrollReveal>
 
           <ScrollReveal variant="fadeUp" delay={0.35}>
-            <div className="mt-10 flex items-center gap-8 border-t border-white/07 pt-8">
+            <div className="mt-10 flex items-center gap-8 border-t border-black/07 pt-8">
               {[["50+", "Clients served"], ["$12M+", "Pipeline influenced"], ["4.9★", "Avg. rating"]].map(([v, l]) => (
                 <div key={l}>
-                  <div className="font-display text-[22px] font-bold text-white leading-none">{v}</div>
-                  <div className="mt-1 font-mono text-[9.5px] uppercase tracking-[0.18em] text-white/32">{l}</div>
+                  <div className="font-display text-[22px] font-bold text-[#080D1C] leading-none">{v}</div>
+                  <div className="mt-1 font-mono text-[9.5px] uppercase tracking-[0.18em] text-[#4C5670]/60">{l}</div>
                 </div>
               ))}
             </div>
@@ -260,12 +254,6 @@ function Hero() {
           </ScrollReveal>
         </div>
       </div>
-
-      {/* Bottom blend into TrustBar (navy) */}
-      <div
-        className="pointer-events-none absolute bottom-0 inset-x-0 h-20"
-        style={{ background: "linear-gradient(to bottom, transparent, #080D1C)" }}
-      />
     </section>
   );
 }
