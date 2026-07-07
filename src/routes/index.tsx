@@ -263,7 +263,10 @@ function TrustBar() {
           <div className="hidden shrink-0 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground sm:block">
             Stacks we engineer
           </div>
-          <div className="relative w-full overflow-hidden mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+          <div
+            className="relative w-full overflow-hidden"
+            style={{ WebkitMaskImage: "linear-gradient(to right, transparent, black 12%, black 88%, transparent)", maskImage: "linear-gradient(to right, transparent, black 12%, black 88%, transparent)" }}
+          >
             <div className="flex w-max gap-10 animate-ticker">
               {[...items, ...items].map((Logo, i) => (
                 <Logo key={i} />
@@ -619,25 +622,27 @@ function CaseStudiesPreview() {
             <ScrollReveal key={c.title} variant="fadeUp" delay={i * 0.08}>
               <Link
                 to="/case-studies"
-                className="group flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-8 rounded-2xl border border-border bg-white px-6 py-6 lg:px-8 lg:py-7 transition-all hover:shadow-lg hover:border-[#FFB800]/40 hover:-translate-y-0.5"
+                className="group flex flex-col gap-4 rounded-2xl border border-border bg-white px-5 py-5 sm:px-6 sm:py-6 lg:flex-row lg:items-center lg:gap-8 lg:px-8 lg:py-7 transition-all hover:shadow-lg hover:border-[#FFB800]/40 hover:-translate-y-0.5 overflow-hidden"
               >
-                {/* Big metric */}
-                <div className="shrink-0 lg:w-36 text-left">
-                  <div className="font-display text-5xl lg:text-6xl font-extrabold text-gradient-gold leading-none">
+                {/* Mobile: metric + tag on same row */}
+                <div className="flex items-center gap-4 lg:block lg:shrink-0 lg:w-36">
+                  <div className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gradient-gold leading-none shrink-0">
                     {c.metric}
                   </div>
+                  {/* Tag visible on mobile inline with metric */}
+                  <div className="lg:hidden font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">{c.tag}</div>
                 </div>
                 <div className="hidden lg:block self-stretch w-px bg-border" />
                 {/* Content */}
                 <div className="flex-1 min-w-0">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{c.tag}</div>
-                  <h3 className="mt-1.5 font-display text-lg font-bold tracking-tight text-[#080D1C] group-hover:text-[#1B5EFF] transition-colors leading-snug">
+                  <div className="hidden lg:block font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{c.tag}</div>
+                  <h3 className="lg:mt-1.5 font-display text-base sm:text-lg font-bold tracking-tight text-[#080D1C] group-hover:text-[#1B5EFF] transition-colors leading-snug">
                     {c.title}
                   </h3>
                   <p className="mt-1 text-sm text-muted-foreground">{c.label}</p>
                 </div>
-                {/* Stack badges */}
-                <div className="flex flex-wrap gap-1.5 lg:max-w-48 shrink-0">
+                {/* Stack badges — hidden on mobile */}
+                <div className="hidden lg:flex flex-wrap gap-1.5 max-w-48 shrink-0">
                   {c.stack.map((s) => (
                     <span key={s} className="rounded-full border border-border bg-[#F8FAFF] px-2.5 py-0.5 font-mono text-[10px] text-foreground/60">
                       {s}
