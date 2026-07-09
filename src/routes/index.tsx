@@ -14,21 +14,49 @@ const HERO_WORDS = ["scale.", "grow.", "convert.", "accelerate."];
 function CyclingWord() {
   const [idx, setIdx] = useState(0);
   useEffect(() => {
-    const t = setInterval(() => setIdx((i) => (i + 1) % HERO_WORDS.length), 2400);
+    const t = setInterval(() => setIdx((i) => (i + 1) % HERO_WORDS.length), 3200);
     return () => clearInterval(t);
   }, []);
+
+  const word = HERO_WORDS[idx];
+  const letters = word.split("");
+
   return (
-    <span className="relative inline-flex overflow-hidden" style={{ verticalAlign: "bottom", minWidth: "5ch" }}>
+    <span
+      className="relative inline-flex overflow-hidden"
+      style={{ verticalAlign: "bottom" }}
+    >
       <AnimatePresence mode="wait">
-        <motion.span
-          key={idx}
-          initial={{ y: "105%", opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: "-105%", opacity: 0 }}
-          transition={{ duration: 0.42, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="inline-block text-gradient-gold whitespace-nowrap"
-        >
-          {HERO_WORDS[idx]}
+        <motion.span key={idx} className="inline-flex" aria-label={word}>
+          {letters.map((char, i) => (
+            <motion.span
+              key={i}
+              className="inline-block text-gradient-gold"
+              initial={{ y: "120%", opacity: 0, filter: "blur(10px)" }}
+              animate={{
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+                transition: {
+                  duration: 0.48,
+                  ease: [0.22, 1, 0.36, 1],
+                  delay: i * 0.03,
+                },
+              }}
+              exit={{
+                y: "-120%",
+                opacity: 0,
+                filter: "blur(8px)",
+                transition: {
+                  duration: 0.28,
+                  ease: [0.55, 0, 1, 0.45],
+                  delay: i * 0.02,
+                },
+              }}
+            >
+              {char}
+            </motion.span>
+          ))}
         </motion.span>
       </AnimatePresence>
     </span>
