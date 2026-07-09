@@ -100,19 +100,95 @@ function HomePage() {
 }
 
 /* ─────────────── HERO DASHBOARD ─────────────── */
+const DASH_PHRASES = [
+  "Pipeline trending upward.",
+  "3 new SQLs captured today.",
+  "Sync latency: 4.2s avg.",
+  "Outbound running on autopilot.",
+];
+
+const ALL_FEED = [
+  { dot: "#14B8A6", text: "New SQL: Fintech Series B", time: "just now" },
+  { dot: "#1B5EFF", text: "Deal moved to Proposal", time: "2m ago" },
+  { dot: "#FFB800", text: "AE assigned via routing", time: "6m ago" },
+  { dot: "#8B5CF6", text: "Sequence enrolled: 42 contacts", time: "11m ago" },
+  { dot: "#14B8A6", text: "Lead scored: Priority 1", time: "15m ago" },
+  { dot: "#1B5EFF", text: "HubSpot sync completed", time: "22m ago" },
+  { dot: "#FFB800", text: "Clay waterfall: 18 enriched", time: "28m ago" },
+];
+
+function useCountUp(target: number, duration: number, start: boolean) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (!start) return;
+    let startTime: number | null = null;
+    let rafId: number;
+    const step = (ts: number) => {
+      if (startTime === null) startTime = ts;
+      const p = Math.min((ts - startTime) / duration, 1);
+      setValue(Math.round((1 - Math.pow(1 - p, 3)) * target));
+      if (p < 1) rafId = requestAnimationFrame(step);
+    };
+    rafId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(rafId);
+  }, [target, duration, start]);
+  return value;
+}
+
+function DashPhrase() {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setIdx((i) => (i + 1) % DASH_PHRASES.length), 3500);
+    return () => clearInterval(t);
+  }, []);
+  const phrase = DASH_PHRASES[idx];
+  return (
+    <div className="border-b border-white/06 px-5 py-2 overflow-hidden" style={{ minHeight: "1.75rem" }}>
+      <AnimatePresence mode="wait">
+        <motion.div key={idx} className="flex items-center gap-1">
+          <span className="font-mono text-[9px] text-emerald-400/40 shrink-0 mr-1">›</span>
+          {phrase.split("").map((char, i) => (
+            <motion.span
+              key={i}
+              className="inline-block font-mono text-[10px] text-emerald-400/65"
+              initial={{ y: "130%", opacity: 0, filter: "blur(6px)" }}
+              animate={{ y: 0, opacity: 1, filter: "blur(0px)", transition: { duration: 0.36, ease: [0.22, 1, 0.36, 1], delay: i * 0.018 } }}
+              exit={{ y: "-130%", opacity: 0, filter: "blur(5px)", transition: { duration: 0.22, ease: [0.55, 0, 1, 0.45], delay: i * 0.009 } }}
+            >
+              {char === " " ? " " : char}
+            </motion.span>
+          ))}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
 function HeroDashboard() {
   const bars = [32, 45, 38, 55, 48, 62, 58, 71, 65, 78, 72, 85, 80, 88, 94, 91];
+  const [mounted, setMounted] = useState(false);
+  const [feedIdx, setFeedIdx] = useState(0);
+
+  useEffect(() => {
+    setMounted(true);
+    const t = setInterval(() => setFeedIdx((i) => (i + 1) % (ALL_FEED.length - 2)), 3800);
+    return () => clearInterval(t);
+  }, []);
+
+  const rawPipeline = useCountUp(42, 1400, mounted);
+  const deals = useCountUp(147, 1200, mounted);
+  const mqlSql = useCountUp(34, 1000, mounted);
+  const won = useCountUp(680, 1300, mounted);
+
   const metrics = [
-    { l: "Pipeline", v: "$4.2M", d: "+18%", c: "#1B5EFF", spark: [30, 45, 38, 55, 62, 70, 68, 80] },
-    { l: "Active Deals", v: "147", d: "+23%", c: "#14B8A6", spark: [40, 52, 48, 60, 65, 72, 70, 85] },
-    { l: "MQL to SQL", v: "34%", d: "+6pp", c: "#8B5CF6", spark: [20, 28, 25, 32, 30, 38, 35, 44] },
-    { l: "Won QTD", v: "$680K", d: "+41%", c: "#FFB800", spark: [15, 28, 35, 42, 50, 58, 68, 80] },
+    { l: "Pipeline", v: `$${(rawPipeline / 10).toFixed(1)}M`, d: "+18%", c: "#1B5EFF", spark: [30, 45, 38, 55, 62, 70, 68, 80] },
+    { l: "Active Deals", v: String(deals), d: "+23%", c: "#14B8A6", spark: [40, 52, 48, 60, 65, 72, 70, 85] },
+    { l: "MQL to SQL", v: `${mqlSql}%`, d: "+6pp", c: "#8B5CF6", spark: [20, 28, 25, 32, 30, 38, 35, 44] },
+    { l: "Won QTD", v: `$${won}K`, d: "+41%", c: "#FFB800", spark: [15, 28, 35, 42, 50, 58, 68, 80] },
   ];
-  const feed = [
-    { dot: "#14B8A6", text: "New SQL: Fintech Series B", time: "2m ago" },
-    { dot: "#1B5EFF", text: "Deal moved to Proposal", time: "11m ago" },
-    { dot: "#FFB800", text: "AE assigned via routing", time: "28m ago" },
-  ];
+
+  const visibleFeed = ALL_FEED.slice(feedIdx, feedIdx + 3);
+
   return (
     <div className="rounded-2xl border border-white/10 bg-[#0B1120] shadow-[0_32px_80px_-16px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.06)]">
       {/* Header bar */}
@@ -134,30 +210,34 @@ function HeroDashboard() {
         </div>
       </div>
 
+      {/* Cycling status phrase — per-letter stagger */}
+      <DashPhrase />
+
       <div className="p-5 lg:p-6">
-        {/* Metric cards */}
+        {/* Metric cards with count-up */}
         <div className="grid grid-cols-2 gap-2 mb-4">
-          {metrics.map((m) => (
-            <div key={m.l} className="rounded-xl border border-white/07 bg-white/03 p-3 relative overflow-hidden">
+          {metrics.map((m, mi) => (
+            <motion.div
+              key={m.l}
+              className="rounded-xl border border-white/07 bg-white/03 p-3 relative overflow-hidden"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: mi * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            >
               <div className="font-mono text-[9px] uppercase tracking-[0.15em] text-white/35">{m.l}</div>
-              <div className="mt-1.5 font-display text-[22px] font-bold leading-none text-white">{m.v}</div>
+              <div className="mt-1.5 font-display text-[22px] font-bold leading-none text-white tabular-nums">{m.v}</div>
               <div className="mt-1 font-mono text-[10px]" style={{ color: m.c }}>{m.d} vs prev qtr</div>
-              {/* Sparkline */}
-              <svg viewBox={`0 0 80 28`} className="absolute bottom-2 right-2 h-7 w-16 opacity-40">
+              <svg viewBox="0 0 80 28" className="absolute bottom-2 right-2 h-7 w-16 opacity-40">
                 <polyline
                   points={m.spark.map((v, i) => `${i * (80 / 7)},${28 - (v / 100) * 24}`).join(" ")}
-                  fill="none"
-                  stroke={m.c}
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  fill="none" stroke={m.c} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
                 />
               </svg>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* Bar chart */}
+        {/* Bar chart — bars animate up on mount */}
         <div className="rounded-xl border border-white/06 bg-white/02 p-3 mb-3">
           <div className="flex items-center justify-between mb-2.5">
             <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/25">Pipeline 16-week view</div>
@@ -165,10 +245,17 @@ function HeroDashboard() {
           </div>
           <div className="flex items-end gap-[3px] h-14">
             {bars.map((h, i) => (
-              <div key={i} className="flex-1 flex flex-col gap-[2px] items-stretch">
-                <div
+              <div key={i} className="flex-1 flex flex-col items-stretch">
+                <motion.div
                   className="w-full rounded-[2px]"
-                  style={{ height: `${h}%`, background: i >= 12 ? "linear-gradient(to top, #1B5EFF, #818CF8)" : "linear-gradient(to top, rgba(27,94,255,0.40), rgba(79,70,229,0.25))" }}
+                  initial={{ height: 0 }}
+                  animate={mounted ? { height: `${h}%` } : { height: 0 }}
+                  transition={{ duration: 0.9, delay: 0.1 + i * 0.035, ease: [0.22, 1, 0.36, 1] }}
+                  style={{
+                    background: i >= 12
+                      ? "linear-gradient(to top, #1B5EFF, #818CF8)"
+                      : "linear-gradient(to top, rgba(27,94,255,0.40), rgba(79,70,229,0.25))",
+                  }}
                 />
               </div>
             ))}
@@ -178,15 +265,24 @@ function HeroDashboard() {
           </div>
         </div>
 
-        {/* Activity feed */}
-        <div className="rounded-xl border border-white/06 bg-white/02 px-3 py-2.5 space-y-2">
-          {feed.map((f) => (
-            <div key={f.text} className="flex items-center gap-2.5">
-              <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: f.dot }} />
-              <span className="flex-1 font-mono text-[10px] text-white/50 truncate">{f.text}</span>
-              <span className="font-mono text-[9px] text-white/20 shrink-0">{f.time}</span>
-            </div>
-          ))}
+        {/* Activity feed — new events slide in */}
+        <div className="rounded-xl border border-white/06 bg-white/02 px-3 py-1.5 overflow-hidden" style={{ minHeight: "5.5rem" }}>
+          <AnimatePresence mode="popLayout">
+            {visibleFeed.map((f) => (
+              <motion.div
+                key={f.text}
+                className="flex items-center gap-2.5 py-1.5"
+                initial={{ x: 36, opacity: 0, filter: "blur(5px)" }}
+                animate={{ x: 0, opacity: 1, filter: "blur(0px)" }}
+                exit={{ x: -36, opacity: 0, filter: "blur(5px)" }}
+                transition={{ duration: 0.38, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: f.dot }} />
+                <span className="flex-1 font-mono text-[10px] text-white/50 truncate">{f.text}</span>
+                <span className="font-mono text-[9px] text-white/20 shrink-0">{f.time}</span>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
 
         <div className="mt-3 flex items-center justify-between">
@@ -195,7 +291,7 @@ function HeroDashboard() {
               <span key={t} className="rounded px-1.5 py-0.5 font-mono text-[8.5px] text-white/35 border border-white/07">{t}</span>
             ))}
           </div>
-          <span className="font-mono text-[8.5px] text-white/20">synced 2s ago</span>
+          <span className="font-mono text-[8.5px] text-white/20">synced live</span>
         </div>
       </div>
     </div>
