@@ -1,11 +1,39 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeader } from "@/components/site/Eyebrow";
 import { ScrollReveal } from "@/components/site/ScrollReveal";
 import { AgentAvatar } from "@/components/site/AgentAvatar";
 import * as L from "@/components/site/Logos";
+
+/* ─────────────── CYCLING WORD ─────────────── */
+const HERO_WORDS = ["scale.", "grow.", "convert.", "accelerate."];
+
+function CyclingWord() {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setIdx((i) => (i + 1) % HERO_WORDS.length), 2400);
+    return () => clearInterval(t);
+  }, []);
+  return (
+    <span className="relative inline-flex overflow-hidden" style={{ verticalAlign: "bottom", minWidth: "5ch" }}>
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={idx}
+          initial={{ y: "105%", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: "-105%", opacity: 0 }}
+          transition={{ duration: 0.42, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="inline-block text-gradient-gold whitespace-nowrap"
+        >
+          {HERO_WORDS[idx]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -205,10 +233,10 @@ function Hero() {
             <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#1B5EFF]/70">B2B RevOps & GTM Engineering</span>
           </div>
 
-          <h1 className="font-display text-[40px] font-extrabold leading-[1.02] tracking-tight text-[#080D1C] sm:text-[54px] lg:text-[70px] lg:leading-[1.0]">
+          <h1 className="font-display text-[40px] font-extrabold leading-[1.1] tracking-tight text-[#080D1C] sm:text-[54px] lg:text-[70px] lg:leading-[1.08]">
             Revenue systems
             <br />
-            <span className="text-gradient-gold">built to scale.</span>
+            built to <CyclingWord />
           </h1>
 
           <ScrollReveal variant="fadeUp" delay={0.15}>
@@ -232,6 +260,26 @@ function Hero() {
               <Link to="/services" className="text-[15px] font-medium text-[#080D1C]/45 hover:text-[#080D1C] transition-colors">
                 View services →
               </Link>
+            </div>
+          </ScrollReveal>
+
+          {/* Trust badges — make.com style */}
+          <ScrollReveal variant="fadeUp" delay={0.35}>
+            <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-black/06 pt-7">
+              {[
+                { icon: "★", score: "4.9/5", label: "Client Rating" },
+                { icon: "✓", score: "Top Rated", label: "Upwork" },
+                { icon: "⚡", score: "< 24 hrs", label: "Response Time" },
+                { icon: "🔒", score: "NDA", label: "On Request" },
+              ].map(({ icon, score, label }) => (
+                <div key={label} className="flex items-center gap-2">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#F4F7FF] text-sm border border-[#E8EEFF]">{icon}</span>
+                  <div>
+                    <div className="text-[12px] font-bold text-[#080D1C] leading-tight">{score}</div>
+                    <div className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#4C5670]/55">{label}</div>
+                  </div>
+                </div>
+              ))}
             </div>
           </ScrollReveal>
 
