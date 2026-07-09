@@ -103,12 +103,11 @@ function HomePage() {
 /* ─────────────── HERO FLOATING CARDS ─────────────── */
 const CARD_SHELL = "rounded-2xl border border-white/12 bg-[#0B1120]/88 backdrop-blur-md shadow-[0_20px_44px_-10px_rgba(0,0,0,0.42),inset_0_1px_0_rgba(255,255,255,0.06)]";
 
-function HeroCard({ children, className, delay = 0, period = 4, lift = 7 }: {
-  children: ReactNode; className: string; delay?: number; period?: number; lift?: number;
+function FloatWrap({ children, delay = 0, period = 4, lift = 7 }: {
+  children: ReactNode; delay?: number; period?: number; lift?: number;
 }) {
   return (
     <motion.div
-      className={`absolute pointer-events-none z-10 hidden xl:block ${className}`}
       initial={{ opacity: 0, y: 18, scale: 0.91 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.85, delay, ease: [0.22, 1, 0.36, 1] }}
@@ -127,7 +126,7 @@ function HeroCard({ children, className, delay = 0, period = 4, lift = 7 }: {
 function CardPipeline() {
   const bars = [28, 42, 35, 52, 46, 60, 55, 68, 62, 80];
   return (
-    <div className={`${CARD_SHELL} p-4 w-[188px]`}>
+    <div className={`${CARD_SHELL} p-4 w-full`}>
       <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/30">Pipeline</div>
       <div className="mt-1.5 font-display text-[28px] font-bold text-white leading-none">$4.2M</div>
       <div className="font-mono text-[10px] text-[#1B5EFF] mt-1">+18% vs prev qtr</div>
@@ -164,7 +163,7 @@ function CardActivity() {
   }, []);
   const act = ACTIVITIES[i];
   return (
-    <div className={`${CARD_SHELL} p-4 w-[212px]`}>
+    <div className={`${CARD_SHELL} p-4 w-full`}>
       <div className="flex items-center gap-1.5 mb-3">
         <span className="relative flex h-1.5 w-1.5">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-55" style={{ backgroundColor: act.dot }} />
@@ -196,7 +195,7 @@ function CardActivity() {
 /* Routing speed card with animated progress */
 function CardRouting() {
   return (
-    <div className={`${CARD_SHELL} p-4 w-[174px]`}>
+    <div className={`${CARD_SHELL} p-4 w-full`}>
       <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/30">Response time</div>
       <div className="mt-1.5 font-display text-[28px] font-bold text-white leading-none">&lt;90s</div>
       <div className="font-mono text-[10px] text-[#8B5CF6] mt-1">Hot lead routing</div>
@@ -228,7 +227,7 @@ function CardRouting() {
 /* Won QTD card with sparkline */
 function CardWon() {
   return (
-    <div className={`${CARD_SHELL} p-4 w-[174px]`}>
+    <div className={`${CARD_SHELL} p-4 w-full`}>
       <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/30">Won QTD</div>
       <div className="mt-1.5 font-display text-[28px] font-bold leading-none text-gradient-gold">$680K</div>
       <div className="font-mono text-[10px] text-[#FFB800] mt-1">+41% vs prev qtr</div>
@@ -299,7 +298,7 @@ function ToolFlow() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden pt-20 md:pt-24 min-h-[88vh] flex flex-col" style={{ background: "#FAFBFF" }}>
+    <section className="relative pt-20 md:pt-24" style={{ background: "#FAFBFF" }}>
       {/* ── Background ── */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-52 right-[-120px] h-[750px] w-[750px] rounded-full animate-aurora-2"
@@ -322,86 +321,97 @@ function Hero() {
           style={{ background: "linear-gradient(to right, transparent 5%, rgba(27,94,255,0.35) 35%, rgba(255,184,0,0.35) 65%, transparent 95%)" }} />
       </div>
 
-      {/* ── Floating cards (xl only) ── */}
-      <HeroCard className="top-36 left-[3%]" delay={0.7} period={4.2} lift={8}>
-        <CardPipeline />
-      </HeroCard>
-      <HeroCard className="top-32 right-[3%]" delay={0.85} period={4.8} lift={6}>
-        <CardActivity />
-      </HeroCard>
-      <HeroCard className="bottom-28 left-[3%]" delay={1.0} period={5.2} lift={7}>
-        <CardRouting />
-      </HeroCard>
-      <HeroCard className="bottom-28 right-[3%]" delay={0.95} period={3.9} lift={9}>
-        <CardWon />
-      </HeroCard>
+      {/* ── 3-column grid ── */}
+      <div className="relative mx-auto max-w-[1440px] px-4 lg:px-6 py-14 lg:py-20">
+        <div className="grid xl:grid-cols-[216px_1fr_216px] xl:gap-8 items-start">
 
-      {/* ── Center content ── */}
-      <div className="relative flex-1 mx-auto max-w-7xl px-4 pb-20 lg:pb-28 lg:px-6 flex items-center">
-        <div className="mx-auto max-w-3xl flex flex-col items-center text-center pt-6 lg:pt-10 w-full">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2.5 rounded-full border border-[#1B5EFF]/15 bg-[#1B5EFF]/06 px-4 py-1.5 mb-8">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
-            </span>
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#1B5EFF]/70">B2B RevOps & GTM Engineering</span>
+          {/* LEFT: Pipeline + Routing */}
+          <div className="hidden xl:flex flex-col gap-5 pt-8">
+            <FloatWrap delay={0.7} period={4.2} lift={8}>
+              <CardPipeline />
+            </FloatWrap>
+            <FloatWrap delay={1.0} period={5.2} lift={7}>
+              <CardRouting />
+            </FloatWrap>
           </div>
 
-          <h1 className="font-display text-[46px] font-extrabold leading-[1.07] tracking-tight text-[#080D1C] sm:text-[62px] lg:text-[82px] lg:leading-[1.04]">
-            Revenue systems
-            <br />
-            built to <CyclingWord />
-          </h1>
-
-          <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-[#4C5670] sm:text-[18px]">
-              Better data, cleaner workflows, and a revenue system your whole team can rely on.
-            </p>
-          </ScrollReveal>
-
-          <ScrollReveal variant="fadeUp" delay={0.25}>
-            <div className="mt-9 flex flex-wrap items-center justify-center gap-5">
-              <Link
-                to="/book"
-                className="inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_14px_36px_-8px_rgba(255,184,0,0.55)]"
-                style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 60%, #E08A00 100%)" }}
-              >
-                Book a strategy session
-                <svg viewBox="0 0 16 16" className="h-4 w-4 animate-bounce-x" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
-              <Link to="/services" className="text-[15px] font-medium text-[#080D1C]/45 hover:text-[#080D1C] transition-colors">
-                View services →
-              </Link>
+          {/* CENTER: headline + CTAs + trust + tool flow */}
+          <div className="flex flex-col items-center text-center pt-4 lg:pt-8 pb-16 lg:pb-24">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-[#1B5EFF]/15 bg-[#1B5EFF]/06 px-4 py-1.5 mb-8">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
+              </span>
+              <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#1B5EFF]/70">B2B RevOps & GTM Engineering</span>
             </div>
-          </ScrollReveal>
 
-          {/* Trust badges */}
-          <ScrollReveal variant="fadeUp" delay={0.35}>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 border-t border-black/06 pt-8">
-              {[
-                { icon: "★", score: "4.9/5", label: "Client Rating" },
-                { icon: "✓", score: "Top Rated", label: "Upwork" },
-                { icon: "⚡", score: "< 24 hrs", label: "Response Time" },
-                { icon: "🔒", score: "NDA", label: "On Request" },
-              ].map(({ icon, score, label }) => (
-                <div key={label} className="flex items-center gap-2">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#F4F7FF] text-sm border border-[#E8EEFF]">{icon}</span>
-                  <div>
-                    <div className="text-[12px] font-bold text-[#080D1C] leading-tight">{score}</div>
-                    <div className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#4C5670]/55">{label}</div>
+            <h1 className="font-display text-[46px] font-extrabold leading-[1.07] tracking-tight text-[#080D1C] sm:text-[62px] lg:text-[78px] xl:text-[68px] lg:leading-[1.04]">
+              Revenue systems
+              <br />
+              built to <CyclingWord />
+            </h1>
+
+            <ScrollReveal variant="fadeUp" delay={0.15}>
+              <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-[#4C5670] sm:text-[18px]">
+                Better data, cleaner workflows, and a revenue system your whole team can rely on.
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal variant="fadeUp" delay={0.25}>
+              <div className="mt-9 flex flex-wrap items-center justify-center gap-5">
+                <Link
+                  to="/book"
+                  className="inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_14px_36px_-8px_rgba(255,184,0,0.55)]"
+                  style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 60%, #E08A00 100%)" }}
+                >
+                  Book a strategy session
+                  <svg viewBox="0 0 16 16" className="h-4 w-4 animate-bounce-x" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+                <Link to="/services" className="text-[15px] font-medium text-[#080D1C]/45 hover:text-[#080D1C] transition-colors">
+                  View services →
+                </Link>
+              </div>
+            </ScrollReveal>
+
+            {/* Trust badges */}
+            <ScrollReveal variant="fadeUp" delay={0.35}>
+              <div className="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 border-t border-black/06 pt-8">
+                {[
+                  { icon: "★", score: "4.9/5", label: "Client Rating" },
+                  { icon: "✓", score: "Top Rated", label: "Upwork" },
+                  { icon: "⚡", score: "< 24 hrs", label: "Response Time" },
+                  { icon: "🔒", score: "NDA", label: "On Request" },
+                ].map(({ icon, score, label }) => (
+                  <div key={label} className="flex items-center gap-2">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#F4F7FF] text-sm border border-[#E8EEFF]">{icon}</span>
+                    <div>
+                      <div className="text-[12px] font-bold text-[#080D1C] leading-tight">{score}</div>
+                      <div className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#4C5670]/55">{label}</div>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
+                ))}
+              </div>
+            </ScrollReveal>
 
-          {/* Tool automation flow */}
-          <ScrollReveal variant="fadeUp" delay={0.5}>
-            <ToolFlow />
-          </ScrollReveal>
+            {/* Tool automation flow */}
+            <ScrollReveal variant="fadeUp" delay={0.5}>
+              <ToolFlow />
+            </ScrollReveal>
+          </div>
+
+          {/* RIGHT: Activity + Won */}
+          <div className="hidden xl:flex flex-col gap-5 pt-8">
+            <FloatWrap delay={0.85} period={4.8} lift={6}>
+              <CardActivity />
+            </FloatWrap>
+            <FloatWrap delay={0.95} period={3.9} lift={9}>
+              <CardWon />
+            </FloatWrap>
+          </div>
+
         </div>
       </div>
     </section>
