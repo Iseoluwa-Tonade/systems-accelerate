@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeader } from "@/components/site/Eyebrow";
@@ -100,35 +100,216 @@ function HomePage() {
 }
 
 
+/* ─────────────── HERO FLOATING CARDS ─────────────── */
+const CARD_SHELL = "rounded-2xl border border-white/12 bg-[#0B1120]/88 backdrop-blur-md shadow-[0_20px_44px_-10px_rgba(0,0,0,0.42),inset_0_1px_0_rgba(255,255,255,0.06)]";
+
+function HeroCard({ children, className, delay = 0, period = 4, lift = 7 }: {
+  children: ReactNode; className: string; delay?: number; period?: number; lift?: number;
+}) {
+  return (
+    <motion.div
+      className={`absolute pointer-events-none z-10 hidden xl:block ${className}`}
+      initial={{ opacity: 0, y: 18, scale: 0.91 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.85, delay, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <motion.div
+        animate={{ y: [0, -lift, 0] }}
+        transition={{ duration: period, repeat: Infinity, ease: "easeInOut" }}
+      >
+        {children}
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/* Pipeline metric card with animated bars */
+function CardPipeline() {
+  const bars = [28, 42, 35, 52, 46, 60, 55, 68, 62, 80];
+  return (
+    <div className={`${CARD_SHELL} p-4 w-[188px]`}>
+      <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/30">Pipeline</div>
+      <div className="mt-1.5 font-display text-[28px] font-bold text-white leading-none">$4.2M</div>
+      <div className="font-mono text-[10px] text-[#1B5EFF] mt-1">+18% vs prev qtr</div>
+      <div className="mt-3 flex items-end gap-[2.5px] h-9">
+        {bars.map((h, i) => (
+          <motion.div
+            key={i}
+            className="flex-1 rounded-[2px]"
+            initial={{ height: 0 }}
+            animate={{ height: `${h}%` }}
+            transition={{ duration: 0.65, delay: 0.6 + i * 0.045, ease: [0.22, 1, 0.36, 1] }}
+            style={{ background: i >= 8 ? "#1B5EFF" : "rgba(27,94,255,0.22)" }}
+          />
+        ))}
+      </div>
+      <div className="mt-2 font-mono text-[8px] uppercase tracking-[0.14em] text-white/15">16-week trend</div>
+    </div>
+  );
+}
+
+/* Live activity feed card */
+const ACTIVITIES = [
+  { dot: "#14B8A6", title: "New SQL: Fintech Series B", sub: "Routed to AE · just now" },
+  { dot: "#1B5EFF", title: "Deal moved to Proposal", sub: "Stage updated · 2m ago" },
+  { dot: "#FFB800", title: "Clay enriched 42 leads", sub: "Waterfall complete · 5m ago" },
+  { dot: "#8B5CF6", title: "Sequence enrolled: 38 contacts", sub: "Apollo step 1 · 9m ago" },
+];
+
+function CardActivity() {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setI((n) => (n + 1) % ACTIVITIES.length), 3000);
+    return () => clearInterval(t);
+  }, []);
+  const act = ACTIVITIES[i];
+  return (
+    <div className={`${CARD_SHELL} p-4 w-[212px]`}>
+      <div className="flex items-center gap-1.5 mb-3">
+        <span className="relative flex h-1.5 w-1.5">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-55" style={{ backgroundColor: act.dot }} />
+          <span className="relative inline-flex rounded-full h-1.5 w-1.5" style={{ backgroundColor: act.dot }} />
+        </span>
+        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/28">Live feed</span>
+      </div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 7, filter: "blur(4px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          exit={{ opacity: 0, y: -7, filter: "blur(4px)" }}
+          transition={{ duration: 0.32 }}
+        >
+          <div className="font-display text-[13px] font-semibold text-white leading-snug">{act.title}</div>
+          <div className="font-mono text-[9.5px] text-white/32 mt-1">{act.sub}</div>
+        </motion.div>
+      </AnimatePresence>
+      <div className="mt-3 flex gap-1 flex-wrap">
+        {["HubSpot", "Clay", "n8n"].map((t) => (
+          <span key={t} className="rounded-full bg-white/04 border border-white/09 px-1.5 py-0.5 font-mono text-[8px] text-white/30">{t}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* Routing speed card with animated progress */
+function CardRouting() {
+  return (
+    <div className={`${CARD_SHELL} p-4 w-[174px]`}>
+      <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/30">Response time</div>
+      <div className="mt-1.5 font-display text-[28px] font-bold text-white leading-none">&lt;90s</div>
+      <div className="font-mono text-[10px] text-[#8B5CF6] mt-1">Hot lead routing</div>
+      <div className="mt-3.5">
+        <div className="flex justify-between font-mono text-[8px] text-white/22 mb-1.5">
+          <span>SLA compliance</span><span>92%</span>
+        </div>
+        <div className="h-[3px] rounded-full bg-white/08 overflow-hidden">
+          <motion.div
+            className="h-full rounded-full"
+            initial={{ width: 0 }}
+            animate={{ width: "92%" }}
+            transition={{ duration: 1.2, delay: 1.0, ease: [0.22, 1, 0.36, 1] }}
+            style={{ background: "linear-gradient(to right, #8B5CF6, #A78BFA)" }}
+          />
+        </div>
+      </div>
+      <div className="mt-3 flex items-center gap-1.5">
+        <span className="relative flex h-1.5 w-1.5">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-50" />
+          <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
+        </span>
+        <span className="font-mono text-[8.5px] text-emerald-400/55">All systems nominal</span>
+      </div>
+    </div>
+  );
+}
+
+/* Won QTD card with sparkline */
+function CardWon() {
+  return (
+    <div className={`${CARD_SHELL} p-4 w-[174px]`}>
+      <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/30">Won QTD</div>
+      <div className="mt-1.5 font-display text-[28px] font-bold leading-none text-gradient-gold">$680K</div>
+      <div className="font-mono text-[10px] text-[#FFB800] mt-1">+41% vs prev qtr</div>
+      <svg viewBox="0 0 80 26" className="mt-3 w-full h-5">
+        <motion.polyline
+          points="0,24 11,20 22,22 33,14 44,11 55,7 66,4 80,1"
+          fill="none" stroke="#FFB800" strokeWidth="1.5"
+          strokeLinecap="round" strokeLinejoin="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 0.65 }}
+          transition={{ duration: 1.4, delay: 0.8, ease: "easeOut" }}
+        />
+      </svg>
+      <div className="mt-1.5 font-mono text-[8px] uppercase tracking-[0.14em] text-white/15">8-week sparkline</div>
+    </div>
+  );
+}
+
+/* ─────────────── TOOL FLOW ANIMATION ─────────────── */
+const TOOLS = [
+  { name: "HubSpot", abbr: "HS", color: "#FF7A59" },
+  { name: "Clay", abbr: "CL", color: "#1B5EFF" },
+  { name: "Apollo", abbr: "AP", color: "#8B5CF6" },
+  { name: "n8n", abbr: "n8", color: "#EA4B71" },
+  { name: "Slack", abbr: "SK", color: "#611f69" },
+];
+
+function FlowConnector({ color, delay }: { color: string; delay: number }) {
+  return (
+    <div className="relative flex-1 h-px mx-1" style={{ background: `${color}20` }}>
+      <motion.div
+        className="absolute top-1/2 -translate-y-1/2 h-[5px] w-[5px] rounded-full"
+        style={{ backgroundColor: color, boxShadow: `0 0 6px ${color}` }}
+        animate={{ left: ["-5px", "calc(100% + 5px)"] }}
+        transition={{ duration: 1.4, repeat: Infinity, ease: "linear", delay, repeatDelay: 0.5 }}
+      />
+    </div>
+  );
+}
+
+function ToolFlow() {
+  return (
+    <div className="mt-14 flex items-center justify-center w-full max-w-sm mx-auto">
+      {TOOLS.map((t, i) => (
+        <div key={t.name} className="flex items-center flex-1 last:flex-none">
+          <div className="flex flex-col items-center gap-1.5 shrink-0">
+            <motion.div
+              className="h-10 w-10 rounded-xl flex items-center justify-center border font-display text-[11px] font-extrabold"
+              style={{ borderColor: `${t.color}30`, background: `${t.color}0E`, color: t.color }}
+              initial={{ opacity: 0, scale: 0.7 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {t.abbr}
+            </motion.div>
+            <span className="font-mono text-[8px] uppercase tracking-[0.14em] text-[#4C5670]/40">{t.name}</span>
+          </div>
+          {i < TOOLS.length - 1 && (
+            <FlowConnector color={TOOLS[i + 1].color} delay={0.8 + i * 0.3} />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 /* ─────────────── HERO ─────────────── */
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden pt-20 md:pt-24" style={{ background: "#FAFBFF" }}>
-      {/* ── Beautiful light aurora background ── */}
+    <section className="relative overflow-hidden pt-20 md:pt-24 min-h-[88vh] flex flex-col" style={{ background: "#FAFBFF" }}>
+      {/* ── Background ── */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        {/* Blob 1 — soft blue, top-right */}
-        <div
-          className="absolute -top-52 right-[-120px] h-[750px] w-[750px] rounded-full animate-aurora-2"
-          style={{ background: "radial-gradient(circle at 55% 40%, rgba(27,94,255,0.11), rgba(99,102,241,0.06) 50%, transparent 70%)", filter: "blur(90px)" }}
-        />
-        {/* Blob 2 — warm gold, bottom-left */}
-        <div
-          className="absolute bottom-[-100px] -left-32 h-[600px] w-[600px] rounded-full animate-aurora-1"
-          style={{ background: "radial-gradient(circle at 40% 60%, rgba(255,184,0,0.14), rgba(255,220,80,0.07) 50%, transparent 70%)", filter: "blur(80px)" }}
-        />
-        {/* Blob 3 — lavender, center */}
-        <div
-          className="absolute top-[10%] left-[35%] h-[500px] w-[500px] rounded-full animate-aurora-1"
-          style={{ background: "radial-gradient(circle at 50% 50%, rgba(124,58,237,0.07), transparent 65%)", filter: "blur(100px)", animationDelay: "-12s" }}
-        />
-        {/* Blob 4 — teal, right-bottom */}
-        <div
-          className="absolute bottom-0 right-[10%] h-[380px] w-[380px] rounded-full animate-aurora-2"
-          style={{ background: "radial-gradient(circle at 50% 60%, rgba(20,184,166,0.09), transparent 65%)", filter: "blur(70px)", animationDelay: "-8s" }}
-        />
-
-        {/* Film grain for richness */}
+        <div className="absolute -top-52 right-[-120px] h-[750px] w-[750px] rounded-full animate-aurora-2"
+          style={{ background: "radial-gradient(circle at 55% 40%, rgba(27,94,255,0.11), rgba(99,102,241,0.06) 50%, transparent 70%)", filter: "blur(90px)" }} />
+        <div className="absolute bottom-[-100px] -left-32 h-[600px] w-[600px] rounded-full animate-aurora-1"
+          style={{ background: "radial-gradient(circle at 40% 60%, rgba(255,184,0,0.14), rgba(255,220,80,0.07) 50%, transparent 70%)", filter: "blur(80px)" }} />
+        <div className="absolute top-[10%] left-[35%] h-[500px] w-[500px] rounded-full animate-aurora-1"
+          style={{ background: "radial-gradient(circle at 50% 50%, rgba(124,58,237,0.07), transparent 65%)", filter: "blur(100px)", animationDelay: "-12s" }} />
+        <div className="absolute bottom-0 right-[10%] h-[380px] w-[380px] rounded-full animate-aurora-2"
+          style={{ background: "radial-gradient(circle at 50% 60%, rgba(20,184,166,0.09), transparent 65%)", filter: "blur(70px)", animationDelay: "-8s" }} />
         <svg className="absolute inset-0 h-full w-full" xmlns="http://www.w3.org/2000/svg">
           <filter id="hero-grain">
             <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch" />
@@ -136,20 +317,28 @@ function Hero() {
           </filter>
           <rect width="100%" height="100%" filter="url(#hero-grain)" opacity="0.022" />
         </svg>
-
-        {/* Subtle dot grid */}
         <div className="absolute inset-0 bg-grid opacity-[0.045]" />
-
-        {/* Top edge seam */}
-        <div
-          className="absolute inset-x-0 top-0 h-px"
-          style={{ background: "linear-gradient(to right, transparent 5%, rgba(27,94,255,0.35) 35%, rgba(255,184,0,0.35) 65%, transparent 95%)" }}
-        />
+        <div className="absolute inset-x-0 top-0 h-px"
+          style={{ background: "linear-gradient(to right, transparent 5%, rgba(27,94,255,0.35) 35%, rgba(255,184,0,0.35) 65%, transparent 95%)" }} />
       </div>
 
-      {/* ── Content ── */}
-      <div className="relative mx-auto max-w-7xl px-4 pb-24 lg:pb-32 lg:px-6">
-        <div className="mx-auto max-w-4xl flex flex-col items-center text-center pt-10 lg:pt-16">
+      {/* ── Floating cards (xl only) ── */}
+      <HeroCard className="top-36 left-[3%]" delay={0.7} period={4.2} lift={8}>
+        <CardPipeline />
+      </HeroCard>
+      <HeroCard className="top-32 right-[3%]" delay={0.85} period={4.8} lift={6}>
+        <CardActivity />
+      </HeroCard>
+      <HeroCard className="bottom-28 left-[3%]" delay={1.0} period={5.2} lift={7}>
+        <CardRouting />
+      </HeroCard>
+      <HeroCard className="bottom-28 right-[3%]" delay={0.95} period={3.9} lift={9}>
+        <CardWon />
+      </HeroCard>
+
+      {/* ── Center content ── */}
+      <div className="relative flex-1 mx-auto max-w-7xl px-4 pb-20 lg:pb-28 lg:px-6 flex items-center">
+        <div className="mx-auto max-w-3xl flex flex-col items-center text-center pt-6 lg:pt-10 w-full">
           {/* Badge */}
           <div className="inline-flex items-center gap-2.5 rounded-full border border-[#1B5EFF]/15 bg-[#1B5EFF]/06 px-4 py-1.5 mb-8">
             <span className="relative flex h-1.5 w-1.5">
@@ -207,6 +396,11 @@ function Hero() {
                 </div>
               ))}
             </div>
+          </ScrollReveal>
+
+          {/* Tool automation flow */}
+          <ScrollReveal variant="fadeUp" delay={0.5}>
+            <ToolFlow />
           </ScrollReveal>
         </div>
       </div>
