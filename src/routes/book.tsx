@@ -67,7 +67,7 @@ function BookPage() {
       });
       goTo(3, 1);
     } catch {
-      toast.error("Something went wrong — please email support@supertelque.com");
+      toast.error("Something went wrong. Please email support@supertelque.com");
     } finally {
       setSending(false);
     }
@@ -92,7 +92,7 @@ function BookPage() {
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-              45 minutes with a senior RevOps engineer — your stack reviewed, quick wins identified, and a clear plan to move forward.
+              45 minutes with a senior RevOps engineer. Your stack reviewed, quick wins identified, and a clear plan to move forward.
             </p>
           </ScrollReveal>
         </div>
@@ -336,22 +336,6 @@ function BookPage() {
                 <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#4C5670]/55">Estimated value</div>
                 <div className="mt-2 font-display text-4xl font-extrabold tracking-tight text-[#080D1C]">$2,500</div>
                 <p className="mt-2 text-sm text-[#4C5670]/70">Typical market rate. Free for qualifying B2B teams.</p>
-              </div>
-
-              <div className="rounded-2xl border border-[#E8EEFF] bg-white p-5 shadow-[0_2px_16px_rgba(0,0,0,0.04)]">
-                <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#4C5670]/55 mb-4">Who you'll speak with</div>
-                <div className="flex items-center gap-3.5">
-                  <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full ring-2 ring-[#FFB800]/30">
-                    <img src="/advisor-1.png" alt="Senior RevOps Engineer" className="h-full w-full object-cover object-top" />
-                  </div>
-                  <div>
-                    <div className="font-display text-sm font-bold text-[#080D1C]">Senior RevOps Engineer</div>
-                    <div className="text-xs text-[#4C5670]/60 mt-0.5">10+ years · HubSpot & Salesforce</div>
-                  </div>
-                </div>
-                <p className="mt-3 text-xs leading-relaxed text-[#4C5670]/60">
-                  You speak directly with the engineer who'll review your stack — not an SDR.
-                </p>
               </div>
 
               <div className="rounded-2xl border border-[#E8EEFF] bg-[#FAFBFF] p-5">

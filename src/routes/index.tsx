@@ -826,7 +826,7 @@ function CaseStudiesPreview() {
                   </h3>
                   <p className="mt-1 text-sm text-muted-foreground">{c.label}</p>
                 </div>
-                {/* Stack badges — hidden on mobile */}
+                {/* Stack badges, hidden on mobile */}
                 <div className="hidden lg:flex flex-wrap gap-1.5 max-w-48 shrink-0">
                   {c.stack.map((s) => (
                     <span key={s} className="rounded-full border border-border bg-[#F8FAFF] px-2.5 py-0.5 font-mono text-[10px] text-foreground/60">
