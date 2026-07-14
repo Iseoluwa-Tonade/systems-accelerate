@@ -1,11 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { toast } from "sonner";
+import { useEffect } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Eyebrow } from "@/components/site/Eyebrow";
 import { ScrollReveal } from "@/components/site/ScrollReveal";
-import { BookingCalendar, formatConfirmDate } from "@/components/site/BookingCalendar";
-import { submitBookSession } from "@/lib/form-actions";
 
 export const Route = createFileRoute("/book")({
   head: () => ({
@@ -19,77 +16,40 @@ export const Route = createFileRoute("/book")({
   component: BookPage,
 });
 
-function BookPage() {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
-  const [sending, setSending] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [fullName, setFullName] = useState("");
-  const [workEmail, setWorkEmail] = useState("");
-  const [company, setCompany] = useState("");
-  const [companySize, setCompanySize] = useState("1–10");
-  const [crm, setCrm] = useState("HubSpot");
-  const [challenge, setChallenge] = useState("none");
-  const [notes, setNotes] = useState("");
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (sending || !selectedDate || !selectedSlot) return;
-
-    const errs: Record<string, string> = {};
-    if (!fullName.trim()) errs.fullName = "Required";
-    if (!workEmail.trim()) errs.workEmail = "Required";
-    if (!company.trim()) errs.company = "Required";
-    setErrors(errs);
-    if (Object.keys(errs).length > 0) return;
-
-    setSending(true);
-    try {
-      await submitBookSession({
-        data: {
-          fullName,
-          workEmail,
-          company,
-          companySize,
-          crm,
-          challenge,
-          notes,
-          selectedDate: formatConfirmDate(selectedDate),
-          selectedSlot,
-        },
-      });
-      toast.success("Session booked! We'll send a calendar invite shortly.");
-      setFullName("");
-      setWorkEmail("");
-      setCompany("");
-      setCompanySize("1–10");
-      setCrm("HubSpot");
-      setChallenge("none");
-      setNotes("");
-      setSelectedDate(null);
-      setSelectedSlot(null);
-      setErrors({});
-    } catch (err) {
-      console.error("[book]", err);
-      toast.error("Something went wrong. Please email support@supertelque.com directly.");
-    } finally {
-      setSending(false);
-    }
-  }
-
-  const confirmationText =
-    selectedDate && selectedSlot
-      ? `${formatConfirmDate(selectedDate)} · ${selectedSlot} WAT · 45 min`
-      : selectedDate
-        ? `${formatConfirmDate(selectedDate)} · Pick a time slot`
-        : "Select a date and time";
+function CalendlyEmbed() {
+  useEffect(() => {
+    if (document.querySelector('script[src*="calendly.com"]')) return;
+    const script = document.createElement("script");
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
+    <div
+      className="calendly-inline-widget w-full rounded-2xl overflow-hidden"
+      data-url="https://calendly.com/revsupertelque-m0qb?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=080D1C&primary_color=FFB800&text_color=ffffff"
+      style={{ minWidth: "320px", height: "700px" }}
+    />
+  );
+}
+
+function BookPage() {
+  return (
     <SiteLayout headerTheme="light">
-      <section className="relative overflow-hidden border-b border-border pt-24 md:pt-28" style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 60%, #FFF9F0 100%)" }}>
+      {/* ── Hero ── */}
+      <section
+        className="relative overflow-hidden border-b border-border pt-24 md:pt-28"
+        style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 60%, #FFF9F0 100%)" }}
+      >
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-16 right-1/4 h-[360px] w-[360px] rounded-full opacity-40"
-            style={{ background: "radial-gradient(circle, rgba(255,184,0,0.11) 0%, transparent 70%)" }} />
+          <div
+            className="absolute -top-16 right-1/4 h-[360px] w-[360px] rounded-full opacity-40"
+            style={{ background: "radial-gradient(circle, rgba(255,184,0,0.11) 0%, transparent 70%)" }}
+          />
           <svg className="absolute right-4 bottom-0 h-[180px] w-[180px] opacity-[0.05]" viewBox="0 0 200 200">
             <rect x="20" y="20" width="160" height="160" rx="20" fill="none" stroke="#1B5EFF" strokeWidth="1.5" strokeDasharray="4 9" />
           </svg>
@@ -108,224 +68,90 @@ function BookPage() {
         </div>
       </section>
 
+      {/* ── Booking ── */}
       <section className="sec-white">
         <div className="mx-auto max-w-7xl px-4 lg:px-6 py-16 lg:py-20">
           <div className="grid gap-8 lg:grid-cols-12">
-              <div className="lg:col-span-8 surface-card p-3 max-[375px]:p-2 sm:p-6 lg:p-8 overflow-hidden">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                      Scheduler
-                    </div>
-                    <div className="mt-1 font-display text-xl font-semibold">
-                      Pick a working block
-                    </div>
-                  </div>
+
+            {/* Calendly widget */}
+            <div className="lg:col-span-8 surface-card p-3 sm:p-4 overflow-hidden">
+              <div className="mb-4 px-1">
+                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Scheduler</div>
+                <div className="mt-1 font-display text-xl font-semibold">Pick a working block</div>
+              </div>
+              <CalendlyEmbed />
+            </div>
+
+            {/* Sidebar */}
+            <aside className="lg:col-span-4 space-y-4">
+              <div className="surface-card p-4 sm:p-6">
+                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                  What you'll get
                 </div>
-
-                {/* Calendar + time slots */}
-                <div className="mt-6">
-                  <BookingCalendar
-                    selectedDate={selectedDate}
-                    selectedSlot={selectedSlot}
-                    onDateChange={(date) => {
-                      setSelectedDate(date);
-                      setSelectedSlot(null);
-                    }}
-                    onSlotChange={setSelectedSlot}
-                  />
-                </div>
-
-                <form className="mt-10 grid gap-5 sm:grid-cols-2" onSubmit={handleSubmit}>
-                  <Field
-                    label="Full name"
-                    placeholder="Alex Morgan"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    error={errors.fullName}
-                  />
-                  <Field
-                    label="Work email"
-                    placeholder="alex@company.com"
-                    type="email"
-                    value={workEmail}
-                    onChange={(e) => setWorkEmail(e.target.value)}
-                    error={errors.workEmail}
-                  />
-                  <Field
-                    label="Company"
-                    placeholder="Acme Inc."
-                    value={company}
-                    onChange={(e) => setCompany(e.target.value)}
-                    error={errors.company}
-                  />
-                  <Select
-                    label="Company size"
-                    options={["1–10", "11–50", "51–200", "201–500", "500+"]}
-                    value={companySize}
-                    onChange={(e) => setCompanySize(e.target.value)}
-                  />
-                  <Select
-                    label="Current CRM"
-                    options={["HubSpot", "Salesforce", "Pipedrive", "None / building"]}
-                    value={crm}
-                    onChange={(e) => setCrm(e.target.value)}
-                  />
-                  <Select
-                    label="Main challenge"
-                    options={[
-                      "none",
-                      "Forecasting accuracy",
-                      "Lead routing & SLAs",
-                      "CRM re-architecture",
-                      "Outbound infrastructure",
-                      "Attribution & reporting",
-                      "AI in the GTM stack",
-                    ]}
-                    value={challenge}
-                    onChange={(e) => setChallenge(e.target.value)}
-                  />
-                  <div className="sm:col-span-2">
-                    <Label>Anything else? (optional)</Label>
-                    <textarea
-                      rows={3}
-                      placeholder="Context, links, current stack..."
-                      className="mt-2 w-full resize-none rounded-md border border-border bg-(--surface)/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-                      value={notes}
-                      onChange={(e) => setNotes(e.target.value)}
-                    />
-                  </div>
-
-                  <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-5">
-                    <div className="font-mono text-[12px] text-muted-foreground">
-                      {confirmationText}
-                    </div>
-                    <button
-                      type="submit"
-                      disabled={!selectedDate || !selectedSlot || sending}
-                      className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-bold text-[#080D1C] disabled:opacity-40 disabled:pointer-events-none transition hover:scale-[1.02]"
-                      style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
+                <ul className="mt-4 space-y-3 text-sm">
+                  {[
+                    "Full stack audit",
+                    "Three quick wins to act on",
+                    "CRM health check",
+                    "Growth recommendations",
+                    "Written 90-day plan",
+                  ].map((item, idx) => (
+                    <li
+                      key={item}
+                      className="flex items-start gap-3 animate-slide-up-fade"
+                      style={{ animationDelay: `${idx * 80}ms` }}
                     >
-                      {sending ? "Scheduling..." : "Schedule consultation →"}
-                    </button>
-                  </div>
-                </form>
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent-teal)" />
+                      <span className="text-foreground/85">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <aside className="lg:col-span-4 space-y-4">
-                <div className="surface-card p-4 sm:p-6">
+              <div className="surface-card relative overflow-hidden p-4 sm:p-6">
+                <div className="relative">
                   <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                    What you'll get
+                    Estimated value
                   </div>
-                  <ul className="mt-4 space-y-3 text-sm">
-                    {[
-                      "Full stack audit",
-                      "Three quick wins to act on",
-                      "CRM health check",
-                      "Growth recommendations",
-                      "Written 90-day plan",
-                    ].map((item, idx) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-3 animate-slide-up-fade"
-                        style={{ animationDelay: `${idx * 80}ms` }}
-                      >
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-(--accent-teal)" />
-                        <span className="text-foreground/85">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="surface-card relative overflow-hidden p-4 sm:p-6">
-                  <div className="relative">
-                    <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                      Estimated value
-                    </div>
-                    <div className="mt-2 font-display text-4xl font-semibold tracking-tight">
-                      $2,500
-                    </div>
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      Typical market rate for this assessment. Free for qualifying B2B teams.
-                    </p>
+                  <div className="mt-2 font-display text-4xl font-semibold tracking-tight">
+                    $2,500
                   </div>
-                </div>
-
-                <div className="surface-card overflow-hidden p-4 sm:p-6">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                    Who you'll speak with
-                  </div>
-                  <div className="mt-4 flex items-center gap-4">
-                    <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full shadow-[0_0_0_3px_rgba(255,184,0,0.30)]">
-                      <img src="/advisor-1.png" alt="Senior RevOps Engineer" className="h-full w-full object-cover object-top" />
-                    </div>
-                    <div>
-                      <div className="font-display text-sm font-bold text-foreground">Senior RevOps Engineer</div>
-                      <div className="mt-0.5 text-xs text-muted-foreground">10+ years · HubSpot & Salesforce</div>
-                    </div>
-                  </div>
-                  <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-                    You'll meet directly with the engineer reviewing your stack, not an SDR.
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Typical market rate for this assessment. Free for qualifying B2B teams.
                   </p>
                 </div>
+              </div>
 
-                <div className="surface-card p-4 sm:p-6 text-sm text-muted-foreground">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                    Who it's for
+              <div className="surface-card overflow-hidden p-4 sm:p-6">
+                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                  Who you'll speak with
+                </div>
+                <div className="mt-4 flex items-center gap-4">
+                  <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full shadow-[0_0_0_3px_rgba(255,184,0,0.30)]">
+                    <img src="/advisor-1.png" alt="Senior RevOps Engineer" className="h-full w-full object-cover object-top" />
                   </div>
-                  <div className="mt-3 font-display text-foreground/85 leading-relaxed">
-                    Series A to C B2B companies: SaaS, fintech, ecommerce, and beyond.
+                  <div>
+                    <div className="font-display text-sm font-bold text-foreground">Senior RevOps Engineer</div>
+                    <div className="mt-0.5 text-xs text-muted-foreground">10+ years · HubSpot & Salesforce</div>
                   </div>
                 </div>
-              </aside>
-            </div>
+                <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+                  You'll meet directly with the engineer reviewing your stack, not an SDR.
+                </p>
+              </div>
+
+              <div className="surface-card p-4 sm:p-6 text-sm text-muted-foreground">
+                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                  Who it's for
+                </div>
+                <div className="mt-3 font-display text-foreground/85 leading-relaxed">
+                  Series A to C B2B companies: SaaS, fintech, ecommerce, and beyond.
+                </div>
+              </div>
+            </aside>
+          </div>
         </div>
       </section>
     </SiteLayout>
-  );
-}
-
-function Label({ children }: { children: React.ReactNode }) {
-  return (
-    <label className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-      {children}
-    </label>
-  );
-}
-function Field({
-  label,
-  error,
-  ...props
-}: React.InputHTMLAttributes<HTMLInputElement> & { label: string; error?: string }) {
-  return (
-    <div>
-      <Label>{label}</Label>
-      <input
-        {...props}
-        className="mt-2 w-full rounded-md border border-border bg-(--surface)/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-      />
-      {error && <p className="mt-1 font-mono text-[11px] text-red-500">{error}</p>}
-    </div>
-  );
-}
-function Select({
-  label,
-  options,
-  ...props
-}: { label: string; options: string[] } & React.SelectHTMLAttributes<HTMLSelectElement>) {
-  return (
-    <div>
-      <Label>{label}</Label>
-      <select
-        {...props}
-        className="mt-2 w-full rounded-md border border-border bg-(--surface)/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-      >
-        {options.map((o) => (
-          <option key={o} className="bg-background">
-            {o}
-          </option>
-        ))}
-      </select>
-    </div>
   );
 }
