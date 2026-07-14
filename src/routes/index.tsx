@@ -270,26 +270,42 @@ function FlowConnector({ color, delay }: { color: string; delay: number }) {
 
 function ToolFlow() {
   return (
-    <div className="mt-14 flex items-center justify-center w-full max-w-sm mx-auto">
-      {TOOLS.map((t, i) => (
-        <div key={t.name} className="flex items-center flex-1 last:flex-none">
-          <div className="flex flex-col items-center gap-1.5 shrink-0">
-            <motion.div
-              className="h-10 w-10 rounded-xl flex items-center justify-center border font-display text-[11px] font-extrabold"
-              style={{ borderColor: `${t.color}30`, background: `${t.color}0E`, color: t.color }}
-              initial={{ opacity: 0, scale: 0.7 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {t.abbr}
-            </motion.div>
-            <span className="font-mono text-[8px] uppercase tracking-[0.14em] text-[#4C5670]/40">{t.name}</span>
-          </div>
-          {i < TOOLS.length - 1 && (
-            <FlowConnector color={TOOLS[i + 1].color} delay={0.8 + i * 0.3} />
-          )}
+    <div className="mt-14 w-full max-w-[420px] mx-auto">
+      <div className="rounded-2xl border border-[#1B2540]/12 bg-[#080D1C]/06 backdrop-blur-sm px-5 py-4">
+        <div className="flex items-center justify-between">
+          {TOOLS.map((t, i) => (
+            <div key={t.name} className="flex items-center flex-1 last:flex-none">
+              <div className="flex flex-col items-center gap-1.5 shrink-0">
+                <motion.div
+                  className="h-9 w-9 rounded-xl flex items-center justify-center font-display text-[10.5px] font-extrabold"
+                  style={{
+                    background: `linear-gradient(135deg, ${t.color}22 0%, ${t.color}10 100%)`,
+                    border: `1px solid ${t.color}40`,
+                    color: t.color,
+                    boxShadow: `0 2px 12px ${t.color}28, inset 0 1px 0 ${t.color}20`,
+                  }}
+                  initial={{ opacity: 0, scale: 0.65 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.5 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {t.abbr}
+                </motion.div>
+                <span className="font-mono text-[7.5px] uppercase tracking-[0.14em] text-[#4C5670]/50">{t.name}</span>
+              </div>
+              {i < TOOLS.length - 1 && (
+                <FlowConnector color={TOOLS[i + 1].color} delay={0.8 + i * 0.3} />
+              )}
+            </div>
+          ))}
         </div>
-      ))}
+        <div className="mt-3 flex items-center gap-1.5">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-50" />
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
+          </span>
+          <span className="font-mono text-[8px] uppercase tracking-[0.18em] text-[#4C5670]/40">Automation pipeline · live</span>
+        </div>
+      </div>
     </div>
   );
 }
