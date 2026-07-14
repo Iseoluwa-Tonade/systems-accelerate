@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Eyebrow } from "@/components/site/Eyebrow";
 import { ScrollReveal } from "@/components/site/ScrollReveal";
+
+const CALENDLY_URL =
+  "https://calendly.com/revsupertelque-m0qb?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=ffffff&primary_color=1B5EFF&text_color=080D1C";
 
 export const Route = createFileRoute("/book")({
   head: () => ({
@@ -12,27 +14,20 @@ export const Route = createFileRoute("/book")({
       { property: "og:title", content: "Book a Strategy Session | SuperTelque RevOps" },
       { property: "og:description", content: "Estimated value $2,500 · 45 minutes · senior RevOps engineer." },
     ],
+    scripts: [
+      { src: "https://assets.calendly.com/assets/external/widget.js", async: true },
+    ],
   }),
   component: BookPage,
 });
 
 function CalendlyEmbed() {
-  useEffect(() => {
-    if (document.querySelector('script[src*="calendly.com"]')) return;
-    const script = document.createElement("script");
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
   return (
     <div
-      className="calendly-inline-widget w-full rounded-2xl overflow-hidden"
-      data-url="https://calendly.com/revsupertelque-m0qb?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=080D1C&primary_color=FFB800&text_color=ffffff"
+      className="calendly-inline-widget w-full"
+      data-url={CALENDLY_URL}
       style={{ minWidth: "320px", height: "700px" }}
+      suppressHydrationWarning
     />
   );
 }
