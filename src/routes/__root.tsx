@@ -87,7 +87,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "https://supertelque.com/og-image.png" },
       { name: "twitter:title", content: "SuperTelque | Revenue Systems Engineered for Scale" },
-      { name: "twitter:description", content: "SuperTelque architects RevOps, GTM automation, CRM and AI-powered revenue systems for B2B technology companies across Nigeria." },
+      { name: "twitter:description", content: "SuperTelque architects RevOps, GTM automation, CRM and AI-powered revenue systems for B2B technology companies globally." },
     ],
     links: [
       {

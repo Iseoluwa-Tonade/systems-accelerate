@@ -10,7 +10,7 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact | SuperTelque RevOps" },
-      { name: "description", content: "Reach the SuperTelque RevOps team. We operate across Nigeria." },
+      { name: "description", content: "Reach the SuperTelque RevOps team. We operate from Sheridan, WY, US." },
       { property: "og:title", content: "Contact | SuperTelque RevOps" },
       { property: "og:description", content: "Email, LinkedIn and a direct contact form for B2B revenue infrastructure engagements." },
     ],
@@ -118,7 +118,7 @@ function ContactPage() {
                 </div>
                 <ul className="space-y-3">
                   {[
-                    { icon: "🌍", text: "Remote-first · Global clients" },
+                    { icon: "📍", text: "Sheridan, WY, US · Global clients" },
                     { icon: "🔒", text: "GDPR compliant" },
                     { icon: "📄", text: "NDA on request" },
                     { icon: "⚡", text: "Response within 24 hours" },
