@@ -15,7 +15,7 @@ export function SiteFooter() {
               />
               <div className="flex items-baseline gap-1.5">
                 <span className="font-display text-base font-bold text-white">SuperTelque</span>
-                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/40">/revops</span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/40">/partner</span>
               </div>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">

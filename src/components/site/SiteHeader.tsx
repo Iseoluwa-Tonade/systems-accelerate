@@ -54,7 +54,7 @@ export function SiteHeader({ theme = "light" }: { theme?: "light" | "dark" }) {
             <span className={`font-display text-[15px] font-bold tracking-tight transition-colors ${dark ? "text-white group-hover:text-[#FFD44D]" : "text-[#080D1C] group-hover:text-primary"}`}>
               SuperTelque
             </span>
-            <span className={`text-[10px] font-mono uppercase tracking-[0.18em] ${dark ? "text-white/40" : "text-muted-foreground"}`}>/revops</span>
+            <span className={`text-[10px] font-mono uppercase tracking-[0.18em] ${dark ? "text-white/40" : "text-muted-foreground"}`}>/partner</span>
           </div>
         </Link>
 

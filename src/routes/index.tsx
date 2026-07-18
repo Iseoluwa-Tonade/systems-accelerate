@@ -359,7 +359,7 @@ function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
               </span>
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#1B5EFF]/70">B2B RevOps & GTM Engineering</span>
+              <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#1B5EFF]/70">Your Growth Partner</span>
             </div>
 
             <h1 className="font-display text-[46px] font-extrabold leading-[1.07] tracking-tight text-[#080D1C] sm:text-[62px] lg:text-[78px] xl:text-[68px] lg:leading-[1.04]">
@@ -370,7 +370,7 @@ function Hero() {
 
             <ScrollReveal variant="fadeUp" delay={0.15}>
               <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-[#4C5670] sm:text-[18px]">
-                Better data, cleaner workflows, and a revenue system your whole team can rely on.
+                Lead generation, CRM, automation, social media, and operations — one senior team, one accountable partner.
               </p>
             </ScrollReveal>
 
