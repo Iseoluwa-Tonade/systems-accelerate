@@ -370,7 +370,7 @@ function Hero() {
 
             <ScrollReveal variant="fadeUp" delay={0.15}>
               <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-[#4C5670] sm:text-[18px]">
-                Lead generation, CRM, automation, social media, and operations. One senior team, one accountable partner.
+                Lead generation, CRM, automation, social media, and operations. One accountable partner.
               </p>
             </ScrollReveal>
 
