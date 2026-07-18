@@ -8,7 +8,7 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About | SuperTelque" },
-      { name: "description", content: "A small, senior team helping B2B companies grow revenue through better systems and smarter automation." },
+      { name: "description", content: "A senior team helping B2B companies grow revenue through better systems and smarter automation." },
       { property: "og:title", content: "About | SuperTelque" },
       { property: "og:description", content: "RevOps expertise. GTM systems thinking. Automation engineering." },
     ],
@@ -80,7 +80,7 @@ function AboutPage() {
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <div className="mt-10 grid gap-6 lg:grid-cols-12">
               <p className="lg:col-span-7 text-lg leading-relaxed text-[#4C5670]">
-                SuperTelque is a small, senior team with real experience running RevOps and building
+                SuperTelque is a senior team with real experience running RevOps and building
                 automation inside revenue organizations. We work with founders and operators who need
                 actual systems built, not more slide decks.
               </p>
@@ -153,7 +153,7 @@ function AboutPage() {
                 The people who <span className="text-gradient-gold">build your systems.</span>
               </>
             }
-            description="A small, senior team. Every engagement is staffed by the specialists who know your stack."
+            description="A senior team. Every engagement is staffed by the specialists who know your stack."
           />
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {TEAM.map((member, i) => (

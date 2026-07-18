@@ -136,7 +136,7 @@ function CareersPage() {
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-[#4C5670]">
-              We are a small, senior, remote-first team. Every person on the team works directly with clients and owns their output. No layers, no handoffs.
+              We are a senior, remote-first team. Every person works directly with clients and owns their output. No layers, no handoffs.
             </p>
           </ScrollReveal>
           <ScrollReveal variant="fadeUp" delay={0.25}>
@@ -225,7 +225,7 @@ function CareersPage() {
                 Do not see your role?
               </h2>
               <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-[#4C5670]">
-                We are always open to strong people. If you do excellent work in operations, automation, sales, or community — send us a note. Tell us what you do and how you do it.
+                We are always open to strong people. If you do excellent work in operations, automation, sales, or community, send us a note. Tell us what you do and how you do it.
               </p>
             </div>
             <a
