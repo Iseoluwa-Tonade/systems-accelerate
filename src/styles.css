@@ -3,7 +3,7 @@
 @import "tw-animate-css";
 
 /*
- * SuperTelque — Color System
+ * SuperTelque - Color System
  *
  * Brand: deep navy dark + brand gold (#FFB800) + electric blue (#1B5EFF)
  * Gold matches the actual company logo mark.
@@ -45,7 +45,7 @@
   --color-section-mid:      #EEF3FF;
   --color-section-navy:     #080D1C;   /* deep near-black navy */
   --color-section-charcoal: #0F1628;   /* card bg inside navy */
-  --color-section-gold:     #FFB800;   /* brand gold — matches logo */
+  --color-section-gold:     #FFB800;   /* brand gold - matches logo */
   --color-section-gold-dark: #E08A00;  /* deeper amber */
 
   /* ── Brand Colors ── */
@@ -134,7 +134,7 @@ html, body {
    to set the section-wide background + text.
    ═══════════════════════════════════════════════ */
 
-/* Pure white — feature / content sections */
+/* Pure white - feature/content sections */
 .sec-white {
   background-color: #FFFFFF;
   color: #080D1C;
@@ -146,7 +146,7 @@ html, body {
   --border: rgba(0, 0, 0, 0.08);
 }
 
-/* Soft blue tint — mid-page, stats */
+/* Soft blue tint - mid-page, stats */
 .sec-mid {
   background-color: #EEF3FF;
   color: #080D1C;
@@ -158,7 +158,7 @@ html, body {
   --border: rgba(0, 0, 0, 0.08);
 }
 
-/* Deep navy — dark contrast sections (primary hero/feature bg) */
+/* Deep navy - dark contrast sections (primary hero/feature bg) */
 .sec-navy {
   background-color: #080D1C;
   color: #FFFFFF;
@@ -174,7 +174,7 @@ html, body {
   --accent-teal: #2DD4BF;
 }
 
-/* Brand gold — bold CTA sections */
+/* Brand gold - bold CTA sections */
 .sec-gold {
   background-color: #FFB800;
   color: #080D1C;
@@ -249,7 +249,7 @@ html, body {
   transition: transform 0.3s ease;
 }
 
-/* Adaptive card surface — picks up section's --surface variable */
+/* Adaptive card surface - picks up section's --surface variable */
 @utility surface-card {
   background: var(--surface);
   border-radius: 1.5rem;
