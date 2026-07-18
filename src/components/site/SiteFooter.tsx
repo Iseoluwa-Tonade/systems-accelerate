@@ -34,6 +34,7 @@ export function SiteFooter() {
                 { to: "/", label: "Home" },
                 { to: "/services", label: "Services" },
                 { to: "/about", label: "About" },
+                { to: "/careers", label: "Open Roles" },
                 { to: "/case-studies", label: "Case Studies" },
               ]}
             />
