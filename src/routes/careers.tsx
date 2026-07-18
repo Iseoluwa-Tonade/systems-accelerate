@@ -77,6 +77,22 @@ const ROLES = [
     ],
   },
   {
+    id: "project-manager",
+    title: "Project Manager",
+    department: "Operations",
+    type: "Full-time",
+    location: "Remote",
+    color: "#14B8A6",
+    email: "support@supertelque.com",
+    desc: "Own project delivery across multiple client engagements. Coordinate timelines, manage stakeholder communication, and ensure every engagement ships on time and to scope.",
+    requirements: [
+      "2+ years in a project management role, ideally in an agency or consultancy setting",
+      "Strong grasp of project scoping, milestone tracking, and resource coordination",
+      "Experience with project tools (Notion, Asana, ClickUp, or similar)",
+      "Calm under pressure, highly organised, and a clear communicator in written English",
+    ],
+  },
+  {
     id: "virtual-assistant",
     title: "Virtual Assistant",
     department: "Virtual Assistance & Back Office",
@@ -181,7 +197,7 @@ function CareersPage() {
                     </div>
                     <div className="shrink-0 lg:ml-8 lg:pt-1">
                       <a
-                        href={`mailto:hello@supertelque.com?subject=Application: ${role.title}`}
+                        href={`mailto:${"email" in role ? role.email : "hello@supertelque.com"}?subject=Application: ${role.title}`}
                         className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-[13px] font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_8px_24px_-6px_rgba(255,184,0,0.40)]"
                         style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
                       >
