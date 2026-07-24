@@ -14,7 +14,7 @@ export const Route = createFileRoute("/book")({
       { title: "Book a Strategy Session | SuperTelque LLC" },
       { name: "description", content: "Book a 45-minute revenue systems strategy session with a senior RevOps engineer." },
       { property: "og:title", content: "Book a Strategy Session | SuperTelque LLC" },
-      { property: "og:description", content: "Estimated value $2,500 · 45 minutes · senior RevOps engineer." },
+      { property: "og:description", content: "45 minutes with a senior RevOps engineer. Free for qualifying B2B teams." },
     ],
   }),
   component: BookPage,
@@ -114,7 +114,7 @@ function BookPage() {
                 </div>
                 <div className="px-5 py-4 bg-[#F4F7FF] flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#4C5670]">Est. value $2,500 · Free for qualifying teams</span>
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#4C5670]">Free for qualifying B2B teams</span>
                 </div>
               </div>
             </ScrollReveal>
@@ -356,13 +356,7 @@ function BookPage() {
                 </ul>
               </div>
 
-              <div className="rounded-2xl border border-[#E8EEFF] bg-white p-5 shadow-[0_2px_16px_rgba(0,0,0,0.04)]">
-                <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#4C5670]/55">Estimated value</div>
-                <div className="mt-2 font-display text-4xl font-extrabold tracking-tight text-[#080D1C]">$2,500</div>
-                <p className="mt-2 text-sm text-[#4C5670]/70">Typical market rate. Free for qualifying B2B teams.</p>
-              </div>
-
-              <div className="rounded-2xl border border-[#E8EEFF] bg-[#FAFBFF] p-5">
+<div className="rounded-2xl border border-[#E8EEFF] bg-[#FAFBFF] p-5">
                 <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#4C5670]/55 mb-3">Who it's for</div>
                 <div className="text-sm text-[#4C5670] leading-relaxed">
                   Series A to C B2B companies in SaaS, fintech, ecommerce, and beyond.
