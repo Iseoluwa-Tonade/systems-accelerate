@@ -2,13 +2,10 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 const NAV = [
-  { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
   { to: "/case-studies", label: "Case Studies" },
   { to: "/about", label: "About" },
-  { to: "/careers", label: "Open Roles" },
   { to: "/blog/", label: "Blog" },
-  { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -38,7 +35,7 @@ export function SiteHeader({ theme = "light" }: { theme?: "light" | "dark" }) {
 
   return (
     <header
-      className={`fixed left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-5xl transition-[top,padding,background-color,border-color,transform,box-shadow] duration-300 ease-out border backdrop-blur-xl ${
+      className={`fixed left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-6xl transition-[top,padding,background-color,border-color,transform,box-shadow] duration-300 ease-out border backdrop-blur-xl ${
         open
           ? "top-3 rounded-2xl p-5"
           : scrolled
@@ -85,22 +82,6 @@ export function SiteHeader({ theme = "light" }: { theme?: "light" | "dark" }) {
 
         <div className="flex items-center gap-2">
           <div className="hidden md:flex items-center gap-2">
-            <a
-              href="https://crm.supertelque.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px] font-medium border transition-all duration-200 active:scale-95 ${
-                dark
-                  ? "border-white/20 text-white/70 hover:text-white hover:bg-white/10 hover:border-white/30"
-                  : "border-border text-muted-foreground hover:text-foreground hover:bg-foreground/5"
-              }`}
-            >
-              <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <rect x="2" y="5" width="12" height="9" rx="1.5" />
-                <path d="M5 5V4a3 3 0 0 1 6 0v1" strokeLinecap="round" />
-              </svg>
-              Client portal
-            </a>
             <Link
               to="/book"
               className={`inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px] font-bold active:scale-95 transition-all duration-200 ${
@@ -115,6 +96,22 @@ export function SiteHeader({ theme = "light" }: { theme?: "light" | "dark" }) {
                 <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </Link>
+            <a
+              href="https://crm.supertelque.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Client portal"
+              className={`inline-flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-200 active:scale-95 ${
+                dark
+                  ? "border-white/20 text-white/60 hover:text-white hover:bg-white/10 hover:border-white/30"
+                  : "border-border text-muted-foreground hover:text-foreground hover:bg-foreground/5"
+              }`}
+            >
+              <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
+                <rect x="2" y="5" width="12" height="9" rx="1.5" />
+                <path d="M5 5V4a3 3 0 0 1 6 0v1" strokeLinecap="round" />
+              </svg>
+            </a>
           </div>
 
           <button
