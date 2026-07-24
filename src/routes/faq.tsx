@@ -39,7 +39,7 @@ const FAQS = [
       },
       {
         q: "Are you fully remote?",
-        a: "Yes. We are a fully remote team and work with clients globally. All communication is async-friendly and we operate across time zones. We are incorporated in the United States but have no fixed office location. Our team and our clients are distributed.",
+        a: "Yes. We are a remote-first team and work with clients globally. All communication is async-friendly and we operate across time zones. We have offices in Sheridan, Wyoming (US) and Lagos, Nigeria, and our team and clients are distributed worldwide.",
       },
     ],
   },

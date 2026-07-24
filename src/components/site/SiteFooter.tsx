@@ -19,7 +19,7 @@ export function SiteFooter() {
               </div>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              A revenue operations team that builds the systems B2B companies run on. Remote-first. Global clients.
+              A revenue operations team that builds the systems B2B companies run on. Remote-first, with offices in Wyoming, US and Lagos, Nigeria.
             </p>
 
             <p className="mt-4 text-xs text-[#FFB800]/60">
@@ -87,8 +87,9 @@ export function SiteFooter() {
                 </li>
               </ul>
               <div className="mt-6 space-y-1.5 text-[12px] text-white/40">
-                <div>Remote-first</div>
-                <div>Global clients</div>
+                <div>Wyoming, US</div>
+                <div>Lagos, Nigeria</div>
+                <div>Remote-first · Global clients</div>
                 <div>GDPR compliant</div>
                 <div>NDA on request</div>
               </div>

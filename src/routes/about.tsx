@@ -99,7 +99,7 @@ function AboutPage() {
                 </div>
                 <div className="px-5 py-4 flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#B45309]">Remote-first · Global clients</span>
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#B45309]">Wyoming, US · Lagos, Nigeria · Global</span>
                 </div>
               </div>
             </div>

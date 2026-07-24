@@ -10,7 +10,7 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact | SuperTelque RevOps" },
-      { name: "description", content: "Reach the SuperTelque team. We are a remote-first growth partner serving B2B companies across the United States and globally." },
+      { name: "description", content: "Reach the SuperTelque team. Offices in Wyoming, US and Lagos, Nigeria. Remote-first, serving B2B companies globally." },
       { property: "og:title", content: "Contact | SuperTelque RevOps" },
       { property: "og:description", content: "Email, LinkedIn and a direct contact form for B2B revenue infrastructure engagements." },
     ],
@@ -110,7 +110,7 @@ function ContactPage() {
                 </div>
                 <div className="px-5 py-4 bg-[#F4F7FF] flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#4C5670]">Remote-first · US incorporated · Global clients</span>
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#4C5670]">Wyoming, US · Lagos, Nigeria · Global clients</span>
                 </div>
               </div>
             </ScrollReveal>
@@ -141,7 +141,8 @@ function ContactPage() {
                 </div>
                 <ul className="space-y-3">
                   {[
-                    { icon: "🌍", text: "Remote-first · US incorporated · Global clients" },
+                    { icon: "📍", text: "Offices in Wyoming, US and Lagos, Nigeria" },
+                    { icon: "🌍", text: "Remote-first · Global clients" },
                     { icon: "🔒", text: "GDPR compliant" },
                     { icon: "📄", text: "NDA on request" },
                     { icon: "⚡", text: "Response within 24 hours" },
