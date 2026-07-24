@@ -21,15 +21,15 @@ const SERVICES = [
     code: "01",
     color: "#1B5EFF",
     title: "Sales & Lead Generation",
-    blurb: "Fill your pipeline with the right people. We handle lead generation, outreach, and appointment setting so your team shows up to conversations that matter.",
-    items: ["Lead generation", "Appointment setting", "Sales development", "Outbound outreach"],
+    blurb: "Fill your pipeline with the right people. We handle outbound campaigns, inbound lead qualification, and appointment setting so your team shows up to conversations that matter.",
+    items: ["Lead generation", "Inbound handling", "Appointment setting", "Outbound outreach"],
   },
   {
     id: "crm",
     code: "02",
     color: "#14B8A6",
     title: "CRM & Sales Operations",
-    blurb: "Set up HubSpot or Salesforce the right way and keep your sales process clean, consistent, and easy to manage.",
+    blurb: "Set up your CRM the right way and keep your sales process clean, consistent, and easy to manage. We work with all major platforms.",
     items: ["CRM implementation", "Sales process optimisation", "Pipeline design", "Data hygiene"],
   },
   {
@@ -61,8 +61,8 @@ const SERVICES = [
     code: "06",
     color: "#FFB800",
     title: "Virtual Assistance & Back Office",
-    blurb: "Skilled remote talent for the admin, orders, and back-office operations that keep your business running.",
-    items: ["Virtual assistance", "Order management", "Back-office operations", "Remote team solutions"],
+    blurb: "Skilled remote talent for admin duties, commerce management, inbound handling, and the back-office operations that keep your business running.",
+    items: ["Virtual assistance", "Commerce management", "Admin duties", "Inbound management", "Order processing", "Back-office operations"],
   },
 ] as const;
 

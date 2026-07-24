@@ -233,7 +233,7 @@ function BookPage() {
                           <FormField label="Work email" type="email" placeholder="alex@company.com" value={workEmail} onChange={(e) => setWorkEmail(e.target.value)} error={errors.workEmail} />
                           <FormField label="Company" placeholder="Acme Inc." value={company} onChange={(e) => setCompany(e.target.value)} error={errors.company} />
                           <FormSelect label="Company size" options={["1–10", "11–50", "51–200", "201–500", "500+"]} value={companySize} onChange={(e) => setCompanySize(e.target.value)} />
-                          <FormSelect label="Current CRM" options={["HubSpot", "Salesforce", "Pipedrive", "None / building"]} value={crm} onChange={(e) => setCrm(e.target.value)} />
+                          <FormSelect label="Current CRM" options={["HubSpot", "Salesforce", "Pipedrive", "Zoho CRM", "Monday.com CRM", "Close", "ActiveCampaign", "Keap / Infusionsoft", "Other", "None / building"]} value={crm} onChange={(e) => setCrm(e.target.value)} />
                           <FormSelect
                             label="Main challenge"
                             options={["none", "Forecasting accuracy", "Lead routing & SLAs", "CRM re-architecture", "Outbound infrastructure", "Attribution & reporting", "AI in the GTM stack"]}

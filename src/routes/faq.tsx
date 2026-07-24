@@ -23,7 +23,7 @@ const FAQS = [
     items: [
       {
         q: "What does SuperTelque actually do?",
-        a: "We build the systems B2B companies run on. That includes lead generation and outbound campaigns, CRM setup and sales operations, RevOps and GTM engineering, workflow automation with AI, social media and community management, and virtual assistance for back-office tasks. One team, six service lines.",
+        a: "We build the systems B2B companies run on. That includes lead generation, inbound handling, and outbound campaigns; CRM setup and sales operations across all major platforms; RevOps and GTM engineering; workflow automation with AI; social media and community management; and virtual assistance covering admin duties, commerce management, order processing, and back-office operations. One team, one accountable partner.",
       },
       {
         q: "Who do you work with?",
@@ -39,7 +39,7 @@ const FAQS = [
       },
       {
         q: "Are you fully remote?",
-        a: "Yes. We are remote-first and work with clients globally. All communication is async-friendly, and we work across time zones. We are based in Sheridan, WY, US.",
+        a: "Yes. We are a fully remote team and work with clients globally. All communication is async-friendly and we operate across time zones. We are incorporated in the United States but have no fixed office location. Our team and our clients are distributed.",
       },
     ],
   },
@@ -49,7 +49,7 @@ const FAQS = [
     items: [
       {
         q: "Which CRMs do you work with?",
-        a: "HubSpot and Salesforce are our primary platforms. We do full implementations, migrations, audits, and ongoing admin. We also work with lighter tools like Notion CRM, Pipedrive, and others depending on your stage and stack.",
+        a: "We work with all major CRM platforms: HubSpot, Salesforce, Pipedrive, Zoho CRM, Close, ActiveCampaign, Monday.com CRM, Keap, and others. We meet you where you are. If you already have a CRM, we will work in it. If you are choosing one, we will help you pick the right tool for your stage and structure, then implement it properly.",
       },
       {
         q: "What automation tools do you use?",
