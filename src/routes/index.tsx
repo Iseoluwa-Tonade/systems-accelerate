@@ -89,6 +89,7 @@ function HomePage() {
       <TrustBar />
       <WhyUs />
       <Services />
+      <FullBleed />
       <Methodology />
       <CaseStudiesPreview />
       <TeamStrip />
@@ -314,121 +315,108 @@ function ToolFlow() {
 
 function Hero() {
   return (
-    <section className="relative pt-20 md:pt-24" style={{ background: "#FAFBFF" }}>
-      {/* ── Background ── */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-52 right-[-120px] h-[750px] w-[750px] rounded-full animate-aurora-2"
-          style={{ background: "radial-gradient(circle at 55% 40%, rgba(27,94,255,0.11), rgba(99,102,241,0.06) 50%, transparent 70%)", filter: "blur(90px)" }} />
-        <div className="absolute bottom-[-100px] -left-32 h-[600px] w-[600px] rounded-full animate-aurora-1"
-          style={{ background: "radial-gradient(circle at 40% 60%, rgba(255,184,0,0.14), rgba(255,220,80,0.07) 50%, transparent 70%)", filter: "blur(80px)" }} />
-        <div className="absolute top-[10%] left-[35%] h-[500px] w-[500px] rounded-full animate-aurora-1"
-          style={{ background: "radial-gradient(circle at 50% 50%, rgba(124,58,237,0.07), transparent 65%)", filter: "blur(100px)", animationDelay: "-12s" }} />
-        <div className="absolute bottom-0 right-[10%] h-[380px] w-[380px] rounded-full animate-aurora-2"
-          style={{ background: "radial-gradient(circle at 50% 60%, rgba(20,184,166,0.09), transparent 65%)", filter: "blur(70px)", animationDelay: "-8s" }} />
-        <svg className="absolute inset-0 h-full w-full" xmlns="http://www.w3.org/2000/svg">
-          <filter id="hero-grain">
-            <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="4" stitchTiles="stitch" />
-            <feColorMatrix type="saturate" values="0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#hero-grain)" opacity="0.022" />
-        </svg>
-        <div className="absolute inset-0 bg-grid opacity-[0.045]" />
-        <div className="absolute inset-x-0 top-0 h-px"
-          style={{ background: "linear-gradient(to right, transparent 5%, rgba(27,94,255,0.35) 35%, rgba(255,184,0,0.35) 65%, transparent 95%)" }} />
-      </div>
+    <section className="relative overflow-hidden" style={{ background: "#FAFBFF" }}>
+      <div className="grid lg:grid-cols-2 min-h-[88vh]">
 
-      {/* ── 3-column grid ── */}
-      <div className="relative mx-auto max-w-[1440px] px-4 lg:px-6 py-14 lg:py-20">
-        <div className="grid xl:grid-cols-[216px_1fr_216px] xl:gap-8 items-start">
-
-          {/* LEFT: Pipeline + Routing */}
-          <div className="hidden xl:flex flex-col gap-5 pt-8">
-            <FloatWrap delay={0.7} period={4.2} lift={8}>
-              <CardPipeline />
-            </FloatWrap>
-            <FloatWrap delay={1.0} period={5.2} lift={7}>
-              <CardRouting />
-            </FloatWrap>
-          </div>
-
-          {/* CENTER: headline + CTAs + trust + tool flow */}
-          <div className="flex flex-col items-center text-center pt-4 lg:pt-8 pb-16 lg:pb-24">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2.5 rounded-full border border-[#1B5EFF]/15 bg-[#1B5EFF]/06 px-4 py-1.5 mb-8">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
-              </span>
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#1B5EFF]/70">Your Growth Partner</span>
-            </div>
-
-            <h1 className="font-display text-[46px] font-extrabold leading-[1.07] tracking-tight text-[#080D1C] sm:text-[62px] lg:text-[78px] xl:text-[68px] lg:leading-[1.04]">
-              Revenue systems
-              <br />
-              built to <CyclingWord />
-            </h1>
-
-            <ScrollReveal variant="fadeUp" delay={0.15}>
-              <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-[#4C5670] sm:text-[18px]">
-                Lead generation, CRM, automation, social media, and operations. One accountable partner.
-              </p>
-            </ScrollReveal>
-
-            <ScrollReveal variant="fadeUp" delay={0.25}>
-              <div className="mt-9 flex flex-wrap items-center justify-center gap-5">
-                <Link
-                  to="/book"
-                  className="inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_14px_36px_-8px_rgba(255,184,0,0.55)]"
-                  style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 60%, #E08A00 100%)" }}
-                >
-                  Book a strategy session
-                  <svg viewBox="0 0 16 16" className="h-4 w-4 animate-bounce-x" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </Link>
-                <Link to="/services" className="text-[15px] font-medium text-[#080D1C]/45 hover:text-[#080D1C] transition-colors">
-                  View services →
-                </Link>
+        {/* LEFT: Photo */}
+        <div className="relative order-2 lg:order-1 h-[320px] lg:h-auto overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&q=85&auto=format&fit=crop"
+            alt="Revenue analytics dashboard"
+            className="w-full h-full object-cover"
+          />
+          {/* Brand colour wash */}
+          <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(8,13,28,0.55) 0%, rgba(27,94,255,0.18) 60%, transparent 100%)" }} />
+          {/* Floating metric chips over the photo */}
+          <div className="absolute bottom-8 left-6 right-6 flex flex-col gap-3">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="inline-flex w-fit items-center gap-3 rounded-xl border border-white/15 bg-[#080D1C]/80 backdrop-blur-md px-4 py-3"
+            >
+              <span className="font-display text-2xl font-bold text-white">$4.2M</span>
+              <div>
+                <div className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/40">Pipeline</div>
+                <div className="font-mono text-[10px] text-[#1B5EFF]">+18% vs prev qtr</div>
               </div>
-            </ScrollReveal>
-
-            {/* Trust badges */}
-            <ScrollReveal variant="fadeUp" delay={0.35}>
-              <div className="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 border-t border-black/06 pt-8">
-                {[
-                  { icon: "★", score: "4.9/5", label: "Client Rating" },
-                  { icon: "✓", score: "Top Rated", label: "Upwork" },
-                  { icon: "⚡", score: "< 24 hrs", label: "Response Time" },
-                  { icon: "🔒", score: "NDA", label: "On Request" },
-                ].map(({ icon, score, label }) => (
-                  <div key={label} className="flex items-center gap-2">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#F4F7FF] text-sm border border-[#E8EEFF]">{icon}</span>
-                    <div>
-                      <div className="text-[12px] font-bold text-[#080D1C] leading-tight">{score}</div>
-                      <div className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#4C5670]/55">{label}</div>
-                    </div>
-                  </div>
-                ))}
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.0, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="inline-flex w-fit items-center gap-3 rounded-xl border border-white/15 bg-[#080D1C]/80 backdrop-blur-md px-4 py-3"
+            >
+              <span className="font-display text-2xl font-bold text-gradient-gold">$680K</span>
+              <div>
+                <div className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/40">Won QTD</div>
+                <div className="font-mono text-[10px] text-[#FFB800]">+41% vs prev qtr</div>
               </div>
-            </ScrollReveal>
-
-            {/* Tool automation flow */}
-            <ScrollReveal variant="fadeUp" delay={0.5}>
-              <ToolFlow />
-            </ScrollReveal>
+            </motion.div>
           </div>
-
-          {/* RIGHT: Activity + Won */}
-          <div className="hidden xl:flex flex-col gap-5 pt-8">
-            <FloatWrap delay={0.85} period={4.8} lift={6}>
-              <CardActivity />
-            </FloatWrap>
-            <FloatWrap delay={0.95} period={3.9} lift={9}>
-              <CardWon />
-            </FloatWrap>
-          </div>
-
         </div>
+
+        {/* RIGHT: Content */}
+        <div className="order-1 lg:order-2 flex flex-col justify-center px-6 py-16 lg:px-14 xl:px-20 lg:py-24">
+          {/* Badge */}
+          <div className="inline-flex w-fit items-center gap-2.5 rounded-full border border-[#1B5EFF]/20 bg-[#1B5EFF]/06 px-4 py-1.5 mb-7">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
+            </span>
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#1B5EFF]/70">Your Growth Partner</span>
+          </div>
+
+          <h1 className="font-display text-[42px] font-extrabold leading-[1.07] tracking-tight text-[#080D1C] sm:text-[54px] lg:text-[58px] xl:text-[66px] lg:leading-[1.04]">
+            Revenue systems
+            <br />
+            built to <CyclingWord />
+          </h1>
+
+          <p className="mt-6 max-w-lg text-[17px] leading-relaxed text-[#4C5670]">
+            Lead generation, CRM, automation, social media, and operations. One accountable partner.
+          </p>
+
+          <div className="mt-9 flex flex-wrap items-center gap-4">
+            <Link
+              to="/book"
+              className="inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_14px_36px_-8px_rgba(255,184,0,0.55)]"
+              style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 60%, #E08A00 100%)" }}
+            >
+              Book a strategy session
+              <svg viewBox="0 0 16 16" className="h-4 w-4 animate-bounce-x" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+            <Link to="/services" className="text-[15px] font-medium text-[#080D1C]/45 hover:text-[#080D1C] transition-colors">
+              View services →
+            </Link>
+          </div>
+
+          {/* Trust badges */}
+          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-black/07 pt-8">
+            {[
+              { icon: "★", score: "4.9/5", label: "Client Rating" },
+              { icon: "✓", score: "Top Rated", label: "Upwork" },
+              { icon: "⚡", score: "< 24 hrs", label: "Response Time" },
+              { icon: "🔒", score: "NDA", label: "On Request" },
+            ].map(({ icon, score, label }) => (
+              <div key={label} className="flex items-center gap-2">
+                <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#F4F7FF] text-sm border border-[#E8EEFF]">{icon}</span>
+                <div>
+                  <div className="text-[12px] font-bold text-[#080D1C] leading-tight">{score}</div>
+                  <div className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#4C5670]/55">{label}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Tool flow */}
+          <div className="mt-10">
+            <ToolFlow />
+          </div>
+        </div>
+
       </div>
     </section>
   );
@@ -545,39 +533,57 @@ function WhyUs() {
 const SERVICES = [
   {
     code: "01",
+    color: "#1B5EFF",
     title: "Sales & Lead Generation",
     desc: "Fill your pipeline with the right people. We handle lead generation, outreach, and appointment setting.",
-    bullets: ["Lead generation", "Appointment setting", "Sales development"],
+    image: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&q=80&auto=format&fit=crop",
+    imageAlt: "Sales team in a business meeting",
+    cta: "Learn more",
   },
   {
     code: "02",
+    color: "#14B8A6",
     title: "CRM & Sales Operations",
     desc: "Implement and optimise HubSpot or Salesforce so your sales process runs cleanly from day one.",
-    bullets: ["CRM implementation", "Sales process optimisation", "Pipeline reporting"],
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop",
+    imageAlt: "CRM and business intelligence dashboard",
+    cta: "Learn more",
   },
   {
     code: "03",
+    color: "#8B5CF6",
     title: "RevOps & GTM Engineering",
     desc: "Align your revenue teams on shared metrics, forecasts, and a pipeline your leadership can trust.",
-    bullets: ["Revenue operations", "GTM engineering", "Forecasting & dashboards"],
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80&auto=format&fit=crop",
+    imageAlt: "Business strategy and analytics",
+    cta: "Learn more",
   },
   {
     code: "04",
+    color: "#10B981",
     title: "Workflow Automation & AI",
     desc: "Automate the repetitive work and use AI where it creates real leverage across your operations.",
-    bullets: ["Workflow automation", "AI-powered solutions", "Process optimisation"],
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80&auto=format&fit=crop",
+    imageAlt: "Technology and automation",
+    cta: "Learn more",
   },
   {
     code: "05",
+    color: "#EC4899",
     title: "Social Media & Community",
     desc: "Build a consistent presence and an active community around your brand across every channel.",
-    bullets: ["Social media management", "Community management", "Content scheduling"],
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80&auto=format&fit=crop",
+    imageAlt: "Social media management on phone",
+    cta: "Learn more",
   },
   {
     code: "06",
+    color: "#FFB800",
     title: "Virtual Assistance & Back Office",
     desc: "Skilled remote talent for the admin, orders, and operations that keep your business running.",
-    bullets: ["Virtual assistance", "Order management", "Back-office operations"],
+    image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80&auto=format&fit=crop",
+    imageAlt: "Remote worker managing back-office operations",
+    cta: "Learn more",
   },
 ] as const;
 
@@ -585,51 +591,94 @@ function Services() {
   return (
     <section className="sec-white py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
-        <div className="flex flex-col lg:flex-row lg:gap-20">
-          {/* Sticky left header */}
-          <div className="lg:w-72 xl:w-80 shrink-0 mb-12 lg:mb-0">
-            <div className="lg:sticky lg:top-28">
-              <SectionHeader
-                eyebrow="What we do"
-                title={<>Six services.<br /><span className="text-gradient-gold">One partner.</span></>}
-                description="From sales ops to AI automation, one senior team delivers it all."
-              />
-              <Link
-                to="/services"
-                className="mt-8 inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground/70 hover:bg-[#F4F6FA] hover:text-foreground transition-all"
-              >
-                Explore all services →
-              </Link>
-            </div>
-          </div>
-          {/* Editorial list */}
-          <div className="flex-1 divide-y divide-border">
-            {SERVICES.map((s, i) => (
-              <ScrollReveal key={s.code} variant="slideRight" delay={i * 0.05}>
-                <Link
-                  to="/services"
-                  className="group flex items-start gap-5 py-7 transition-all duration-200 hover:pl-3"
-                >
-                  <span className="pt-1.5 font-mono text-[11px] tracking-[0.18em] text-muted-foreground shrink-0 w-6">{s.code}</span>
-                  <div className="flex-1 min-w-0">
-                    <div className="font-display text-xl font-bold tracking-tight text-[#080D1C] group-hover:text-[#1B5EFF] transition-colors">
-                      {s.title}
-                    </div>
-                    <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-                    <div className="mt-3 flex flex-wrap gap-1.5">
-                      {s.bullets.map((b) => (
-                        <span key={b} className="rounded-full border border-border px-2.5 py-0.5 font-mono text-[10px] text-foreground/55 group-hover:border-[#1B5EFF]/20 transition-colors">
-                          {b}
-                        </span>
-                      ))}
-                    </div>
+        <div className="flex flex-col items-center text-center mb-12 lg:mb-16">
+          <SectionHeader
+            eyebrow="What we do"
+            title={<>Six services. <span className="text-gradient-gold">One partner.</span></>}
+            description="From sales and CRM to automation, social media, and back office — we handle it all."
+          />
+          <Link
+            to="/services"
+            className="mt-6 inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-medium text-foreground/70 hover:bg-[#F4F6FA] hover:text-foreground transition-all"
+          >
+            Explore all services →
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {SERVICES.map((s, i) => (
+            <ScrollReveal key={s.code} variant="fadeUp" delay={i * 0.07}>
+              <Link to="/services" className="group block rounded-2xl border border-border overflow-hidden bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-transparent">
+                {/* Photo */}
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <img
+                    src={s.image}
+                    alt={s.imageAlt}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: `linear-gradient(to bottom, transparent 40%, ${s.color}22 100%)` }} />
+                  <div className="absolute top-3 left-3">
+                    <span className="font-mono text-[9px] uppercase tracking-[0.18em] px-2.5 py-1 rounded-full" style={{ background: `${s.color}18`, color: s.color, border: `1px solid ${s.color}30` }}>
+                      {s.code}
+                    </span>
                   </div>
-                  <svg viewBox="0 0 16 16" className="mt-1.5 h-4 w-4 shrink-0 text-muted-foreground group-hover:text-[#1B5EFF] group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </Link>
-              </ScrollReveal>
-            ))}
+                </div>
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="font-display text-lg font-bold tracking-tight text-[#080D1C] group-hover:text-[#1B5EFF] transition-colors leading-snug">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
+                  <div className="mt-4 flex items-center gap-1 text-sm font-medium transition-all" style={{ color: s.color }}>
+                    {s.cta}
+                    <svg viewBox="0 0 16 16" className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                </div>
+              </Link>
+            </ScrollReveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────── FULL-BLEED IMAGE SECTION ─────────────── */
+function FullBleed() {
+  return (
+    <section className="relative overflow-hidden" style={{ minHeight: "460px" }}>
+      <img
+        src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1800&q=85&auto=format&fit=crop"
+        alt="Team working on strategy"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(8,13,28,0.75) 0%, rgba(8,13,28,0.40) 50%, rgba(8,13,28,0.10) 100%)" }} />
+      <div className="relative mx-auto max-w-7xl px-4 lg:px-6 h-full flex items-center py-20">
+        <div className="max-w-xl">
+          <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#FFB800] mb-4">How we work</div>
+          <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-[46px] lg:leading-[1.08]">
+            We build. We document.<br />
+            <span style={{ color: "#FFB800" }}>We hand it over.</span>
+          </h2>
+          <p className="mt-5 text-[16px] leading-relaxed text-white/65 max-w-md">
+            No retainers to maintain access to your own systems. Every engagement ships with full documentation, trained teams, and systems that last.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Link
+              to="/book"
+              className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold text-[#080D1C] transition-all hover:scale-[1.03]"
+              style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
+            >
+              Book a strategy session →
+            </Link>
+            <Link
+              to="/case-studies"
+              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-7 py-3.5 text-sm font-medium text-white transition-all hover:bg-white/10"
+            >
+              See our work →
+            </Link>
           </div>
         </div>
       </div>
