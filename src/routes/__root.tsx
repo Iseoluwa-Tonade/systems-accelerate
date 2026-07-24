@@ -74,20 +74,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SuperTelque | Your Growth Partner" },
-      { name: "description", content: "SuperTelque is your growth partner: lead generation, CRM, automation, social media, and operations delivered by one senior team." },
+      { title: "SuperTelque | Revenue Systems for B2B Companies" },
+      { name: "description", content: "SuperTelque builds revenue systems for US B2B companies: lead generation, CRM setup, RevOps, workflow automation, social media, and back-office operations. Remote-first. One accountable partner." },
       { name: "author", content: "SuperTelque" },
-      { property: "og:title", content: "SuperTelque | Your Growth Partner" },
-      { property: "og:description", content: "SuperTelque is your growth partner: lead generation, CRM, automation, social media, and operations delivered by one senior team." },
+      { name: "keywords", content: "B2B revenue operations, CRM implementation, lead generation agency, RevOps consulting, workflow automation, sales operations, HubSpot Salesforce Pipedrive setup, outbound lead generation USA" },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "SuperTelque | Revenue Systems for B2B Companies" },
+      { property: "og:description", content: "SuperTelque builds revenue systems for US B2B companies: lead generation, CRM setup, RevOps, workflow automation, social media, and back-office operations." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://supertelque.com" },
       { property: "og:image", content: "https://supertelque.com/og-image.png" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
+      { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "https://supertelque.com/og-image.png" },
-      { name: "twitter:title", content: "SuperTelque | Your Growth Partner" },
-      { name: "twitter:description", content: "SuperTelque architects RevOps, GTM automation, CRM and AI-powered revenue systems for B2B technology companies globally." },
+      { name: "twitter:title", content: "SuperTelque | Revenue Systems for B2B Companies" },
+      { name: "twitter:description", content: "CRM, RevOps, lead generation, automation, social media, and virtual assistance for B2B companies. Remote-first. One accountable partner." },
     ],
     links: [
       {
@@ -115,6 +118,33 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
         <script dangerouslySetInnerHTML={{ __html: `function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,o.onload=function(){window.trackingFunctions.onLoad({appId:"69c83565c43ef5001d514789"})},document.head.appendChild(o)}initApollo();` }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "SuperTelque",
+          "url": "https://supertelque.com",
+          "logo": "https://supertelque.com/supertelque-logo.png",
+          "description": "SuperTelque builds revenue systems for B2B companies: lead generation, CRM implementation, RevOps, workflow automation with AI, social media management, and virtual assistance. Remote-first, US incorporated.",
+          "email": "hello@supertelque.com",
+          "foundingLocation": { "@type": "Place", "addressCountry": "US" },
+          "areaServed": [
+            { "@type": "Country", "name": "United States" },
+            { "@type": "Country", "name": "Canada" },
+            { "@type": "Country", "name": "United Kingdom" }
+          ],
+          "serviceType": [
+            "Revenue Operations",
+            "Lead Generation",
+            "CRM Implementation",
+            "Workflow Automation",
+            "Sales Operations",
+            "Social Media Management",
+            "Virtual Assistance"
+          ],
+          "sameAs": [
+            "https://www.linkedin.com/company/supertelque"
+          ]
+        }) }} />
       </head>
       <body>
         {children}
