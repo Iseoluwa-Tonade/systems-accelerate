@@ -483,12 +483,12 @@ function RevenueGap() {
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <ScrollReveal variant="fadeUp">
           <div className="mb-12 text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-4 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.22em] text-red-600 mb-6">
+            <span className="inline-flex items-center gap-2 rounded-full border border-orange-200 bg-orange-50 px-4 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.22em] text-orange-600 mb-6">
               The hidden cost
             </span>
             <h2 className="font-display text-3xl font-extrabold tracking-tight text-[#080D1C] sm:text-4xl lg:text-[50px] lg:leading-[1.05]">
               Most B2B companies are leaving<br className="hidden lg:block" />{" "}
-              <span className="text-red-500">significant revenue on the table.</span>
+              <span className="text-orange-500">significant revenue on the table.</span>
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-relaxed text-[#4C5670]">
               Not because the product is wrong or the team is weak. Because the systems that should be converting, retaining, and growing revenue are missing, manual, or broken.
@@ -500,7 +500,7 @@ function RevenueGap() {
           {GAP_STATS.map((g, i) => (
             <ScrollReveal key={g.stat} variant="fadeUp" delay={i * 0.08}>
               <div className="bg-white p-7 lg:p-8 h-full flex flex-col">
-                <div className="font-display text-5xl lg:text-[54px] font-extrabold tracking-tight text-red-500 leading-none mb-3">{g.stat}</div>
+                <div className="font-display text-5xl lg:text-[54px] font-extrabold tracking-tight text-orange-500 leading-none mb-3">{g.stat}</div>
                 <div className="font-semibold text-[#080D1C] text-base mb-3 leading-snug">{g.label}</div>
                 <p className="text-sm leading-relaxed text-muted-foreground flex-1">{g.detail}</p>
               </div>
