@@ -60,14 +60,38 @@ export function SiteFooter() {
             />
             <div>
               <div className="text-xs font-medium uppercase tracking-[0.18em] text-[#FFB800]/70">
-                Work with us
+                Client portal
               </div>
-              <ul className="mt-4 space-y-2 text-sm text-white/60">
-                <li>Remote-first</li>
-                <li>Global clients</li>
-                <li>GDPR compliant</li>
-                <li>NDA on request</li>
+              <ul className="mt-4 space-y-3 text-sm">
+                <li>
+                  <a
+                    href="https://crm.supertelque.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+                  >
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/05 group-hover:border-[#FFB800]/30 group-hover:bg-[#FFB800]/08 transition-colors">
+                      <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8">
+                        <rect x="2" y="5" width="12" height="9" rx="1.5" />
+                        <path d="M5 5V4a3 3 0 0 1 6 0v1" strokeLinecap="round" />
+                      </svg>
+                    </span>
+                    <span>
+                      <span className="block text-[13px] font-medium text-white/80 group-hover:text-white">Manage your project</span>
+                      <span className="block font-mono text-[10px] text-white/30 mt-0.5">crm.supertelque.com</span>
+                    </span>
+                  </a>
+                </li>
+                <li className="pl-9 text-[12px] leading-relaxed text-white/40">
+                  Track progress, review deliverables, and collaborate with your SuperTelque team.
+                </li>
               </ul>
+              <div className="mt-6 space-y-1.5 text-[12px] text-white/40">
+                <div>Remote-first</div>
+                <div>Global clients</div>
+                <div>GDPR compliant</div>
+                <div>NDA on request</div>
+              </div>
             </div>
           </div>
         </div>

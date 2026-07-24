@@ -377,6 +377,50 @@ function BookPage() {
           </div>
         </div>
       </section>
+
+      {/* Already a client — portal CTA */}
+      <section className="sec-mid border-t border-border py-12 lg:py-16">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6">
+          <div className="rounded-2xl border border-[#E0E7FF] bg-white p-8 lg:p-12 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+            <div className="flex items-start gap-5">
+              <div className="shrink-0 flex h-12 w-12 items-center justify-center rounded-xl border border-[#1B5EFF]/20 bg-[#F0F4FF]">
+                <svg viewBox="0 0 24 24" className="h-6 w-6 text-[#1B5EFF]" fill="none" stroke="currentColor" strokeWidth="1.8">
+                  <rect x="3" y="8" width="18" height="13" rx="2" />
+                  <path d="M8 8V7a4 4 0 0 1 8 0v1" strokeLinecap="round" />
+                </svg>
+              </div>
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#1B5EFF] mb-2">Already a client?</div>
+                <h2 className="font-display text-xl font-extrabold tracking-tight text-[#080D1C] sm:text-2xl">
+                  Manage your project
+                </h2>
+                <p className="mt-2 max-w-lg text-[15px] leading-relaxed text-[#4C5670]">
+                  Track deliverables, review progress, share feedback, and collaborate with your SuperTelque team. Everything your engagement needs in one place.
+                </p>
+                <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-1.5">
+                  {["Track milestones", "Review deliverables", "Collaborate with your team", "Manage your own projects"].map((item) => (
+                    <li key={item} className="flex items-center gap-1.5 font-mono text-[11px] text-[#4C5670]">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#1B5EFF]" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <a
+              href="https://crm.supertelque.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 inline-flex items-center gap-2 rounded-full border-2 border-[#1B5EFF] px-6 py-3.5 text-[13px] font-bold text-[#1B5EFF] transition-all hover:bg-[#1B5EFF] hover:text-white"
+            >
+              Go to client portal
+              <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
     </SiteLayout>
   );
 }
