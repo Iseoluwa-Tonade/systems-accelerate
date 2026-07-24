@@ -79,16 +79,40 @@ function ServicesPage() {
           </svg>
         </div>
         <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pt-16 lg:px-6">
-          <Eyebrow>Services</Eyebrow>
-          <h1 className="mt-5 max-w-3xl font-display text-[34px] font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
-            Everything your business<span className="text-gradient-gold"> needs to grow.</span>
-          </h1>
-          <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Every service comes with a clear plan, measurable outcomes, and documentation
-              your team can own. Tell us what you need and we'll figure out the right starting point.
-            </p>
-          </ScrollReveal>
+          <div className="grid gap-10 lg:grid-cols-12 items-end">
+            <div className="lg:col-span-7">
+              <Eyebrow>Services</Eyebrow>
+              <h1 className="mt-5 font-display text-[34px] font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
+                Everything your business<span className="text-gradient-gold"> needs to grow.</span>
+              </h1>
+              <ScrollReveal variant="fadeUp" delay={0.15}>
+                <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+                  Every service comes with a clear plan, measurable outcomes, and documentation
+                  your team can own. Tell us what you need and we will find the right starting point.
+                </p>
+              </ScrollReveal>
+            </div>
+            <ScrollReveal variant="fadeUp" delay={0.2} className="lg:col-span-5">
+              <div className="rounded-2xl border border-border overflow-hidden">
+                <div className="relative h-48 lg:h-56 overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80&auto=format&fit=crop"
+                    alt="Business growth strategy session"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080D1C]/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Six service lines</div>
+                    <div className="mt-0.5 font-display text-sm font-bold text-white">From pipeline to back office.</div>
+                  </div>
+                </div>
+                <div className="px-5 py-4 bg-[#F4F7FF] flex items-center gap-3">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#4C5670]">Measurable outcomes on every engagement</span>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 

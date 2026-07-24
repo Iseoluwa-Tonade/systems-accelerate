@@ -86,15 +86,39 @@ function BookPage() {
           </svg>
         </div>
         <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pt-16 lg:px-6">
-          <Eyebrow>Book a session</Eyebrow>
-          <h1 className="mt-5 max-w-3xl font-display text-[34px] font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
-            Book a <span className="text-gradient-gold">free strategy</span> session.
-          </h1>
-          <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-              45 minutes with a senior RevOps engineer. Your stack reviewed, quick wins identified, and a clear plan to move forward.
-            </p>
-          </ScrollReveal>
+          <div className="grid gap-10 lg:grid-cols-12 items-end">
+            <div className="lg:col-span-7">
+              <Eyebrow>Book a session</Eyebrow>
+              <h1 className="mt-5 font-display text-[34px] font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
+                Book a <span className="text-gradient-gold">free strategy</span> session.
+              </h1>
+              <ScrollReveal variant="fadeUp" delay={0.15}>
+                <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
+                  45 minutes with a senior RevOps engineer. Your stack reviewed, quick wins identified, and a clear plan to move forward.
+                </p>
+              </ScrollReveal>
+            </div>
+            <ScrollReveal variant="fadeUp" delay={0.2} className="lg:col-span-5">
+              <div className="rounded-2xl border border-border overflow-hidden">
+                <div className="relative h-48 lg:h-56 overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=800&q=80&auto=format&fit=crop"
+                    alt="Professional strategy session in a modern office"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080D1C]/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Free · No pressure</div>
+                    <div className="mt-0.5 font-display text-sm font-bold text-white">45 minutes. Clear starting point.</div>
+                  </div>
+                </div>
+                <div className="px-5 py-4 bg-[#F4F7FF] flex items-center gap-3">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#4C5670]">Est. value $2,500 · Free for qualifying teams</span>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 

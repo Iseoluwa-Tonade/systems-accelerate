@@ -145,28 +145,52 @@ function FaqPage() {
           />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pt-16 lg:px-6">
-          <Eyebrow>FAQ</Eyebrow>
-          <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[64px] lg:leading-[1.04]">
-            Questions we <span className="text-gradient-gold">get asked.</span>
-          </h1>
-          <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-[#4C5670]">
-              Straight answers about how we work, what we build, and what to expect from an engagement.
-            </p>
-          </ScrollReveal>
-          <ScrollReveal variant="fadeUp" delay={0.25}>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {FAQS.map((cat) => (
-                <a
-                  key={cat.category}
-                  href={`#${cat.category.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-[#E8EEFF] bg-white px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em] text-[#4C5670] transition-colors hover:border-[#1B5EFF]/30 hover:text-[#1B5EFF]"
-                >
-                  {cat.category}
-                </a>
-              ))}
+          <div className="grid gap-10 lg:grid-cols-12 items-end">
+            <div className="lg:col-span-7">
+              <Eyebrow>FAQ</Eyebrow>
+              <h1 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[64px] lg:leading-[1.04]">
+                Questions we <span className="text-gradient-gold">get asked.</span>
+              </h1>
+              <ScrollReveal variant="fadeUp" delay={0.15}>
+                <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-[#4C5670]">
+                  Straight answers about how we work, what we build, and what to expect from an engagement.
+                </p>
+              </ScrollReveal>
+              <ScrollReveal variant="fadeUp" delay={0.25}>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  {FAQS.map((cat) => (
+                    <a
+                      key={cat.category}
+                      href={`#${cat.category.toLowerCase().replace(/\s+/g, "-")}`}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-[#E8EEFF] bg-white px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em] text-[#4C5670] transition-colors hover:border-[#1B5EFF]/30 hover:text-[#1B5EFF]"
+                    >
+                      {cat.category}
+                    </a>
+                  ))}
+                </div>
+              </ScrollReveal>
             </div>
-          </ScrollReveal>
+            <ScrollReveal variant="fadeUp" delay={0.2} className="lg:col-span-5">
+              <div className="rounded-2xl border border-border overflow-hidden">
+                <div className="relative h-48 lg:h-56 overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80&auto=format&fit=crop"
+                    alt="Person thinking through a business problem"
+                    className="w-full h-full object-cover object-top"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080D1C]/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Straight answers</div>
+                    <div className="mt-0.5 font-display text-sm font-bold text-white">No jargon. No runaround.</div>
+                  </div>
+                </div>
+                <div className="px-5 py-4 bg-[#F4F7FF] flex items-center gap-3">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#4C5670]">{FAQS.reduce((a, c) => a + c.items.length, 0)} questions answered</span>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 

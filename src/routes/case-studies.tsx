@@ -76,29 +76,52 @@ function CaseStudiesPage() {
           </svg>
         </div>
         <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pt-16 lg:px-6">
-          <Eyebrow>Case studies</Eyebrow>
-          <h1 className="mt-5 max-w-4xl font-display text-[34px] font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
-            Real work.
-            <br />
-            <span className="text-gradient-gold">Real results.</span>
-          </h1>
-          <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
-              Three recent engagements with the full picture: the problem, what we built,
-              the tools we used, and the numbers that moved.
-            </p>
-          </ScrollReveal>
-          {/* Summary stat strip */}
-          <ScrollReveal variant="fadeUp" delay={0.25}>
-            <div className="mt-10 flex flex-wrap items-center gap-8 border-t border-border pt-8">
-              {[["3", "Engagements detailed"], ["9", "Key metrics moved"], ["100%", "Delivered on time"]].map(([v, l]) => (
-                <div key={l}>
-                  <div className="font-display text-2xl font-bold text-[#080D1C] leading-none">{v}</div>
-                  <div className="mt-1 font-mono text-[9.5px] uppercase tracking-[0.18em] text-muted-foreground">{l}</div>
+          <div className="grid gap-10 lg:grid-cols-12 items-end">
+            <div className="lg:col-span-7">
+              <Eyebrow>Case studies</Eyebrow>
+              <h1 className="mt-5 font-display text-[34px] font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
+                Real work.
+                <br />
+                <span className="text-gradient-gold">Real results.</span>
+              </h1>
+              <ScrollReveal variant="fadeUp" delay={0.15}>
+                <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
+                  Three recent engagements with the full picture: the problem, what we built,
+                  the tools we used, and the numbers that moved.
+                </p>
+              </ScrollReveal>
+              <ScrollReveal variant="fadeUp" delay={0.25}>
+                <div className="mt-10 flex flex-wrap items-center gap-8 border-t border-border pt-8">
+                  {[["3", "Engagements detailed"], ["9", "Key metrics moved"], ["100%", "Delivered on time"]].map(([v, l]) => (
+                    <div key={l}>
+                      <div className="font-display text-2xl font-bold text-[#080D1C] leading-none">{v}</div>
+                      <div className="mt-1 font-mono text-[9.5px] uppercase tracking-[0.18em] text-muted-foreground">{l}</div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </ScrollReveal>
             </div>
-          </ScrollReveal>
+            <ScrollReveal variant="fadeUp" delay={0.2} className="lg:col-span-5">
+              <div className="rounded-2xl border border-border overflow-hidden">
+                <div className="relative h-48 lg:h-56 overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop"
+                    alt="Revenue analytics and reporting dashboard"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080D1C]/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Outcomes, not outputs</div>
+                    <div className="mt-0.5 font-display text-sm font-bold text-white">Numbers that moved.</div>
+                  </div>
+                </div>
+                <div className="px-5 py-4 bg-[#F4F7FF] flex items-center gap-3">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#4C5670]">Full teardowns · Challenge, solution, stack</span>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 

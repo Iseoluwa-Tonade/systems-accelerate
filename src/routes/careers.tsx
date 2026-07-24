@@ -130,25 +130,49 @@ function CareersPage() {
           />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pt-16 lg:px-6">
-          <Eyebrow>Open Roles</Eyebrow>
-          <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[64px] lg:leading-[1.04]">
-            Build with a team that <span className="text-gradient-gold">ships real systems.</span>
-          </h1>
-          <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-[#4C5670]">
-              We are a senior, remote-first team. Every person works directly with clients and owns their output. No layers, no handoffs.
-            </p>
-          </ScrollReveal>
-          <ScrollReveal variant="fadeUp" delay={0.25}>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {["Remote-first", "Async-friendly", "Direct client work", "Global team"].map((tag) => (
-                <span key={tag} className="inline-flex items-center gap-1.5 rounded-full border border-[#E8EEFF] bg-white px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em] text-[#4C5670]">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                  {tag}
-                </span>
-              ))}
+          <div className="grid gap-10 lg:grid-cols-12 items-end">
+            <div className="lg:col-span-7">
+              <Eyebrow>Open Roles</Eyebrow>
+              <h1 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[64px] lg:leading-[1.04]">
+                Build with a team that <span className="text-gradient-gold">ships real systems.</span>
+              </h1>
+              <ScrollReveal variant="fadeUp" delay={0.15}>
+                <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-[#4C5670]">
+                  We are a remote-first team. Every person works directly with clients and owns their output. No layers, no handoffs.
+                </p>
+              </ScrollReveal>
+              <ScrollReveal variant="fadeUp" delay={0.25}>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  {["Remote-first", "Async-friendly", "Direct client work", "Global team"].map((tag) => (
+                    <span key={tag} className="inline-flex items-center gap-1.5 rounded-full border border-[#E8EEFF] bg-white px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em] text-[#4C5670]">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </ScrollReveal>
             </div>
-          </ScrollReveal>
+            <ScrollReveal variant="fadeUp" delay={0.2} className="lg:col-span-5">
+              <div className="rounded-2xl border border-border overflow-hidden">
+                <div className="relative h-48 lg:h-56 overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80&auto=format&fit=crop"
+                    alt="Team collaborating on a project"
+                    className="w-full h-full object-cover object-top"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080D1C]/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Remote-first team</div>
+                    <div className="mt-0.5 font-display text-sm font-bold text-white">Own your output. Work with real clients.</div>
+                  </div>
+                </div>
+                <div className="px-5 py-4 bg-[#F4F7FF] flex items-center gap-3">
+                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#4C5670]">{ROLES.length} roles open now</span>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
