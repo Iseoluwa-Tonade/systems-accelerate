@@ -35,6 +35,7 @@ export function SiteFooter() {
                 { to: "/services", label: "Services" },
                 { to: "/about", label: "About" },
                 { to: "/careers", label: "Open Roles" },
+                { to: "/faq", label: "FAQ" },
                 { to: "/case-studies", label: "Case Studies" },
               ]}
             />
