@@ -317,8 +317,8 @@ export const POSTS: Post[] = [
     publishedAt: "2025-07-14",
     readTime: 6,
     cover:
-      "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=900&q=80&auto=format&fit=crop",
-    coverAlt: "Person using social media on a smartphone",
+      "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=900&q=80&auto=format&fit=crop",
+    coverAlt: "Person scrolling social media on a smartphone",
     tags: ["Social Media", "LinkedIn", "B2B Marketing", "Content"],
     body: [
       { t: "p", v: "B2B companies often fall into one of two social media failure modes. The first is total inactivity: the company page has not posted in six months and the founders are not personally visible anywhere. The second is scattered activity: a LinkedIn post every few weeks, occasional tweets, an Instagram account with three posts, and no clear strategy tying any of it together." },
@@ -677,8 +677,8 @@ export const POSTS: Post[] = [
     publishedAt: "2025-09-01",
     readTime: 6,
     cover:
-      "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=900&q=80&auto=format&fit=crop",
-    coverAlt: "Person managing social media content on a smartphone",
+      "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=900&q=80&auto=format&fit=crop",
+    coverAlt: "Content calendar and social media planning on a desk",
     tags: ["Social Media", "Buffer", "Hootsuite", "Later", "Scheduling"],
     body: [
       { t: "p", v: "The difference between a B2B company that builds a consistent social media presence and one that does not usually comes down to operations, not ideas. Most teams have enough to say. What they lack is a system for saying it consistently without it consuming hours of someone's week." },
