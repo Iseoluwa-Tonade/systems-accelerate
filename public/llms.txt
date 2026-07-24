@@ -1,0 +1,50 @@
+# SuperTelque
+
+> SuperTelque builds revenue systems for B2B companies. We handle lead generation, CRM implementation, RevOps, workflow automation with AI, social media management, and virtual assistance. Remote-first, US incorporated, serving clients globally.
+
+## What We Do
+
+- Lead generation and outbound sales campaigns using Apollo, Clay, and proven sequencing strategies
+- CRM setup and sales operations across HubSpot, Salesforce, Pipedrive, Zoho CRM, Close, ActiveCampaign, Monday.com CRM, Keap, and other major platforms
+- Revenue Operations (RevOps) and GTM engineering: pipeline design, lifecycle stages, forecasting
+- Workflow automation with n8n, Make, and Zapier, including AI-powered workflows using OpenAI and Claude
+- Social media and community management across LinkedIn, X, and Instagram
+- Virtual assistance covering admin duties, inbound handling, commerce management, order processing, and back-office operations
+
+## Who We Work With
+
+B2B founders and operators who need operational systems built, not slide decks. We work best with companies that have a repeatable offer and want to scale without adding headcount for every function.
+
+## How to Work With Us
+
+- Book a strategy session: https://supertelque.com/book
+- Contact us: hello@supertelque.com
+- Open roles: https://supertelque.com/careers
+
+## Key Pages
+
+- [Services](https://supertelque.com/services)
+- [Case Studies](https://supertelque.com/case-studies)
+- [Blog](https://supertelque.com/blog)
+- [FAQ](https://supertelque.com/faq)
+- [Book a Session](https://supertelque.com/book)
+- [Contact](https://supertelque.com/contact)
+- [Open Roles](https://supertelque.com/careers)
+
+## Blog Posts
+
+- [How to Validate Your Business Idea Before You Spend a Dollar](https://supertelque.com/blog/validate-your-business-idea)
+- [The First System Every New Business Needs Before It Has Customers](https://supertelque.com/blog/first-system-before-customers)
+- [Why Most Founders Skip Lead Generation (And Pay for It Later)](https://supertelque.com/blog/lead-generation-from-the-start)
+- [Apollo and Clay: How B2B Teams Use Prospecting Tools to Build a Consistent Pipeline](https://supertelque.com/blog/apollo-clay-for-lead-generation)
+- [Why Your Sales Pipeline Is Lying to You](https://supertelque.com/blog/why-your-pipeline-lies)
+- [How to Automate the Tasks That Are Eating Your Week](https://supertelque.com/blog/automate-the-tasks-eating-your-week)
+- [n8n vs Make vs Zapier: Which Automation Tool Should Your Business Use](https://supertelque.com/blog/n8n-make-zapier-compared)
+- [What RevOps Actually Means and Why It Changes How Revenue Works](https://supertelque.com/blog/what-revops-actually-means)
+- [HubSpot, Salesforce, Pipedrive and More: Which CRM Is Right for Your B2B Business](https://supertelque.com/blog/crm-tools-for-b2b-companies)
+- [Social Media for B2B: What Works and What Wastes Time](https://supertelque.com/blog/social-media-for-b2b)
+- [Buffer, Hootsuite, and Later: Which Social Media Scheduling Tool Is Right for B2B Teams](https://supertelque.com/blog/social-media-tools-for-b2b)
+- [How to Scale Revenue Without Hiring for Every Function](https://supertelque.com/blog/scale-revenue-without-hiring-everyone)
+- [The Metrics That Tell You Whether Your Business Is Actually Healthy](https://supertelque.com/blog/metrics-that-tell-if-business-is-healthy)
+- [Why Documentation Is a Growth Strategy, Not an Admin Task](https://supertelque.com/blog/documentation-as-a-growth-strategy)
+- [Notion, Asana, and ClickUp: Choosing the Right Operations Tool for a Growing B2B Company](https://supertelque.com/blog/notion-asana-clickup-for-operations)

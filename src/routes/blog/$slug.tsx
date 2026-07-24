@@ -96,6 +96,22 @@ function renderBlock(block: Block, i: number) {
           </div>
         </div>
       );
+    case "cta":
+      return (
+        <div key={i} className="my-10 rounded-2xl border border-[#FFB800]/30 bg-gradient-to-br from-[#FFFBEF] to-[#FFF8E0] p-6 lg:p-8">
+          <p className="text-[15px] leading-relaxed text-[#4C5670] mb-4">{block.v}</p>
+          <Link
+            to={block.href as "/services" | "/book" | "/contact"}
+            className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[13px] font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_8px_24px_-6px_rgba(255,184,0,0.35)]"
+            style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
+          >
+            {block.label}
+            <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
+        </div>
+      );
     default:
       return null;
   }
