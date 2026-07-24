@@ -22,7 +22,7 @@ const TEAM = [
     name: "Sunny T.",
     role: "RevOps Lead",
     specialty: "HubSpot · Salesforce · Forecasting",
-    bio: "10+ years building revenue systems inside Series A–D B2B companies. Expert in CRM architecture, pipeline design, and GTM alignment.",
+    bio: "10+ years building revenue systems inside Series A to D B2B companies. Expert in CRM architecture, pipeline design, and GTM alignment.",
   },
   {
     v: 2 as const,

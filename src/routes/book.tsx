@@ -39,7 +39,7 @@ function BookPage() {
   const [fullName, setFullName] = useState("");
   const [workEmail, setWorkEmail] = useState("");
   const [company, setCompany] = useState("");
-  const [companySize, setCompanySize] = useState("1–10");
+  const [companySize, setCompanySize] = useState("1-10");
   const [crm, setCrm] = useState("HubSpot");
   const [challenge, setChallenge] = useState("none");
   const [notes, setNotes] = useState("");
@@ -232,7 +232,7 @@ function BookPage() {
                           <FormField label="Full name" placeholder="Alex Morgan" value={fullName} onChange={(e) => setFullName(e.target.value)} error={errors.fullName} />
                           <FormField label="Work email" type="email" placeholder="alex@company.com" value={workEmail} onChange={(e) => setWorkEmail(e.target.value)} error={errors.workEmail} />
                           <FormField label="Company" placeholder="Acme Inc." value={company} onChange={(e) => setCompany(e.target.value)} error={errors.company} />
-                          <FormSelect label="Company size" options={["1–10", "11–50", "51–200", "201–500", "500+"]} value={companySize} onChange={(e) => setCompanySize(e.target.value)} />
+                          <FormSelect label="Company size" options={["1-10", "11-50", "51-200", "201-500", "500+"]} value={companySize} onChange={(e) => setCompanySize(e.target.value)} />
                           <FormSelect label="Current CRM" options={["HubSpot", "Salesforce", "Pipedrive", "Zoho CRM", "Monday.com CRM", "Close", "ActiveCampaign", "Keap / Infusionsoft", "Other", "None / building"]} value={crm} onChange={(e) => setCrm(e.target.value)} />
                           <FormSelect
                             label="Main challenge"
@@ -365,7 +365,7 @@ function BookPage() {
               <div className="rounded-2xl border border-[#E8EEFF] bg-[#FAFBFF] p-5">
                 <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#4C5670]/55 mb-3">Who it's for</div>
                 <div className="text-sm text-[#4C5670] leading-relaxed">
-                  Series A–C B2B companies in SaaS, fintech, ecommerce, and beyond.
+                  Series A to C B2B companies in SaaS, fintech, ecommerce, and beyond.
                 </div>
                 <div className="mt-3 flex flex-wrap gap-1.5">
                   {["B2B SaaS", "Fintech", "Ecommerce", "AI Startups"].map((t) => (
@@ -378,7 +378,7 @@ function BookPage() {
         </div>
       </section>
 
-      {/* Already a client — portal CTA */}
+      {/* Already a client - portal CTA */}
       <section className="sec-mid border-t border-border py-12 lg:py-16">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <div className="rounded-2xl border border-[#E0E7FF] bg-white p-8 lg:p-12 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">

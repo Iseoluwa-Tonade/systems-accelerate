@@ -595,7 +595,7 @@ function Services() {
           <SectionHeader
             eyebrow="What we do"
             title={<>Six services. <span className="text-gradient-gold">One partner.</span></>}
-            description="From sales and CRM to automation, social media, and back office — we handle it all."
+            description="From sales and CRM to automation, social media, and back office: we handle it all."
           />
           <Link
             to="/services"
