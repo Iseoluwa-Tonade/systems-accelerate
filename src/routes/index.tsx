@@ -653,8 +653,8 @@ const SERVICES = [
     color: "#EC4899",
     title: "Social Media & Community",
     desc: "Build a consistent presence and an active community around your brand across every channel.",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80&auto=format&fit=crop",
-    imageAlt: "Social media management on phone",
+    image: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=800&q=80&auto=format&fit=crop",
+    imageAlt: "Person managing social media on a smartphone",
     cta: "Learn more",
   },
   {
