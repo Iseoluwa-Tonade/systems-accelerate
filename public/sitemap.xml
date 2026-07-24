@@ -135,4 +135,40 @@
     <priority>0.6</priority>
     <lastmod>2025-09-08</lastmod>
   </url>
+  <url>
+    <loc>https://supertelque.com/blog/ecommerce-revops-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2025-10-01</lastmod>
+  </url>
+  <url>
+    <loc>https://supertelque.com/blog/tourism-revops-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2025-10-05</lastmod>
+  </url>
+  <url>
+    <loc>https://supertelque.com/blog/real-estate-revops-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2025-10-09</lastmod>
+  </url>
+  <url>
+    <loc>https://supertelque.com/blog/local-contractors-revops-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2025-10-13</lastmod>
+  </url>
+  <url>
+    <loc>https://supertelque.com/blog/golf-clubs-leisure-revops-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2025-10-17</lastmod>
+  </url>
+  <url>
+    <loc>https://supertelque.com/blog/resorts-revops-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2025-10-21</lastmod>
+  </url>
 </urlset>

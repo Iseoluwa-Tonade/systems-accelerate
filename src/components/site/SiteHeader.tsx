@@ -50,11 +50,14 @@ export function SiteHeader({ theme = "light" }: { theme?: "light" | "dark" }) {
             alt="SuperTelque"
             className={`h-8 w-8 object-contain transition-all duration-300 group-hover:scale-105 ${dark ? "drop-shadow-[0_0_8px_rgba(255,184,0,0.45)]" : ""}`}
           />
-          <div className="flex items-baseline gap-1">
-            <span className={`font-display text-[15px] font-bold tracking-tight transition-colors ${dark ? "text-white group-hover:text-[#FFD44D]" : "text-[#080D1C] group-hover:text-primary"}`}>
-              SuperTelque
-            </span>
-            <span className={`text-[11px] font-bold tracking-tight ${dark ? "text-white/60" : "text-[#080D1C]/60"}`}> LLC</span>
+          <div className="flex flex-col">
+            <span className={`font-mono text-[9px] uppercase tracking-[0.2em] leading-none mb-0.5 ${dark ? "text-white/35" : "text-[#080D1C]/35"}`}>Partner</span>
+            <div className="flex items-baseline gap-1">
+              <span className={`font-display text-[15px] font-bold tracking-tight transition-colors ${dark ? "text-white group-hover:text-[#FFD44D]" : "text-[#080D1C] group-hover:text-primary"}`}>
+                SuperTelque
+              </span>
+              <span className={`text-[11px] font-bold tracking-tight ${dark ? "text-white/60" : "text-[#080D1C]/60"}`}> LLC</span>
+            </div>
           </div>
         </Link>
 

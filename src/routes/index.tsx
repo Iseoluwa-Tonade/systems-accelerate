@@ -87,6 +87,7 @@ function HomePage() {
     <SiteLayout headerTheme="light">
       <Hero />
       <TrustBar />
+      <RevenueGap />
       <WhyUs />
       <Services />
       <FullBleed />
@@ -447,6 +448,86 @@ function TrustBar() {
             </div>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─────────────── REVENUE GAP ─────────────── */
+const GAP_STATS = [
+  {
+    stat: "30%",
+    label: "of leads go cold",
+    detail: "Most B2B teams follow up once or twice. Research shows 80% of deals close after the 5th touchpoint. The leads are not bad. The follow-up system is.",
+  },
+  {
+    stat: "12 hrs",
+    label: "lost to admin every week",
+    detail: "The average sales rep spends over 12 hours per week on manual data entry, status updates, and repetitive tasks that should not require a human.",
+  },
+  {
+    stat: "67%",
+    label: "of CRM data is inaccurate",
+    detail: "Dirty CRM data is the single biggest reason forecasts are wrong and campaigns miss their targets. You cannot automate what you cannot trust.",
+  },
+  {
+    stat: "5x",
+    label: "cheaper to retain than acquire",
+    detail: "Yet most companies invest almost nothing in automating the post-sale relationship. The revenue is already there. The system to unlock it is not.",
+  },
+] as const;
+
+function RevenueGap() {
+  return (
+    <section className="bg-white border-b border-border py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 lg:px-6">
+        <ScrollReveal variant="fadeUp">
+          <div className="mb-12 text-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-4 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.22em] text-red-600 mb-6">
+              The hidden cost
+            </span>
+            <h2 className="font-display text-3xl font-extrabold tracking-tight text-[#080D1C] sm:text-4xl lg:text-[50px] lg:leading-[1.05]">
+              Most B2B companies are leaving<br className="hidden lg:block" />{" "}
+              <span className="text-red-500">significant revenue on the table.</span>
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-[17px] leading-relaxed text-[#4C5670]">
+              Not because the product is wrong or the team is weak. Because the systems that should be converting, retaining, and growing revenue are missing, manual, or broken.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          {GAP_STATS.map((g, i) => (
+            <ScrollReveal key={g.stat} variant="fadeUp" delay={i * 0.08}>
+              <div className="bg-white p-7 lg:p-8 h-full flex flex-col">
+                <div className="font-display text-5xl lg:text-[54px] font-extrabold tracking-tight text-red-500 leading-none mb-3">{g.stat}</div>
+                <div className="font-semibold text-[#080D1C] text-base mb-3 leading-snug">{g.label}</div>
+                <p className="text-sm leading-relaxed text-muted-foreground flex-1">{g.detail}</p>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        <ScrollReveal variant="fadeUp" delay={0.15}>
+          <div className="mt-8 rounded-2xl bg-[#F4F6FA] border border-border p-7 lg:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div className="max-w-2xl">
+              <div className="font-display text-lg font-bold text-[#080D1C] leading-snug">This is fixable. And it does not require hiring more people.</div>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                A properly built RevOps system replaces the manual tasks, fills the follow-up gaps, and gives your leadership real visibility into what is actually happening in your pipeline. We build these systems in weeks, not quarters.
+              </p>
+            </div>
+            <Link
+              to="/book"
+              className="shrink-0 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[13px] font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_8px_24px_-6px_rgba(255,184,0,0.35)]"
+              style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
+            >
+              See what we would fix first
+              <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
