@@ -6,9 +6,9 @@ import { ScrollReveal, StaggerReveal, StaggerChild } from "@/components/site/Scr
 export const Route = createFileRoute("/case-studies")({
   head: () => ({
     meta: [
-      { title: "Case Studies | SuperTelque RevOps" },
+      { title: "Case Studies | SuperTelque LLC" },
       { name: "description", content: "Teardowns of RevOps and GTM engineering engagements: B2B SaaS pipeline transformation, fintech automation, AI startup lead routing." },
-      { property: "og:title", content: "Case Studies | SuperTelque RevOps" },
+      { property: "og:title", content: "Case Studies | SuperTelque LLC" },
       { property: "og:description", content: "Challenge · Solution · Stack · Outcome: three engagement teardowns." },
     ],
   }),
@@ -160,7 +160,7 @@ function CaseStudiesPage() {
           <ScrollReveal variant="scaleIn">
             <div className="flex items-center justify-center gap-2.5 mb-6">
               <img src="/supertelque-logo.png" alt="" className="h-7 w-7 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/40">SuperTelque RevOps</span>
+              <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/40">SuperTelque LLC</span>
             </div>
             <h2 className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
               Your project could be next.

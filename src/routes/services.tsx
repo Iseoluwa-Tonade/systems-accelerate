@@ -6,9 +6,9 @@ import { ScrollReveal } from "@/components/site/ScrollReveal";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services | SuperTelque RevOps" },
+      { title: "Services | SuperTelque LLC" },
       { name: "description", content: "RevOps, GTM engineering, CRM architecture, outbound systems, data & analytics and AI revenue systems for B2B technology companies." },
-      { property: "og:title", content: "Services | SuperTelque RevOps" },
+      { property: "og:title", content: "Services | SuperTelque LLC" },
       { property: "og:description", content: "Six disciplines, one revenue engine. Architecture diagrams for every service." },
     ],
   }),
@@ -310,7 +310,7 @@ function CTA() {
         <ScrollReveal variant="scaleIn">
           <div className="flex items-center justify-center gap-2.5 mb-6">
             <img src="/supertelque-logo.png" alt="" className="h-7 w-7 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/40">SuperTelque RevOps</span>
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/40">SuperTelque LLC</span>
           </div>
           <h2 className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
             Not sure where to begin?

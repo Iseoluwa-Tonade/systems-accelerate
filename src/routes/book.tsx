@@ -11,9 +11,9 @@ import { submitBookSession } from "@/lib/form-actions";
 export const Route = createFileRoute("/book")({
   head: () => ({
     meta: [
-      { title: "Book a Strategy Session | SuperTelque RevOps" },
+      { title: "Book a Strategy Session | SuperTelque LLC" },
       { name: "description", content: "Book a 45-minute revenue systems strategy session with a senior RevOps engineer." },
-      { property: "og:title", content: "Book a Strategy Session | SuperTelque RevOps" },
+      { property: "og:title", content: "Book a Strategy Session | SuperTelque LLC" },
       { property: "og:description", content: "Estimated value $2,500 · 45 minutes · senior RevOps engineer." },
     ],
   }),
@@ -311,7 +311,7 @@ function BookPage() {
                             <div className="font-display text-lg font-bold text-[#080D1C]">
                               {formatConfirmDate(selectedDate)} · {selectedSlot} WAT
                             </div>
-                            <div className="font-mono text-[11px] text-[#4C5670]/55 mt-1">45 min · SuperTelque RevOps</div>
+                            <div className="font-mono text-[11px] text-[#4C5670]/55 mt-1">45 min · SuperTelque LLC</div>
                           </div>
                         )}
                         <div className="mt-8 flex flex-wrap gap-3 justify-center">

@@ -397,7 +397,7 @@ function Hero() {
           <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-black/07 pt-8">
             {[
               { icon: "★", score: "4.9/5", label: "Client Rating" },
-              { icon: "✓", score: "Top Rated", label: "Upwork" },
+              { icon: "✓", score: "Verified", label: "US Incorporated" },
               { icon: "⚡", score: "< 24 hrs", label: "Response Time" },
               { icon: "🔒", score: "NDA", label: "On Request" },
             ].map(({ icon, score, label }) => (
@@ -1267,7 +1267,7 @@ function FinalCTA() {
         <ScrollReveal variant="scaleIn">
           <div className="inline-flex items-center gap-2.5 mb-6 rounded-full border border-white/10 bg-white/05 px-5 py-2">
             <img src="/supertelque-logo.png" alt="" className="h-5 w-5 object-contain" />
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/45">SuperTelque RevOps</span>
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/45">SuperTelque LLC</span>
           </div>
           <h2 className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-[60px] lg:leading-[1.04]">
             Ready to build a<br />

@@ -108,7 +108,7 @@ export function SiteFooter() {
             </span>
           </div>
           <div className="flex flex-col-reverse items-start justify-between gap-4 text-xs text-muted-foreground md:flex-row md:items-center">
-            <div>© {new Date().getFullYear()} SuperTelque RevOps. All rights reserved.</div>
+            <div>© {new Date().getFullYear()} SuperTelque LLC. All rights reserved.</div>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
               <a href="https://linkedin.com/company/supertelque" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFB800] transition-colors">LinkedIn</a>
               <a href="https://x.com/supertelque" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFB800] transition-colors">X</a>
