@@ -7,6 +7,9 @@ export const contactFormSchema = z.object({
   company: z.string().min(1),
   role: z.string().min(1),
   email: z.string().email(),
+  phone: z.string().optional().default(""),
+  contactPref: z.enum(["call", "text"]).optional().default("call"),
+  smsConsent: z.boolean().optional().default(false),
   crm: z.string(),
   message: z.string().min(1),
 });
@@ -22,6 +25,13 @@ export const submitContactForm = createServerFn({ method: "POST" })
         company: data.company,
         role: data.role,
         email: data.email,
+        phone: data.phone ?? "",
+        contactPreference: data.phone
+          ? data.smsConsent
+            ? data.contactPref === "text" ? "Text message" : "Phone call"
+            : "No callback requested"
+          : "No phone provided",
+        smsConsent: data.smsConsent ? "Yes" : "No",
         crm: data.crm,
         message: data.message,
       });

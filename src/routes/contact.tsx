@@ -46,7 +46,7 @@ function ContactPage() {
 
     setSending(true);
     try {
-      await submitContactForm({ data: { name, company, role, email, crm, message } });
+      await submitContactForm({ data: { name, company, role, email, phone, contactPref, smsConsent, crm, message } });
       toast.success("Message sent. We'll be in touch within 24 hours.");
       setName("");
       setCompany("");
