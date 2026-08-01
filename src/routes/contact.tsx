@@ -130,8 +130,13 @@ function ContactPage() {
                 </div>
                 <dl className="space-y-4">
                   <Row k="Email" v="support@supertelque.com" href="mailto:support@supertelque.com" />
+                  <Row k="Phone" v="+1 (307) 429-3798" href="tel:+13074293798" />
+                  <Row k="Text message" v="+1 (307) 429-3798" href="sms:+13074293798" />
                   <Row k="LinkedIn" v="linkedin.com/company/supertelque" href="https://linkedin.com/company/supertelque" />
                 </dl>
+                <p className="mt-5 border-t border-border pt-4 text-[11px] leading-relaxed text-muted-foreground">
+                  By texting +1 (307) 429-3798 you consent to receive text messages from SuperTelque LLC. Message and data rates may apply. Reply STOP to opt out at any time.
+                </p>
               </div>
 
               {/* How we work */}

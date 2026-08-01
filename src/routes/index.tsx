@@ -272,7 +272,7 @@ function FlowConnector({ color, delay }: { color: string; delay: number }) {
 
 function ToolFlow() {
   return (
-    <div className="mt-14 w-full max-w-[420px] mx-auto">
+    <div className="mt-5 w-full max-w-[420px] mx-auto">
       <div className="rounded-2xl border border-[#1B2540]/12 bg-[#080D1C]/06 backdrop-blur-sm px-5 py-4">
         <div className="flex items-center justify-between">
           {TOOLS.map((t, i) => (
@@ -358,9 +358,9 @@ function Hero() {
         </div>
 
         {/* RIGHT: Content */}
-        <div className="order-1 lg:order-2 flex flex-col justify-center px-6 py-16 lg:px-14 xl:px-20 lg:py-24">
+        <div className="order-1 lg:order-2 flex flex-col justify-center px-6 py-10 lg:px-14 xl:px-20 lg:py-12">
           {/* Badge */}
-          <div className="inline-flex w-fit items-center gap-2.5 rounded-full border border-[#1B5EFF]/20 bg-[#1B5EFF]/06 px-4 py-1.5 mb-7">
+          <div className="inline-flex w-fit items-center gap-2.5 rounded-full border border-[#1B5EFF]/20 bg-[#1B5EFF]/06 px-4 py-1.5 mb-4">
             <span className="relative flex h-1.5 w-1.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
@@ -374,11 +374,11 @@ function Hero() {
             built to <CyclingWord />
           </h1>
 
-          <p className="mt-6 max-w-lg text-[17px] leading-relaxed text-[#4C5670]">
+          <p className="mt-4 max-w-lg text-[17px] leading-relaxed text-[#4C5670]">
             Lead generation, CRM, automation, social media, and operations. One accountable partner.
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-4">
+          <div className="mt-6 flex flex-wrap items-center gap-4">
             <Link
               to="/book"
               className="inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_14px_36px_-8px_rgba(255,184,0,0.55)]"
@@ -395,7 +395,7 @@ function Hero() {
           </div>
 
           {/* Trust badges */}
-          <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-black/07 pt-8">
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-black/07 pt-5">
             {[
               { icon: "★", score: "4.9/5", label: "Client Rating" },
               { icon: "✓", score: "Verified", label: "US Incorporated" },
@@ -413,7 +413,7 @@ function Hero() {
           </div>
 
           {/* Tool flow */}
-          <div className="mt-10">
+          <div className="mt-5">
             <ToolFlow />
           </div>
         </div>

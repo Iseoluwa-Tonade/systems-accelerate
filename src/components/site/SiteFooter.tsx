@@ -51,13 +51,26 @@ export function SiteFooter() {
                 { to: "/services#backoffice", label: "Virtual Assistance" },
               ]}
             />
-            <FooterCol
-              title="Connect"
-              links={[
-                { to: "/book", label: "Book a session" },
-                { to: "/contact", label: "Contact" },
-              ]}
-            />
+            <div>
+              <div className="text-xs font-medium uppercase tracking-[0.18em] text-[#FFB800]/70">Connect</div>
+              <ul className="mt-4 space-y-2 text-sm">
+                <li>
+                  <Link to="/book" className="text-white/60 hover:text-white transition-colors">Book a session</Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="text-white/60 hover:text-white transition-colors">Contact</Link>
+                </li>
+                <li>
+                  <a href="tel:+13074293798" className="text-white/60 hover:text-white transition-colors">+1 (307) 429-3798</a>
+                </li>
+                <li>
+                  <a href="sms:+13074293798" className="text-white/60 hover:text-white transition-colors">Text us</a>
+                </li>
+              </ul>
+              <p className="mt-4 text-[10px] leading-relaxed text-white/28">
+                By texting us you consent to receive texts from SuperTelque LLC. Msg &amp; data rates may apply. Reply STOP to opt out.
+              </p>
+            </div>
             <div>
               <div className="text-xs font-medium uppercase tracking-[0.18em] text-[#FFB800]/70">
                 Client portal
