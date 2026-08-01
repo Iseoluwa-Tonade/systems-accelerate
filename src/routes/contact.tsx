@@ -27,6 +27,7 @@ function ContactPage() {
   const [email, setEmail] = useState("");
   const [crm, setCrm] = useState("HubSpot");
   const [message, setMessage] = useState("");
+  const [smsConsent, setSmsConsent] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -51,6 +52,7 @@ function ContactPage() {
       setEmail("");
       setCrm("HubSpot");
       setMessage("");
+      setSmsConsent(false);
       setErrors({});
     } catch (err) {
       console.error("[contact]", err);
@@ -134,21 +136,9 @@ function ContactPage() {
                   <Row k="Text message" v="+1 (307) 429-3798" href="sms:+13074293798" />
                   <Row k="LinkedIn" v="linkedin.com/company/supertelque" href="https://linkedin.com/company/supertelque" />
                 </dl>
-                <div className="mt-5 border-t border-border pt-4 space-y-2 text-[11px] leading-relaxed text-muted-foreground">
-                  <p className="font-semibold text-foreground/70">SMS / Phone Disclosure</p>
-                  <p>
-                    By calling or texting +1 (307) 429-3798, you consent to receive telephone calls and/or text messages from SuperTelque LLC for business-related communications. This number is operated in the United States and is subject to US telecommunications law, including the Telephone Consumer Protection Act (TCPA).
-                  </p>
-                  <p>
-                    Message frequency varies. Message and data rates may apply depending on your carrier and plan. Consent to receive text messages is not a condition of any purchase or engagement with SuperTelque LLC.
-                  </p>
-                  <p>
-                    To opt out of text messages at any time, reply <strong>STOP</strong> to any message. For help, reply <strong>HELP</strong> or email support@supertelque.com. After opting out you may still receive a single confirmation message.
-                  </p>
-                  <p>
-                    SuperTelque LLC will not sell or share your phone number with third parties for their marketing purposes. Your information is handled in accordance with our privacy policy.
-                  </p>
-                </div>
+                <p className="mt-4 border-t border-border pt-3 text-[10px] leading-relaxed text-muted-foreground">
+                  SMS/text consent is collected at form submission. Msg &amp; data rates may apply. Reply STOP to cancel, HELP for help. Subject to TCPA (US). We do not sell your number.
+                </p>
               </div>
 
               {/* How we work */}
@@ -221,6 +211,21 @@ function ContactPage() {
                     <p className="mt-1 font-mono text-[11px] text-red-500">{errors.message}</p>
                   )}
                 </div>
+                {/* SMS opt-in */}
+                <div className="sm:col-span-2">
+                  <label className="flex items-start gap-3 cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      checked={smsConsent}
+                      onChange={(e) => setSmsConsent(e.target.checked)}
+                      className="mt-0.5 h-4 w-4 shrink-0 rounded border border-border accent-[#FFB800] cursor-pointer"
+                    />
+                    <span className="text-[11px] leading-relaxed text-muted-foreground group-hover:text-foreground/70 transition-colors">
+                      By checking this box, I consent to receive SMS/text messages via automated technology from SuperTelque LLC at the number provided, for conversational purposes, appointment reminders, follow-up, order confirmations, and other business notifications. Message frequency may vary and standard messaging and data rates may apply. I acknowledge that I can opt out of ALL future messages at any time by replying <strong>STOP</strong>. For assistance, reply <strong>HELP</strong> or email support@supertelque.com. Consent is not a condition of any purchase or service. This service operates within the United States and is subject to US telecommunications law (TCPA). SuperTelque LLC will not sell or share your phone number with third parties for their marketing purposes.
+                    </span>
+                  </label>
+                </div>
+
                 <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-5">
                   <div className="font-mono text-[11px] text-muted-foreground">Typical response in under 24 hours.</div>
                   <button
