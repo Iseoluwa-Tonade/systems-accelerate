@@ -25,6 +25,8 @@ function ContactPage() {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [contactPref, setContactPref] = useState<"call" | "text">("call");
   const [crm, setCrm] = useState("HubSpot");
   const [message, setMessage] = useState("");
   const [smsConsent, setSmsConsent] = useState(false);
@@ -50,6 +52,8 @@ function ContactPage() {
       setCompany("");
       setRole("");
       setEmail("");
+      setPhone("");
+      setContactPref("call");
       setCrm("HubSpot");
       setMessage("");
       setSmsConsent(false);
@@ -196,6 +200,16 @@ function ContactPage() {
                 <Field label="Role" placeholder="CRO / Head of RevOps" value={role} onChange={(e) => setRole(e.target.value)} error={errors.role} />
                 <Field label="Email" placeholder="alex@company.com" type="email" value={email} onChange={(e) => setEmail(e.target.value)} error={errors.email} />
                 <div className="sm:col-span-2">
+                  <Label>Phone number <span className="normal-case tracking-normal text-muted-foreground/60 font-normal">(optional — only if you'd like us to call or text you)</span></Label>
+                  <input
+                    type="tel"
+                    placeholder="+1 (555) 000-0000"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="mt-2 w-full rounded-md border border-border bg-[color:var(--surface)]/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                  />
+                </div>
+                <div className="sm:col-span-2">
                   <Select label="Current CRM" options={["HubSpot", "Salesforce", "Pipedrive", "Zoho CRM", "Monday.com CRM", "Close", "ActiveCampaign", "Keap / Infusionsoft", "Other", "None / building"]} value={crm} onChange={(e) => setCrm(e.target.value)} />
                 </div>
                 <div className="sm:col-span-2">
@@ -211,8 +225,8 @@ function ContactPage() {
                     <p className="mt-1 font-mono text-[11px] text-red-500">{errors.message}</p>
                   )}
                 </div>
-                {/* SMS opt-in */}
-                <div className="sm:col-span-2">
+                {/* Call / text opt-in — only relevant if phone provided */}
+                <div className="sm:col-span-2 rounded-xl border border-border bg-[#F8F9FF] p-4 space-y-3">
                   <label className="flex items-start gap-3 cursor-pointer group">
                     <input
                       type="checkbox"
@@ -220,10 +234,34 @@ function ContactPage() {
                       onChange={(e) => setSmsConsent(e.target.checked)}
                       className="mt-0.5 h-4 w-4 shrink-0 rounded border border-border accent-[#FFB800] cursor-pointer"
                     />
-                    <span className="text-[11px] leading-relaxed text-muted-foreground group-hover:text-foreground/70 transition-colors">
-                      By checking this box, I consent to receive SMS/text messages via automated technology from SuperTelque LLC at the number provided, for conversational purposes, appointment reminders, follow-up, order confirmations, and other business notifications. Message frequency may vary and standard messaging and data rates may apply. I acknowledge that I can opt out of ALL future messages at any time by replying <strong>STOP</strong>. For assistance, reply <strong>HELP</strong> or email support@supertelque.com. Consent is not a condition of any purchase or service. This service operates within the United States and is subject to US telecommunications law (TCPA). SuperTelque LLC will not sell or share your phone number with third parties for their marketing purposes.
+                    <span className="text-[12px] leading-relaxed text-foreground/75 group-hover:text-foreground transition-colors">
+                      <strong>Yes, SuperTelque can reach me at the number above.</strong> This is optional and completely free to me. SuperTelque may call or text to verify my details, clarify my inquiry, or follow up on my request. I am not charged for any call or message I receive.
                     </span>
                   </label>
+
+                  {/* Preference — shown only when opted in and phone provided */}
+                  {smsConsent && phone.trim() && (
+                    <div className="pl-7 flex items-center gap-4">
+                      <span className="text-[11px] font-medium text-foreground/60">I prefer:</span>
+                      {(["call", "text"] as const).map((pref) => (
+                        <label key={pref} className="flex items-center gap-1.5 cursor-pointer text-[12px] text-foreground/75 hover:text-foreground transition-colors capitalize">
+                          <input
+                            type="radio"
+                            name="contactPref"
+                            value={pref}
+                            checked={contactPref === pref}
+                            onChange={() => setContactPref(pref)}
+                            className="accent-[#FFB800]"
+                          />
+                          {pref === "call" ? "A phone call (to verify / discuss)" : "A text message"}
+                        </label>
+                      ))}
+                    </div>
+                  )}
+
+                  <p className="pl-7 text-[10px] leading-relaxed text-muted-foreground">
+                    By checking the box above I consent to receive calls and/or texts from SuperTelque LLC at the number provided. Consent is not a condition of any purchase. Msg &amp; data rates may apply for texts. Message frequency varies. Reply STOP to opt out of texts, HELP for assistance. Subject to TCPA (US). We do not sell your number to third parties.
+                  </p>
                 </div>
 
                 <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-5">
