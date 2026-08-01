@@ -134,9 +134,21 @@ function ContactPage() {
                   <Row k="Text message" v="+1 (307) 429-3798" href="sms:+13074293798" />
                   <Row k="LinkedIn" v="linkedin.com/company/supertelque" href="https://linkedin.com/company/supertelque" />
                 </dl>
-                <p className="mt-5 border-t border-border pt-4 text-[11px] leading-relaxed text-muted-foreground">
-                  By texting +1 (307) 429-3798 you consent to receive text messages from SuperTelque LLC. Message and data rates may apply. Reply STOP to opt out at any time.
-                </p>
+                <div className="mt-5 border-t border-border pt-4 space-y-2 text-[11px] leading-relaxed text-muted-foreground">
+                  <p className="font-semibold text-foreground/70">SMS / Phone Disclosure</p>
+                  <p>
+                    By calling or texting +1 (307) 429-3798, you consent to receive telephone calls and/or text messages from SuperTelque LLC for business-related communications. This number is operated in the United States and is subject to US telecommunications law, including the Telephone Consumer Protection Act (TCPA).
+                  </p>
+                  <p>
+                    Message frequency varies. Message and data rates may apply depending on your carrier and plan. Consent to receive text messages is not a condition of any purchase or engagement with SuperTelque LLC.
+                  </p>
+                  <p>
+                    To opt out of text messages at any time, reply <strong>STOP</strong> to any message. For help, reply <strong>HELP</strong> or email support@supertelque.com. After opting out you may still receive a single confirmation message.
+                  </p>
+                  <p>
+                    SuperTelque LLC will not sell or share your phone number with third parties for their marketing purposes. Your information is handled in accordance with our privacy policy.
+                  </p>
+                </div>
               </div>
 
               {/* How we work */}

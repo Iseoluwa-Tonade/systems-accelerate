@@ -68,7 +68,7 @@ export function SiteFooter() {
                 </li>
               </ul>
               <p className="mt-4 text-[10px] leading-relaxed text-white/28">
-                By texting us you consent to receive texts from SuperTelque LLC. Msg &amp; data rates may apply. Reply STOP to opt out.
+                By calling or texting +1 (307) 429-3798 you consent to receive calls/texts from SuperTelque LLC (US). Subject to TCPA. Msg &amp; data rates may apply. Consent is not a condition of purchase. Msg frequency varies. Reply STOP to cancel, HELP for help. We do not sell your number to third parties.
               </p>
             </div>
             <div>
