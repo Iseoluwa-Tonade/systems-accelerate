@@ -429,6 +429,7 @@ function TrustBar() {
     L.HubSpot, L.Salesforce, L.Apollo, L.Clay, L.OpenAI, L.Stripe,
     L.PowerBI, L.Zapier, L.N8n, L.Make, L.Slack, L.GoHighLevel,
     L.Lemlist, L.Instantly, L.LowNoCode, L.Supabase,
+    L.TaxDome, L.MetaSuite, L.Freshdesk, L.DNS,
   ];
   return (
     <section className="sec-navy border-y border-white/06">

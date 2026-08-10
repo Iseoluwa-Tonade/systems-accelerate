@@ -114,3 +114,29 @@ export const Supabase = (p: ComponentProps<"svg">) => (
     <path d="M4 14.5L12 3v7.5h8L12 21v-7.5H4z" strokeLinecap="round" strokeLinejoin="round" />
   </Frame>
 );
+export const TaxDome = (p: ComponentProps<"svg">) => (
+  <Frame label="TaxDome" {...p}>
+    <path d="M12 3L4 7v5c0 4 3.6 7.7 8 8.9 4.4-1.2 8-4.9 8-8.9V7l-8-4z" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+  </Frame>
+);
+export const MetaSuite = (p: ComponentProps<"svg">) => (
+  <Frame label="Meta Suite" {...p}>
+    <path d="M3 12c0-2.2 1.2-4 3-4 1.4 0 2.5 1 3.5 2.5S11.5 13 12 13s1-1 2-2.5S15.6 8 17 8c1.8 0 3 1.8 3 4s-1.2 4-3 4c-1.4 0-2.5-1-3.5-2.5S12 11 12 11s-1 1-2 2.5S4.4 16 3 16c-1.8 0-3-1.8-3-4z" strokeLinecap="round" />
+  </Frame>
+);
+export const Freshdesk = (p: ComponentProps<"svg">) => (
+  <Frame label="Freshdesk" {...p}>
+    <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    <path d="M8 10h.01M12 10h.01M16 10h.01" strokeLinecap="round" strokeWidth="2" />
+    <path d="M8 14s1 2 4 2 4-2 4-2" strokeLinecap="round" />
+  </Frame>
+);
+export const DNS = (p: ComponentProps<"svg">) => (
+  <Frame label="DNS Setup" {...p}>
+    <rect x="3" y="4" width="18" height="4" rx="1" />
+    <rect x="3" y="10" width="18" height="4" rx="1" />
+    <rect x="3" y="16" width="18" height="4" rx="1" />
+    <path d="M7 6h.01M7 12h.01M7 18h.01" strokeLinecap="round" strokeWidth="2" />
+  </Frame>
+);
