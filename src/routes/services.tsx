@@ -7,9 +7,9 @@ export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Services | SuperTelque LLC" },
-      { name: "description", content: "RevOps, GTM engineering, CRM architecture, outbound systems, data & analytics and AI revenue systems for B2B technology companies." },
+      { name: "description", content: "RevOps, GTM engineering, CRM architecture, AI automation, digital marketing, web development, and back-office operations for B2B companies." },
       { property: "og:title", content: "Services | SuperTelque LLC" },
-      { property: "og:description", content: "Six disciplines, one revenue engine. Architecture diagrams for every service." },
+      { property: "og:description", content: "Nine disciplines, one growth engine. Architecture diagrams for every service." },
     ],
   }),
   component: ServicesPage,
@@ -64,6 +64,30 @@ const SERVICES = [
     blurb: "Skilled remote talent for admin duties, commerce management, inbound handling, and the back-office operations that keep your business running.",
     items: ["Virtual assistance", "Commerce management", "Admin duties", "Inbound management", "Order processing", "Back-office operations"],
   },
+  {
+    id: "ai",
+    code: "07",
+    color: "#F59E0B",
+    title: "AI Automation",
+    blurb: "Deploy intelligent agents, language model integrations, and AI-powered tooling that automates judgment-heavy tasks across your sales, marketing, and operations teams.",
+    items: ["AI agents", "LLM integrations", "AI content workflows", "Predictive analytics", "AI chatbots", "Prompt engineering"],
+  },
+  {
+    id: "marketing",
+    code: "08",
+    color: "#E11D48",
+    title: "Digital Marketing",
+    blurb: "Drive traffic, generate leads, and build brand authority through search, paid channels, email, and content - all tracked to revenue outcomes.",
+    items: ["SEO & content strategy", "Paid ads (Google/Meta)", "Email campaigns", "Analytics & attribution", "Landing page optimisation", "Brand storytelling"],
+  },
+  {
+    id: "webdev",
+    code: "09",
+    color: "#0EA5E9",
+    title: "Web Development",
+    blurb: "Build fast, conversion-focused websites and web applications that represent your brand and turn visitors into qualified leads.",
+    items: ["Custom websites", "Landing pages", "Web applications", "CMS integration", "Performance optimisation", "Conversion rate optimisation"],
+  },
 ] as const;
 
 function ServicesPage() {
@@ -102,8 +126,8 @@ function ServicesPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#080D1C]/60 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Six service lines</div>
-                    <div className="mt-0.5 font-display text-sm font-bold text-white">From pipeline to back office.</div>
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Nine service lines</div>
+                    <div className="mt-0.5 font-display text-sm font-bold text-white">From pipeline to web and AI.</div>
                   </div>
                 </div>
                 <div className="px-5 py-4 bg-[#F4F7FF] flex items-center gap-3">
@@ -209,6 +233,9 @@ function ArchitectureDiagram({ code, color }: { code: string; color: string }) {
     "04": ["var(--accent-purple)", "var(--accent-blue)", "var(--accent-teal)"],
     "05": ["var(--accent-blue)", "var(--accent-teal)", "var(--accent-indigo)"],
     "06": ["var(--accent-indigo)", "var(--accent-purple)", "var(--accent-blue)"],
+    "07": ["var(--accent-blue)", "var(--accent-purple)", "var(--accent-teal)"],
+    "08": ["var(--accent-teal)", "var(--accent-indigo)", "var(--accent-blue)"],
+    "09": ["var(--accent-indigo)", "var(--accent-blue)", "var(--accent-teal)"],
   };
   const [c1, c2, c3] = palettes[code] ?? palettes["01"];
 
@@ -219,6 +246,9 @@ function ArchitectureDiagram({ code, color }: { code: string; color: string }) {
     "04": ["Trigger", "Automate", "Sync", "Optimise"],
     "05": ["Create", "Schedule", "Engage", "Grow"],
     "06": ["Task", "Assign", "Execute", "Deliver"],
+    "07": ["Identify", "Train", "Deploy", "Monitor"],
+    "08": ["Attract", "Convert", "Retain", "Grow"],
+    "09": ["Design", "Build", "Launch", "Optimise"],
   };
   const labels = labelsByCode[code] ?? labelsByCode["01"];
 
