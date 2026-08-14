@@ -316,7 +316,7 @@ function ToolFlow() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden" style={{ background: "#FAFBFF" }}>
+    <section className="relative" style={{ background: "#FAFBFF" }}>
       <div className="grid lg:grid-cols-2 min-h-[88vh]">
 
         {/* LEFT: Photo */}
@@ -358,7 +358,7 @@ function Hero() {
         </div>
 
         {/* RIGHT: Content */}
-        <div className="order-1 lg:order-2 flex flex-col justify-center px-6 py-10 lg:px-14 xl:px-20 lg:py-12">
+        <div className="order-1 lg:order-2 flex flex-col justify-start px-6 py-10 lg:px-14 xl:px-20 lg:pt-20 lg:pb-10">
           {/* Badge */}
           <div className="inline-flex w-fit items-center gap-2.5 rounded-full border border-[#1B5EFF]/20 bg-[#1B5EFF]/06 px-4 py-1.5 mb-4">
             <span className="relative flex h-1.5 w-1.5">
