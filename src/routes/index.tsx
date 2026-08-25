@@ -358,7 +358,7 @@ function Hero() {
         </div>
 
         {/* RIGHT: Content */}
-        <div className="order-1 lg:order-2 flex flex-col justify-start px-6 py-10 lg:px-14 xl:px-20 lg:pt-20 lg:pb-10">
+        <div className="order-1 lg:order-2 flex flex-col justify-start px-6 py-10 lg:px-14 xl:px-20 lg:pt-28 lg:pb-10">
           {/* Badge */}
           <div className="inline-flex w-fit items-center gap-2.5 rounded-full border border-[#1B5EFF]/20 bg-[#1B5EFF]/06 px-4 py-1.5 mb-4">
             <span className="relative flex h-1.5 w-1.5">
