@@ -222,7 +222,7 @@ function CareersPage() {
                     </div>
                     <div className="shrink-0 lg:ml-8 lg:pt-1">
                       <a
-                        href={`mailto:${"email" in role ? role.email : "hello@supertelque.com"}?subject=Application: ${role.title}`}
+                        href={`mailto:${"email" in role ? role.email : "support@supertelque.com"}?subject=Application: ${role.title}`}
                         className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-[13px] font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_8px_24px_-6px_rgba(255,184,0,0.40)]"
                         style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
                       >
@@ -254,7 +254,7 @@ function CareersPage() {
               </p>
             </div>
             <a
-              href="mailto:hello@supertelque.com?subject=Open Application"
+              href="mailto:support@supertelque.com?subject=Open Application"
               className="shrink-0 inline-flex items-center gap-2 rounded-full border-2 border-[#080D1C] px-6 py-3.5 text-[13px] font-bold text-[#080D1C] transition-all hover:bg-[#080D1C] hover:text-white"
             >
               Send an open application

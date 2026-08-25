@@ -128,7 +128,7 @@ function RootShell({ children }: { children: ReactNode }) {
           "url": "https://supertelque.com",
           "logo": "https://supertelque.com/supertelque-logo.png",
           "description": "SuperTelque builds revenue systems for B2B companies: lead generation, CRM implementation, RevOps, workflow automation with AI, social media management, and virtual assistance. Remote-first with offices in Wyoming, US and Lagos, Nigeria.",
-          "email": "hello@supertelque.com",
+          "email": "support@supertelque.com",
           "location": [
             { "@type": "Place", "name": "Wyoming Office", "address": { "@type": "PostalAddress", "addressRegion": "Wyoming", "addressCountry": "US" } },
             { "@type": "Place", "name": "Lagos Office", "address": { "@type": "PostalAddress", "addressLocality": "Lagos", "addressCountry": "NG" } }
