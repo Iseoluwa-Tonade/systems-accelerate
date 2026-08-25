@@ -1596,7 +1596,7 @@ export const POSTS: Post[] = [
       { t: "p", v: "Our team operates remotely across the US and internationally, which means we combine senior US-based strategy with a 24-hour delivery capability that local California agencies cannot match on cost or speed. Engagements move fast. Results come in weeks, not quarters." },
       { t: "quote", v: "California is not a market where slow and steady wins the race. You need systems that move as fast as your market does. That is what we build." },
       { t: "ul", v: [
-        "US incorporated in Wyoming, serving clients across all 50 states",
+        "US incorporated, serving clients across all 50 states",
         "Senior operators with 10 years of in-market B2B experience",
         "Transparent pricing: no retainer lock-in to maintain access to your own systems",
         "Full documentation and team training on every engagement",
@@ -1816,7 +1816,7 @@ export const POSTS: Post[] = [
       ]},
       { t: "h2", v: "Why Texas businesses trust SuperTelque" },
       { t: "ul", v: [
-        "US incorporated with offices in Wyoming and operational presence across the country",
+        "US incorporated with operational presence across the country",
         "No retainer lock-in: you own your systems from day one",
         "Fast deployment: core systems live within 4 to 8 weeks",
         "Senior operators with real B2B experience, not junior account managers",

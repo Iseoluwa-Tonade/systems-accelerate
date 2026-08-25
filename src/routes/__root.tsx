@@ -75,7 +75,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "SuperTelque | Revenue Systems for B2B Companies" },
-      { name: "description", content: "SuperTelque builds revenue systems for B2B companies: lead generation, CRM setup, RevOps, workflow automation, social media, and back-office operations. Offices in Wyoming, US and Lagos, Nigeria. Remote-first. Global clients." },
+      { name: "description", content: "SuperTelque builds revenue systems for B2B companies: lead generation, CRM setup, RevOps, workflow automation, social media, and back-office operations. Remote-first. Global clients." },
       { name: "author", content: "SuperTelque" },
       { name: "keywords", content: "B2B revenue operations, CRM implementation, lead generation agency, RevOps consulting, workflow automation, sales operations, HubSpot Salesforce Pipedrive setup, outbound lead generation USA" },
       { name: "robots", content: "index, follow" },
@@ -127,12 +127,8 @@ function RootShell({ children }: { children: ReactNode }) {
           "name": "SuperTelque",
           "url": "https://supertelque.com",
           "logo": "https://supertelque.com/supertelque-logo.png",
-          "description": "SuperTelque builds revenue systems for B2B companies: lead generation, CRM implementation, RevOps, workflow automation with AI, social media management, and virtual assistance. Remote-first with offices in Wyoming, US and Lagos, Nigeria.",
+          "description": "SuperTelque builds revenue systems for B2B companies: lead generation, CRM implementation, RevOps, workflow automation with AI, social media management, and virtual assistance. Remote-first, serving clients globally.",
           "email": "support@supertelque.com",
-          "location": [
-            { "@type": "Place", "name": "Wyoming Office", "address": { "@type": "PostalAddress", "addressRegion": "Wyoming", "addressCountry": "US" } },
-            { "@type": "Place", "name": "Lagos Office", "address": { "@type": "PostalAddress", "addressLocality": "Lagos", "addressCountry": "NG" } }
-          ],
           "foundingLocation": { "@type": "Place", "addressCountry": "US" },
           "areaServed": [
             { "@type": "Country", "name": "United States" },
