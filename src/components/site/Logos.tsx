@@ -168,3 +168,42 @@ export const ActiveCampaign = (p: ComponentProps<"svg">) => (
     <path d="M3 16h18" strokeLinecap="round" />
   </Frame>
 );
+export const Shopify = (p: ComponentProps<"svg">) => (
+  <Frame label="Shopify" {...p}>
+    <path d="M15 4s.5 0 1 1l1 6H7l1-6c.5-1 1-1 1-1" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M6 11l1 8h10l1-8" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M12 4v7" strokeLinecap="round" />
+  </Frame>
+);
+export const Klaviyo = (p: ComponentProps<"svg">) => (
+  <Frame label="Klaviyo" {...p}>
+    <rect x="4" y="4" width="16" height="16" rx="2" />
+    <path d="M8 9l4 3-4 3" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M13 15h3" strokeLinecap="round" />
+  </Frame>
+);
+export const QuickBooks = (p: ComponentProps<"svg">) => (
+  <Frame label="QuickBooks" {...p}>
+    <circle cx="12" cy="12" r="8" />
+    <path d="M9 9h4a2 2 0 010 4H9v4" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M9 9v4" strokeLinecap="round" />
+  </Frame>
+);
+export const Xero = (p: ComponentProps<"svg">) => (
+  <Frame label="Xero" {...p}>
+    <circle cx="12" cy="12" r="8" />
+    <path d="M9 9l6 6M15 9l-6 6" strokeLinecap="round" />
+  </Frame>
+);
+export const Zoho = (p: ComponentProps<"svg">) => (
+  <Frame label="Zoho" {...p}>
+    <path d="M4 16L9 8l3 5 3-3 5 6" strokeLinecap="round" strokeLinejoin="round" />
+  </Frame>
+);
+export const Canopy = (p: ComponentProps<"svg">) => (
+  <Frame label="Canopy" {...p}>
+    <path d="M12 3C8 3 4 7 4 11c0 3 2 5 4 6h8c2-1 4-3 4-6 0-4-4-8-8-8z" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M12 17v4" strokeLinecap="round" />
+    <path d="M9 21h6" strokeLinecap="round" />
+  </Frame>
+);

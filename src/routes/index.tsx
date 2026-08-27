@@ -426,10 +426,11 @@ function Hero() {
 /* ─────────────── TRUST BAR ─────────────── */
 function TrustBar() {
   const items = [
-    L.HubSpot, L.Salesforce, L.Pipedrive, L.ActiveCampaign, L.Clay, L.OpenAI,
-    L.PowerBI, L.Zapier, L.N8n, L.Make, L.Slack, L.GoHighLevel,
-    L.Airtable, L.Freshworks, L.LowNoCode, L.Supabase,
-    L.TaxDome, L.MetaSuite, L.Freshdesk, L.DNS,
+    L.HubSpot, L.Salesforce, L.Pipedrive, L.Zoho, L.ActiveCampaign, L.Clay,
+    L.OpenAI, L.PowerBI, L.Zapier, L.N8n, L.Make, L.Slack,
+    L.GoHighLevel, L.Airtable, L.Freshworks, L.Freshdesk, L.LowNoCode, L.Supabase,
+    L.Shopify, L.Klaviyo, L.Stripe, L.QuickBooks, L.Xero, L.Canopy,
+    L.TaxDome, L.MetaSuite, L.DNS,
   ];
   return (
     <section className="sec-navy border-y border-white/06">
