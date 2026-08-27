@@ -133,10 +133,38 @@ export const Freshdesk = (p: ComponentProps<"svg">) => (
   </Frame>
 );
 export const DNS = (p: ComponentProps<"svg">) => (
-  <Frame label="DNS Setup" {...p}>
+  <Frame label="Domain & DNS" {...p}>
     <rect x="3" y="4" width="18" height="4" rx="1" />
     <rect x="3" y="10" width="18" height="4" rx="1" />
     <rect x="3" y="16" width="18" height="4" rx="1" />
     <path d="M7 6h.01M7 12h.01M7 18h.01" strokeLinecap="round" strokeWidth="2" />
+  </Frame>
+);
+export const Pipedrive = (p: ComponentProps<"svg">) => (
+  <Frame label="Pipedrive" {...p}>
+    <circle cx="12" cy="10" r="4" />
+    <path d="M12 14v7" strokeLinecap="round" strokeWidth="2" />
+    <path d="M8 17h8" strokeLinecap="round" />
+  </Frame>
+);
+export const Airtable = (p: ComponentProps<"svg">) => (
+  <Frame label="Airtable" {...p}>
+    <rect x="3" y="3" width="8" height="8" rx="1.5" />
+    <rect x="13" y="3" width="8" height="8" rx="1.5" />
+    <rect x="3" y="13" width="8" height="8" rx="1.5" />
+    <rect x="13" y="13" width="8" height="8" rx="1.5" />
+  </Frame>
+);
+export const Freshworks = (p: ComponentProps<"svg">) => (
+  <Frame label="Freshworks" {...p}>
+    <path d="M12 4c-2 0-4 1-5 3" strokeLinecap="round" />
+    <path d="M7 7c-1.5 1-2.5 2.5-2.5 4.5A7.5 7.5 0 0012 19a7.5 7.5 0 007.5-7.5A7.5 7.5 0 0012 4" strokeLinecap="round" />
+    <path d="M12 8v5l3 3" strokeLinecap="round" strokeLinejoin="round" />
+  </Frame>
+);
+export const ActiveCampaign = (p: ComponentProps<"svg">) => (
+  <Frame label="ActiveCampaign" {...p}>
+    <path d="M3 8h6l2 4 2-8 2 6 2-2h4" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M3 16h18" strokeLinecap="round" />
   </Frame>
 );

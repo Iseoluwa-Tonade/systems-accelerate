@@ -426,9 +426,9 @@ function Hero() {
 /* ─────────────── TRUST BAR ─────────────── */
 function TrustBar() {
   const items = [
-    L.HubSpot, L.Salesforce, L.Apollo, L.Clay, L.OpenAI, L.Stripe,
+    L.HubSpot, L.Salesforce, L.Pipedrive, L.ActiveCampaign, L.Clay, L.OpenAI,
     L.PowerBI, L.Zapier, L.N8n, L.Make, L.Slack, L.GoHighLevel,
-    L.Lemlist, L.Instantly, L.LowNoCode, L.Supabase,
+    L.Airtable, L.Freshworks, L.LowNoCode, L.Supabase,
     L.TaxDome, L.MetaSuite, L.Freshdesk, L.DNS,
   ];
   return (
