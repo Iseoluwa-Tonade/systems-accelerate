@@ -375,7 +375,7 @@ function Hero() {
           </h1>
 
           <p className="mt-4 max-w-lg text-[17px] leading-relaxed text-[#4C5670]">
-            CRM, automation, RevOps, GTM engineering, and business operations. One accountable partner.
+            CRM, Automation, RevOps, GTM Engineering, and Business Operations. One accountable partner.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-4">
