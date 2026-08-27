@@ -7,9 +7,9 @@ export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Services | SuperTelque LLC" },
-      { name: "description", content: "RevOps, GTM engineering, CRM architecture, AI automation, digital marketing, web development, and back-office operations for B2B companies." },
+      { name: "description", content: "CRM administration, RevOps, GTM engineering, workflow automation, AI, business technology management, solution consulting, web development, and business operations for B2B companies." },
       { property: "og:title", content: "Services | SuperTelque LLC" },
-      { property: "og:description", content: "Nine disciplines, one growth engine. Architecture diagrams for every service." },
+      { property: "og:description", content: "Nine disciplines. One technology and operations partner." },
     ],
   }),
   component: ServicesPage,
@@ -17,52 +17,52 @@ export const Route = createFileRoute("/services")({
 
 const SERVICES = [
   {
-    id: "sales",
+    id: "consulting",
     code: "01",
     color: "#1B5EFF",
-    title: "Sales & Lead Generation",
-    blurb: "Fill your pipeline with the right people. We handle outbound campaigns, inbound lead qualification, and appointment setting so your team shows up to conversations that matter.",
-    items: ["Lead generation", "Inbound handling", "Appointment setting", "Outbound outreach"],
+    title: "Solution Consulting",
+    blurb: "Assess your current stack, design the right architecture, and build a GTM strategy grounded in systems thinking. We act as a fractional RevOps and technology partner for B2B teams that need an expert in the room, not a vendor.",
+    items: ["GTM strategy design", "Stack assessment & audit", "Technology roadmap", "Fractional RevOps advisory", "Process architecture", "Change management"],
   },
   {
     id: "crm",
     code: "02",
     color: "#14B8A6",
-    title: "CRM & Sales Operations",
-    blurb: "Set up your CRM the right way and keep your sales process clean, consistent, and easy to manage. We work with all major platforms.",
-    items: ["CRM implementation", "Sales process optimisation", "Pipeline design", "Data hygiene", "DNS & email deliverability setup"],
+    title: "CRM & CRM Administration",
+    blurb: "Implement, migrate, and administer your CRM with precision. We keep your data clean, your pipelines accurate, your workflows running, and your team trained. We cover all major platforms.",
+    items: ["CRM implementation", "CRM administration", "Pipeline design", "Data hygiene & audits", "Workflow rules & automations", "Reporting & dashboards"],
   },
   {
     id: "revops",
     code: "03",
     color: "#8B5CF6",
     title: "RevOps & GTM Engineering",
-    blurb: "Get your revenue teams aligned on shared metrics, forecasts, and a pipeline your leadership can trust.",
-    items: ["Revenue operations", "GTM engineering", "Forecasting", "Revenue dashboards"],
+    blurb: "Align your go-to-market teams on shared metrics, forecasting models, and a single source of truth for pipeline. We build the infrastructure that connects marketing, operations, and revenue in one coherent system.",
+    items: ["Revenue operations", "GTM engineering", "Pipeline architecture", "Forecasting models", "Revenue dashboards", "Cross-team alignment"],
   },
   {
     id: "automation",
     code: "04",
     color: "#10B981",
     title: "Workflow Automation & AI",
-    blurb: "Automate the work that slows your team down and use AI where it creates real leverage across your operations. We build on n8n, Make, Zapier, TaxDome, and Freshdesk, connecting your tools into one clean workflow.",
+    blurb: "Automate the manual work that slows your team down and use AI where it creates real operational leverage. We build on n8n, Make, and Zapier, connecting your tools into one clean, documented workflow.",
     items: ["Workflow automation", "AI-powered solutions", "n8n · Make · Zapier", "TaxDome integration", "Freshdesk automation", "Process optimisation"],
   },
   {
-    id: "social",
+    id: "biztech",
     code: "05",
     color: "#EC4899",
-    title: "Social Media & Community",
-    blurb: "Build a consistent presence and an engaged community around your brand across every channel your audience uses, including LinkedIn, X, Instagram, and Meta Business Suite.",
-    items: ["Social media management", "Meta Business Suite", "Community management", "Content scheduling", "Engagement strategy"],
+    title: "Business Technology & Stack Management",
+    blurb: "Own your tech stack, not just use it. We audit, design, integrate, and manage the business technology layer, from tool selection and onboarding to vendor management and platform governance.",
+    items: ["Tech stack audit & design", "Platform onboarding", "Tool selection & evaluation", "Vendor management", "Integration architecture", "Platform governance"],
   },
   {
     id: "backoffice",
     code: "06",
     color: "#FFB800",
-    title: "Virtual Assistance & Back Office",
-    blurb: "Skilled remote talent for admin duties, commerce management, inbound handling, and the back-office operations that keep your business running.",
-    items: ["Virtual assistance", "Commerce management", "Admin duties", "Inbound management", "Order processing", "Back-office operations"],
+    title: "Business Operations",
+    blurb: "Operational capacity for the admin, back-office, and day-to-day functions that keep your business moving. Skilled remote operators who own their output and document their work.",
+    items: ["Business operations", "Commerce management", "Admin & coordination", "Inbound management", "Order processing", "Back-office operations"],
   },
   {
     id: "ai",
@@ -107,7 +107,7 @@ function ServicesPage() {
             <div className="lg:col-span-7">
               <Eyebrow>Services</Eyebrow>
               <h1 className="mt-5 font-display text-[34px] font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
-                Everything your business<span className="text-gradient-gold"> needs to grow.</span>
+                The systems your business<span className="text-gradient-gold"> runs on.</span>
               </h1>
               <ScrollReveal variant="fadeUp" delay={0.15}>
                 <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
@@ -240,11 +240,11 @@ function ArchitectureDiagram({ code, color }: { code: string; color: string }) {
   const [c1, c2, c3] = palettes[code] ?? palettes["01"];
 
   const labelsByCode: Record<string, string[]> = {
-    "01": ["Prospect", "Reach Out", "Book", "Convert"],
+    "01": ["Assess", "Design", "Advise", "Deliver"],
     "02": ["Import", "Clean", "Structure", "Activate"],
     "03": ["Align", "Forecast", "Report", "Scale"],
     "04": ["Trigger", "Automate", "Sync", "Optimise"],
-    "05": ["Create", "Schedule", "Engage", "Grow"],
+    "05": ["Audit", "Design", "Integrate", "Govern"],
     "06": ["Task", "Assign", "Execute", "Deliver"],
     "07": ["Identify", "Train", "Deploy", "Monitor"],
     "08": ["Attract", "Convert", "Retain", "Grow"],

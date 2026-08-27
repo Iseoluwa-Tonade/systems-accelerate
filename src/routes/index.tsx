@@ -66,16 +66,16 @@ function CyclingWord() {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "SuperTelque | Revenue Systems Engineered for Scale" },
+      { title: "SuperTelque | CRM, RevOps & Automation for B2B Companies" },
       {
         name: "description",
         content:
-          "B2B RevOps, GTM engineering, CRM architecture and AI revenue systems built on HubSpot, Salesforce, Clay, Apollo, n8n and OpenAI.",
+          "CRM administration, RevOps, GTM engineering, workflow automation, AI, and business technology management for B2B companies. Built on HubSpot, Salesforce, n8n, Make, and OpenAI.",
       },
-      { property: "og:title", content: "SuperTelque | Revenue Systems Engineered for Scale" },
+      { property: "og:title", content: "SuperTelque | CRM, RevOps & Automation for B2B Companies" },
       {
         property: "og:description",
-        content: "Skilled remote talent plus automation and data-driven systems, delivered as one accountable partner.",
+        content: "CRM, RevOps, GTM engineering, automation, business technology, and web development. One accountable partner.",
       },
     ],
   }),
@@ -151,10 +151,10 @@ function CardPipeline() {
 
 /* Live activity feed card */
 const ACTIVITIES = [
-  { dot: "#14B8A6", title: "New SQL: Fintech Series B", sub: "Routed to AE · just now" },
-  { dot: "#1B5EFF", title: "Deal moved to Proposal", sub: "Stage updated · 2m ago" },
-  { dot: "#FFB800", title: "Clay enriched 42 leads", sub: "Waterfall complete · 5m ago" },
-  { dot: "#8B5CF6", title: "Sequence enrolled: 38 contacts", sub: "Apollo step 1 · 9m ago" },
+  { dot: "#14B8A6", title: "Automation built: 12-step workflow", sub: "n8n deployed · just now" },
+  { dot: "#1B5EFF", title: "CRM audit complete: 3 orgs", sub: "HubSpot · 2m ago" },
+  { dot: "#FFB800", title: "Stack migration complete", sub: "Pipedrive to HubSpot · 5m ago" },
+  { dot: "#8B5CF6", title: "GTM architecture delivered", sub: "RevOps system · 9m ago" },
 ];
 
 function CardActivity() {
@@ -375,7 +375,7 @@ function Hero() {
           </h1>
 
           <p className="mt-4 max-w-lg text-[17px] leading-relaxed text-[#4C5670]">
-            Lead generation, CRM, automation, social media, and operations. One accountable partner.
+            CRM, automation, RevOps, GTM engineering, and business operations. One accountable partner.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-4">
@@ -544,8 +544,8 @@ const PAIN_POINTS = [
   },
   {
     no: "02",
-    problem: "Reps spend more time on admin than selling",
-    solution: "We automate every repetitive handoff, data entry, and follow-up so your team stays on deals.",
+    problem: "Your team spends hours on manual, repetitive tasks",
+    solution: "We automate every repetitive handoff, data entry, and status update so your team stays on work that matters.",
     color: "#14B8A6",
   },
   {
@@ -616,17 +616,17 @@ const SERVICES = [
   {
     code: "01",
     color: "#1B5EFF",
-    title: "Sales & Lead Generation",
-    desc: "Fill your pipeline with the right people. We handle lead generation, outreach, and appointment setting.",
+    title: "Solution Consulting",
+    desc: "Technology assessment, GTM architecture, and fractional RevOps advisory. We act as the expert in the room, not a vendor.",
     image: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&q=80&auto=format&fit=crop",
-    imageAlt: "Sales team in a business meeting",
+    imageAlt: "Strategy and consulting session",
     cta: "Learn more",
   },
   {
     code: "02",
     color: "#14B8A6",
-    title: "CRM & Sales Operations",
-    desc: "Implement and optimise your CRM so your sales process runs cleanly from day one. We work with all major platforms.",
+    title: "CRM & CRM Administration",
+    desc: "Implement, migrate, and administer your CRM with precision. Clean data, accurate pipelines, and trained teams.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop",
     imageAlt: "CRM and business intelligence dashboard",
     cta: "Learn more",
@@ -635,7 +635,7 @@ const SERVICES = [
     code: "03",
     color: "#8B5CF6",
     title: "RevOps & GTM Engineering",
-    desc: "Align your revenue teams on shared metrics, forecasts, and a pipeline your leadership can trust.",
+    desc: "One pipeline. One source of truth. We align your go-to-market teams on shared metrics and forecasting infrastructure.",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80&auto=format&fit=crop",
     imageAlt: "Business strategy and analytics",
     cta: "Learn more",
@@ -644,7 +644,7 @@ const SERVICES = [
     code: "04",
     color: "#10B981",
     title: "Workflow Automation & AI",
-    desc: "Automate the repetitive work and use AI where it creates real leverage across your operations.",
+    desc: "Automate the manual work and apply AI where it creates real operational leverage. Built on n8n, Make, and Zapier.",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80&auto=format&fit=crop",
     imageAlt: "Technology and automation",
     cta: "Learn more",
@@ -652,19 +652,19 @@ const SERVICES = [
   {
     code: "05",
     color: "#EC4899",
-    title: "Social Media & Community",
-    desc: "Build a consistent presence and an active community around your brand across every channel.",
-    image: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=800&q=80&auto=format&fit=crop",
-    imageAlt: "Person managing social media on a smartphone",
+    title: "Business Technology & Stack Management",
+    desc: "Audit, design, integrate, and govern your business tech stack. From tool selection to platform onboarding to vendor management.",
+    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80&auto=format&fit=crop",
+    imageAlt: "Technology stack management and integration",
     cta: "Learn more",
   },
   {
-    code: "06",
-    color: "#FFB800",
-    title: "Virtual Assistance & Back Office",
-    desc: "Virtual assistants for admin duties, commerce management, inbound handling, and the operations that keep your business running.",
-    image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80&auto=format&fit=crop",
-    imageAlt: "Remote worker managing back-office operations",
+    code: "09",
+    color: "#0EA5E9",
+    title: "Web Development",
+    desc: "Custom websites and web applications built for performance and conversion. Deployed fast, documented thoroughly.",
+    image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80&auto=format&fit=crop",
+    imageAlt: "Web development and design",
     cta: "Learn more",
   },
 ] as const;
@@ -676,8 +676,8 @@ function Services() {
         <div className="flex flex-col items-center text-center mb-12 lg:mb-16">
           <SectionHeader
             eyebrow="What we do"
-            title={<>Six services. <span className="text-gradient-gold">One partner.</span></>}
-            description="From sales and CRM to automation, social media, and back office: we handle it all."
+            title={<>Nine disciplines. <span className="text-gradient-gold">One partner.</span></>}
+            description="From CRM and automation to RevOps, GTM engineering, business technology, and web development: we build the systems."
           />
           <Link
             to="/services"

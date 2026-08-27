@@ -23,7 +23,7 @@ export function SiteFooter() {
             </p>
 
             <p className="mt-4 text-xs text-[#FFB800]/60">
-              B2B RevOps · GTM Engineering · Automation
+              CRM · RevOps · Automation · GTM Engineering · Web Dev
             </p>
           </div>
 

@@ -1,15 +1,18 @@
 # SuperTelque
 
-> SuperTelque builds revenue systems for B2B companies. We handle lead generation, CRM implementation, RevOps, workflow automation with AI, social media management, and virtual assistance. Remote-first, serving clients globally.
+> SuperTelque builds the systems B2B companies run on. We handle CRM administration, RevOps, GTM engineering, workflow automation with AI, business technology management, solution consulting, business operations, and web development. Remote-first, serving clients globally.
 
 ## What We Do
 
-- Lead generation and outbound sales campaigns using Apollo, Clay, and proven sequencing strategies
-- CRM setup and sales operations across HubSpot, Salesforce, Pipedrive, Zoho CRM, Close, ActiveCampaign, Monday.com CRM, Keap, and other major platforms
-- Revenue Operations (RevOps) and GTM engineering: pipeline design, lifecycle stages, forecasting
+- CRM administration, implementation, and migration across HubSpot, Salesforce, Pipedrive, Zoho CRM, Close, ActiveCampaign, Monday.com CRM, Keap, and other major platforms
+- Revenue Operations (RevOps) and GTM engineering: pipeline architecture, lifecycle stages, forecasting, cross-team alignment
 - Workflow automation with n8n, Make, and Zapier, including AI-powered workflows using OpenAI and Claude
+- AI automation: AI agents, LLM integrations, AI-powered operational tooling, and prompt engineering
+- Business technology and stack management: tool selection, platform onboarding, integration architecture, vendor management
+- Solution consulting: fractional RevOps advisory, GTM strategy design, technology roadmaps, and process architecture
+- Web development: custom websites, landing pages, web applications, and CMS integration
+- Business operations: admin, back-office, commerce management, inbound handling, and order processing
 - Social media and community management across LinkedIn, X, and Instagram
-- Virtual assistance covering admin duties, inbound handling, commerce management, order processing, and back-office operations
 
 ## Who We Work With
 
