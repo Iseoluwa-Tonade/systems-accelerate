@@ -75,10 +75,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "SuperTelque | Revenue Systems Engineered for Scale" },
-      { name: "description", content: "SuperTelque architects RevOps, GTM automation, CRM and AI-powered revenue systems for B2B technology companies across Nigeria." },
+      { name: "description", content: "SuperTelque is a GTM architecture and AI engineering firm for B2B companies that need more predictable pipeline, faster execution, and measurable revenue systems." },
       { name: "author", content: "SuperTelque" },
       { property: "og:title", content: "SuperTelque | Revenue Systems Engineered for Scale" },
-      { property: "og:description", content: "SuperTelque architects RevOps, GTM automation, CRM and AI-powered revenue systems for B2B technology companies across Nigeria." },
+      { property: "og:description", content: "Fractional RevOps leadership, autonomous AI engineering, and B2B demand systems built for measurable commercial outcomes." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://supertelque.com" },
       { property: "og:image", content: "https://supertelque.com/og-image.png" },
@@ -87,7 +87,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "https://supertelque.com/og-image.png" },
       { name: "twitter:title", content: "SuperTelque | Revenue Systems Engineered for Scale" },
-      { name: "twitter:description", content: "SuperTelque architects RevOps, GTM automation, CRM and AI-powered revenue systems for B2B technology companies across Nigeria." },
+      { name: "twitter:description", content: "Fractional RevOps leadership, autonomous AI engineering, and B2B demand systems built for measurable commercial outcomes." },
     ],
     links: [
       {
