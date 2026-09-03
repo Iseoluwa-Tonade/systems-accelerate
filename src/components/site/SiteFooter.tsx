@@ -19,11 +19,11 @@ export function SiteFooter() {
               </div>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              A revenue operations team that builds the systems B2B companies run on. Remote-first, serving clients globally.
+              A GTM architecture and AI engineering partner for B2B companies building more predictable revenue.
             </p>
 
             <p className="mt-4 text-xs text-[#FFB800]/60">
-              CRM · RevOps · Automation · GTM Engineering · Web Dev
+              Fractional RevOps · Autonomous AI · B2B GEO
             </p>
           </div>
 
@@ -43,12 +43,11 @@ export function SiteFooter() {
             <FooterCol
               title="Services"
               links={[
-                { to: "/services#sales", label: "Sales & Lead Generation" },
-                { to: "/services#crm", label: "CRM & Sales Operations" },
-                { to: "/services#revops", label: "RevOps & GTM Engineering" },
-                { to: "/services#automation", label: "Workflow Automation & AI" },
-                { to: "/services#social", label: "Social Media & Community" },
-                { to: "/services#backoffice", label: "Virtual Assistance" },
+                { to: "/services#revops", label: "Fractional RevOps" },
+                { to: "/services#revops", label: "Pipeline Architecture" },
+                { to: "/services#ai-engineering", label: "Autonomous AI Engineering" },
+                { to: "/services#geo", label: "B2B GEO" },
+                { to: "/services#geo", label: "Demand Generation" },
               ]}
             />
             <div>
