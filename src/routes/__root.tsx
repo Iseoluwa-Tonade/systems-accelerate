@@ -74,13 +74,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SuperTelque | Revenue Systems for B2B Companies" },
-      { name: "description", content: "SuperTelque builds the systems B2B companies run on: CRM, RevOps, GTM engineering, workflow automation, AI, business technology management, solution consulting, and web development. Remote-first. Global clients." },
+      { title: "SuperTelque | GTM Architecture & AI Engineering" },
+      { name: "description", content: "SuperTelque is a GTM architecture and AI engineering firm for B2B companies that need more predictable pipeline, faster execution, and measurable revenue systems." },
       { name: "author", content: "SuperTelque" },
-      { name: "keywords", content: "B2B revenue operations, CRM administration, CRM implementation, RevOps consulting, GTM engineering, workflow automation, AI automation, business technology management, solution consulting, business operations, HubSpot Salesforce Pipedrive setup, web development" },
+      { name: "keywords", content: "fractional RevOps, pipeline architecture, GTM engineering, autonomous AI agents, n8n orchestration, Generative Engine Optimization, B2B demand generation, HubSpot, Salesforce, Clay" },
       { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "SuperTelque | Revenue Systems for B2B Companies" },
-      { property: "og:description", content: "SuperTelque builds the systems B2B companies run on: CRM, RevOps, GTM engineering, workflow automation, AI, business technology management, and web development." },
+      { property: "og:title", content: "SuperTelque | GTM Architecture & AI Engineering" },
+      { property: "og:description", content: "Fractional RevOps leadership, autonomous AI engineering, and B2B demand systems built for measurable commercial outcomes." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://supertelque.com" },
       { property: "og:image", content: "https://supertelque.com/og-image.png" },
@@ -89,8 +89,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "https://supertelque.com/og-image.png" },
-      { name: "twitter:title", content: "SuperTelque | Revenue Systems for B2B Companies" },
-      { name: "twitter:description", content: "CRM, RevOps, lead generation, automation, social media, and virtual assistance for B2B companies. Remote-first. One accountable partner." },
+      { name: "twitter:title", content: "SuperTelque | GTM Architecture & AI Engineering" },
+      { name: "twitter:description", content: "Fractional RevOps leadership, autonomous AI engineering, and B2B demand systems for ambitious companies." },
     ],
     links: [
       {
@@ -127,7 +127,7 @@ function RootShell({ children }: { children: ReactNode }) {
           "name": "SuperTelque",
           "url": "https://supertelque.com",
           "logo": "https://supertelque.com/supertelque-logo.png",
-          "description": "SuperTelque builds the systems B2B companies run on: CRM administration, RevOps, GTM engineering, workflow automation with AI, business technology management, solution consulting, and web development. Remote-first, serving clients globally.",
+          "description": "SuperTelque is a GTM architecture and AI engineering firm that builds fractional RevOps, autonomous AI, and B2B demand systems for companies serving global markets.",
           "email": "support@supertelque.com",
           "foundingLocation": { "@type": "Place", "addressCountry": "US" },
           "areaServed": [
@@ -136,16 +136,11 @@ function RootShell({ children }: { children: ReactNode }) {
             { "@type": "Country", "name": "United Kingdom" }
           ],
           "serviceType": [
-            "Revenue Operations",
-            "GTM Engineering",
-            "CRM Implementation",
-            "CRM Administration",
-            "Workflow Automation",
-            "AI Automation",
-            "Business Technology Management",
-            "Solution Consulting",
-            "Business Operations",
-            "Web Development"
+            "Fractional RevOps",
+            "Pipeline Architecture",
+            "Autonomous AI Engineering",
+            "B2B Demand Generation",
+            "Generative Engine Optimization"
           ],
           "sameAs": [
             "https://www.linkedin.com/company/supertelque"
