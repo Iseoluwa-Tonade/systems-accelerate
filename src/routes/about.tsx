@@ -7,9 +7,9 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About | SuperTelque RevOps" },
-      { name: "description", content: "Technical revenue operators building the GTM infrastructure behind B2B technology companies in Nigeria." },
+      { name: "description", content: "SuperTelque is a global GTM architecture and AI engineering partner for B2B companies that need better revenue systems." },
       { property: "og:title", content: "About | SuperTelque RevOps" },
-      { property: "og:description", content: "RevOps expertise. GTM systems thinking. Automation engineering. AI implementation." },
+      { property: "og:description", content: "Senior RevOps advisory, GTM architecture, autonomous AI engineering, and B2B demand systems." },
     ],
   }),
   component: AboutPage,
@@ -50,15 +50,15 @@ function AboutPage() {
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <div className="mt-10 grid gap-8 lg:grid-cols-12">
               <p className="lg:col-span-7 text-lg leading-relaxed text-muted-foreground">
-                SuperTelque is a small, senior team with real experience running RevOps and building
-                automation inside revenue organizations. We work with founders and CROs who need
-                actual systems built, not more slide decks.
+                SuperTelque is a senior, remote-first team that combines fractional RevOps direction
+                with hands-on AI engineering. We work with founders and CROs who need the blueprint,
+                the build, and a revenue system their team can operate with confidence.
               </p>
               <div className="lg:col-span-5 rounded-2xl border border-white/10 bg-white/05 p-6 flex flex-col justify-center items-center text-center">
                 <img src="/supertelque-logo.png" alt="" className="h-10 w-10 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
-                <div className="mt-3 font-display text-2xl font-bold text-white">HQ</div>
+                <div className="mt-3 font-display text-2xl font-bold text-white">Global delivery</div>
                 <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-[#FFB800]/70">
-                  Lagos, Nigeria
+                  United States · Lagos · Remote-first
                 </div>
               </div>
             </div>
@@ -75,9 +75,9 @@ function AboutPage() {
                 <SectionHeader eyebrow="Mission" title={<>Build systems. Grow revenue.</>} />
               </div>
               <blockquote className="lg:col-span-8 border-l-2 border-[#FFB800]/40 pl-6 text-xl leading-relaxed text-white/75 lg:text-2xl">
-                "To help B2B companies grow revenue through better systems and smarter automation.
-                We replace manual, fragile processes with ones that are reliable, measurable,
-                and built to last."
+                "To give B2B leaders the revenue infrastructure they need to grow with certainty.
+                We turn fragmented data, manual work, and disconnected tools into measurable,
+                autonomous systems that compound over time."
               </blockquote>
             </div>
           </ScrollReveal>
