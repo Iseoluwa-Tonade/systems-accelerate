@@ -116,7 +116,7 @@ function Hero() {
 
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-muted-foreground sm:text-[17px]">
-              Better data, cleaner workflows, and a revenue system your whole team can rely on.
+              We architect the data, decision layers, and autonomous workflows that make enterprise revenue teams faster, more predictable, and easier to scale.
             </p>
           </ScrollReveal>
 
@@ -183,39 +183,21 @@ function TrustBar() {
 const SERVICES = [
   {
     code: "01",
-    title: "Revenue Operations",
-    desc: "Get your sales, marketing, and CS teams working from the same numbers, the same goals, and a single forecast.",
-    bullets: ["Pipeline design", "Forecasting", "Territory & quota"],
+    title: "Fractional RevOps & Pipeline Architecture",
+    desc: "Senior RevOps direction for teams that need a trusted operating model before they add more headcount or technology.",
+    bullets: ["Revenue-system audit", "Forecasting architecture", "Executive roadmaps"],
   },
   {
     code: "02",
-    title: "GTM Engineering & Automation",
-    desc: "Build and automate the workflows that slow your team down. Less manual work, more time selling.",
-    bullets: ["n8n · Make · Zapier", "Custom API connections", "Lifecycle automation"],
+    title: "Autonomous AI Engineering",
+    desc: "Move beyond point automations with AI agents, orchestration layers, and integrations designed for real revenue operations.",
+    bullets: ["AI agent workflows", "n8n orchestration", "Custom API layers"],
   },
   {
     code: "03",
-    title: "CRM Architecture",
-    desc: "Set up HubSpot or Salesforce the right way from day one, so you're not rebuilding it in two years.",
-    bullets: ["Object model design", "Bi-directional sync", "Lifecycle stages"],
-  },
-  {
-    code: "04",
-    title: "Revenue Intelligence",
-    desc: "Forecasts, attribution, and dashboards that give your leadership team real numbers to work from.",
-    bullets: ["Power BI · Looker", "Multi-touch attribution", "Exec reporting"],
-  },
-  {
-    code: "05",
-    title: "Outbound Systems",
-    desc: "Build a prospecting engine with Clay and Apollo that finds the right accounts and gets your team into more real conversations.",
-    bullets: ["Clay enrichment", "Apollo sequencing", "Signal-based routing"],
-  },
-  {
-    code: "06",
-    title: "Fractional RevOps",
-    desc: "Get experienced RevOps leadership embedded in your team. No full-time hire needed.",
-    bullets: ["Embedded leadership", "Quarterly roadmaps", "Team enablement"],
+    title: "B2B Demand Generation & GEO",
+    desc: "Build a demand engine buyers can find and trust, across outbound systems and the AI search experiences shaping modern vendor selection.",
+    bullets: ["GEO visibility", "Signal-led outbound", "Deliverability infrastructure"],
   },
 ] as const;
 
@@ -228,10 +210,10 @@ function Services() {
             eyebrow="What we build"
             title={
               <>
-                Six disciplines. <span className="text-muted-foreground">One revenue engine.</span>
+                Three pillars. <span className="text-muted-foreground">One revenue system.</span>
               </>
             }
-            description="Every engagement covers strategy, build, and results. Tell us where the pain is and we'll handle the rest."
+            description="We start with the commercial constraint, architect the system around it, then build the capability your team can own."
           />
           <Link
             to="/services"
@@ -453,10 +435,10 @@ function FinalCTA() {
             <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#FFB800]/70">Let's build</span>
           </div>
           <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-[56px] lg:leading-[1.05]">
-            Ready to fix your <span className="text-gradient-gold">revenue operations</span>?
+            Ready to engineer your <span className="text-gradient-gold">next revenue advantage</span>?
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/60">
-            45 minutes. Your stack reviewed, your next steps mapped. No pitch.
+            45 minutes with a senior operator. We identify the system constraint, quantify the opportunity, and map the highest-leverage next move.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
