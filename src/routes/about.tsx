@@ -8,9 +8,9 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About | SuperTelque" },
-      { name: "description", content: "A senior team helping B2B companies grow revenue through better systems and smarter automation." },
+      { name: "description", content: "A senior global team combining fractional RevOps direction with hands-on AI engineering for B2B companies." },
       { property: "og:title", content: "About | SuperTelque" },
-      { property: "og:description", content: "RevOps expertise. GTM systems thinking. Automation engineering." },
+      { property: "og:description", content: "Senior RevOps advisory, GTM architecture, autonomous AI engineering, and B2B demand systems." },
     ],
   }),
   component: AboutPage,
@@ -80,9 +80,9 @@ function AboutPage() {
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <div className="mt-10 grid gap-6 lg:grid-cols-12">
               <p className="lg:col-span-7 text-lg leading-relaxed text-[#4C5670]">
-                SuperTelque is a senior team with real experience running RevOps and building
-                automation inside revenue organizations. We work with founders and operators who need
-                actual systems built, not more slide decks.
+                SuperTelque is a senior, remote-first team that combines fractional RevOps direction
+                with hands-on AI engineering. We work with founders and operators who need the blueprint,
+                the build, and a revenue system their team can operate with confidence.
               </p>
               <div className="lg:col-span-5 rounded-2xl border border-border bg-[#F4F7FF] overflow-hidden">
                 <div className="relative h-48 lg:h-56 overflow-hidden">
@@ -116,9 +116,9 @@ function AboutPage() {
                 <SectionHeader eyebrow="Mission" title={<>Build systems. Grow revenue.</>} />
               </div>
               <blockquote className="lg:col-span-8 border-l-2 border-[#FFB800] pl-6 text-lg leading-relaxed text-[#4C5670] lg:text-xl">
-                "To help companies grow revenue through better systems and smarter automation.
-                We replace manual, fragile processes with ones that are reliable, measurable,
-                and built to last."
+                "To give B2B leaders the revenue infrastructure they need to grow with certainty.
+                We turn fragmented data, manual work, and disconnected tools into measurable,
+                autonomous systems that compound over time."
               </blockquote>
             </div>
           </ScrollReveal>
