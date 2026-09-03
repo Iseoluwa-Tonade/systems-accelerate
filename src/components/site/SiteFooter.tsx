@@ -19,11 +19,11 @@ export function SiteFooter() {
               </div>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              A revenue operations team that builds the systems B2B companies run on.
+              A GTM architecture and AI engineering partner for B2B companies building more predictable revenue.
             </p>
 
             <p className="mt-4 text-xs text-[#FFB800]/60">
-              B2B RevOps · GTM Engineering · Lagos, Nigeria
+              Fractional RevOps · Autonomous AI · B2B GEO
             </p>
           </div>
 
@@ -40,12 +40,11 @@ export function SiteFooter() {
             <FooterCol
               title="Services"
               links={[
-                { to: "/services", label: "Revenue Operations" },
-                { to: "/services", label: "GTM Engineering" },
-                { to: "/services", label: "CRM Architecture" },
-                { to: "/services", label: "Automation" },
-                { to: "/services", label: "Data & Analytics" },
-                { to: "/services", label: "AI Revenue Systems" },
+                { to: "/services", label: "Fractional RevOps" },
+                { to: "/services", label: "Pipeline Architecture" },
+                { to: "/services", label: "Autonomous AI Engineering" },
+                { to: "/services", label: "B2B GEO" },
+                { to: "/services", label: "Demand Generation" },
               ]}
             />
             <FooterCol
@@ -60,7 +59,9 @@ export function SiteFooter() {
                 Regions
               </div>
               <ul className="mt-4 space-y-2 text-sm text-white/60">
+                <li>United States</li>
                 <li>Nigeria (Lagos)</li>
+                <li>Remote-first · Global</li>
               </ul>
             </div>
           </div>
