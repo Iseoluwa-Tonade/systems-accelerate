@@ -6,10 +6,10 @@ import { ScrollReveal } from "@/components/site/ScrollReveal";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services | SuperTelque RevOps" },
-      { name: "description", content: "RevOps, GTM engineering, CRM architecture, outbound systems, data & analytics and AI revenue systems for B2B technology companies." },
-      { property: "og:title", content: "Services | SuperTelque RevOps" },
-      { property: "og:description", content: "Six disciplines, one revenue engine. Architecture diagrams for every service." },
+      { title: "GTM Architecture & AI Engineering | SuperTelque" },
+      { name: "description", content: "Fractional RevOps leadership, autonomous AI engineering, and GEO-led B2B demand systems for ambitious companies." },
+      { property: "og:title", content: "GTM Architecture & AI Engineering | SuperTelque" },
+      { property: "og:description", content: "Three premium pillars for building a more predictable, autonomous revenue system." },
     ],
   }),
   component: ServicesPage,
@@ -19,44 +19,23 @@ const SERVICES = [
   {
     id: "revops",
     code: "01",
-    title: "Revenue Operations",
-    blurb: "Get your sales, marketing, and CS teams aligned on shared metrics, goals, and a single forecast.",
-    items: ["Pipeline design", "Forecasting", "Territory planning", "Revenue reporting"],
+    title: "Fractional RevOps & Pipeline Architecture",
+    blurb: "Get a senior RevOps partner to diagnose revenue friction, establish the operating blueprint, and give leadership a forecast they can trust.",
+    items: ["Revenue-system audit", "Pipeline architecture", "Forecasting cadence", "Executive roadmap"],
   },
   {
     id: "gtm",
     code: "02",
-    title: "GTM Engineering",
-    blurb: "Build the workflows and automations that keep your go-to-market running smoothly.",
-    items: ["Workflow automation", "API integrations", "Data syncs", "Process design"],
+    title: "Autonomous AI Engineering",
+    blurb: "Engineer the orchestration layer between your CRM, data sources, and teams so complex revenue work can move without manual handoffs.",
+    items: ["AI agents", "n8n orchestration", "Custom API integrations", "CRM data systems"],
   },
   {
-    id: "crm",
+    id: "geo",
     code: "03",
-    title: "CRM Architecture",
-    blurb: "Set up HubSpot or Salesforce properly so it grows with your business, not against it.",
-    items: ["HubSpot implementation", "Salesforce implementation", "Pipeline design", "Lifecycle stages"],
-  },
-  {
-    id: "outbound",
-    code: "04",
-    title: "Outbound Systems",
-    blurb: "Find the right accounts, enrich them automatically, and get your team into more real conversations.",
-    items: ["Clay enrichment", "Apollo sequencing", "Lead routing", "Targeted outreach"],
-  },
-  {
-    id: "data",
-    code: "05",
-    title: "Data & Analytics",
-    blurb: "Clear dashboards and forecasts that every level of your team can actually rely on.",
-    items: ["Power BI dashboards", "Attribution modeling", "Data warehouses", "Executive reporting"],
-  },
-  {
-    id: "ai",
-    code: "06",
-    title: "AI in Your Revenue Stack",
-    blurb: "AI that works inside your actual sales process, from finding accounts to prioritizing leads.",
-    items: ["AI prospect research", "AI lead scoring", "AI-powered automation", "Sales enablement"],
+    title: "B2B Demand Generation & GEO",
+    blurb: "Create a demand engine that earns visibility in buyer research, high-intent outbound, and generative search experiences.",
+    items: ["Generative Engine Optimization", "Signal-led outbound", "Deliverability architecture", "Buyer-intent systems"],
   },
 ] as const;
 
@@ -67,12 +46,11 @@ function ServicesPage() {
         <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-16 lg:px-6">
           <Eyebrow>Services</Eyebrow>
           <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
-            Built for revenue.<span className="text-gradient-gold"> Built to last.</span>
+            GTM architecture for companies that need to <span className="text-gradient-gold">scale with certainty.</span>
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Every service comes with a clear plan, measurable outcomes, and documentation
-              your team can own. Tell us what you need and we'll figure out the right starting point.
+              We do not sell disconnected implementation tasks. Each engagement is designed around a commercial outcome, an accountable operating model, and systems your team can own.
             </p>
           </ScrollReveal>
         </div>
@@ -147,10 +125,7 @@ function ArchitectureDiagram({ code }: { code: string }) {
   const labelsByCode: Record<string, string[]> = {
     "01": ["Pipeline", "Forecast", "Quota", "Reporting"],
     "02": ["Source", "Transform", "Route", "Activate"],
-    "03": ["Contacts", "Companies", "Deals", "Lifecycle"],
-    "04": ["Signal", "Enrich", "Sequence", "Meeting"],
-    "05": ["Warehouse", "Model", "Dashboard", "Decision"],
-    "06": ["Prompt", "Score", "Decide", "Execute"],
+    "03": ["Signal", "Authority", "Cite", "Convert"],
   };
   const labels = labelsByCode[code] ?? labelsByCode["01"];
 
