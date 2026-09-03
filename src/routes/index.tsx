@@ -66,16 +66,16 @@ function CyclingWord() {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "SuperTelque | CRM, RevOps & Automation for B2B Companies" },
+      { title: "SuperTelque | GTM Architecture & AI Engineering" },
       {
         name: "description",
         content:
-          "CRM administration, RevOps, GTM engineering, workflow automation, AI, and business technology management for B2B companies. Built on HubSpot, Salesforce, n8n, Make, and OpenAI.",
+          "Fractional RevOps leadership, autonomous AI engineering, and B2B demand systems for companies that need more predictable pipeline and faster execution.",
       },
-      { property: "og:title", content: "SuperTelque | CRM, RevOps & Automation for B2B Companies" },
+      { property: "og:title", content: "SuperTelque | GTM Architecture & AI Engineering" },
       {
         property: "og:description",
-        content: "CRM, RevOps, GTM engineering, automation, business technology, and web development. One accountable partner.",
+        content: "Fractional RevOps leadership, autonomous AI engineering, and B2B demand systems built around measurable commercial outcomes.",
       },
     ],
   }),
@@ -365,7 +365,7 @@ function Hero() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
               <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
             </span>
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#1B5EFF]/70">Your Growth Partner</span>
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-[#1B5EFF]/70">GTM Architecture & AI Engineering</span>
           </div>
 
           <h1 className="font-display text-[42px] font-extrabold leading-[1.07] tracking-tight text-[#080D1C] sm:text-[54px] lg:text-[58px] xl:text-[66px] lg:leading-[1.04]">
@@ -375,7 +375,7 @@ function Hero() {
           </h1>
 
           <p className="mt-4 max-w-lg text-[17px] leading-relaxed text-[#4C5670]">
-            CRM, Automation, RevOps, GTM Engineering, and Business Operations. One accountable partner.
+            We engineer the data, decision layers, and autonomous workflows that make B2B revenue teams faster, more predictable, and easier to scale.
           </p>
 
           <div className="mt-6 flex flex-wrap items-center gap-4">
@@ -617,55 +617,28 @@ const SERVICES = [
   {
     code: "01",
     color: "#1B5EFF",
-    title: "Solution Consulting",
-    desc: "Technology assessment, GTM architecture, and fractional RevOps advisory. We act as the expert in the room, not a vendor.",
+    title: "Fractional RevOps & Pipeline Architecture",
+    desc: "Senior RevOps direction for teams that need a trusted operating model before they add more headcount or technology.",
     image: "https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&q=80&auto=format&fit=crop",
-    imageAlt: "Strategy and consulting session",
+    imageAlt: "Fractional RevOps and pipeline architecture session",
     cta: "Learn more",
   },
   {
     code: "02",
     color: "#14B8A6",
-    title: "CRM & CRM Administration",
-    desc: "Implement, migrate, and administer your CRM with precision. Clean data, accurate pipelines, and trained teams.",
+    title: "Autonomous AI Engineering",
+    desc: "Move beyond point automations with AI agents, orchestration layers, and integrations designed for real revenue operations.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop",
-    imageAlt: "CRM and business intelligence dashboard",
+    imageAlt: "Autonomous AI engineering and revenue intelligence",
     cta: "Learn more",
   },
   {
     code: "03",
     color: "#8B5CF6",
-    title: "RevOps & GTM Engineering",
-    desc: "One pipeline. One source of truth. We align your go-to-market teams on shared metrics and forecasting infrastructure.",
+    title: "B2B Demand Generation & GEO",
+    desc: "Build a demand engine buyers can find and trust across high-intent outbound and the AI search experiences shaping modern vendor selection.",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80&auto=format&fit=crop",
-    imageAlt: "Business strategy and analytics",
-    cta: "Learn more",
-  },
-  {
-    code: "04",
-    color: "#10B981",
-    title: "Workflow Automation & AI",
-    desc: "Automate the manual work and apply AI where it creates real operational leverage. Built on n8n, Make, and Zapier.",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80&auto=format&fit=crop",
-    imageAlt: "Technology and automation",
-    cta: "Learn more",
-  },
-  {
-    code: "05",
-    color: "#EC4899",
-    title: "Business Technology & Stack Management",
-    desc: "Audit, design, integrate, and govern your business tech stack. From tool selection to platform onboarding to vendor management.",
-    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80&auto=format&fit=crop",
-    imageAlt: "Technology stack management and integration",
-    cta: "Learn more",
-  },
-  {
-    code: "09",
-    color: "#0EA5E9",
-    title: "Web Development",
-    desc: "Custom websites and web applications built for performance and conversion. Deployed fast, documented thoroughly.",
-    image: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80&auto=format&fit=crop",
-    imageAlt: "Web development and design",
+    imageAlt: "B2B demand generation and generative engine optimization strategy",
     cta: "Learn more",
   },
 ] as const;
@@ -676,9 +649,9 @@ function Services() {
       <div className="mx-auto max-w-7xl px-4 lg:px-6">
         <div className="flex flex-col items-center text-center mb-12 lg:mb-16">
           <SectionHeader
-            eyebrow="What we do"
-            title={<>Nine disciplines. <span className="text-gradient-gold">One partner.</span></>}
-            description="From CRM and automation to RevOps, GTM engineering, business technology, and web development: we build the systems."
+            eyebrow="What we engineer"
+            title={<>Three pillars. <span className="text-gradient-gold">One revenue system.</span></>}
+            description="We start with the commercial constraint, architect the system around it, then build the capability your team can own."
           />
           <Link
             to="/services"
