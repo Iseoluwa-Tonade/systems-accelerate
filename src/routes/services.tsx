@@ -6,10 +6,10 @@ import { ScrollReveal } from "@/components/site/ScrollReveal";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services | SuperTelque LLC" },
-      { name: "description", content: "CRM administration, RevOps, GTM engineering, workflow automation, AI, business technology management, solution consulting, web development, and business operations for B2B companies." },
-      { property: "og:title", content: "Services | SuperTelque LLC" },
-      { property: "og:description", content: "Nine disciplines. One technology and operations partner." },
+      { title: "GTM Architecture & AI Engineering | SuperTelque" },
+      { name: "description", content: "Fractional RevOps leadership, autonomous AI engineering, and GEO-led B2B demand systems for ambitious companies." },
+      { property: "og:title", content: "GTM Architecture & AI Engineering | SuperTelque" },
+      { property: "og:description", content: "Three premium pillars for building a more predictable, autonomous revenue system." },
     ],
   }),
   component: ServicesPage,
@@ -17,76 +17,28 @@ export const Route = createFileRoute("/services")({
 
 const SERVICES = [
   {
-    id: "consulting",
+    id: "revops",
     code: "01",
     color: "#1B5EFF",
-    title: "Solution Consulting",
-    blurb: "Assess your current stack, design the right architecture, and build a GTM strategy grounded in systems thinking. We act as a fractional RevOps and technology partner for B2B teams that need an expert in the room, not a vendor.",
-    items: ["GTM strategy design", "Stack assessment & audit", "Technology roadmap", "Fractional RevOps advisory", "Process architecture", "Change management"],
+    title: "Fractional RevOps & Pipeline Architecture",
+    blurb: "Get a senior RevOps partner to diagnose revenue friction, establish the operating blueprint, and give leadership a forecast they can trust.",
+    items: ["Revenue-system audit", "Pipeline architecture", "Forecasting cadence", "Executive roadmap", "CRM data model", "Team enablement"],
   },
   {
-    id: "crm",
+    id: "ai-engineering",
     code: "02",
     color: "#14B8A6",
-    title: "CRM & CRM Administration",
-    blurb: "Implement, migrate, and administer your CRM with precision. We keep your data clean, your pipelines accurate, your workflows running, and your team trained. We cover all major platforms.",
-    items: ["CRM implementation", "CRM administration", "Pipeline design", "Data hygiene & audits", "Workflow rules & automations", "Reporting & dashboards"],
+    title: "Autonomous AI Engineering",
+    blurb: "Engineer the orchestration layer between your CRM, data sources, and teams so complex revenue work can move without manual handoffs.",
+    items: ["AI agents", "n8n orchestration", "Custom API integrations", "CRM data systems", "Intelligent routing", "Human-in-the-loop controls"],
   },
   {
-    id: "revops",
+    id: "geo",
     code: "03",
     color: "#8B5CF6",
-    title: "RevOps & GTM Engineering",
-    blurb: "Align your go-to-market teams on shared metrics, forecasting models, and a single source of truth for pipeline. We build the infrastructure that connects marketing, operations, and revenue in one coherent system.",
-    items: ["Revenue operations", "GTM engineering", "Pipeline architecture", "Forecasting models", "Revenue dashboards", "Cross-team alignment"],
-  },
-  {
-    id: "automation",
-    code: "04",
-    color: "#10B981",
-    title: "Workflow Automation & AI",
-    blurb: "Automate the manual work that slows your team down and use AI where it creates real operational leverage. We build on n8n, Make, and Zapier, connecting your tools into one clean, documented workflow.",
-    items: ["Workflow automation", "AI-powered solutions", "n8n · Make · Zapier", "TaxDome integration", "Freshdesk automation", "Process optimisation"],
-  },
-  {
-    id: "biztech",
-    code: "05",
-    color: "#EC4899",
-    title: "Business Technology & Stack Management",
-    blurb: "Own your tech stack, not just use it. We audit, design, integrate, and manage the business technology layer, from tool selection and onboarding to vendor management and platform governance.",
-    items: ["Tech stack audit & design", "Platform onboarding", "Tool selection & evaluation", "Vendor management", "Integration architecture", "Platform governance"],
-  },
-  {
-    id: "backoffice",
-    code: "06",
-    color: "#FFB800",
-    title: "Business Operations",
-    blurb: "Operational capacity for the admin, back-office, and day-to-day functions that keep your business moving. Skilled remote operators who own their output and document their work.",
-    items: ["Business operations", "Commerce management", "Admin & coordination", "Inbound management", "Order processing", "Back-office operations"],
-  },
-  {
-    id: "ai",
-    code: "07",
-    color: "#F59E0B",
-    title: "AI Automation",
-    blurb: "Deploy intelligent agents, language model integrations, and AI-powered tooling that automates judgment-heavy tasks across your sales, marketing, and operations teams.",
-    items: ["AI agents", "LLM integrations", "AI content workflows", "Predictive analytics", "AI chatbots", "Prompt engineering"],
-  },
-  {
-    id: "marketing",
-    code: "08",
-    color: "#E11D48",
-    title: "Digital Marketing",
-    blurb: "Drive traffic, generate leads, and build brand authority through search, paid channels, email, and content - all tracked to revenue outcomes.",
-    items: ["SEO & content strategy", "Paid ads (Google/Meta)", "Email campaigns", "Analytics & attribution", "Landing page optimisation", "Brand storytelling"],
-  },
-  {
-    id: "webdev",
-    code: "09",
-    color: "#0EA5E9",
-    title: "Web Development",
-    blurb: "Build fast, conversion-focused websites and web applications that represent your brand and turn visitors into qualified leads.",
-    items: ["Custom websites", "Landing pages", "Web applications", "CMS integration", "Performance optimisation", "Conversion rate optimisation"],
+    title: "B2B Demand Generation & GEO",
+    blurb: "Create a demand engine that earns visibility in buyer research, high-intent outbound, and generative search experiences.",
+    items: ["Generative Engine Optimization", "Signal-led outbound", "Deliverability architecture", "Buyer-intent systems", "Authority content", "Attribution intelligence"],
   },
 ] as const;
 
@@ -107,12 +59,11 @@ function ServicesPage() {
             <div className="lg:col-span-7">
               <Eyebrow>Services</Eyebrow>
               <h1 className="mt-5 font-display text-[34px] font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
-                The systems your business<span className="text-gradient-gold"> runs on.</span>
+                GTM architecture for companies that need to <span className="text-gradient-gold">scale with certainty.</span>
               </h1>
               <ScrollReveal variant="fadeUp" delay={0.15}>
                 <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                  Every service comes with a clear plan, measurable outcomes, and documentation
-                  your team can own. Tell us what you need and we will find the right starting point.
+                  We do not sell disconnected implementation tasks. Each engagement is designed around a commercial outcome, an accountable operating model, and systems your team can own.
                 </p>
               </ScrollReveal>
             </div>
@@ -126,8 +77,8 @@ function ServicesPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#080D1C]/60 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Nine service lines</div>
-                    <div className="mt-0.5 font-display text-sm font-bold text-white">From pipeline to web and AI.</div>
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Three premium pillars</div>
+                    <div className="mt-0.5 font-display text-sm font-bold text-white">From pipeline architecture to AI visibility.</div>
                   </div>
                 </div>
                 <div className="px-5 py-4 bg-[#F4F7FF] flex items-center gap-3">
@@ -242,13 +193,7 @@ function ArchitectureDiagram({ code, color }: { code: string; color: string }) {
   const labelsByCode: Record<string, string[]> = {
     "01": ["Assess", "Design", "Advise", "Deliver"],
     "02": ["Import", "Clean", "Structure", "Activate"],
-    "03": ["Align", "Forecast", "Report", "Scale"],
-    "04": ["Trigger", "Automate", "Sync", "Optimise"],
-    "05": ["Audit", "Design", "Integrate", "Govern"],
-    "06": ["Task", "Assign", "Execute", "Deliver"],
-    "07": ["Identify", "Train", "Deploy", "Monitor"],
-    "08": ["Attract", "Convert", "Retain", "Grow"],
-    "09": ["Design", "Build", "Launch", "Optimise"],
+    "03": ["Signal", "Authority", "Cite", "Convert"],
   };
   const labels = labelsByCode[code] ?? labelsByCode["01"];
 
