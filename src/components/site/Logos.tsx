@@ -25,13 +25,13 @@ function Frame({ label, children, ...props }: LogoProps & { children: React.Reac
   const asset = BRAND_ASSETS[label];
 
   return (
-    <div className="flex items-center gap-6 text-white/80">
+    <div className="flex items-center gap-3 text-white/80 md:gap-4">
       {asset ? (
-        <img src={asset} alt={`${label} logo`} className="h-20 w-20 shrink-0 object-contain" />
+        <img src={asset} alt={`${label} logo`} className="h-10 w-10 shrink-0 object-contain md:h-16 md:w-16" />
       ) : (
         <svg
           viewBox="0 0 24 24"
-          className="h-20 w-20 shrink-0"
+          className="h-10 w-10 shrink-0 md:h-16 md:w-16"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
@@ -40,7 +40,7 @@ function Frame({ label, children, ...props }: LogoProps & { children: React.Reac
           {children}
         </svg>
       )}
-      <span className="font-display text-[40px] font-semibold tracking-tight text-white/90">
+      <span className="font-display text-[20px] font-semibold tracking-tight text-white/90 md:text-[32px]">
         {label}
       </span>
     </div>

@@ -6,6 +6,7 @@ import { Eyebrow, SectionHeader } from "@/components/site/Eyebrow";
 import { ScrollReveal } from "@/components/site/ScrollReveal";
 import * as L from "@/components/site/Logos";
 import { ArrowRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,12 +30,13 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   return (
     <SiteLayout headerTheme="dark">
-      <Hero />
-      <TrustBar />
-      <Services />
-      <Methodology />
-      <CaseStudiesPreview />
-      <FinalCTA />
+      <div className="sec-mid">
+        <Hero />
+        <TrustBar />
+        <Services />
+        <Methodology />
+        <FinalCTA />
+      </div>
     </SiteLayout>
   );
 }
@@ -179,13 +181,13 @@ function TrustBar() {
   ];
   return (
     <section className="sec-navy border-y border-white/06">
-      <div className="mx-auto max-w-[1440px] px-6 py-16">
-        <div className="flex items-center gap-6">
+      <div className="mx-auto max-w-[1440px] px-4 py-8 md:px-6 md:py-10">
+        <div className="flex items-center gap-3 md:gap-6">
           <div className="hidden shrink-0 font-mono text-[18px] uppercase tracking-[0.22em] text-[#FFD44D] sm:block">
             Stacks we engineer
           </div>
           <div className="relative w-full overflow-hidden mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-            <div className="flex w-max gap-28 animate-ticker">
+            <div className="flex w-max gap-14 animate-ticker md:gap-20">
               {[...items, ...items].map((Logo, i) => (
                 <Logo key={i} />
               ))}
@@ -219,9 +221,11 @@ const SERVICES = [
   },
 ] as const;
 
+const serviceCardColors = ["#B9D6FF", "#FFD84D", "#9BE3CC"] as const;
+
 function Services() {
   return (
-    <section className="sec-white relative py-16 lg:py-24">
+    <section className="sec-navy relative py-16 lg:py-24">
       <div className="mx-auto max-w-[1440px] px-4 lg:px-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeader
@@ -242,18 +246,15 @@ function Services() {
         </div>
 
         <div className="mt-8 grid gap-4 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((s) => (
+          {SERVICES.map((s, i) => (
             <div
               key={s.code}
-              className="group relative overflow-hidden rounded-2xl border border-border bg-white p-7 shadow-[0_12px_30px_-24px_rgba(8,13,28,.35)] transition-all duration-300 hover:-translate-y-1 hover:border-[#1B5EFF]/35 hover:shadow-[0_22px_45px_-26px_rgba(27,94,255,.38)]"
+              className="group relative overflow-hidden rounded-2xl border border-black/8 p-7 shadow-[0_12px_30px_-24px_rgba(8,13,28,.35)] transition-all duration-300 hover:-translate-y-1 hover:border-[#1B5EFF]/35 hover:shadow-[0_22px_45px_-26px_rgba(27,94,255,.38)]"
+              style={{ backgroundColor: serviceCardColors[i] }}
             >
-              <div className="absolute right-0 top-0 h-20 w-20 rounded-bl-[5rem] bg-[#EEF3FF] transition-colors group-hover:bg-[#E3EAFF]" />
-              <span className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground">
-                {s.code}
-              </span>
-              <h3 className="relative mt-6 max-w-[15rem] font-display text-xl font-bold tracking-tight">{s.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
-              <ul className="mt-5 space-y-1.5 font-mono text-[12px] text-foreground/70">
+              <div className="absolute right-0 top-0 h-20 w-20 rounded-bl-[5rem] bg-white/35 transition-colors group-hover:bg-white/50" />
+              <h3 className="relative mt-2 max-w-[15rem] font-display text-xl font-bold tracking-tight text-[#080D1C]">{s.title}</h3>
+              <ul className="mt-6 space-y-1.5 font-mono text-[12px] text-[#080D1C]">
                 {s.bullets.map((b) => (
                   <li key={b} className="flex items-center gap-2">
                     <span className="h-1.5 w-1.5 rounded-full bg-[#FFB800]" />
@@ -306,9 +307,13 @@ const cardColors = [
   { bg: "#FFF3E0", accent: "#C2410C", label: "Scale" },
 ];
 
+const methodologyImages = ["/audit.avif", "/architect.avif", "/automate.webp", "/accelerate.jpg"] as const;
+
 function Methodology() {
+  const [activeStep, setActiveStep] = useState(0);
+
   return (
-    <section className="sec-navy py-16 lg:py-24">
+    <section className="relative py-16 lg:py-24">
       <div className="mx-auto max-w-[1440px] px-4 lg:px-8">
         <SectionHeader
           eyebrow="Methodology"
@@ -319,15 +324,27 @@ function Methodology() {
             </>
           }
         />
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 flex flex-col gap-4 lg:flex-row">
           {STEPS.map((s, i) => {
             const c = cardColors[i];
+            const isActive = activeStep === i;
             return (
-              <div
+              <motion.button
+                type="button"
+                onClick={() => setActiveStep(i)}
                 key={s.k}
-                className="rounded-2xl p-6 flex flex-col"
+                layout
+                transition={{
+                  layout: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+                }}
+                className={`group min-w-0 overflow-hidden rounded-2xl p-6 text-left flex flex-col transition-[min-height,flex-grow,flex-basis,transform,box-shadow,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#080D1C] lg:min-h-[460px] ${isActive ? "min-h-[400px] shadow-[0_18px_38px_-18px_rgba(8,13,28,.35)] lg:flex-[3_1_0%]" : "min-h-[150px] opacity-75 hover:opacity-100 lg:flex-[1_1_0%]"}`}
                 style={{
                   backgroundColor: c.bg,
+                  backgroundImage: isActive
+                    ? `linear-gradient(rgba(8, 13, 28, 0.12), rgba(8, 13, 28, 0.12)), url(${methodologyImages[i]})`
+                    : `linear-gradient(${c.bg}E6, ${c.bg}E6), url(${methodologyImages[i]})`,
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
                   border: `1px solid ${c.accent}22`,
                 }}
               >
@@ -336,28 +353,31 @@ function Methodology() {
                   <span className="font-mono text-[11px] tracking-[0.2em]" style={{ color: c.accent }}>
                     {c.label}
                   </span>
-                  <span className="ml-auto font-mono text-[10px] text-muted-foreground">
-                    {String(i + 1).padStart(2, "0")}/{String(STEPS.length).padStart(2, "0")}
-                  </span>
+                  
                 </div>
                 <h3 className="mt-4 font-display text-xl font-bold tracking-tight text-[#080D1C]">
                   {s.k}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#080D1C]/65 flex-1">{s.d}</p>
-                <div
-                  className="mt-4 rounded-md px-3 py-2 font-mono text-[11px]"
-                  style={{
-                    backgroundColor: `${c.accent}15`,
-                    color: c.accent,
-                    border: `1px solid ${c.accent}25`,
-                  }}
-                >
-                  ↳ {s.out}
-                </div>
-              </div>
+                <AnimatePresence initial={false} mode="wait">
+                  {isActive && (
+                    <motion.p
+                      key={`${s.k}-description`}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 12 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="mt-auto w-full rounded-xl border border-white/60 bg-white/65 p-4 text-sm leading-relaxed text-[#080D1C]/75 shadow-sm backdrop-blur-md"
+                    >
+                      {s.d}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+              </motion.button>
             );
           })}
         </div>
+
+        <CaseStudiesPreview />
       </div>
     </section>
   );
@@ -390,8 +410,7 @@ const CASES = [
 
 function CaseStudiesPreview() {
   return (
-    <section className="sec-white border-t border-border py-16 lg:py-24">
-      <div className="mx-auto max-w-[1440px] px-4 lg:px-8">
+    <div className="relative mt-16 border-t border-border pt-16 lg:mt-24 lg:pt-24">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between mb-10">
           <SectionHeader
             eyebrow="Field work"
@@ -434,8 +453,7 @@ function CaseStudiesPreview() {
             Full teardowns →
           </Link>
         </div>
-      </div>
-    </section>
+    </div>
   );
 }
 

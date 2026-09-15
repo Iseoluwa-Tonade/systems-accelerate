@@ -2,9 +2,10 @@ import { Link } from "@tanstack/react-router";
 
 export function SiteFooter() {
   return (
-    <footer className="sec-navy relative border-t border-white/08">
-      <div className="absolute inset-x-0 top-0 h-px" style={{ background: "linear-gradient(to right, transparent, rgba(255,184,0,0.50), transparent)" }} />
-      <div className="mx-auto max-w-7xl px-4 py-12 lg:px-6 lg:py-16">
+    <footer className="relative bg-[#EEF3FF] px-4 py-4 lg:px-6 lg:py-6">
+      <div className="sec-navy relative mx-auto max-w-[1440px] overflow-hidden rounded-[2rem] border-4 border-[#FFB800]">
+        <div className="absolute inset-x-0 top-0 h-px" style={{ background: "linear-gradient(to right, transparent, rgba(255,184,0,0.50), transparent)" }} />
+        <div className="px-4 py-12 lg:px-8 lg:py-16">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <div className="flex items-center gap-3">
@@ -57,7 +58,7 @@ export function SiteFooter() {
                 { to: "/contact", label: "Contact" },
               ]}
             />
-            <div>
+            {/* <div>
               <div className="text-xs font-medium uppercase tracking-[0.18em] text-[#FFB800]/70">Connect</div>
               <ul className="mt-4 space-y-2 text-sm">
                 <li>
@@ -76,7 +77,7 @@ export function SiteFooter() {
               <p className="mt-4 text-[10px] leading-relaxed text-white/28">
                 By calling or texting +1 (307) 429-3798 you consent to receive calls/texts from SuperTelque LLC (US). Subject to TCPA. Msg &amp; data rates may apply. Consent is not a condition of purchase. Msg frequency varies. Reply STOP to cancel, HELP for help. We do not sell your number to third parties.
               </p>
-            </div>
+            </div> */}
             <div>
               <div className="text-xs font-medium uppercase tracking-[0.18em] text-[#FFB800]/70">
                 Client portal
@@ -112,6 +113,7 @@ export function SiteFooter() {
               <a href="https://x.com/supertelque" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFB800] transition-colors">X</a>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </footer>

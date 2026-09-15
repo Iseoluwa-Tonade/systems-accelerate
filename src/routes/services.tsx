@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
 import { ScrollReveal } from "@/components/site/ScrollReveal";
@@ -22,6 +23,7 @@ const SERVICES = [
     title: "Fractional RevOps & Pipeline Architecture",
     blurb: "Get a senior RevOps partner to diagnose revenue friction, establish the operating blueprint, and give leadership a forecast they can trust.",
     items: ["Revenue-system audit", "Pipeline architecture", "Forecasting cadence", "Executive roadmap"],
+    color: "#1B5EFF",
   },
   {
     id: "ai-engineering",
@@ -29,6 +31,7 @@ const SERVICES = [
     title: "Autonomous AI Engineering",
     blurb: "Engineer the orchestration layer between your CRM, data sources, and teams so complex revenue work can move without manual handoffs.",
     items: ["AI agents", "n8n orchestration", "Custom API integrations", "CRM data systems"],
+    color: "#8B5CF6",
   },
   {
     id: "geo",
@@ -36,23 +39,70 @@ const SERVICES = [
     title: "B2B Demand Generation & GEO",
     blurb: "Create a demand engine that earns visibility in buyer research, high-intent outbound, and generative search experiences.",
     items: ["Generative Engine Optimization", "Signal-led outbound", "Deliverability architecture", "Buyer-intent systems"],
+    color: "#14B8A6",
   },
 ] as const;
 
 function ServicesPage() {
   return (
     <SiteLayout headerTheme="dark">
-      <section className="sec-navy relative overflow-hidden border-b border-border pt-24 md:pt-28">
-        <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-16 lg:px-6">
-          <Eyebrow>Services</Eyebrow>
-          <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
-            GTM architecture for companies that need to <span className="text-gradient-gold">scale with certainty.</span>
-          </h1>
-          <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              We do not sell disconnected implementation tasks. Each engagement is designed around a commercial outcome, an accountable operating model, and systems your team can own.
+      <section className="sec-navy relative isolate min-h-[620px] overflow-hidden border-b border-border lg:min-h-[680px]">
+        <img
+          src="/hero.jpg"
+          alt="SuperTelque revenue operator working with a client"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+        />
+        <div
+          className="absolute inset-0 -z-10 backdrop-blur-[8px]"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(8, 13, 28, 0.94) 0%, rgba(8, 13, 28, 0.72) 36%, rgba(8, 13, 28, 0) 68%)",
+          }}
+        />
+
+        <div className="relative mx-auto flex min-h-[620px] max-w-[1440px] items-end px-4 pb-10 pt-32 lg:min-h-[680px] lg:items-center lg:px-8 lg:pb-16 lg:pt-28">
+          <div className="max-w-4xl">
+            <Eyebrow>Services</Eyebrow>
+            <h1 className="mt-5 max-w-4xl font-display text-[42px] font-extrabold leading-[1.02] tracking-tight text-white sm:text-[58px] lg:text-[72px] lg:leading-[0.98]">
+              Revenue systems for teams ready to <span className="text-[#FFD44D]">scale with certainty.</span>
+            </h1>
+            <ScrollReveal variant="fadeUp" delay={0.15}>
+              <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/72 sm:text-lg">
+                We do not sell disconnected implementation tasks. We design the operating model, build the system around it, and leave your team with a capability it can own.
+              </p>
+            </ScrollReveal>
+            <ScrollReveal variant="fadeUp" delay={0.25}>
+              <div className="mt-8 flex flex-wrap items-center gap-5">
+                <Link
+                  to="/book"
+                  className="group inline-flex items-center gap-2.5 rounded-full bg-[#FFD44D] px-5 py-3 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:bg-white"
+                >
+                  Discuss your revenue system
+                  <span className="header-action-arrow" aria-hidden="true">
+                    <ArrowRight className="h-5 w-5" strokeWidth={2.25} />
+                  </span>
+                </Link>
+                <span className="font-mono text-[12px] uppercase tracking-[0.16em] text-white/55">
+                  Strategy · Engineering · Growth
+                </span>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          <div className="absolute bottom-8 right-4 hidden w-[min(420px,34%)] rounded-2xl border border-white/20 bg-white/15 p-6 text-white backdrop-blur-xl lg:block lg:right-8">
+            <div className="font-mono text-[12px] uppercase tracking-[0.2em] text-[#FFD44D]">One operating picture</div>
+            <p className="mt-2 text-sm leading-relaxed text-white/72">
+              Connect the data, decisions, and workflows behind your next stage of growth.
             </p>
-          </ScrollReveal>
+            <div className="mt-4 grid grid-cols-3 gap-3 border-t border-white/15 pt-3">
+              {[['3', 'core pillars'], ['4', 'system stages'], ['1', 'owned capability']].map(([value, label]) => (
+                <div key={label}>
+                  <div className="font-display text-2xl font-bold">{value}</div>
+                  <div className="mt-1 text-[10px] uppercase tracking-[0.12em] text-white/50">{label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
