@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Eyebrow, SectionHeader } from "@/components/site/Eyebrow";
 import { ScrollReveal } from "@/components/site/ScrollReveal";
 import * as L from "@/components/site/Logos";
-import { ArrowRight } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { AnimatePresence, animate, motion, useMotionValue } from "framer-motion";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -313,7 +313,7 @@ function Methodology() {
   const [activeStep, setActiveStep] = useState(0);
 
   return (
-    <section className="relative py-16 lg:py-24">
+    <section className="relative pt-16 lg:pt-24">
       <div className="mx-auto max-w-[1440px] px-4 lg:px-8">
         <SectionHeader
           eyebrow="Methodology"
@@ -379,6 +379,7 @@ function Methodology() {
 
         <CaseStudiesPreview />
       </div>
+      <Testimonials />
     </section>
   );
 }
@@ -457,24 +458,170 @@ function CaseStudiesPreview() {
   );
 }
 
+const TESTIMONIALS = [
+  {
+    quote: "The biggest shift was finally having one operating picture. Our leadership conversations moved from reconciling data to making decisions.",
+    author: "CRO, Series C SaaS",
+  },
+  {
+    quote: "SuperTelque gave our team the architecture and confidence to automate the work that was slowing every rep down.",
+    author: "VP Revenue, Fintech",
+  },
+  {
+    quote: "We stopped losing high-intent leads in shared inboxes. The new routing system made speed and ownership visible to everyone.",
+    author: "Founder, AI startup",
+  },
+  {
+    quote: "The work connected our CRM, outbound, and reporting into a system the team could actually maintain after the engagement.",
+    author: "Head of Growth, B2B technology",
+  },
+  {
+    quote: "Instead of adding another tool, we fixed the operating model underneath the tools we already had.",
+    author: "COO, Professional services",
+  },
+] as const;
+
+function Testimonials() {
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const [trackWidth, setTrackWidth] = useState(0);
+  const [cardRatio, setCardRatio] = useState(0.38);
+  const [activeIndex, setActiveIndex] = useState(TESTIMONIALS.length + 1);
+  const trackX = useMotionValue(0);
+  const carouselItems = [...TESTIMONIALS, ...TESTIMONIALS, ...TESTIMONIALS];
+  const itemCount = TESTIMONIALS.length;
+
+  useEffect(() => {
+    const element = viewportRef.current;
+    if (!element) return;
+
+    const updateWidth = () => {
+      setTrackWidth(element.clientWidth);
+      setCardRatio(window.innerWidth < 768 ? 0.82 : 0.38);
+    };
+    updateWidth();
+    const observer = new ResizeObserver(updateWidth);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!trackWidth) return;
+    trackX.set(trackWidth / 2 - (activeIndex + 0.5) * trackWidth * cardRatio);
+  }, [trackWidth, cardRatio]);
+
+  function move(direction: 1 | -1) {
+    if (!trackWidth) return;
+
+    const nextIndex = activeIndex + direction;
+    const nextX = trackWidth / 2 - (nextIndex + 0.5) * trackWidth * cardRatio;
+
+    animate(trackX, nextX, {
+      type: "spring",
+      stiffness: 120,
+      damping: 22,
+      mass: 0.8,
+      onComplete: () => {
+        let settledIndex = nextIndex;
+        if (nextIndex >= itemCount * 2) settledIndex = nextIndex - itemCount;
+        if (nextIndex < itemCount) settledIndex = nextIndex + itemCount;
+
+        if (settledIndex !== nextIndex) {
+          trackX.set(trackWidth / 2 - (settledIndex + 0.5) * trackWidth * cardRatio);
+        }
+        setActiveIndex(settledIndex);
+      },
+    });
+    setActiveIndex(nextIndex);
+  }
+
+  return (
+    <section className="sec-navy mt-16 border-y border-white/10 py-16 lg:mt-24 lg:py-24">
+      <div className="mx-auto max-w-[1440px] px-4 lg:px-8">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+          <div className="max-w-2xl">
+            <Eyebrow>Testimonials</Eyebrow>
+            <h2 className="mt-4 font-display text-xl font-extrabold tracking-tight text-white sm:text-3xl">
+              Built for better decisions. <span className="text-[#FFB800]">Trusted by operators.</span>
+            </h2>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-white/60">
+              The systems matter because they change how revenue teams work, decide, and grow.
+            </p>
+          </div>
+
+        </div>
+
+          <div className="relative mt-14">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-r from-[#080D1C] to-transparent sm:w-24" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-[#080D1C] to-transparent sm:w-24" />
+
+          <button
+            type="button"
+            onClick={() => move(-1)}
+            aria-label="Previous testimonial"
+            className="absolute left-0 top-1/2 z-20 inline-flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-[#FFB800] bg-[#080D1C]/80 text-[#FFB800] transition hover:bg-[#FFB800] hover:text-[#080D1C]"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => move(1)}
+            aria-label="Next testimonial"
+            className="absolute right-0 top-1/2 z-20 inline-flex h-11 w-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-[#FFB800] bg-[#080D1C]/80 text-[#FFB800] transition hover:bg-[#FFB800] hover:text-[#080D1C]"
+          >
+            <ArrowRight className="h-5 w-5" />
+          </button>
+
+          <div ref={viewportRef} className="overflow-hidden">
+            <motion.div
+              style={{ x: trackX }}
+              className="flex items-stretch"
+            >
+              {carouselItems.map((testimonial, index) => {
+                const isActive = index === activeIndex;
+                return (
+                  <motion.article
+                    key={`${testimonial.author}-${index}`}
+                    animate={{ opacity: isActive ? 1 : 0.46, scale: isActive ? 1 : 0.94 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="relative shrink-0 px-3 lg:px-10"
+                    style={{ width: trackWidth ? `${trackWidth * cardRatio}px` : "38vw" }}
+                  >
+                    <div className="flex items-center gap-5 text-[#FFB800]/80">
+                      <span className="h-px flex-1 bg-white/20" />
+                      <span className="font-serif text-6xl leading-none">“</span>
+                      <span className="h-px flex-1 bg-white/20" />
+                    </div>
+                    <p className="mt-5 text-center text-base leading-relaxed text-white/65 sm:text-lg">
+                      {testimonial.quote}
+                    </p>
+                    <div className="mt-7 text-center font-display text-lg font-semibold text-[#FFB800]">
+                      {testimonial.author}
+                    </div>
+                  </motion.article>
+                );
+              })}
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ------------------------------- FINAL CTA ------------------------------ */
 function FinalCTA() {
   return (
-    <section className="sec-navy relative overflow-hidden border-t border-white/08 py-16 lg:py-24">
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ background: "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(255,184,0,0.10) 0%, transparent 70%)" }}
-      />
+    <section className="relative overflow-hidden border-t border-border py-16 lg:py-24">
       <div className="relative mx-auto max-w-4xl px-4 lg:px-6 text-center">
         <ScrollReveal variant="scaleIn">
           <div className="inline-flex items-center gap-2 mb-4">
             <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
             <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#FFB800]/70">Let's build</span>
           </div>
-          <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-[56px] lg:leading-[1.05]">
+          <h2 className="font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-[56px] lg:leading-[1.05]">
             Ready to engineer your <span className="text-gradient-gold">next revenue advantage</span>?
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/60">
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
             45 minutes with a senior operator. We identify the system constraint, quantify the opportunity, and map the highest-leverage next move.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
@@ -487,7 +634,7 @@ function FinalCTA() {
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/06 px-7 py-4 text-[15px] font-medium text-white/80 hover:bg-white/12 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-white/60 px-7 py-4 text-[15px] font-medium text-foreground/80 hover:bg-white transition-colors"
             >
               Contact the team
             </Link>
