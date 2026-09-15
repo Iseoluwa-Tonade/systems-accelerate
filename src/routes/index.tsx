@@ -103,7 +103,7 @@ function Hero() {
           </div>
 
           <div className="w-full rounded-2xl border border-white/20 bg-[#ffffff]/20 p-8 text-white backdrop-blur-xl lg:w-[70%] lg:block lg:right-6">
-            <div className="font-mono text-[14px] uppercase tracking-[0.2em] text-[#FFD44D]">Senior operator-led</div>
+            <div className="font-mono text-[14px] uppercase tracking-[0.2em] text-[#FFD44D]">Senior operator</div>
             <p className="mt-2 text-md leading-relaxed text-white/">One operating picture across your CRM, pipeline, and growth systems.</p>
             <div className="mt-4 flex justify-between border-t border-white/15 pt-3">
               {[
@@ -179,13 +179,13 @@ function TrustBar() {
   ];
   return (
     <section className="sec-navy border-y border-white/06">
-      <div className="mx-auto max-w-[1440px] px-6 py-8">
+      <div className="mx-auto max-w-[1440px] px-6 py-16">
         <div className="flex items-center gap-6">
-          <div className="hidden shrink-0 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground sm:block">
+          <div className="hidden shrink-0 font-mono text-[18px] uppercase tracking-[0.22em] text-[#FFD44D] sm:block">
             Stacks we engineer
           </div>
           <div className="relative w-full overflow-hidden mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-            <div className="flex w-max gap-10 animate-ticker">
+            <div className="flex w-max gap-28 animate-ticker">
               {[...items, ...items].map((Logo, i) => (
                 <Logo key={i} />
               ))}

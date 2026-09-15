@@ -3,20 +3,44 @@ import type { ComponentProps } from "react";
 
 type LogoProps = ComponentProps<"svg"> & { label: string };
 
+const BRAND_ASSETS: Record<string, string> = {
+  HubSpot: "/hub.png",
+  Salesforce: "/salesforce.webp",
+  Apollo: "/apollo.jpg",
+  Clay: "/clay.png",
+  OpenAI: "/openai-2.png",
+  Stripe: "/stripe2.png",
+  "Power BI": "/Power-BI-Logo.png",
+  Zapier: "/zapier.png",
+  n8n: "/n8n.png",
+  Make: "/make.jpg",
+  Slack: "/slack.webp",
+  GoHighLevel: "/ghl.avif",
+  Lemlist: "/lemlist.avif",
+  Instantly: "/instantly.png",
+  Supabase: "/supabase.webp",
+};
+
 function Frame({ label, children, ...props }: LogoProps & { children: React.ReactNode }) {
+  const asset = BRAND_ASSETS[label];
+
   return (
-    <div className="flex items-center gap-2 text-muted-foreground/90">
-      <svg
-        viewBox="0 0 24 24"
-        className="h-4 w-4 shrink-0"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        {...props}
-      >
-        {children}
-      </svg>
-      <span className="font-display text-[13px] font-semibold tracking-tight text-foreground/85">
+    <div className="flex items-center gap-6 text-white/80">
+      {asset ? (
+        <img src={asset} alt={`${label} logo`} className="h-20 w-20 shrink-0 object-contain" />
+      ) : (
+        <svg
+          viewBox="0 0 24 24"
+          className="h-20 w-20 shrink-0"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          {...props}
+        >
+          {children}
+        </svg>
+      )}
+      <span className="font-display text-[40px] font-semibold tracking-tight text-white/90">
         {label}
       </span>
     </div>
