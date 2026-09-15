@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Eyebrow, SectionHeader } from "@/components/site/Eyebrow";
 import { ScrollReveal } from "@/components/site/ScrollReveal";
 import * as L from "@/components/site/Logos";
+import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,127 +39,134 @@ function HomePage() {
   );
 }
 
-function HeroDashboard() {
-  const bars = [45, 62, 38, 71, 55, 83, 67, 49, 78, 91, 63, 72, 85, 58, 94, 77];
-  const metrics = [
-    { l: "Pipeline", v: "$4.2M", d: "+18%", c: "#1B5EFF" },
-    { l: "Active Deals", v: "147", d: "+23%", c: "#14B8A6" },
-    { l: "MQL → SQL", v: "34%", d: "+6pp", c: "#8B5CF6" },
-    { l: "Won QTD", v: "$680K", d: "+41%", c: "#FFB800" },
-  ];
-  return (
-    <div className="rounded-2xl border border-white/12 bg-white/04 p-5 lg:p-6 backdrop-blur-sm">
-      <div className="flex items-center justify-between mb-5">
-        <div>
-          <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40">Revenue Command · Q2 2026</div>
-          <div className="mt-0.5 font-display text-sm font-semibold text-white">Pipeline Intelligence</div>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-          <span className="font-mono text-[10px] text-white/40">live</span>
-        </div>
-      </div>
-      <div className="grid grid-cols-2 gap-2 mb-4">
-        {metrics.map((m) => (
-          <div key={m.l} className="rounded-xl border border-white/08 bg-white/04 p-3">
-            <div className="font-mono text-[10px] text-white/40">{m.l}</div>
-            <div className="mt-1 font-display text-xl font-bold text-white">{m.v}</div>
-            <div className="mt-0.5 font-mono text-[10px]" style={{ color: m.c }}>{m.d} vs prev</div>
-          </div>
-        ))}
-      </div>
-      <div className="rounded-xl border border-white/06 bg-white/02 p-3">
-        <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/30 mb-3">Pipeline · 16-week view</div>
-        <div className="flex items-end gap-[3px] h-16">
-          {bars.map((h, i) => (
-            <div
-              key={i}
-              className="flex-1 rounded-sm"
-              style={{ height: `${h}%`, background: "linear-gradient(to top, rgba(27,94,255,0.75), rgba(79,70,229,0.50))" }}
-            />
-          ))}
-        </div>
-      </div>
-      <div className="mt-3 flex items-center justify-between">
-        <div className="flex items-center gap-1.5 flex-wrap">
-          {["HubSpot", "Clay", "n8n", "Apollo", "Snowflake"].map((t) => (
-            <span key={t} className="rounded px-2 py-0.5 font-mono text-[9px] text-white/45 border border-white/08">{t}</span>
-          ))}
-        </div>
-        <span className="font-mono text-[9px] text-white/25">synced 2s ago</span>
-      </div>
-    </div>
-  );
-}
-
 /* --------------------------------- HERO --------------------------------- */
 function Hero() {
   return (
-    <section className="sec-navy relative overflow-hidden pt-24 md:pt-28">
-      {/* Background glow orbs */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div
-          className="absolute -top-32 right-0 h-[600px] w-[600px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(255,184,0,0.12) 0%, transparent 70%)" }}
-        />
-        <div
-          className="absolute bottom-0 -left-32 h-[500px] w-[500px] rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(27,94,255,0.14) 0%, transparent 70%)" }}
-        />
-      </div>
+    <section className="sec-navy relative isolate min-h-[100svh] overflow-hidden">
+      <img
+        src="/hero.jpg"
+        alt="SuperTelque revenue operator working with a client"
+        className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+      />
+      <div
+        className="absolute inset-0 -z-10 backdrop-blur-[8px]"
+        style={{
+          background:
+            "linear-gradient(to right, rgba(8, 13, 28, 0.92) 0%, rgba(8, 13, 28, 0.68) 34%, rgba(8, 13, 28, 0) 60%)",
+        }}
+      />
 
-      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-16 lg:grid-cols-12 lg:gap-14 lg:pt-24 lg:px-6">
-        <div className="flex flex-col justify-center lg:col-span-7">
-          <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/12 bg-white/5 px-3.5 py-2 font-mono text-[10px] uppercase tracking-[0.16em] text-white/70">
-            <span className="h-2 w-2 rounded-full bg-[#FFB800] shadow-[0_0_12px_rgba(255,184,0,0.8)]" />
-            RevOps for B2B teams in motion
-          </div>
-          <h1 className="font-display text-[38px] font-extrabold leading-[1.02] tracking-tight sm:text-[52px] lg:text-[72px] lg:leading-[1.0]">
-            Fix the systems
-            <br />
-            <span className="text-gradient-gold">costing you pipeline.</span>
-          </h1>
+      <div className="relative mx-auto flex min-h-[100svh] max-w-[1440px] items-end px-4 pb-10 pt-32 lg:items-center lg:px-8 lg:pb-20 lg:pt-28">
+        <div className="flex flex-col gap-8 lg:gap-40 ">
+          <div className="max-w-4xl">
+            <h1 className="font-display text-[42px] font-extrabold leading-[1.02] tracking-tight text-white sm:text-[58px] lg:text-[78px] lg:leading-[0.98]">
+              Fix the systems
+              <br />
+              <span className="text-[#FFD44D]">costing you pipeline.</span>
+            </h1>
 
-          <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-muted-foreground sm:text-[17px]">
-              We architect the data, decision layers, and autonomous workflows that make enterprise revenue teams faster, more predictable, and easier to scale.
-            </p>
-          </ScrollReveal>
+            <ScrollReveal variant="fadeUp" delay={0.15}>
+              <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-white/72 sm:text-[17px]">
+                We architect the data, decision layers, and autonomous workflows that make enterprise revenue teams faster, more predictable, and easier to scale.
+              </p>
+            </ScrollReveal>
 
-          <div className="mt-7 grid max-w-xl grid-cols-3 gap-3 border-y border-white/10 py-5">
-            {[['CRM', 'you can trust'], ['Routing', 'that never drops'], ['Reporting', 'leaders use']].map(([a,b]) => <div key={a}><div className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#FFB800]">{a}</div><div className="mt-1 text-sm text-white/65">{b}</div></div>)}
-          </div>
-
-          <ScrollReveal variant="fadeUp" delay={0.25}>
-            <div className="mt-8 flex flex-wrap items-center gap-5">
-              <Link
-                to="/book"
-                className="group inline-flex items-center gap-2.5 rounded-full px-7 py-4 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_12px_32px_-8px_rgba(255,184,0,0.50)]"
-                style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 60%, #E08A00 100%)" }}
-              >
-                Book a 20-minute fit call
-                <svg viewBox="0 0 16 16" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
-              <Link
-                to="/services"
-                className="text-[15px] font-medium text-white/70 hover:text-white transition-colors"
-              >
-                See the revenue systems audit →
-              </Link>
+            <div className="mt-7 grid max-w-xl grid-cols-3 gap-3 border-y border-white/15 py-5">
+              {[['CRM', 'you can trust'], ['Routing', 'that never drops'], ['Reporting', 'leaders use']].map(([a, b]) => (
+                <div key={a}>
+                  <div className="font-mono text-[14px] uppercase tracking-[0.16em] text-[#FFD44D]">{a}</div>
+                  <div className="mt-1 text-md text-white/68">{b}</div>
+                </div>
+              ))}
             </div>
-          </ScrollReveal>
-        </div>
 
-        <div className="relative lg:col-span-5 pb-4 lg:pb-10">
-          <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-[#1B5EFF]/20 via-transparent to-[#FFB800]/15 blur-2xl" />
-          <ScrollReveal variant="scaleIn" delay={0.2}>
-            <HeroDashboard />
-          </ScrollReveal>
+            <ScrollReveal variant="fadeUp" delay={0.25}>
+              <div className="mt-8 flex flex-wrap items-center gap-5">
+                <Link
+                  to="/book"
+                  className="group inline-flex items-center gap-2.5 rounded-full bg-[#FFD44D] px-5 py-3 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:bg-white"
+                >
+                  Book a 20-minute fit call
+                  <span className="header-action-arrow" aria-hidden="true">
+                    <ArrowRight className="h-5 w-5" strokeWidth={2.25} />
+                  </span>
+                </Link>
+                
+                <Link to="/services" className="group inline-flex items-center gap-2.5 text-[15px] font-medium text-white/75 transition-colors hover:text-white border border-white px-4 py-3 rounded-full">
+                  See the revenue systems audit 
+                  <span className="header-action-arrow" aria-hidden="true">
+                    <ArrowRight className="h-5 w-5" strokeWidth={2.25} />
+                  </span>
+                </Link>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          <div className="w-full rounded-2xl border border-white/20 bg-[#ffffff]/20 p-8 text-white backdrop-blur-xl lg:w-[70%] lg:block lg:right-6">
+            <div className="font-mono text-[14px] uppercase tracking-[0.2em] text-[#FFD44D]">Senior operator-led</div>
+            <p className="mt-2 text-md leading-relaxed text-white/">One operating picture across your CRM, pipeline, and growth systems.</p>
+            <div className="mt-4 flex justify-between border-t border-white/15 pt-3">
+              {[
+                { target: 4.2, decimals: 1, suffix: "s", label: "sync" },
+                { target: 62, prefix: "+", suffix: "%", label: "selling time" },
+                { target: 100, suffix: "%", label: "aligned" },
+              ].map(({ target, decimals = 0, prefix = "", suffix = "", label }) => (
+                <div key={label} className="text-center">
+                  <CountUpMetric
+                    target={target}
+                    decimals={decimals}
+                    prefix={prefix}
+                    suffix={suffix}
+                  />
+                  <div className="text-[20px] text-white/48 whitespace-nowrap">{label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function CountUpMetric({
+  target,
+  decimals = 0,
+  prefix = "",
+  suffix = "",
+}: {
+  target: number;
+  decimals?: number;
+  prefix?: string;
+  suffix?: string;
+}) {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    const duration = 1200;
+    const start = performance.now();
+    let frame = 0;
+
+    const update = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(target * eased);
+
+      if (progress < 1) {
+        frame = requestAnimationFrame(update);
+      }
+    };
+
+    frame = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(frame);
+  }, [target]);
+
+  return (
+    <div className="font-display text-[35px] font-bold">
+      {prefix}
+      {value.toFixed(decimals)}
+      {suffix}
+    </div>
   );
 }
 
@@ -170,7 +179,7 @@ function TrustBar() {
   ];
   return (
     <section className="sec-navy border-y border-white/06">
-      <div className="mx-auto max-w-7xl px-6 py-8">
+      <div className="mx-auto max-w-[1440px] px-6 py-8">
         <div className="flex items-center gap-6">
           <div className="hidden shrink-0 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground sm:block">
             Stacks we engineer
@@ -213,7 +222,7 @@ const SERVICES = [
 function Services() {
   return (
     <section className="sec-white relative py-16 lg:py-24">
-      <div className="mx-auto max-w-7xl px-4 lg:px-6">
+      <div className="mx-auto max-w-[1440px] px-4 lg:px-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeader
             eyebrow="What we build"
@@ -300,7 +309,7 @@ const cardColors = [
 function Methodology() {
   return (
     <section className="sec-navy py-16 lg:py-24">
-      <div className="mx-auto max-w-7xl px-4 lg:px-6">
+      <div className="mx-auto max-w-[1440px] px-4 lg:px-8">
         <SectionHeader
           eyebrow="Methodology"
           title={
@@ -382,7 +391,7 @@ const CASES = [
 function CaseStudiesPreview() {
   return (
     <section className="sec-white border-t border-border py-16 lg:py-24">
-      <div className="mx-auto max-w-7xl px-4 lg:px-6">
+      <div className="mx-auto max-w-[1440px] px-4 lg:px-8">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between mb-10">
           <SectionHeader
             eyebrow="Field work"

@@ -393,6 +393,55 @@ html, body {
   box-shadow: 0 8px 24px -6px rgba(255,184,0,0.40);
 }
 
+/* Reference-inspired nested capsule actions used in the floating header. */
+.header-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-height: 2.7rem;
+  padding: 0.3rem 0.35rem 0.3rem 1.05rem;
+  border: 1px solid rgba(255, 255, 255, 0.96);
+  border-radius: 999px;
+  background: #080d1c;
+  color: #ffffff;
+  box-shadow: 0 0 0 1px rgba(8, 13, 28, 0.12), 0 5px 14px rgba(8, 13, 28, 0.12);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.header-action:hover {
+  background: #17233d;
+  box-shadow: 0 0 0 1px rgba(8, 13, 28, 0.12), 0 8px 18px rgba(8, 13, 28, 0.18);
+  transform: translateY(-1px);
+}
+
+.header-action:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.header-action-arrow {
+  display: inline-flex;
+  width: 2.05rem;
+  height: 2.05rem;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #080d1c;
+}
+
+.header-action-portal {
+  background: #314561;
+}
+
+.header-action-portal:hover {
+  background: #405778;
+}
+
 @utility btn-gold {
   @apply inline-flex items-center justify-center gap-2 rounded-full font-bold transition-all duration-200;
   background: linear-gradient(135deg, #FFD44D 0%, #FFB800 100%);
