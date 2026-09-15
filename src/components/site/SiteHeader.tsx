@@ -6,7 +6,7 @@ const NAV = [
   { to: "/services", label: "Services" },
   { to: "/case-studies", label: "Case Studies" },
   { to: "/about", label: "About" },
-  { to: "/blog/", label: "Blog" },
+  { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -72,7 +72,6 @@ export function SiteHeader({ theme = "light" }: { theme?: "light" | "dark" }) {
               activeProps={{
                 className: "!text-foreground bg-foreground/10 !border-border/80 shadow-sm",
               }}
-              activeOptions={{ exact: n.to === "/" }}
             >
               {n.label}
             </Link>
@@ -136,7 +135,6 @@ export function SiteHeader({ theme = "light" }: { theme?: "light" | "dark" }) {
                 activeProps={{
                     className: "!text-foreground bg-foreground/10 !border-border/50",
                 }}
-                activeOptions={{ exact: n.to === "/" }}
               >
                 {n.label}
               </Link>
