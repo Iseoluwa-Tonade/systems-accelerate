@@ -15,7 +15,7 @@ export function SiteFooter() {
               />
               <div className="flex items-baseline gap-1.5">
                 <span className="font-display text-base font-bold text-white">SuperTelque</span>
-                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/40">/revops</span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/40">/partner</span>
               </div>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
@@ -34,6 +34,9 @@ export function SiteFooter() {
                 { to: "/", label: "Home" },
                 { to: "/services", label: "Services" },
                 { to: "/about", label: "About" },
+                { to: "/careers", label: "Open Roles" },
+                { to: "/blog/", label: "Blog" },
+                { to: "/faq", label: "FAQ" },
                 { to: "/case-studies", label: "Case Studies" },
               ]}
             />
@@ -55,24 +58,59 @@ export function SiteFooter() {
               ]}
             />
             <div>
+              <div className="text-xs font-medium uppercase tracking-[0.18em] text-[#FFB800]/70">Connect</div>
+              <ul className="mt-4 space-y-2 text-sm">
+                <li>
+                  <Link to="/book" className="text-white/60 hover:text-white transition-colors">Book a session</Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="text-white/60 hover:text-white transition-colors">Contact</Link>
+                </li>
+                <li>
+                  <a href="tel:+13074293798" className="text-white/60 hover:text-white transition-colors">+1 (307) 429-3798</a>
+                </li>
+                <li>
+                  <a href="sms:+13074293798" className="text-white/60 hover:text-white transition-colors">Text us</a>
+                </li>
+              </ul>
+              <p className="mt-4 text-[10px] leading-relaxed text-white/28">
+                By calling or texting +1 (307) 429-3798 you consent to receive calls/texts from SuperTelque LLC (US). Subject to TCPA. Msg &amp; data rates may apply. Consent is not a condition of purchase. Msg frequency varies. Reply STOP to cancel, HELP for help. We do not sell your number to third parties.
+              </p>
+            </div>
+            <div>
               <div className="text-xs font-medium uppercase tracking-[0.18em] text-[#FFB800]/70">
-                Regions
+                Client portal
               </div>
               <ul className="mt-4 space-y-2 text-sm text-white/60">
                 <li>United States</li>
                 <li>Nigeria (Lagos)</li>
                 <li>Remote-first · Global</li>
               </ul>
+              <div className="mt-6 space-y-1.5 text-[12px] text-white/40">
+                <div>Remote-first · Global clients</div>
+                <div>GDPR compliant</div>
+                <div>NDA on request</div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col-reverse items-start justify-between gap-4 border-t border-white/08 pt-6 text-xs text-muted-foreground md:mt-14 md:flex-row md:items-center">
-          <div>© {new Date().getFullYear()} SuperTelque RevOps. All rights reserved.</div>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            <span className="font-mono">SOC2 ready · GDPR compliant</span>
-            <a href="https://linkedin.com/company/supertelque" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFB800] transition-colors">LinkedIn</a>
-            <a href="https://x.com/supertelque" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFB800] transition-colors">X</a>
+        <div className="mt-10 border-t border-white/08 pt-6 md:mt-14">
+          <div className="flex flex-wrap items-center gap-2 mb-5">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/05 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-white/50">
+              <svg viewBox="0 0 12 12" className="h-2.5 w-2.5 fill-emerald-400"><path d="M6 0C2.7 0 0 2.7 0 6s2.7 6 6 6 6-2.7 6-6S9.3 0 6 0zm2.8 4.6L5.3 8.1 3.2 6l.9-.9 1.2 1.2 2.6-3.6.9.9z"/></svg>
+              GDPR compliant
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/05 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-white/50">
+              NDA on request
+            </span>
+          </div>
+          <div className="flex flex-col-reverse items-start justify-between gap-4 text-xs text-muted-foreground md:flex-row md:items-center">
+            <div>© {new Date().getFullYear()} SuperTelque LLC. All rights reserved.</div>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+              <a href="https://linkedin.com/company/supertelque" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFB800] transition-colors">LinkedIn</a>
+              <a href="https://x.com/supertelque" target="_blank" rel="noopener noreferrer" className="hover:text-[#FFB800] transition-colors">X</a>
+            </div>
           </div>
         </div>
       </div>

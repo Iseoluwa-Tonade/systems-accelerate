@@ -3,7 +3,7 @@
 @import "tw-animate-css";
 
 /*
- * SuperTelque — Color System
+ * SuperTelque - Color System
  *
  * Brand: deep navy dark + brand gold (#FFB800) + electric blue (#1B5EFF)
  * Gold matches the actual company logo mark.
@@ -45,7 +45,7 @@
   --color-section-mid:      #EEF3FF;
   --color-section-navy:     #080D1C;   /* deep near-black navy */
   --color-section-charcoal: #0F1628;   /* card bg inside navy */
-  --color-section-gold:     #FFB800;   /* brand gold — matches logo */
+  --color-section-gold:     #FFB800;   /* brand gold - matches logo */
   --color-section-gold-dark: #E08A00;  /* deeper amber */
 
   /* ── Brand Colors ── */
@@ -55,6 +55,13 @@
   --color-gold-dark:    #E08A00;
   --color-gold-light:   #FFD44D;
   --color-navy:         #080D1C;
+
+  /* ── Accent Colors (generate bg-accent-*, text-accent-* utilities) ── */
+  --color-accent-blue:   var(--accent-blue);
+  --color-accent-indigo: var(--accent-indigo);
+  --color-accent-teal:   var(--accent-teal);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-gold:   var(--accent-gold);
 
   /* ── Typography ── */
   --font-sans:    "Inter", ui-sans-serif, system-ui, sans-serif;
@@ -66,6 +73,10 @@
   --shadow-medium: 0 20px 48px -12px rgba(0, 0, 0, 0.12);
   --shadow-glow:   0 0 32px rgba(27, 94, 255, 0.20);
   --shadow-gold:   0 8px 32px -8px rgba(255, 184, 0, 0.40);
+}
+
+html, body {
+  overflow-x: hidden;
 }
 
 :root {
@@ -123,7 +134,7 @@
    to set the section-wide background + text.
    ═══════════════════════════════════════════════ */
 
-/* Pure white — feature / content sections */
+/* Pure white - feature/content sections */
 .sec-white {
   background-color: #FFFFFF;
   color: #080D1C;
@@ -135,7 +146,7 @@
   --border: rgba(0, 0, 0, 0.08);
 }
 
-/* Soft blue tint — mid-page, stats */
+/* Soft blue tint - mid-page, stats */
 .sec-mid {
   background-color: #EEF3FF;
   color: #080D1C;
@@ -147,7 +158,7 @@
   --border: rgba(0, 0, 0, 0.08);
 }
 
-/* Deep navy — dark contrast sections (primary hero/feature bg) */
+/* Deep navy - dark contrast sections (primary hero/feature bg) */
 .sec-navy {
   background-color: #080D1C;
   color: #FFFFFF;
@@ -163,7 +174,7 @@
   --accent-teal: #2DD4BF;
 }
 
-/* Brand gold — bold CTA sections */
+/* Brand gold - bold CTA sections */
 .sec-gold {
   background-color: #FFB800;
   color: #080D1C;
@@ -238,7 +249,7 @@
   transition: transform 0.3s ease;
 }
 
-/* Adaptive card surface — picks up section's --surface variable */
+/* Adaptive card surface - picks up section's --surface variable */
 @utility surface-card {
   background: var(--surface);
   border-radius: 1.5rem;
@@ -291,6 +302,29 @@
   background: rgba(255,184,0,0.15);
   border: 1px solid rgba(255,184,0,0.30);
   color: #FFB800;
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@utility animate-float {
+  animation: float-y 5s ease-in-out infinite;
+}
+
+@utility animate-float-slow {
+  animation: float-y 7s ease-in-out infinite;
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.55) translateY(10px); opacity: 0; }
+  70% { transform: scale(1.05) translateY(-2px); }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@utility animate-pop-in {
+  animation: pop-in 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 @utility text-gradient-blue {
@@ -396,4 +430,108 @@
   50%       { opacity: 1.0; transform: scale(1.3); }
 }
 .animate-pulse-dot { animation: pulse-dot 2.4s ease-in-out infinite; }
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@keyframes flow {
+  0%   { stroke-dashoffset: 24; opacity: 0.2; }
+  50%  { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0.2; }
+}
+.animate-flow {
+  stroke-dasharray: 6 6;
+  animation: flow 1.6s linear infinite;
+}
+
+/* ── Bounce X (CTA arrows) ── */
+@keyframes bounce-x {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(5px); }
+}
+@utility animate-bounce-x { animation: bounce-x 1.3s ease-in-out infinite; }
+
+/* ── Slow spin (decorative rings) ── */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@utility animate-spin-slow     { animation: spin-slow 22s linear infinite; }
+@utility animate-spin-slow-rev { animation: spin-slow 30s linear infinite reverse; }
+
+/* ── Gold glow pulse ── */
+@keyframes glow-gold {
+  0%, 100% { filter: drop-shadow(0 0 0px  rgba(255,184,0,0)); }
+  50%       { filter: drop-shadow(0 0 18px rgba(255,184,0,0.45)); }
+}
+@utility animate-glow-gold { animation: glow-gold 3s ease-in-out infinite; }
+
+/* ── Blue glow pulse ── */
+@keyframes glow-blue {
+  0%, 100% { filter: drop-shadow(0 0 0px  rgba(27,94,255,0)); }
+  50%       { filter: drop-shadow(0 0 14px rgba(27,94,255,0.40)); }
+}
+@utility animate-glow-blue { animation: glow-blue 3s ease-in-out infinite; }
+
+/* ── Shimmer sweep ── */
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to   { background-position:  200% center; }
+}
+@utility animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.50) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.2s ease-in-out infinite;
+}
+
+/* ── Ping ring (expanding halo behind buttons) ── */
+@keyframes ping-ring {
+  0%   { transform: scale(1);   opacity: 0.55; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+@utility animate-ping-ring { animation: ping-ring 1.8s ease-out infinite; }
+
+/* ── Gradient shift background ── */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+@utility animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 5s ease infinite;
+}
+
+/* ── Slide-up-fade (CSS-only, no Framer) ── */
+@keyframes slide-up-fade {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@utility animate-slide-up-fade { animation: slide-up-fade 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+
+/* ── Number count ripple ── */
+@keyframes count-in {
+  0%   { opacity: 0; transform: scale(0.7) translateY(8px); }
+  70%  { transform: scale(1.08) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+@utility animate-count-in { animation: count-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+/* ── Aurora blob drift ── */
+@keyframes aurora-drift {
+  0%,  100% { transform: translate(0px,   0px)   scale(1);    }
+  25%        { transform: translate(22px,  -32px) scale(1.04); }
+  50%        { transform: translate(-14px, 20px)  scale(0.97); }
+  75%        { transform: translate(28px,  10px)  scale(1.02); }
+}
+@keyframes aurora-drift-alt {
+  0%,  100% { transform: translate(0px,   0px)   scale(1);    }
+  33%        { transform: translate(-24px, 18px)  scale(1.05); }
+  66%        { transform: translate(18px,  -24px) scale(0.97); }
+}
+@utility animate-aurora-1 { animation: aurora-drift     22s ease-in-out infinite; }
+@utility animate-aurora-2 { animation: aurora-drift-alt 28s ease-in-out infinite; }
 

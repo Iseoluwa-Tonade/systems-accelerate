@@ -2,31 +2,41 @@ import { motion, type Variants } from "framer-motion";
 import { type ReactNode } from "react";
 
 const fadeUp: Variants = {
-  hidden: { y: 18 },
-  visible: { y: 0, transition: { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] } },
+  hidden: { y: 22, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
 const fadeIn: Variants = {
-  hidden: {},
-  visible: { transition: { duration: 0.4 } },
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 const scaleIn: Variants = {
-  hidden: { scale: 0.97 },
-  visible: { scale: 1, transition: { duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] } },
+  hidden: { scale: 0.93, opacity: 0 },
+  visible: { scale: 1, opacity: 1, transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
 const slideRight: Variants = {
-  hidden: { x: -18 },
-  visible: { x: 0, transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] } },
+  hidden: { x: -28, opacity: 0 },
+  visible: { x: 0, opacity: 1, transition: { duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
 const slideLeft: Variants = {
-  hidden: { x: 18 },
-  visible: { x: 0, transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] } },
+  hidden: { x: 28, opacity: 0 },
+  visible: { x: 0, opacity: 1, transition: { duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] } },
 };
 
-const variantMap = { fadeUp, fadeIn, scaleIn, slideRight, slideLeft };
+const fadeDown: Variants = {
+  hidden: { y: -18, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] } },
+};
+
+const zoomIn: Variants = {
+  hidden: { scale: 0.85, opacity: 0 },
+  visible: { scale: 1, opacity: 1, transition: { duration: 0.55, ease: [0.34, 1.56, 0.64, 1] } },
+};
+
+const variantMap = { fadeUp, fadeIn, scaleIn, slideRight, slideLeft, fadeDown, zoomIn };
 
 interface ScrollRevealProps {
   children: ReactNode;
@@ -70,9 +80,10 @@ const staggerVariants: Variants = {
 };
 
 const childVariants: Variants = {
-  hidden: { y: 18 },
+  hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
+    opacity: 1,
     transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 };

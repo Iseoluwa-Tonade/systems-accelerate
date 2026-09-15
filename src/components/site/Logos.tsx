@@ -114,3 +114,96 @@ export const Supabase = (p: ComponentProps<"svg">) => (
     <path d="M4 14.5L12 3v7.5h8L12 21v-7.5H4z" strokeLinecap="round" strokeLinejoin="round" />
   </Frame>
 );
+export const TaxDome = (p: ComponentProps<"svg">) => (
+  <Frame label="TaxDome" {...p}>
+    <path d="M12 3L4 7v5c0 4 3.6 7.7 8 8.9 4.4-1.2 8-4.9 8-8.9V7l-8-4z" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
+  </Frame>
+);
+export const MetaSuite = (p: ComponentProps<"svg">) => (
+  <Frame label="Meta Suite" {...p}>
+    <path d="M3 12c0-2.2 1.2-4 3-4 1.4 0 2.5 1 3.5 2.5S11.5 13 12 13s1-1 2-2.5S15.6 8 17 8c1.8 0 3 1.8 3 4s-1.2 4-3 4c-1.4 0-2.5-1-3.5-2.5S12 11 12 11s-1 1-2 2.5S4.4 16 3 16c-1.8 0-3-1.8-3-4z" strokeLinecap="round" />
+  </Frame>
+);
+export const Freshdesk = (p: ComponentProps<"svg">) => (
+  <Frame label="Freshdesk" {...p}>
+    <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    <path d="M8 10h.01M12 10h.01M16 10h.01" strokeLinecap="round" strokeWidth="2" />
+    <path d="M8 14s1 2 4 2 4-2 4-2" strokeLinecap="round" />
+  </Frame>
+);
+export const DNS = (p: ComponentProps<"svg">) => (
+  <Frame label="Domain & DNS" {...p}>
+    <rect x="3" y="4" width="18" height="4" rx="1" />
+    <rect x="3" y="10" width="18" height="4" rx="1" />
+    <rect x="3" y="16" width="18" height="4" rx="1" />
+    <path d="M7 6h.01M7 12h.01M7 18h.01" strokeLinecap="round" strokeWidth="2" />
+  </Frame>
+);
+export const Pipedrive = (p: ComponentProps<"svg">) => (
+  <Frame label="Pipedrive" {...p}>
+    <circle cx="12" cy="10" r="4" />
+    <path d="M12 14v7" strokeLinecap="round" strokeWidth="2" />
+    <path d="M8 17h8" strokeLinecap="round" />
+  </Frame>
+);
+export const Airtable = (p: ComponentProps<"svg">) => (
+  <Frame label="Airtable" {...p}>
+    <rect x="3" y="3" width="8" height="8" rx="1.5" />
+    <rect x="13" y="3" width="8" height="8" rx="1.5" />
+    <rect x="3" y="13" width="8" height="8" rx="1.5" />
+    <rect x="13" y="13" width="8" height="8" rx="1.5" />
+  </Frame>
+);
+export const Freshworks = (p: ComponentProps<"svg">) => (
+  <Frame label="Freshworks" {...p}>
+    <path d="M12 4c-2 0-4 1-5 3" strokeLinecap="round" />
+    <path d="M7 7c-1.5 1-2.5 2.5-2.5 4.5A7.5 7.5 0 0012 19a7.5 7.5 0 007.5-7.5A7.5 7.5 0 0012 4" strokeLinecap="round" />
+    <path d="M12 8v5l3 3" strokeLinecap="round" strokeLinejoin="round" />
+  </Frame>
+);
+export const ActiveCampaign = (p: ComponentProps<"svg">) => (
+  <Frame label="ActiveCampaign" {...p}>
+    <path d="M3 8h6l2 4 2-8 2 6 2-2h4" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M3 16h18" strokeLinecap="round" />
+  </Frame>
+);
+export const Shopify = (p: ComponentProps<"svg">) => (
+  <Frame label="Shopify" {...p}>
+    <path d="M15 4s.5 0 1 1l1 6H7l1-6c.5-1 1-1 1-1" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M6 11l1 8h10l1-8" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M12 4v7" strokeLinecap="round" />
+  </Frame>
+);
+export const Klaviyo = (p: ComponentProps<"svg">) => (
+  <Frame label="Klaviyo" {...p}>
+    <rect x="4" y="4" width="16" height="16" rx="2" />
+    <path d="M8 9l4 3-4 3" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M13 15h3" strokeLinecap="round" />
+  </Frame>
+);
+export const QuickBooks = (p: ComponentProps<"svg">) => (
+  <Frame label="QuickBooks" {...p}>
+    <circle cx="12" cy="12" r="8" />
+    <path d="M9 9h4a2 2 0 010 4H9v4" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M9 9v4" strokeLinecap="round" />
+  </Frame>
+);
+export const Xero = (p: ComponentProps<"svg">) => (
+  <Frame label="Xero" {...p}>
+    <circle cx="12" cy="12" r="8" />
+    <path d="M9 9l6 6M15 9l-6 6" strokeLinecap="round" />
+  </Frame>
+);
+export const Zoho = (p: ComponentProps<"svg">) => (
+  <Frame label="Zoho" {...p}>
+    <path d="M4 16L9 8l3 5 3-3 5 6" strokeLinecap="round" strokeLinejoin="round" />
+  </Frame>
+);
+export const Canopy = (p: ComponentProps<"svg">) => (
+  <Frame label="Canopy" {...p}>
+    <path d="M12 3C8 3 4 7 4 11c0 3 2 5 4 6h8c2-1 4-3 4-6 0-4-4-8-8-8z" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M12 17v4" strokeLinecap="round" />
+    <path d="M9 21h6" strokeLinecap="round" />
+  </Frame>
+);
