@@ -74,12 +74,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SuperTelque | GTM Architecture & AI Engineering" },
+      { title: "SuperTelque | Revenue Systems Engineered for Scale" },
       { name: "description", content: "SuperTelque is a GTM architecture and AI engineering firm for B2B companies that need more predictable pipeline, faster execution, and measurable revenue systems." },
       { name: "author", content: "SuperTelque" },
-      { name: "keywords", content: "fractional RevOps, pipeline architecture, GTM engineering, autonomous AI agents, n8n orchestration, Generative Engine Optimization, B2B demand generation, HubSpot, Salesforce, Clay" },
-      { name: "robots", content: "index, follow" },
-      { property: "og:title", content: "SuperTelque | GTM Architecture & AI Engineering" },
+      { property: "og:title", content: "SuperTelque | Revenue Systems Engineered for Scale" },
       { property: "og:description", content: "Fractional RevOps leadership, autonomous AI engineering, and B2B demand systems built for measurable commercial outcomes." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://supertelque.com" },
@@ -89,8 +87,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "https://supertelque.com/og-image.png" },
-      { name: "twitter:title", content: "SuperTelque | GTM Architecture & AI Engineering" },
-      { name: "twitter:description", content: "Fractional RevOps leadership, autonomous AI engineering, and B2B demand systems for ambitious companies." },
+      { name: "twitter:title", content: "SuperTelque | Revenue Systems Engineered for Scale" },
+      { name: "twitter:description", content: "Fractional RevOps leadership, autonomous AI engineering, and B2B demand systems built for measurable commercial outcomes." },
     ],
     links: [
       {

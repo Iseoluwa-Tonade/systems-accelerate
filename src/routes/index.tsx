@@ -119,8 +119,8 @@ function Hero() {
           </h1>
 
           <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-white/65 sm:text-[19px]">
-              For B2B founders and revenue leaders with messy CRM data, weak lead follow-up, or unreliable reporting. We build the operating system behind a predictable sales team.
+            <p className="mt-6 max-w-lg text-[16px] leading-relaxed text-muted-foreground sm:text-[17px]">
+              We architect the data, decision layers, and autonomous workflows that make enterprise revenue teams faster, more predictable, and easier to scale.
             </p>
           </ScrollReveal>
 
@@ -192,21 +192,21 @@ function TrustBar() {
 const SERVICES = [
   {
     code: "01",
-    title: "Revenue Systems Audit",
-    desc: "Find the CRM, routing, follow-up and reporting gaps that are quietly reducing pipeline conversion.",
-    bullets: ["7-day diagnostic", "Prioritized fixes", "ROI-backed roadmap"],
+    title: "Fractional RevOps & Pipeline Architecture",
+    desc: "Senior RevOps direction for teams that need a trusted operating model before they add more headcount or technology.",
+    bullets: ["Revenue-system audit", "Forecasting architecture", "Executive roadmaps"],
   },
   {
     code: "02",
-    title: "CRM & Routing Sprint",
-    desc: "Clean the pipeline, set ownership rules, automate follow-up, and give every lead a reliable next step.",
-    bullets: ["CRM cleanup", "Lead routing", "Sales automation"],
+    title: "Autonomous AI Engineering",
+    desc: "Move beyond point automations with AI agents, orchestration layers, and integrations designed for real revenue operations.",
+    bullets: ["AI agent workflows", "n8n orchestration", "Custom API layers"],
   },
   {
     code: "03",
-    title: "Managed RevOps Partner",
-    desc: "An embedded operating partner for reporting, automation, data governance and sales-team enablement.",
-    bullets: ["Dashboards", "Forecast support", "Ongoing governance"],
+    title: "B2B Demand Generation & GEO",
+    desc: "Build a demand engine buyers can find and trust, across outbound systems and the AI search experiences shaping modern vendor selection.",
+    bullets: ["GEO visibility", "Signal-led outbound", "Deliverability infrastructure"],
   },
 ] as const;
 
@@ -219,10 +219,10 @@ function Services() {
             eyebrow="What we build"
             title={
               <>
-                Start with the leak. <span className="text-muted-foreground">Then build the system.</span>
+                Three pillars. <span className="text-muted-foreground">One revenue system.</span>
               </>
             }
-            description="Each engagement has a defined outcome, a clear owner and a practical next step. No vague transformation project."
+            description="We start with the commercial constraint, architect the system around it, then build the capability your team can own."
           />
           <Link
             to="/services"

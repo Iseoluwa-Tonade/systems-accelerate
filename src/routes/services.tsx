@@ -19,75 +19,40 @@ const SERVICES = [
   {
     id: "revops",
     code: "01",
-    color: "#1B5EFF",
     title: "Fractional RevOps & Pipeline Architecture",
     blurb: "Get a senior RevOps partner to diagnose revenue friction, establish the operating blueprint, and give leadership a forecast they can trust.",
-    items: ["Revenue-system audit", "Pipeline architecture", "Forecasting cadence", "Executive roadmap", "CRM data model", "Team enablement"],
+    items: ["Revenue-system audit", "Pipeline architecture", "Forecasting cadence", "Executive roadmap"],
   },
   {
     id: "ai-engineering",
     code: "02",
-    color: "#14B8A6",
     title: "Autonomous AI Engineering",
     blurb: "Engineer the orchestration layer between your CRM, data sources, and teams so complex revenue work can move without manual handoffs.",
-    items: ["AI agents", "n8n orchestration", "Custom API integrations", "CRM data systems", "Intelligent routing", "Human-in-the-loop controls"],
+    items: ["AI agents", "n8n orchestration", "Custom API integrations", "CRM data systems"],
   },
   {
     id: "geo",
     code: "03",
-    color: "#8B5CF6",
     title: "B2B Demand Generation & GEO",
     blurb: "Create a demand engine that earns visibility in buyer research, high-intent outbound, and generative search experiences.",
-    items: ["Generative Engine Optimization", "Signal-led outbound", "Deliverability architecture", "Buyer-intent systems", "Authority content", "Attribution intelligence"],
+    items: ["Generative Engine Optimization", "Signal-led outbound", "Deliverability architecture", "Buyer-intent systems"],
   },
 ] as const;
 
 function ServicesPage() {
   return (
-    <SiteLayout headerTheme="light">
-      {/* Hero */}
-      <section className="relative overflow-hidden border-b border-border pt-24 md:pt-28" style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 60%, #FFF9F0 100%)" }}>
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-16 right-0 h-[380px] w-[380px] rounded-full opacity-40"
-            style={{ background: "radial-gradient(circle, rgba(27,94,255,0.10) 0%, transparent 70%)" }} />
-          <svg className="absolute right-8 bottom-0 h-[200px] w-[200px] opacity-[0.05]" viewBox="0 0 200 200">
-            <circle cx="100" cy="100" r="88" fill="none" stroke="#1B5EFF" strokeWidth="1.5" strokeDasharray="4 10" className="animate-spin-slow" style={{ transformOrigin: "100px 100px" }} />
-          </svg>
-        </div>
-        <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pt-16 lg:px-6">
-          <div className="grid gap-10 lg:grid-cols-12 items-end">
-            <div className="lg:col-span-7">
-              <Eyebrow>Services</Eyebrow>
-              <h1 className="mt-5 font-display text-[34px] font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
-                GTM architecture for companies that need to <span className="text-gradient-gold">scale with certainty.</span>
-              </h1>
-              <ScrollReveal variant="fadeUp" delay={0.15}>
-                <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                  We do not sell disconnected implementation tasks. Each engagement is designed around a commercial outcome, an accountable operating model, and systems your team can own.
-                </p>
-              </ScrollReveal>
-            </div>
-            <ScrollReveal variant="fadeUp" delay={0.2} className="lg:col-span-5">
-              <div className="rounded-2xl border border-border overflow-hidden">
-                <div className="relative h-48 lg:h-56 overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80&auto=format&fit=crop"
-                    alt="Business growth strategy session"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#080D1C]/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Three premium pillars</div>
-                    <div className="mt-0.5 font-display text-sm font-bold text-white">From pipeline architecture to AI visibility.</div>
-                  </div>
-                </div>
-                <div className="px-5 py-4 bg-[#F4F7FF] flex items-center gap-3">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#4C5670]">Measurable outcomes on every engagement</span>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
+    <SiteLayout headerTheme="dark">
+      <section className="sec-navy relative overflow-hidden border-b border-border pt-24 md:pt-28">
+        <div className="relative mx-auto max-w-7xl px-4 pb-12 lg:pt-16 lg:px-6">
+          <Eyebrow>Services</Eyebrow>
+          <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
+            GTM architecture for companies that need to <span className="text-gradient-gold">scale with certainty.</span>
+          </h1>
+          <ScrollReveal variant="fadeUp" delay={0.15}>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              We do not sell disconnected implementation tasks. Each engagement is designed around a commercial outcome, an accountable operating model, and systems your team can own.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -191,8 +156,8 @@ function ArchitectureDiagram({ code, color }: { code: string; color: string }) {
   const [c1, c2, c3] = palettes[code] ?? palettes["01"];
 
   const labelsByCode: Record<string, string[]> = {
-    "01": ["Assess", "Design", "Advise", "Deliver"],
-    "02": ["Import", "Clean", "Structure", "Activate"],
+    "01": ["Pipeline", "Forecast", "Quota", "Reporting"],
+    "02": ["Source", "Transform", "Route", "Activate"],
     "03": ["Signal", "Authority", "Cite", "Convert"],
   };
   const labels = labelsByCode[code] ?? labelsByCode["01"];

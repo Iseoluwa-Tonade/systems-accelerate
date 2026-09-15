@@ -7,9 +7,9 @@ import { AgentAvatar } from "@/components/site/AgentAvatar";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About | SuperTelque" },
-      { name: "description", content: "A senior global team combining fractional RevOps direction with hands-on AI engineering for B2B companies." },
-      { property: "og:title", content: "About | SuperTelque" },
+      { title: "About | SuperTelque RevOps" },
+      { name: "description", content: "SuperTelque is a global GTM architecture and AI engineering partner for B2B companies that need better revenue systems." },
+      { property: "og:title", content: "About | SuperTelque RevOps" },
       { property: "og:description", content: "Senior RevOps advisory, GTM architecture, autonomous AI engineering, and B2B demand systems." },
     ],
   }),
@@ -78,28 +78,17 @@ function AboutPage() {
             <br className="hidden lg:block" /> not a marketing agency.
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
-            <div className="mt-10 grid gap-6 lg:grid-cols-12">
-              <p className="lg:col-span-7 text-lg leading-relaxed text-[#4C5670]">
+            <div className="mt-10 grid gap-8 lg:grid-cols-12">
+              <p className="lg:col-span-7 text-lg leading-relaxed text-muted-foreground">
                 SuperTelque is a senior, remote-first team that combines fractional RevOps direction
-                with hands-on AI engineering. We work with founders and operators who need the blueprint,
+                with hands-on AI engineering. We work with founders and CROs who need the blueprint,
                 the build, and a revenue system their team can operate with confidence.
               </p>
-              <div className="lg:col-span-5 rounded-2xl border border-border bg-[#F4F7FF] overflow-hidden">
-                <div className="relative h-48 lg:h-56 overflow-hidden">
-                  <img
-                    src="/advisor-2.png"
-                    alt="Senior RevOps operator"
-                    className="w-full h-full object-cover object-[center_15%]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#080D1C]/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Senior operator</div>
-                    <div className="mt-0.5 font-display text-sm font-bold text-white">Revenue systems, built hands-on.</div>
-                  </div>
-                </div>
-                <div className="px-5 py-4 flex items-center gap-3">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#B45309]">Remote-first · Global</span>
+              <div className="lg:col-span-5 rounded-2xl border border-white/10 bg-white/05 p-6 flex flex-col justify-center items-center text-center">
+                <img src="/supertelque-logo.png" alt="" className="h-10 w-10 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
+                <div className="mt-3 font-display text-2xl font-bold text-white">Global delivery</div>
+                <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-[#FFB800]/70">
+                  United States · Lagos · Remote-first
                 </div>
               </div>
             </div>
@@ -115,7 +104,7 @@ function AboutPage() {
               <div className="lg:col-span-4">
                 <SectionHeader eyebrow="Mission" title={<>Build systems. Grow revenue.</>} />
               </div>
-              <blockquote className="lg:col-span-8 border-l-2 border-[#FFB800] pl-6 text-lg leading-relaxed text-[#4C5670] lg:text-xl">
+              <blockquote className="lg:col-span-8 border-l-2 border-[#FFB800]/40 pl-6 text-xl leading-relaxed text-white/75 lg:text-2xl">
                 "To give B2B leaders the revenue infrastructure they need to grow with certainty.
                 We turn fragmented data, manual work, and disconnected tools into measurable,
                 autonomous systems that compound over time."
