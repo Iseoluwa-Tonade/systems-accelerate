@@ -84,6 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image", content: "https://supertelque.com/og-image.png" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
+      { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "https://supertelque.com/og-image.png" },
       { name: "twitter:title", content: "SuperTelque | Revenue Systems Engineered for Scale" },
@@ -95,6 +96,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", type: "image/png", href: "/supertelque-logo.png" },
+      { rel: "sitemap", type: "application/xml", href: "/sitemap.xml" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -114,6 +116,34 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-T80QV3FXEC" />
+        <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-T80QV3FXEC');` }} />
+        <script dangerouslySetInnerHTML={{ __html: `function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,o.onload=function(){window.trackingFunctions.onLoad({appId:"69c83565c43ef5001d514789"})},document.head.appendChild(o)}initApollo();` }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "SuperTelque",
+          "url": "https://supertelque.com",
+          "logo": "https://supertelque.com/supertelque-logo.png",
+          "description": "SuperTelque is a GTM architecture and AI engineering firm that builds fractional RevOps, autonomous AI, and B2B demand systems for companies serving global markets.",
+          "email": "support@supertelque.com",
+          "foundingLocation": { "@type": "Place", "addressCountry": "US" },
+          "areaServed": [
+            { "@type": "Country", "name": "United States" },
+            { "@type": "Country", "name": "Canada" },
+            { "@type": "Country", "name": "United Kingdom" }
+          ],
+          "serviceType": [
+            "Fractional RevOps",
+            "Pipeline Architecture",
+            "Autonomous AI Engineering",
+            "B2B Demand Generation",
+            "Generative Engine Optimization"
+          ],
+          "sameAs": [
+            "https://www.linkedin.com/company/supertelque"
+          ]
+        }) }} />
       </head>
       <body>
         {children}

@@ -24,7 +24,7 @@ const SERVICES = [
     items: ["Revenue-system audit", "Pipeline architecture", "Forecasting cadence", "Executive roadmap"],
   },
   {
-    id: "gtm",
+    id: "ai-engineering",
     code: "02",
     title: "Autonomous AI Engineering",
     blurb: "Engineer the orchestration layer between your CRM, data sources, and teams so complex revenue work can move without manual handoffs.",
@@ -56,8 +56,26 @@ function ServicesPage() {
         </div>
       </section>
 
+      {/* Sticky anchor nav */}
+      <div className="sticky top-[72px] z-20 border-b border-border bg-white/95 backdrop-blur-sm">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6">
+          <div className="flex items-center gap-1.5 overflow-x-auto py-3" style={{ scrollbarWidth: "none" }}>
+            {SERVICES.map((s) => (
+              <a
+                key={s.id}
+                href={`#${s.id}`}
+                className="shrink-0 flex items-center gap-2 rounded-full border border-border px-3.5 py-1.5 font-mono text-[10px] text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all whitespace-nowrap"
+              >
+                <span className="h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
+                {s.code} · {s.title.split(" & ")[0].split(" ").slice(0, 2).join(" ")}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <section className="sec-white py-16 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6 space-y-16 lg:space-y-24">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6 space-y-16 lg:space-y-28">
           {SERVICES.map((s, i) => (
             <ServiceBlock key={s.id} svc={s} reverse={i % 2 === 1} />
           ))}
@@ -77,41 +95,53 @@ function ServiceBlock({
   reverse: boolean;
 }) {
   return (
-    <section id={svc.id} className="scroll-mt-24">
+    <section id={svc.id} className="scroll-mt-28">
       <div className={"grid items-center gap-10 lg:grid-cols-12 " + (reverse ? "lg:[direction:rtl]" : "")}>
         <ScrollReveal variant="slideRight" className="lg:col-span-5 [direction:ltr]">
-          <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-            Capability · {svc.code}
-          </span>
-          <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-4xl lg:text-[44px] lg:leading-[1.05]">
+          {/* Numbered badge + capability label */}
+          <div className="flex items-center gap-3 mb-6">
+            <span
+              className="flex h-8 w-8 items-center justify-center rounded-xl font-mono text-[11px] font-bold text-white shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+              style={{ backgroundColor: svc.color }}
+            >
+              {svc.code}
+            </span>
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-muted-foreground">
+              Capability
+            </span>
+          </div>
+          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl lg:text-[42px] lg:leading-[1.06]">
             {svc.title}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">{svc.blurb}</p>
-          <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
-            {svc.items.map((it) => (
-              <li key={it} className="flex items-center gap-2 text-foreground/85">
-                <span className="h-1 w-1 rounded-full bg-accent-blue" />
+          <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-2.5 text-sm">
+            {svc.items.map((it, idx) => (
+              <li
+                key={it}
+                className="flex items-center gap-2 text-foreground/85 animate-slide-up-fade"
+                style={{ animationDelay: `${idx * 70 + 200}ms` }}
+              >
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: svc.color }} />
                 {it}
               </li>
             ))}
           </ul>
           <Link
             to="/book"
-            className="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-(--surface)/60 px-4 py-2 text-sm hover:bg-(--surface)"
+            className="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-white px-5 py-2.5 text-sm font-medium text-foreground/70 hover:bg-[#F4F6FA] hover:text-foreground transition-all"
           >
             Discuss this engagement →
           </Link>
         </ScrollReveal>
         <ScrollReveal variant="slideLeft" className="lg:col-span-7 [direction:ltr]">
-          <ArchitectureDiagram code={svc.code} />
+          <ArchitectureDiagram code={svc.code} color={svc.color} />
         </ScrollReveal>
       </div>
     </section>
   );
 }
 
-function ArchitectureDiagram({ code }: { code: string }) {
-  // Stylised, distinct-per-service architecture diagram.
+function ArchitectureDiagram({ code, color }: { code: string; color: string }) {
   const palettes: Record<string, string[]> = {
     "01": ["var(--accent-blue)", "var(--accent-indigo)", "var(--accent-teal)"],
     "02": ["var(--accent-indigo)", "var(--accent-teal)", "var(--accent-blue)"],
@@ -119,6 +149,9 @@ function ArchitectureDiagram({ code }: { code: string }) {
     "04": ["var(--accent-purple)", "var(--accent-blue)", "var(--accent-teal)"],
     "05": ["var(--accent-blue)", "var(--accent-teal)", "var(--accent-indigo)"],
     "06": ["var(--accent-indigo)", "var(--accent-purple)", "var(--accent-blue)"],
+    "07": ["var(--accent-blue)", "var(--accent-purple)", "var(--accent-teal)"],
+    "08": ["var(--accent-teal)", "var(--accent-indigo)", "var(--accent-blue)"],
+    "09": ["var(--accent-indigo)", "var(--accent-blue)", "var(--accent-teal)"],
   };
   const [c1, c2, c3] = palettes[code] ?? palettes["01"];
 
@@ -130,13 +163,16 @@ function ArchitectureDiagram({ code }: { code: string }) {
   const labels = labelsByCode[code] ?? labelsByCode["01"];
 
   return (
-    <div className="surface-card relative overflow-hidden p-5">
+    <div className="surface-card relative overflow-hidden p-5" style={{ borderTop: `2px solid ${color}40` }}>
       <div className="absolute inset-0 bg-grid opacity-30" />
       <div className="relative">
         <div className="flex items-center justify-between">
-          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-            architecture · {code}
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: color }} />
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+              architecture · {code}
+            </span>
+          </div>
           <span className="font-mono text-[11px] text-muted-foreground">v1.0</span>
         </div>
         <svg viewBox="0 0 600 300" className="mt-4 w-full">
@@ -182,7 +218,6 @@ function ArchitectureDiagram({ code }: { code: string }) {
             </g>
           ))}
 
-          {/* Top + bottom rails */}
           <line x1="40" y1="60" x2="560" y2="60" stroke="var(--border)" strokeDasharray="2 6" />
           <line x1="40" y1="240" x2="560" y2="240" stroke="var(--border)" strokeDasharray="2 6" />
           <text x="40" y="52" fill="var(--muted-foreground)" fontSize="10" fontFamily="JetBrains Mono, monospace">
@@ -197,32 +232,49 @@ function ArchitectureDiagram({ code }: { code: string }) {
   );
 }
 
-
 function CTA() {
   return (
-    <section className="sec-navy border-t border-white/08 py-12 lg:py-20">
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-48"
-        style={{ background: "radial-gradient(ellipse 50% 80% at 50% 100%, rgba(255,184,0,0.08) 0%, transparent 70%)" }}
-      />
+    <section className="sec-navy relative overflow-hidden border-t border-white/08 py-20 lg:py-28">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-grid opacity-[0.04]" />
+        <div
+          className="absolute -bottom-10 left-1/2 -translate-x-1/2 h-[350px] w-[700px] rounded-full"
+          style={{ background: "radial-gradient(ellipse, rgba(255,184,0,0.12) 0%, transparent 65%)", filter: "blur(40px)" }}
+        />
+        <div
+          className="absolute top-0 right-0 h-[280px] w-[280px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(27,94,255,0.10) 0%, transparent 65%)", filter: "blur(60px)" }}
+        />
+      </div>
       <div className="relative mx-auto max-w-4xl px-4 lg:px-6 text-center">
         <ScrollReveal variant="scaleIn">
-          <div className="flex items-center justify-center gap-2.5 mb-4">
-            <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
+          <div className="flex items-center justify-center gap-2.5 mb-6">
+            <img src="/supertelque-logo.png" alt="" className="h-7 w-7 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/40">SuperTelque LLC</span>
           </div>
-          <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+          <h2 className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
             Not sure where to begin?
           </h2>
-          <p className="mx-auto mt-3 max-w-xl text-white/60">
-            Book a 45-minute call. We'll review your current setup and tell you exactly where to
-            start. No pressure, no pitch.
+          <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-white/50">
+            Book a 45-minute call. We review your current setup and tell you exactly where to start. No pressure, no pitch.
           </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-white/30">
+            {["Free · no pressure", "Response in 24 hours", "Senior engineer, not an SDR"].map((t, i) => (
+              <span key={t} className="flex items-center gap-2 font-mono text-[11px]">
+                {i > 0 && <span className="h-px w-3 bg-white/20" />}
+                {t}
+              </span>
+            ))}
+          </div>
           <Link
             to="/book"
-            className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_12px_28px_-6px_rgba(255,184,0,0.40)]"
-            style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
+            className="mt-10 inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-[15px] font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_16px_40px_-8px_rgba(255,184,0,0.50)]"
+            style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 60%, #E08A00 100%)" }}
           >
-            Book a strategy session →
+            Book a strategy session
+            <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </Link>
         </ScrollReveal>
       </div>

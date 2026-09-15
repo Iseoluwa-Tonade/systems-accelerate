@@ -8,16 +8,16 @@ import * as L from "@/components/site/Logos";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "SuperTelque | Revenue Systems Engineered for Scale" },
+      { title: "SuperTelque | Fix the Revenue Systems Costing You Pipeline" },
       {
         name: "description",
         content:
-          "B2B RevOps, GTM engineering, CRM architecture and AI revenue systems built on HubSpot, Salesforce, Clay, Apollo, n8n and OpenAI.",
+          "CRM cleanup, lead routing, sales automation and RevOps systems for B2B teams that need predictable pipeline.",
       },
-      { property: "og:title", content: "SuperTelque | Revenue Systems Engineered for Scale" },
+      { property: "og:title", content: "SuperTelque | Revenue Systems That Convert More Pipeline" },
       {
         property: "og:description",
-        content: "Architecting revenue systems that scale for B2B technology companies in Nigeria.",
+        content: "Fix CRM, follow-up, lead routing and reporting before they cost your B2B team more pipeline.",
       },
     ],
   }),
@@ -106,12 +106,16 @@ function Hero() {
         />
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-12 lg:grid-cols-12 lg:gap-10 lg:pt-20 lg:px-6">
-        <div className="lg:col-span-6">
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-16 lg:grid-cols-12 lg:gap-14 lg:pt-24 lg:px-6">
+        <div className="flex flex-col justify-center lg:col-span-7">
+          <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/12 bg-white/5 px-3.5 py-2 font-mono text-[10px] uppercase tracking-[0.16em] text-white/70">
+            <span className="h-2 w-2 rounded-full bg-[#FFB800] shadow-[0_0_12px_rgba(255,184,0,0.8)]" />
+            RevOps for B2B teams in motion
+          </div>
           <h1 className="font-display text-[38px] font-extrabold leading-[1.02] tracking-tight sm:text-[52px] lg:text-[72px] lg:leading-[1.0]">
-            Revenue systems
+            Fix the systems
             <br />
-            <span className="text-gradient-gold">built to scale.</span>
+            <span className="text-gradient-gold">costing you pipeline.</span>
           </h1>
 
           <ScrollReveal variant="fadeUp" delay={0.15}>
@@ -120,6 +124,10 @@ function Hero() {
             </p>
           </ScrollReveal>
 
+          <div className="mt-7 grid max-w-xl grid-cols-3 gap-3 border-y border-white/10 py-5">
+            {[['CRM', 'you can trust'], ['Routing', 'that never drops'], ['Reporting', 'leaders use']].map(([a,b]) => <div key={a}><div className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#FFB800]">{a}</div><div className="mt-1 text-sm text-white/65">{b}</div></div>)}
+          </div>
+
           <ScrollReveal variant="fadeUp" delay={0.25}>
             <div className="mt-8 flex flex-wrap items-center gap-5">
               <Link
@@ -127,7 +135,7 @@ function Hero() {
                 className="group inline-flex items-center gap-2.5 rounded-full px-7 py-4 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:shadow-[0_12px_32px_-8px_rgba(255,184,0,0.50)]"
                 style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 60%, #E08A00 100%)" }}
               >
-                Book a strategy session
+                Book a 20-minute fit call
                 <svg viewBox="0 0 16 16" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -136,13 +144,14 @@ function Hero() {
                 to="/services"
                 className="text-[15px] font-medium text-white/70 hover:text-white transition-colors"
               >
-                View services →
+                See the revenue systems audit →
               </Link>
             </div>
           </ScrollReveal>
         </div>
 
-        <div className="lg:col-span-6 pb-8 lg:pb-16">
+        <div className="relative lg:col-span-5 pb-4 lg:pb-10">
+          <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-[#1B5EFF]/20 via-transparent to-[#FFB800]/15 blur-2xl" />
           <ScrollReveal variant="scaleIn" delay={0.2}>
             <HeroDashboard />
           </ScrollReveal>
@@ -223,16 +232,17 @@ function Services() {
           </Link>
         </div>
 
-        <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-4 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s) => (
             <div
               key={s.code}
-              className="group relative bg-white p-7 transition-colors hover:bg-[#F4F6FA]"
+              className="group relative overflow-hidden rounded-2xl border border-border bg-white p-7 shadow-[0_12px_30px_-24px_rgba(8,13,28,.35)] transition-all duration-300 hover:-translate-y-1 hover:border-[#1B5EFF]/35 hover:shadow-[0_22px_45px_-26px_rgba(27,94,255,.38)]"
             >
+              <div className="absolute right-0 top-0 h-20 w-20 rounded-bl-[5rem] bg-[#EEF3FF] transition-colors group-hover:bg-[#E3EAFF]" />
               <span className="font-mono text-[11px] tracking-[0.18em] text-muted-foreground">
                 {s.code}
               </span>
-              <h3 className="mt-6 font-display text-xl font-bold tracking-tight">{s.title}</h3>
+              <h3 className="relative mt-6 max-w-[15rem] font-display text-xl font-bold tracking-tight">{s.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
               <ul className="mt-5 space-y-1.5 font-mono text-[12px] text-foreground/70">
                 {s.bullets.map((b) => (
