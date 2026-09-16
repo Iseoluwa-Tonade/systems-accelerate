@@ -554,12 +554,384 @@ html, body {
   animation: gradient-shift 5s ease infinite;
 }
 
+/* Homepage section details */
+.problem-card,
+.service-card,
+.delivery-card,
+.method-card {
+  isolation: isolate;
+}
+
+.problem-carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.problem-carousel::before,
+.problem-carousel::after {
+  position: absolute;
+  top: 0;
+  bottom: 4rem;
+  z-index: 5;
+  width: clamp(3rem, 8vw, 7rem);
+  pointer-events: none;
+  content: "";
+}
+
+.problem-carousel::before {
+  left: 0;
+  background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0.85) 40%, rgba(255,255,255,0) 100%);
+}
+
+.problem-carousel::after {
+  right: 0;
+  background: linear-gradient(270deg, #ffffff 0%, rgba(255,255,255,0.85) 40%, rgba(255,255,255,0) 100%);
+}
+
+.problem-carousel-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 480px;
+  margin: 0 auto;
+  gap: 0;
+  position: relative;
+}
+
+.problem-carousel-card {
+  flex: 0 0 clamp(620px, 60vw, 860px);
+  width: clamp(620px, 60vw, 860px);
+  min-height: 420px;
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+.problem-card-visual {
+  position: absolute;
+  right: -2%;
+  bottom: -4%;
+  z-index: 0;
+  width: 72%;
+  height: auto;
+  pointer-events: none;
+  border-radius: 1.25rem;
+  object-fit: cover;
+  transform-origin: bottom right;
+}
+
+.problem-card-visual-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(15,22,40,0.98) 0%, rgba(15,22,40,0.84) 36%, rgba(15,22,40,0.16) 100%);
+}
+
+.problem-card-content {
+  position: relative;
+  z-index: 2;
+  max-width: 58%;
+}
+
+.problem-carousel-card-focused {
+  z-index: 3;
+}
+
+.problem-carousel-card-side {
+  z-index: 1;
+  user-select: none;
+}
+
+.problem-indicator {
+  position: relative;
+  width: 0.45rem;
+  height: 0.45rem;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--indicator-color) 30%, #cbd5e1);
+  cursor: pointer;
+  transition: width 300ms ease, background-color 300ms ease, transform 300ms ease;
+}
+
+.problem-indicator:hover,
+.problem-indicator:focus-visible {
+  transform: scale(1.35);
+  outline: 2px solid color-mix(in srgb, var(--indicator-color) 50%, transparent);
+  outline-offset: 3px;
+}
+
+.problem-indicator-active {
+  width: 4.75rem;
+  background: color-mix(in srgb, var(--indicator-color) 25%, #e2e8f0);
+}
+
+.problem-indicator-progress {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+  border-radius: inherit;
+  background: var(--indicator-color);
+  animation: problem-progress 5.2s linear forwards;
+}
+
+.problem-indicator-progress-paused {
+  animation-play-state: paused;
+}
+
+@keyframes problem-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (max-width: 767px) {
+  .problem-carousel-track {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 360px;
+  }
+
+  .problem-carousel {
+    width: 100%;
+    margin-inline: 0;
+  }
+
+  .problem-carousel::before,
+  .problem-carousel::after {
+    width: 2.5rem;
+  }
+
+  .problem-carousel-card-side {
+    display: none;
+  }
+
+  .problem-carousel-card {
+    flex: 0 0 100%;
+    width: 100%;
+    min-height: 350px;
+    padding: 1.75rem;
+  }
+
+  .problem-card-content {
+    max-width: 72%;
+  }
+
+  .problem-card-visual {
+    width: 74%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .problem-indicator-progress {
+    animation: none;
+    transform: scaleX(1);
+  }
+}
+
+.services-stack {
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .services-stack-item-1 {
+    grid-column: 1 / span 7;
+    grid-row: 1;
+    z-index: 2;
+  }
+
+  .services-stack-item-2 {
+    grid-column: 8 / span 5;
+    grid-row: 1;
+    z-index: 3;
+    margin-left: -1px;
+  }
+
+  .services-stack-item-3 {
+    grid-column: 1 / span 4;
+    grid-row: 2;
+    z-index: 4;
+    margin-top: -1px;
+  }
+
+  .services-stack-item-4 {
+    grid-column: 5 / span 8;
+    grid-row: 2;
+    z-index: 1;
+    margin-top: -1px;
+    margin-left: -1px;
+  }
+
+  .services-stack-item-1 .service-card {
+    min-height: 100%;
+  }
+
+  .services-stack-item-2 .service-card,
+  .services-stack-item-3 .service-card {
+    border-radius: 1.45rem;
+  }
+
+  .services-stack-item-1 .service-card,
+  .services-stack-item-4 .service-card {
+    padding: 2.25rem;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 640px) {
+  .services-stack-item-1,
+  .services-stack-item-4 {
+    grid-column: span 2;
+  }
+
+  .services-stack-item-2,
+  .services-stack-item-3 {
+    grid-column: span 1;
+  }
+}
+
+.services-stack-item .service-card {
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 500ms ease, border-color 300ms ease;
+}
+
+.services-stack-item:hover {
+  z-index: 10;
+}
+
+.services-stack-item:hover .service-card {
+  transform: translateY(-8px) rotate(0deg) scale(1.015);
+}
+
+.service-card {
+  transform-style: preserve-3d;
+  perspective: 900px;
+}
+
+.service-card h3,
+.service-card p,
+.service-card ul,
+.service-card > div:last-child {
+  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.service-card:hover h3 { transform: translateZ(16px); }
+.service-card:hover p { transform: translateZ(10px); }
+.service-card:hover ul { transform: translateZ(7px); }
+
+.method-card::before {
+  position: absolute;
+  top: 0;
+  left: -35%;
+  width: 28%;
+  height: 2px;
+  content: "";
+  background: rgba(8,13,28,0.35);
+  transform: translateX(-100%);
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.method-card:hover::before,
+.method-card:focus-visible::before {
+  transform: translateX(520%);
+}
+
+.problem-card::after,
+.service-card::after,
+.delivery-card::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(115deg, transparent 25%, rgba(255,255,255,0.32) 48%, transparent 70%);
+  background-size: 220% 100%;
+  opacity: 0;
+  transition: opacity 300ms ease, background-position 700ms ease;
+}
+
+.problem-card:hover::after,
+.service-card:hover::after,
+.delivery-card:hover::after {
+  background-position: 100% 0;
+  opacity: 1;
+}
+
+.service-card ul li {
+  transition: transform 250ms ease, color 250ms ease;
+}
+
+.service-card:hover ul li {
+  transform: translateX(3px);
+}
+
+.cta-section {
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255,184,0,0.13), transparent 28%),
+    radial-gradient(circle at 82% 76%, rgba(27,94,255,0.12), transparent 30%),
+    #eef3ff;
+}
+
+.cta-orbit {
+  position: absolute;
+  border: 1px solid rgba(27,94,255,0.12);
+  border-radius: 999px;
+  pointer-events: none;
+  animation: orbit-drift 16s ease-in-out infinite;
+}
+
+.cta-orbit-one {
+  top: -12rem;
+  right: -8rem;
+  width: 31rem;
+  height: 31rem;
+}
+
+.cta-orbit-two {
+  bottom: -16rem;
+  left: -10rem;
+  width: 38rem;
+  height: 38rem;
+  border-color: rgba(255,184,0,0.15);
+  animation-delay: -7s;
+}
+
+.cta-section h2 {
+  text-wrap: balance;
+}
+
+@keyframes orbit-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(-18px, 14px, 0) rotate(8deg); }
+}
+
 /* ── Slide-up-fade (CSS-only, no Framer) ── */
 @keyframes slide-up-fade {
   from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 @utility animate-slide-up-fade { animation: slide-up-fade 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .method-card::before,
+  .service-card:hover h3,
+  .service-card:hover p,
+  .service-card:hover ul {
+    transform: none;
+  }
+}
 
 /* ── Number count ripple ── */
 @keyframes count-in {

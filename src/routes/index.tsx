@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Eyebrow, SectionHeader } from "@/components/site/Eyebrow";
 import { ScrollReveal } from "@/components/site/ScrollReveal";
 import * as L from "@/components/site/Logos";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, Check, CircleAlert, Clock3, Layers3, MoveRight, Sparkles } from "lucide-react";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -41,6 +41,92 @@ function HomePage() {
         <FinalCTA />
       </div>
     </SiteLayout>
+  );
+}
+
+function ScrollScene({
+  children,
+  delay = 0,
+  direction = "up",
+  className,
+}: {
+  children: ReactNode;
+  delay?: number;
+  direction?: "up" | "down" | "left" | "right";
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, margin: "-14% 0px -14% 0px" });
+  const offset = direction === "left" ? -120 : direction === "right" ? 120 : direction === "down" ? -120 : 110;
+  const isVertical = direction === "up" || direction === "down";
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 1, x: isVertical ? 0 : offset, y: isVertical ? offset : 0 }}
+      animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 1, x: isVertical ? 0 : offset * 0.55, y: isVertical ? offset * 0.55 : 0 }}
+      transition={{ duration: 1.5, delay, ease: [0.22, 1, 0.36, 1] }}
+      style={{ filter: "none", willChange: "transform" }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function RevealWords({ text, highlight }: { text: string; highlight?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: false, margin: "-12% 0px -12% 0px" });
+  const words = text.split(" ");
+
+  return (
+    <span ref={ref} aria-label={text}>
+      {words.map((word, index) => {
+        const cleanWord = word.replace(/[.,!?]/g, "");
+        const isHighlighted = highlight?.split(" ").includes(cleanWord);
+        return (
+          <span key={`${word}-${index}`} className={`inline-block overflow-hidden align-bottom ${index < words.length - 1 ? "mr-[0.22em]" : ""}`}>
+            <motion.span
+              className={`inline-block ${isHighlighted ? "text-gradient-gold" : ""}`}
+              initial={{ y: "110%", opacity: 0 }}
+              animate={isInView ? { y: "0%", opacity: 1 } : { y: "110%", opacity: 0 }}
+              transition={{ duration: 0.55, delay: index * 0.045, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {word}
+            </motion.span>
+          </span>
+        );
+      })}
+    </span>
+  );
+}
+
+function TypeLine({ text }: { text: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: false, margin: "-10% 0px -10% 0px" });
+  const [visibleText, setVisibleText] = useState("");
+
+  useEffect(() => {
+    if (!isInView) {
+      setVisibleText("");
+      return;
+    }
+
+    let index = 0;
+    const timer = window.setInterval(() => {
+      index += 1;
+      setVisibleText(text.slice(0, index));
+      if (index >= text.length) window.clearInterval(timer);
+    }, 26);
+
+    return () => window.clearInterval(timer);
+  }, [isInView, text]);
+
+  return (
+    <span ref={ref} className="inline-flex items-center">
+      {visibleText}
+      <span className="ml-1 inline-block h-4 w-px bg-current animate-pulse" aria-hidden="true" />
+    </span>
   );
 }
 
@@ -166,54 +252,141 @@ function TrustBar() {
 /* ------------------------------- PROBLEMS ------------------------------ */
 const PROBLEMS = [
   {
+    icon: CircleAlert,
+    image: "/problem-leads.jpg",
     title: "Leads and inquiries go unanswered",
     desc: "Your team is too busy delivering the service to consistently follow up with new opportunities.",
+    accent: "#FFB800",
   },
   {
+    icon: Clock3,
+    image: "/problem-admin.jpg",
     title: "Your best people are buried in admin",
     desc: "Salespeople, managers and owners spend valuable time updating systems and chasing routine tasks.",
+    accent: "#1B5EFF",
   },
   {
+    icon: Layers3,
+    image: "/problem-tools.jpg",
     title: "Work gets lost between people and tools",
     desc: "Emails, CRM records, scheduling and customer updates are disconnected.",
+    accent: "#14B8A6",
   },
   {
+    icon: MoveRight,
+    image: "/problem-capacity.jpg",
     title: "You need more capacity, not more management",
     desc: "You want work completed reliably without coordinating several additional hires or freelancers.",
+    accent: "#8B5CF6",
   },
 ] as const;
 
 function Problems() {
+  const [activeProblem, setActiveProblem] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const problemCount = PROBLEMS.length;
+
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = window.setInterval(() => {
+      setActiveProblem((current) => (current + 1) % problemCount);
+    }, 5200);
+
+    return () => window.clearInterval(timer);
+  }, [isPaused, problemCount]);
+
+  const visibleProblems = [-1, 0, 1].map((offset) => {
+    const index = (activeProblem + offset + problemCount) % problemCount;
+    return { ...PROBLEMS[index], index, offset };
+  });
+
   return (
-    <section className="sec-white py-16 lg:py-24">
+    <section className="sec-white py-16 lg:py-24 overflow-hidden">
       <div className="mx-auto max-w-[1440px] px-4 lg:px-8">
         <SectionHeader
           eyebrow="The problem"
           title={
-            <>
-              Your business is growing.{" "}
-              <span className="text-muted-foreground">Why does everything feel harder?</span>
-            </>
+            <RevealWords text="Your business is growing. Why does everything feel harder?" highlight="harder?" />
           }
         />
-        <div className="mt-10 grid gap-5 sm:mt-14 sm:grid-cols-2 lg:grid-cols-4">
-          {PROBLEMS.map((p, i) => (
-            <ScrollReveal key={p.title} variant="fadeUp" delay={i * 0.08}>
-              <div className="rounded-2xl border border-border bg-[#F4F6FA] p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                <h3 className="font-display text-lg font-bold tracking-tight text-[#080D1C]">{p.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
-              </div>
-            </ScrollReveal>
-          ))}
+        <div
+          className="problem-carousel mt-10 sm:mt-14"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onFocus={() => setIsPaused(true)}
+          onBlur={() => setIsPaused(false)}
+        >
+          <div className="problem-carousel-track" aria-live="polite">
+            {visibleProblems.map((p) => {
+              const isFocused = p.offset === 0;
+              return (
+                <motion.article
+                  key={p.index}
+                  layout="position"
+                  initial={false}
+                  animate={{
+                    opacity: isFocused ? 1 : 0.65,
+                    scale: isFocused ? 1.12 : 0.84,
+                    zIndex: isFocused ? 3 : 1,
+                  }}
+                  transition={{
+                    layout: { duration: 0.85, ease: [0.16, 1, 0.3, 1] },
+                    default: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+                  }}
+                  onClick={() => {
+                    if (!isFocused) {
+                      setActiveProblem(p.index);
+                    }
+                  }}
+                  className={`problem-card problem-carousel-card group relative overflow-hidden rounded-2xl border p-6 text-left shadow-[0_24px_50px_-28px_rgba(0,0,0,.65)] transition-colors sm:p-10 ${isFocused ? "problem-carousel-card-focused cursor-default" : "problem-carousel-card-side cursor-pointer hover:opacity-85"}`}
+                  style={{
+                    backgroundColor: isFocused ? "#162038" : "#0F1628",
+                    borderColor: isFocused ? `${p.accent}88` : "rgba(255,255,255,0.1)",
+                  }}
+                >
+                  <img
+                    src={p.image}
+                    alt=""
+                    aria-hidden="true"
+                    className="problem-card-visual"
+                  />
+                  <div className="problem-card-visual-shade" aria-hidden="true" />
+                  <div className="problem-card-content">
+                    <p.icon className="h-7 w-7" style={{ color: p.accent }} strokeWidth={1.8} />
+                    <h3 className="mt-5 font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">{p.title}</h3>
+                    <p className="mt-3 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">{p.desc}</p>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
+
+          <div className="problem-carousel-indicators mt-7 flex items-center justify-center gap-2" role="tablist" aria-label="Problem carousel navigation">
+            {PROBLEMS.map((problem, index) => (
+              <button
+                key={problem.title}
+                type="button"
+                role="tab"
+                aria-selected={activeProblem === index}
+                aria-label={`Show problem ${index + 1}`}
+                onClick={() => setActiveProblem(index)}
+                className={`problem-indicator ${activeProblem === index ? "problem-indicator-active" : ""}`}
+                style={{ "--indicator-color": problem.accent } as React.CSSProperties}
+              >
+                {activeProblem === index && <span className={`problem-indicator-progress ${isPaused ? "problem-indicator-progress-paused" : ""}`} />}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <ScrollReveal variant="fadeUp" delay={0.3}>
+        <ScrollScene delay={0.3} direction="left">
           <div className="mt-12 rounded-2xl border border-[#FFB800]/20 bg-[#FFFDF5] p-6 lg:p-8">
             <p className="text-base leading-relaxed text-[#080D1C] font-medium">
               We don't just provide people or install software. We design the workflow, assign the right team, automate repetitive steps and take responsibility for delivery.
             </p>
           </div>
-        </ScrollReveal>
+        </ScrollScene>
       </div>
     </section>
   );
@@ -263,9 +436,7 @@ function Services() {
           <SectionHeader
             eyebrow="Services"
             title={
-              <>
-                Four services. <span className="text-muted-foreground">One accountable partner.</span>
-              </>
+              <RevealWords text="Four services. One accountable partner." highlight="accountable partner." />
             }
             description="We combine experienced people, structured processes, automation and AI to run the workflows that help your business move forward."
           />
@@ -277,14 +448,23 @@ function Services() {
           </Link>
         </div>
 
-        <div className="mt-8 grid gap-4 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="services-stack mt-8 grid gap-3 sm:mt-12 sm:grid-cols-2 lg:grid-cols-12 lg:grid-rows-[minmax(260px,1fr)_minmax(260px,1fr)]">
           {SERVICES.map((s, i) => (
-            <div
+            <ScrollScene
               key={s.code}
-              className="group relative overflow-hidden rounded-2xl border border-black/8 p-7 shadow-[0_12px_30px_-24px_rgba(8,13,28,.35)] transition-all duration-300 hover:-translate-y-1 hover:border-[#1B5EFF]/35 hover:shadow-[0_22px_45px_-26px_rgba(27,94,255,.38)]"
+              delay={i * 0.1}
+              direction={["left", "down", "up", "right"][i] as "left" | "down" | "up" | "right"}
+              className={`services-stack-item services-stack-item-${i + 1}`}
+            >
+            <motion.div
+              whileHover={{ y: -8, rotate: i % 2 === 0 ? -0.5 : 0.5 }}
+              className="service-card group relative h-full overflow-hidden rounded-[1.45rem] border border-black/8 p-7 shadow-[0_12px_30px_-24px_rgba(8,13,28,.35)] transition-shadow duration-300 hover:border-[#1B5EFF]/35 hover:shadow-[0_22px_45px_-26px_rgba(27,94,255,.38)]"
               style={{ backgroundColor: s.color }}
             >
               <div className="absolute right-0 top-0 h-20 w-20 rounded-bl-[5rem] bg-white/35 transition-colors group-hover:bg-white/50" />
+              <div className="relative mb-10 flex items-center justify-between">
+                <Sparkles className="h-4 w-4 text-[#080D1C]/45 transition-transform duration-500 group-hover:rotate-45 group-hover:scale-125" />
+              </div>
               <h3 className="relative max-w-[15rem] font-display text-lg font-bold tracking-tight text-[#080D1C]">{s.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-[#080D1C]/70">{s.desc}</p>
               <ul className="mt-4 space-y-1.5 font-mono text-[11px] text-[#080D1C]">
@@ -298,7 +478,8 @@ function Services() {
               <div className="mt-4 border-t border-[#080D1C]/10 pt-3">
                 <div className="font-mono text-[9px] uppercase tracking-[0.15em] text-[#080D1C]/45">For: {s.for}</div>
               </div>
-            </div>
+            </motion.div>
+            </ScrollScene>
           ))}
         </div>
 
@@ -320,15 +501,16 @@ function DeliveryModels() {
         <SectionHeader
           eyebrow="How we work"
           title={
-            <>
-              Two ways to <span className="text-gradient-gold">work with us.</span>
-            </>
+            <RevealWords text="Two ways to work with us." highlight="work with us." />
           }
         />
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
-          <ScrollReveal variant="fadeUp" delay={0.1}>
-            <div className="rounded-2xl border border-border bg-[#F4F6FA] p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-              <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#FFB800] mb-3">Option A</div>
+          <ScrollScene direction="left" delay={0.1}>
+            <div className="delivery-card group relative overflow-hidden rounded-2xl border border-border bg-[#F4F6FA] p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div className="absolute -right-10 -top-12 h-36 w-36 rounded-full bg-[#1B5EFF]/10 transition-transform duration-500 group-hover:scale-150" />
+              <div className="relative flex items-center justify-end">
+                <span className="rounded-full border border-[#1B5EFF]/20 bg-[#1B5EFF]/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-[#1B5EFF]">Build</span>
+              </div>
               <h3 className="font-display text-2xl font-bold tracking-tight text-[#080D1C]">Build & Handover</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 We design and implement the system, document it and train your team. You own everything and run it internally.
@@ -336,16 +518,19 @@ function DeliveryModels() {
               <ul className="mt-5 space-y-2 text-sm text-foreground/80">
                 {["System design & implementation", "Full documentation", "Team training & handover", "You own the system and processes"].map((item) => (
                   <li key={item} className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#1B5EFF]" />
+                    <Check className="h-3.5 w-3.5 text-[#1B5EFF]" />
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
-          </ScrollReveal>
-          <ScrollReveal variant="fadeUp" delay={0.2}>
-            <div className="rounded-2xl border-2 border-[#FFB800]/40 bg-[#FFFDF5] p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-              <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#FFB800] mb-3">Option B</div>
+          </ScrollScene>
+          <ScrollScene direction="right" delay={0.2}>
+            <div className="delivery-card group relative overflow-hidden rounded-2xl border-2 border-[#FFB800]/40 bg-[#FFFDF5] p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div className="absolute -right-10 -top-12 h-36 w-36 rounded-full bg-[#FFB800]/15 transition-transform duration-500 group-hover:scale-150" />
+              <div className="relative flex items-center justify-end">
+                <span className="rounded-full bg-[#FFB800] px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-[#080D1C]">Most popular</span>
+              </div>
               <h3 className="font-display text-2xl font-bold tracking-tight text-[#080D1C]">Build & Manage</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 We implement the workflow, operate it under an agreed scope and report on performance. We take responsibility for delivery.
@@ -353,13 +538,13 @@ function DeliveryModels() {
               <ul className="mt-5 space-y-2 text-sm text-foreground/80">
                 {["Everything in Build & Handover", "Ongoing managed operations", "Assigned people & automated steps", "Performance reporting & improvement"].map((item) => (
                   <li key={item} className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#FFB800]" />
+                    <Check className="h-3.5 w-3.5 text-[#FFB800]" />
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
-          </ScrollReveal>
+          </ScrollScene>
         </div>
       </div>
     </section>
@@ -412,10 +597,7 @@ function Methodology() {
         <SectionHeader
           eyebrow="Our process"
           title={
-            <>
-              From operational bottleneck{" "}
-              <span className="text-[#FFB800]">to managed delivery.</span>
-            </>
+            <RevealWords text="From operational bottleneck to managed delivery." highlight="managed delivery." />
           }
         />
         <div className="mt-10 flex flex-col gap-4 lg:flex-row">
@@ -431,14 +613,14 @@ function Methodology() {
                 transition={{
                   layout: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
                 }}
-                className={`group min-w-0 overflow-hidden rounded-2xl p-6 text-left flex flex-col transition-[min-height,flex-grow,flex-basis,transform,box-shadow,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:min-h-[400px] ${isActive ? "min-h-[350px] shadow-[0_18px_38px_-18px_rgba(0,0,0,.35)] lg:flex-[3_1_0%]" : "min-h-[120px] opacity-75 hover:opacity-100 lg:flex-[1_1_0%]"}`}
+                className={`method-card group min-w-0 overflow-hidden rounded-2xl p-6 text-left flex flex-col transition-[min-height,flex-grow,flex-basis,transform,box-shadow,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:min-h-[400px] ${isActive ? "min-h-[350px] shadow-[0_18px_38px_-18px_rgba(0,0,0,.35)] lg:flex-[3_1_0%]" : "min-h-[120px] opacity-75 hover:opacity-100 lg:flex-[1_1_0%]"}`}
                 style={{
                   backgroundColor: c.bg,
                   border: `1px solid ${c.accent}22`,
                 }}
               >
-                <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full" style={{ backgroundColor: c.accent }} />
+                <div className="flex items-center justify-end gap-2">
+                  <span className="h-2 w-2 rounded-full animate-pulse-dot" style={{ backgroundColor: c.accent }} />
                 </div>
                 <h3 className="mt-4 font-display text-xl font-bold tracking-tight text-[#080D1C]">
                   {s.k}
@@ -453,13 +635,17 @@ function Methodology() {
                       transition={{ duration: 0.3, ease: "easeOut" }}
                       className="mt-auto w-full rounded-xl border border-white/60 bg-white/65 p-4 text-sm leading-relaxed text-[#080D1C]/75 shadow-sm backdrop-blur-md"
                     >
-                      {s.d}
+                      <span>{s.d}</span>
+                      <span className="mt-3 block border-t border-[#080D1C]/10 pt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-[#080D1C]/55">Output · {s.out}</span>
                     </motion.p>
                   )}
                 </AnimatePresence>
               </motion.button>
             );
           })}
+        </div>
+        <div className="mt-5 font-mono text-[10px] uppercase tracking-[0.18em] text-white/45">
+          <TypeLine text="workflow engine // continuously improving" />
         </div>
       </div>
     </section>
@@ -469,7 +655,9 @@ function Methodology() {
 /* ------------------------------- FINAL CTA ------------------------------ */
 function FinalCTA() {
   return (
-    <section className="relative overflow-hidden border-t border-border py-16 lg:py-24">
+    <section className="cta-section relative overflow-hidden border-t border-border py-16 lg:py-24">
+      <div className="cta-orbit cta-orbit-one" aria-hidden="true" />
+      <div className="cta-orbit cta-orbit-two" aria-hidden="true" />
       <div className="relative mx-auto max-w-4xl px-4 lg:px-6 text-center">
         <ScrollReveal variant="scaleIn">
           <div className="inline-flex items-center gap-2 mb-4">
@@ -477,8 +665,7 @@ function FinalCTA() {
             <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#FFB800]/70">Let's talk</span>
           </div>
           <h2 className="font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-[56px] lg:leading-[1.05]">
-            Ready to stop running{" "}
-            <span className="text-gradient-gold">everything manually?</span>
+            <RevealWords text="Ready to stop running everything manually?" highlight="everything manually?" />
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
             Tell us what's taking too much time from your team. We'll discuss the workflow, identify where support or automation could help, and determine whether there's a practical fit.
