@@ -11,10 +11,10 @@ import { submitBookSession } from "@/lib/form-actions";
 export const Route = createFileRoute("/book")({
   head: () => ({
     meta: [
-      { title: "Book a Strategy Session | SuperTelque LLC" },
-      { name: "description", content: "Book a 45-minute revenue systems strategy session with a senior RevOps engineer." },
-      { property: "og:title", content: "Book a Strategy Session | SuperTelque LLC" },
-      { property: "og:description", content: "45 minutes with a senior RevOps engineer. Free for qualifying B2B teams." },
+      { title: "Book an Operations Review | SuperTelque" },
+      { name: "description", content: "Book a 20-minute operations review with SuperTelque. Tell us what's taking too much time and we'll identify where support or automation could help." },
+      { property: "og:title", content: "Book an Operations Review | SuperTelque" },
+      { property: "og:description", content: "20 minutes. Tell us what's slowing your team down. Free, no obligation." },
     ],
   }),
   component: BookPage,
@@ -40,8 +40,7 @@ function BookPage() {
   const [workEmail, setWorkEmail] = useState("");
   const [company, setCompany] = useState("");
   const [companySize, setCompanySize] = useState("1-10");
-  const [crm, setCrm] = useState("HubSpot");
-  const [challenge, setChallenge] = useState("none");
+  const [supportType, setSupportType] = useState("Not sure");
   const [notes, setNotes] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sending, setSending] = useState(false);
@@ -63,7 +62,7 @@ function BookPage() {
     setSending(true);
     try {
       await submitBookSession({
-        data: { fullName, workEmail, company, companySize, crm, challenge, notes, selectedDate: formatConfirmDate(selectedDate), selectedSlot },
+        data: { fullName, workEmail, company, companySize, crm: supportType, challenge: supportType, notes, selectedDate: formatConfirmDate(selectedDate), selectedSlot },
       });
       goTo(3, 1);
     } catch {
@@ -90,11 +89,11 @@ function BookPage() {
             <div className="lg:col-span-7">
               <Eyebrow>Book a session</Eyebrow>
               <h1 className="mt-5 font-display text-[34px] font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
-                Book a <span className="text-gradient-gold">free strategy</span> session.
+                Book a <span className="text-gradient-gold">20-minute</span> operations review.
               </h1>
               <ScrollReveal variant="fadeUp" delay={0.15}>
                 <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-                  45 minutes with a senior RevOps engineer. Your stack reviewed, quick wins identified, and a clear plan to move forward.
+                  Tell us what's taking too much time from your team. We'll discuss the workflow, identify where support or automation could help, and determine whether there's a practical fit.
                 </p>
               </ScrollReveal>
             </div>
@@ -103,18 +102,18 @@ function BookPage() {
                 <div className="relative h-48 lg:h-56 overflow-hidden">
                   <img
                     src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=800&q=80&auto=format&fit=crop"
-                    alt="Professional strategy session in a modern office"
+                    alt="Professional operations review"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#080D1C]/60 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
                     <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Free · No pressure</div>
-                    <div className="mt-0.5 font-display text-sm font-bold text-white">45 minutes. Clear starting point.</div>
+                    <div className="mt-0.5 font-display text-sm font-bold text-white">20 minutes. Clear next steps.</div>
                   </div>
                 </div>
                 <div className="px-5 py-4 bg-[#F4F7FF] flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#4C5670]">Free for qualifying B2B teams</span>
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#4C5670]">For growing businesses</span>
                 </div>
               </div>
             </ScrollReveal>
@@ -135,7 +134,6 @@ function BookPage() {
                 {step !== 3 && (
                   <div className="px-6 pt-6 pb-5 border-b border-[#F0F4FF]">
                     <div className="flex items-center gap-3">
-                      {/* Step 1 pill */}
                       <div className={`flex items-center gap-2 transition-colors ${step >= 1 ? "text-[#1B5EFF]" : "text-[#4C5670]/35"}`}>
                         <span className="flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-bold transition-colors"
                           style={{ background: step >= 1 ? "#1B5EFF" : "#E8EEFF", color: step >= 1 ? "white" : "#4C5670" }}>
@@ -147,9 +145,7 @@ function BookPage() {
                         </span>
                         <span className="font-mono text-[10.5px] uppercase tracking-[0.16em]">Schedule</span>
                       </div>
-                      {/* Connector */}
                       <div className="flex-1 h-px" style={{ background: step >= 2 ? "#1B5EFF" : "#E8EEFF" }} />
-                      {/* Step 2 pill */}
                       <div className={`flex items-center gap-2 transition-colors ${step >= 2 ? "text-[#1B5EFF]" : "text-[#4C5670]/35"}`}>
                         <span className="flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-bold transition-colors"
                           style={{ background: step >= 2 ? "#1B5EFF" : "#E8EEFF", color: step >= 2 ? "white" : "#4C5670" }}>
@@ -208,7 +204,6 @@ function BookPage() {
 
                     {step === 2 && (
                       <motion.div key="step2" custom={dir} variants={SLIDE_VARIANTS} initial="initial" animate="animate" exit="exit" transition={SLIDE_TRANSITION} className="p-6 lg:p-8">
-                        {/* Selected time reminder */}
                         {selectedDate && selectedSlot && (
                           <div className="mb-7 flex items-center gap-3 rounded-xl border border-[#E8EEFF] bg-[#F8FAFF] px-4 py-3">
                             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#1B5EFF]/10">
@@ -220,7 +215,7 @@ function BookPage() {
                               <div className="font-display text-[13px] font-semibold text-[#080D1C]">
                                 {formatConfirmDate(selectedDate)} · {selectedSlot} WAT
                               </div>
-                              <div className="font-mono text-[10px] text-[#4C5670]/55 uppercase tracking-[0.14em]">45-minute strategy session</div>
+                              <div className="font-mono text-[10px] text-[#4C5670]/55 uppercase tracking-[0.14em]">20-minute operations review</div>
                             </div>
                             <button type="button" onClick={() => goTo(1, -1)} className="ml-auto font-mono text-[10.5px] text-[#1B5EFF] hover:underline shrink-0">
                               Change
@@ -233,18 +228,19 @@ function BookPage() {
                           <FormField label="Work email" type="email" placeholder="alex@company.com" value={workEmail} onChange={(e) => setWorkEmail(e.target.value)} error={errors.workEmail} />
                           <FormField label="Company" placeholder="Acme Inc." value={company} onChange={(e) => setCompany(e.target.value)} error={errors.company} />
                           <FormSelect label="Company size" options={["1-10", "11-50", "51-200", "201-500", "500+"]} value={companySize} onChange={(e) => setCompanySize(e.target.value)} />
-                          <FormSelect label="Current CRM" options={["HubSpot", "Salesforce", "Pipedrive", "Zoho CRM", "Monday.com CRM", "Close", "ActiveCampaign", "Keap / Infusionsoft", "Other", "None / building"]} value={crm} onChange={(e) => setCrm(e.target.value)} />
-                          <FormSelect
-                            label="Main challenge"
-                            options={["none", "Forecasting accuracy", "Lead routing & SLAs", "CRM re-architecture", "Outbound infrastructure", "Attribution & reporting", "AI in the GTM stack"]}
-                            value={challenge}
-                            onChange={(e) => setChallenge(e.target.value)}
-                          />
                           <div className="sm:col-span-2">
-                            <FieldLabel>Anything else? (optional)</FieldLabel>
+                            <FormSelect
+                              label="Type of support needed"
+                              options={["Sales & Revenue Operations", "Customer Operations", "Business Operations", "CRM & Automation", "Not sure"]}
+                              value={supportType}
+                              onChange={(e) => setSupportType(e.target.value)}
+                            />
+                          </div>
+                          <div className="sm:col-span-2">
+                            <FieldLabel>What's taking too much time? (optional)</FieldLabel>
                             <textarea
                               rows={3}
-                              placeholder="Context, links, current stack..."
+                              placeholder="Tell us about the workflow or process that's slowing your team down..."
                               value={notes}
                               onChange={(e) => setNotes(e.target.value)}
                               className="mt-2 w-full resize-none rounded-xl border border-[#E8EEFF] bg-[#FAFBFF] px-4 py-3 text-sm text-[#080D1C] placeholder:text-[#4C5670]/40 focus:outline-none focus:ring-2 focus:ring-[#1B5EFF]/20 focus:border-[#1B5EFF]/40 transition-colors"
@@ -311,7 +307,7 @@ function BookPage() {
                             <div className="font-display text-lg font-bold text-[#080D1C]">
                               {formatConfirmDate(selectedDate)} · {selectedSlot} WAT
                             </div>
-                            <div className="font-mono text-[11px] text-[#4C5670]/55 mt-1">45 min · SuperTelque LLC</div>
+                            <div className="font-mono text-[11px] text-[#4C5670]/55 mt-1">20 min · SuperTelque LLC</div>
                           </div>
                         )}
                         <div className="mt-8 flex flex-wrap gap-3 justify-center">
@@ -338,12 +334,11 @@ function BookPage() {
                 <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#4C5670]/55 mb-4">What you'll get</div>
                 <ul className="space-y-3">
                   {[
-                    "Full revenue stack audit",
-                    "Three quick wins to act on now",
-                    "CRM health check",
-                    "Growth recommendations",
-                    "Written 90-day roadmap",
-                  ].map((item, idx) => (
+                    "Identify what's slowing your team down",
+                    "Discuss where support or automation could help",
+                    "Determine if there's a practical fit",
+                    "Clear next steps — no obligation",
+                  ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <span className="mt-1.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#FFB800]/15">
                         <svg viewBox="0 0 10 10" fill="none" className="h-2.5 w-2.5">
@@ -356,13 +351,13 @@ function BookPage() {
                 </ul>
               </div>
 
-<div className="rounded-2xl border border-[#E8EEFF] bg-[#FAFBFF] p-5">
+              <div className="rounded-2xl border border-[#E8EEFF] bg-[#FAFBFF] p-5">
                 <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#4C5670]/55 mb-3">Who it's for</div>
                 <div className="text-sm text-[#4C5670] leading-relaxed">
-                  Series A to C B2B companies in SaaS, fintech, ecommerce, and beyond.
+                  Growing businesses that need operational support — whether you're a service company, a small team scaling up, or an organization that needs help managing processes.
                 </div>
                 <div className="mt-3 flex flex-wrap gap-1.5">
-                  {["B2B SaaS", "Fintech", "Ecommerce", "AI Startups"].map((t) => (
+                  {["Service businesses", "Small teams", "Growing companies", "Operations leaders"].map((t) => (
                     <span key={t} className="rounded-full border border-[#E8EEFF] bg-white px-2.5 py-1 font-mono text-[10px] text-[#4C5670]/60">{t}</span>
                   ))}
                 </div>
@@ -389,10 +384,10 @@ function BookPage() {
                   Manage your project
                 </h2>
                 <p className="mt-2 max-w-lg text-[15px] leading-relaxed text-[#4C5670]">
-                  Track deliverables, review progress, share feedback, and collaborate with your SuperTelque team. Everything your engagement needs in one place.
+                  Track deliverables, review progress, share feedback, and collaborate with your SuperTelque team.
                 </p>
                 <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-1.5">
-                  {["Track milestones", "Review deliverables", "Collaborate with your team", "Manage your own projects"].map((item) => (
+                  {["Track milestones", "Review deliverables", "Collaborate with your team"].map((item) => (
                     <li key={item} className="flex items-center gap-1.5 font-mono text-[11px] text-[#4C5670]">
                       <span className="h-1.5 w-1.5 rounded-full bg-[#1B5EFF]" />
                       {item}

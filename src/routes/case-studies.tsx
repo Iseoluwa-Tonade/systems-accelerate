@@ -6,10 +6,10 @@ import { ScrollReveal, StaggerReveal, StaggerChild } from "@/components/site/Scr
 export const Route = createFileRoute("/case-studies")({
   head: () => ({
     meta: [
-      { title: "Case Studies | SuperTelque LLC" },
-      { name: "description", content: "Teardowns of RevOps and GTM engineering engagements: B2B SaaS pipeline transformation, fintech automation, AI startup lead routing." },
-      { property: "og:title", content: "Case Studies | SuperTelque LLC" },
-      { property: "og:description", content: "Challenge · Solution · Stack · Outcome: three engagement teardowns." },
+      { title: "Case Studies | SuperTelque" },
+      { name: "description", content: "How SuperTelque helps growing businesses manage sales, customer and back-office operations through people, automation and AI." },
+      { property: "og:title", content: "Case Studies | SuperTelque" },
+      { property: "og:description", content: "Real examples of operational problems solved with managed services, workflow automation and AI." },
     ],
   }),
   component: CaseStudiesPage,
@@ -17,48 +17,51 @@ export const Route = createFileRoute("/case-studies")({
 
 const CASES = [
   {
-    tag: "Enterprise SaaS · Series C",
+    tag: "Home Services",
     color: "#1B5EFF",
-    title: "Forecasting alignment across a 200-rep org",
+    title: "Appointment coordination and customer follow-up for a growing service company",
     challenge:
-      "Three forecasting systems disagreed every Monday. CRO meetings opened with reconciliation, not strategy.",
+      "New customer inquiries were coming in through multiple channels — phone, email, website forms — but responses were inconsistent. Estimate follow-ups were being missed, and the operations team spent most of their day on manual coordination.",
     solution:
-      "Re-architected the HubSpot / Salesforce contract, deployed a versioned object model, and shipped bi-directional sync with a single forecast surface.",
-    stack: ["HubSpot", "Salesforce", "n8n", "Snowflake", "Power BI"],
-    outcomes: [
-      ["100%", "Forecasting alignment across regions"],
-      ["72%", "Reduction in manual reconciliation"],
-      ["4.2s", "End-to-end sync latency"],
+      "Implemented a unified inquiry management workflow. Set up automated appointment scheduling, estimate follow-up sequences, and a customer communications system that keeps records accurate across channels.",
+    stack: ["HubSpot", "GoHighLevel", "n8n", "Slack"],
+    deliverables: [
+      "Unified inquiry routing across all channels",
+      "Automated estimate follow-up sequences",
+      "Appointment scheduling and coordination",
+      "Customer operations reporting dashboard",
     ],
   },
   {
-    tag: "Fintech · Series B",
+    tag: "Industrial Services",
     color: "#14B8A6",
-    title: "Outbound automation across 3 GTM motions",
+    title: "Prospecting and quotation management support for a commercial services firm",
     challenge:
-      "Manual enrichment, fragmented sequences, and no signal layer meant reps spent 60% of their week on list-building.",
+      "The sales team was handling both prospecting and quotation management manually. New leads were being researched during the same hours as client delivery, creating inconsistent follow-up and missed opportunities.",
     solution:
-      "Built a Clay waterfall feeding Apollo sequences, routed via intent signals and scored by an OpenAI layer with hand-off into Salesforce.",
-    stack: ["Clay", "Apollo", "Salesforce", "OpenAI", "Slack"],
-    outcomes: [
-      ["3.5×", "Meeting booking rate"],
-      ["+62%", "Rep selling time recovered"],
-      ["48%", "Cost per qualified meeting reduced"],
+      "Built a prospecting workflow with research enrichment, automated outreach sequences, and a quotation management system that tracks every opportunity from first contact through to close.",
+    stack: ["Apollo", "Clay", "Pipedrive", "n8n", "Slack"],
+    deliverables: [
+      "Prospect research and enrichment pipeline",
+      "Automated outbound sequences",
+      "Quotation tracking and follow-up",
+      "Weekly pipeline reporting",
     ],
   },
   {
-    tag: "AI Startup · Series A",
+    tag: "Professional Services",
     color: "#8B5CF6",
-    title: "Intent-driven lead routing engine",
+    title: "Back-office administration and scheduling automation for a services business",
     challenge:
-      "Lead response time over an hour. Hot demo requests landing in shared inboxes and going stale.",
+      "The business owner was spending over half their week on administrative tasks — data entry, scheduling, document preparation, and internal coordination — instead of business development and client delivery.",
     solution:
-      "Designed a routing engine with intent enrichment, AI prioritization, and Slack-native escalation that paged the right AE in under 90 seconds.",
-    stack: ["HubSpot", "OpenAI", "Make", "Slack"],
-    outcomes: [
-      ["+22%", "SQL conversion lift"],
-      ["<90s", "Hot-lead response time"],
-      ["+38%", "Demo show rate improvement"],
+      "Automated repetitive administrative workflows, set up structured scheduling and task management, and created SOPs for the processes that needed human oversight.",
+    stack: ["Google Workspace", "Zapier", "Notion", "Calendly"],
+    deliverables: [
+      "Automated data entry and document workflows",
+      "Structured scheduling and task management",
+      "Process documentation and SOPs",
+      "Weekly operations reporting",
     ],
   },
 ];
@@ -80,25 +83,14 @@ function CaseStudiesPage() {
             <div className="lg:col-span-7">
               <Eyebrow>Case studies</Eyebrow>
               <h1 className="mt-5 font-display text-[34px] font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
-                Real work.
+                Real problems.
                 <br />
-                <span className="text-gradient-gold">Real results.</span>
+                <span className="text-gradient-gold">Practical solutions.</span>
               </h1>
               <ScrollReveal variant="fadeUp" delay={0.15}>
                 <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
-                  Three recent engagements with the full picture: the problem, what we built,
-                  the tools we used, and the numbers that moved.
+                  Examples of operational problems we've helped businesses solve — with the workflow, the tools, and the approach we used.
                 </p>
-              </ScrollReveal>
-              <ScrollReveal variant="fadeUp" delay={0.25}>
-                <div className="mt-10 flex flex-wrap items-center gap-8 border-t border-border pt-8">
-                  {[["3", "Engagements detailed"], ["9", "Key metrics moved"], ["100%", "Delivered on time"]].map(([v, l]) => (
-                    <div key={l}>
-                      <div className="font-display text-2xl font-bold text-[#080D1C] leading-none">{v}</div>
-                      <div className="mt-1 font-mono text-[9.5px] uppercase tracking-[0.18em] text-muted-foreground">{l}</div>
-                    </div>
-                  ))}
-                </div>
               </ScrollReveal>
             </div>
             <ScrollReveal variant="fadeUp" delay={0.2} className="lg:col-span-5">
@@ -106,18 +98,18 @@ function CaseStudiesPage() {
                 <div className="relative h-48 lg:h-56 overflow-hidden">
                   <img
                     src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop"
-                    alt="Revenue analytics and reporting dashboard"
+                    alt="Operations and workflow management"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#080D1C]/60 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Outcomes, not outputs</div>
-                    <div className="mt-0.5 font-display text-sm font-bold text-white">Numbers that moved.</div>
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Outcomes over outputs</div>
+                    <div className="mt-0.5 font-display text-sm font-bold text-white">What was built and delivered.</div>
                   </div>
                 </div>
                 <div className="px-5 py-4 bg-[#F4F7FF] flex items-center gap-3">
                   <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#4C5670]">Full teardowns · Challenge, solution, stack</span>
+                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#4C5670]">Real examples · Honest outcomes</span>
                 </div>
               </div>
             </ScrollReveal>
@@ -135,12 +127,12 @@ function CaseStudiesPage() {
                   <div className="my-16 lg:my-24 flex items-center gap-6">
                     <div className="flex-1 h-px bg-border" />
                     <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                      {String(i + 1).padStart(2, "0")} / {String(CASES.length).padStart(2, "0")}
+                      Next case
                     </span>
                     <div className="flex-1 h-px bg-border" />
                   </div>
                 )}
-                <Study c={c} index={i} />
+                <Study c={c} />
               </div>
             </ScrollReveal>
           ))}
@@ -163,17 +155,17 @@ function CaseStudiesPage() {
               <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/40">SuperTelque LLC</span>
             </div>
             <h2 className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-              Your project could be next.
+              Your operations could be next.
             </h2>
             <p className="mx-auto mt-4 max-w-md text-[17px] leading-relaxed text-white/50">
-              45 minutes. We review your setup and hand you a clear starting point.
+              20 minutes. Tell us what's slowing your team down and we'll tell you where support or automation could help.
             </p>
             <Link
               to="/book"
               className="mt-10 inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-[15px] font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_16px_40px_-8px_rgba(255,184,0,0.50)]"
               style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 60%, #E08A00 100%)" }}
             >
-              Book a strategy session
+              Book an Operations Review
               <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -185,7 +177,7 @@ function CaseStudiesPage() {
   );
 }
 
-function Study({ c, index }: { c: (typeof CASES)[number]; index: number }) {
+function Study({ c }: { c: (typeof CASES)[number] }) {
   return (
     <article className="grid gap-10 lg:grid-cols-12">
       <div className="lg:col-span-5">
@@ -195,9 +187,6 @@ function Study({ c, index }: { c: (typeof CASES)[number]; index: number }) {
             style={{ backgroundColor: c.color }}
           >
             {c.tag}
-          </span>
-          <span className="font-mono text-[10px] text-muted-foreground">
-            Case · {String(index + 1).padStart(2, "0")} / {String(CASES.length).padStart(2, "0")}
           </span>
         </div>
         <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
@@ -226,13 +215,17 @@ function Study({ c, index }: { c: (typeof CASES)[number]; index: number }) {
 
       <div className="lg:col-span-7 space-y-4">
         <DashboardMock c={c} />
-        <StaggerReveal className="grid grid-cols-3 gap-3">
-          {c.outcomes.map(([v, l]) => (
-            <StaggerChild key={l} className="rounded-xl border border-border bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#FFB800]/30">
-              <div className="font-display text-2xl font-extrabold tracking-tight text-gradient-gold">
-                {v}
+        <StaggerReveal className="grid grid-cols-2 gap-3">
+          {c.deliverables.map((d) => (
+            <StaggerChild key={d} className="rounded-xl border border-border bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#FFB800]/30">
+              <div className="flex items-start gap-3">
+                <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#FFB800]/15">
+                  <svg viewBox="0 0 10 10" fill="none" className="h-2.5 w-2.5">
+                    <path d="M2 5l2.5 2.5L8 3" stroke="#B45309" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                <div className="text-sm text-foreground/80 leading-snug">{d}</div>
               </div>
-              <div className="mt-2 text-xs leading-snug text-muted-foreground">{l}</div>
             </StaggerChild>
           ))}
         </StaggerReveal>
@@ -257,7 +250,6 @@ function DashboardMock({ c }: { c: (typeof CASES)[number] }) {
   const bars = Array.from({ length: 16 }, (_, i) => 20 + ((seed * (i + 3)) % 70));
   return (
     <div className="rounded-2xl border border-white/10 bg-[#0B1120] shadow-[0_24px_60px_-12px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.06)] overflow-hidden">
-      {/* Header bar */}
       <div className="flex items-center justify-between border-b border-white/07 px-5 py-3.5">
         <div className="flex items-center gap-2.5">
           <div className="flex gap-1.5">
@@ -266,7 +258,7 @@ function DashboardMock({ c }: { c: (typeof CASES)[number] }) {
             <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
           </div>
           <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/30 ml-2">
-            pipeline · 16-week view
+            operations · workflow overview
           </div>
         </div>
         <div className="flex items-center gap-1.5">
@@ -274,26 +266,22 @@ function DashboardMock({ c }: { c: (typeof CASES)[number] }) {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
           </span>
-          <span className="font-mono text-[9px] text-emerald-400/70">live</span>
+          <span className="font-mono text-[9px] text-emerald-400/70">delivered</span>
         </div>
       </div>
 
       <div className="p-5">
-        {/* Outcome metric mini-cards */}
-        <div className="grid grid-cols-3 gap-2 mb-4">
-          {c.outcomes.map(([v, l]) => (
-            <div key={l} className="rounded-xl border border-white/07 bg-white/03 p-3">
-              <div className="font-display text-[20px] font-bold leading-none text-gradient-gold">{v}</div>
-              <div className="mt-1.5 font-mono text-[8.5px] text-white/35 leading-tight">{l}</div>
+        <div className="grid grid-cols-2 gap-2 mb-4">
+          {c.deliverables.slice(0, 2).map((d) => (
+            <div key={d} className="rounded-xl border border-white/07 bg-white/03 p-3">
+              <div className="font-mono text-[9px] text-white/35 leading-tight">{d}</div>
             </div>
           ))}
         </div>
 
-        {/* Bar chart */}
         <div className="rounded-xl border border-white/06 bg-white/02 p-3 mb-3">
           <div className="flex items-center justify-between mb-2.5">
-            <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/25">Pipeline trend</div>
-            <div className="font-mono text-[9px] text-white/20">USD normalized</div>
+            <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/25">Delivery timeline</div>
           </div>
           <div className="flex items-end gap-[3px] h-12">
             {bars.map((h, i) => (
@@ -310,19 +298,15 @@ function DashboardMock({ c }: { c: (typeof CASES)[number] }) {
               </div>
             ))}
           </div>
-          <div className="mt-2 grid grid-cols-4 gap-1 font-mono text-[8.5px] uppercase tracking-[0.15em] text-white/20">
-            {["MQL", "SQL", "Opp", "Won"].map((s) => <div key={s}>{s}</div>)}
-          </div>
         </div>
 
-        {/* Stack tags */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1 flex-wrap">
             {c.stack.map((t) => (
               <span key={t} className="rounded px-1.5 py-0.5 font-mono text-[8.5px] text-white/35 border border-white/07">{t}</span>
             ))}
           </div>
-          <span className="font-mono text-[8.5px] text-white/20">synced live</span>
+          <span className="font-mono text-[8.5px] text-white/20">delivered</span>
         </div>
       </div>
     </div>

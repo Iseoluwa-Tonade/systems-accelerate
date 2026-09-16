@@ -20,11 +20,11 @@ export function SiteFooter() {
               </div>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              A GTM architecture and AI engineering partner for B2B companies building more predictable revenue.
+              We build, automate and manage the sales, customer and operational processes that keep growing businesses running.
             </p>
 
             <p className="mt-4 text-xs text-[#FFB800]/60">
-              Fractional RevOps · Autonomous AI · B2B GEO
+              Revenue · Customers · Operations · AI
             </p>
           </div>
 
@@ -44,11 +44,10 @@ export function SiteFooter() {
             <FooterCol
               title="Services"
               links={[
-                { to: "/services", label: "Fractional RevOps" },
-                { to: "/services", label: "Pipeline Architecture" },
-                { to: "/services", label: "Autonomous AI Engineering" },
-                { to: "/services", label: "B2B GEO" },
-                { to: "/services", label: "Demand Generation" },
+                { to: "/services#revenue", label: "Sales & Revenue Operations" },
+                { to: "/services#customers", label: "Customer Operations" },
+                { to: "/services#operations", label: "Business Operations" },
+                { to: "/services#systems", label: "CRM & Workflow Engineering" },
               ]}
             />
             <FooterCol

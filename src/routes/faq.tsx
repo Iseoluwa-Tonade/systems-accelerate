@@ -8,7 +8,7 @@ export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
       { title: "FAQ | SuperTelque" },
-      { name: "description", content: "Answers to the most common questions about working with SuperTelque: services, pricing, timelines, and how engagements are structured." },
+      { name: "description", content: "Answers to the most common questions about working with SuperTelque: services, delivery models, pricing, timelines and how engagements work." },
       { property: "og:title", content: "FAQ | SuperTelque" },
       { property: "og:description", content: "How SuperTelque engagements work, what we build, and what to expect." },
     ],
@@ -23,23 +23,27 @@ const FAQS = [
     items: [
       {
         q: "What does SuperTelque actually do?",
-        a: "We build the systems B2B companies run on. That includes lead generation, inbound handling, and outbound campaigns; CRM setup and sales operations across all major platforms; RevOps and GTM engineering; workflow automation with AI; social media and community management; and virtual assistance covering admin duties, commerce management, order processing, and back-office operations. One team, one accountable partner.",
+        a: "We build, automate and manage the sales, customer and operational processes that growing businesses need to run. That includes managed sales and revenue operations, customer operations, business operations, and CRM, AI and workflow engineering. We combine experienced people, structured processes and automation to deliver outcomes — not just tools or headcount.",
       },
       {
         q: "Who do you work with?",
-        a: "Founders and operators at B2B companies who need real systems built, not slide decks. We work best with companies that have a repeatable offer and want to scale it without adding headcount for every function.",
+        a: "Growing businesses that need operational support — whether you're a home services company, an industrial business, a property manager, or a B2B company scaling up. We work best with companies that have a repeatable offer and need help running the processes around it without building another internal department.",
       },
       {
         q: "How do engagements start?",
-        a: "Everything starts with a 45-minute strategy session. We review your current setup, identify the biggest gaps, and give you a clear starting point. No pressure, no pitch deck. You can book directly from our website.",
+        a: "Everything starts with a 20-minute operations review. Tell us what's taking too much time from your team, and we'll discuss the workflow, identify where support or automation could help, and determine whether there's a practical fit. No pressure, no pitch deck.",
+      },
+      {
+        q: "What's the difference between Build & Handover and Build & Manage?",
+        a: "Build & Handover: We design and implement the system, document it and train your team. You own everything and run it internally. Build & Manage: We implement the workflow, operate it under an agreed scope and report on performance. We take responsibility for running the process on an ongoing basis. You can choose either model depending on where you are.",
       },
       {
         q: "Do you work on retainer or project-by-project?",
-        a: "Both. Some clients start with a defined project (CRM implementation, automation build, outbound campaign setup) and transition to a retainer once the foundations are in place. Others engage on a rolling basis from day one. We scope based on what makes sense for where you are.",
+        a: "Both. Some clients start with a defined project (CRM implementation, automation build, outbound campaign setup) and transition to ongoing support once the foundations are in place. Others engage on a managed-service basis from day one. We scope based on what makes sense for where you are.",
       },
       {
         q: "Are you fully remote?",
-        a: "Yes. We are a remote-first team and work with clients globally. All communication is async-friendly and we operate across time zones. Our team and clients are distributed worldwide.",
+        a: "Yes. We are a remote-first team and work with clients globally. All communication is async-friendly and we operate across time zones.",
       },
     ],
   },
@@ -48,8 +52,12 @@ const FAQS = [
     color: "#10B981",
     items: [
       {
-        q: "Which CRMs do you work with?",
-        a: "We work with all major CRM platforms: HubSpot, Salesforce, Pipedrive, Zoho CRM, Close, ActiveCampaign, Monday.com CRM, Keap, and others. We meet you where you are. If you already have a CRM, we will work in it. If you are choosing one, we will help you pick the right tool for your stage and structure, then implement it properly.",
+        q: "What's the difference between managed services and outsourced staffing?",
+        a: "Outsourced staffing gives you a person who follows your instructions. Managed services give you an accountable partner who owns the workflow end-to-end — including the process design, automation, people, escalation and reporting. You don't have to manage the individual task execution; we take responsibility for the outcome.",
+      },
+      {
+      q: "Which CRMs do you work with?",
+        a: "We work with all major CRM platforms: HubSpot, Salesforce, Pipedrive, Zoho CRM, Close, ActiveCampaign, Monday.com CRM, Keap, and others. We meet you where you are. If you already have a CRM, we will work in it. If you are choosing one, we will help you pick the right tool for your stage and structure.",
       },
       {
         q: "What automation tools do you use?",
@@ -61,15 +69,11 @@ const FAQS = [
       },
       {
         q: "How long does a typical project take?",
-        a: "It depends on scope. A focused CRM cleanup or a single automation workflow can ship in one to two weeks. A full RevOps implementation or outbound infrastructure build typically runs four to eight weeks. We scope and timeline before any work starts so you know exactly what to expect.",
+        a: "It depends on scope. A focused CRM cleanup or a single automation workflow can ship in one to two weeks. A full managed operations setup typically runs four to eight weeks. We scope and timeline before any work starts so you know exactly what to expect.",
       },
       {
         q: "Do you document your work?",
         a: "Always. Every system we build is fully documented before handover. You own the documentation, the credentials, and the workflows. We build so the system outlasts the engagement.",
-      },
-      {
-        q: "Can you manage our social media accounts?",
-        a: "Yes. Social media and community management is one of our six service lines. We handle content scheduling, audience engagement, brand voice consistency, and growth across LinkedIn, X, and Instagram. We can take it fully off your plate or work alongside an internal team.",
       },
     ],
   },
@@ -79,19 +83,23 @@ const FAQS = [
     items: [
       {
         q: "How is pricing structured?",
-        a: "We price by scope and outcome, not by the hour. After the strategy session we put together a clear proposal: what we build, what it costs, and what you get at the end. No retainers with vague deliverables.",
+        a: "We price by scope and outcome, not by the hour. After the operations review we put together a clear proposal: what we build, what it costs, and what you get at the end. For managed services, we agree on a scope and recurring fee. For projects, we quote a fixed price.",
       },
       {
         q: "Do you sign NDAs?",
         a: "Yes, on request. We handle client data and internal processes as a matter of course, so confidentiality is standard practice for us.",
       },
       {
-        q: "Are you GDPR compliant?",
-        a: "Yes. We operate in compliance with GDPR and handle data from European clients regularly. We can provide a data processing agreement if required.",
+        q: "What happens after a project ends?",
+        a: "You walk away with fully working systems, documentation, and the knowledge to run them. If you want ongoing support, we offer managed-service arrangements. If you don't, everything is yours and you are fully equipped to manage it internally.",
       },
       {
-        q: "What happens after a project ends?",
-        a: "You walk away with fully working systems, documentation, and the knowledge to run them. If you want ongoing support, we offer retainer arrangements. If you do not, everything is yours and you are fully equipped to manage it internally.",
+        q: "What if my requirements change during an engagement?",
+        a: "We scope work with the understanding that things change. If your requirements shift, we discuss the impact on scope, timeline and cost before making any changes. No surprises.",
+      },
+      {
+        q: "How do you handle system access and security?",
+        a: "We use scoped access — we only access the systems we need to do the work. All team members operate under confidentiality agreements. We use MFA, approved tools, and structured handover processes. We can discuss specific security requirements during the engagement setup.",
       },
     ],
   },
@@ -198,7 +206,6 @@ function FaqPage() {
       <section className="sec-white py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
           <div className="grid gap-16 lg:grid-cols-12 lg:gap-10">
-            {/* Sticky sidebar nav on large screens */}
             <nav className="hidden lg:block lg:col-span-3">
               <div className="sticky top-24 space-y-1">
                 <div className="mb-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Jump to</div>
@@ -214,7 +221,6 @@ function FaqPage() {
               </div>
             </nav>
 
-            {/* Accordion groups */}
             <div className="lg:col-span-9 space-y-12">
               {FAQS.map((cat, ci) => (
                 <ScrollReveal key={cat.category} variant="fadeUp" delay={ci * 0.08}>
@@ -287,17 +293,17 @@ function FaqPage() {
               <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
             </div>
             <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-              Ready to build?
+              Ready to get started?
             </h2>
             <p className="mx-auto mt-3 max-w-md text-base text-white/60">
-              45 minutes. We review your setup and tell you where to start.
+              20 minutes. Tell us what's taking too much time and we'll tell you where to start.
             </p>
             <Link
               to="/book"
               className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_12px_28px_-6px_rgba(255,184,0,0.40)]"
               style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
             >
-              Book a strategy session
+              Book an Operations Review
               <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

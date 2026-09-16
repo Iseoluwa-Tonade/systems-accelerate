@@ -215,14 +215,14 @@ function BlogPostPage() {
                     <span className="font-display text-[15px] font-bold text-[#080D1C]">SuperTelque</span>
                   </div>
                   <p className="text-sm leading-relaxed text-[#4C5670]">
-                    We build the systems B2B companies run on. Lead generation, CRM, automation, social media, and operations from one team.
+                    We build, automate and manage the sales, customer and operational processes that keep growing businesses running.
                   </p>
                   <Link
                     to="/book"
                     className="mt-4 flex w-full items-center justify-center gap-2 rounded-full py-2.5 text-[13px] font-bold text-[#080D1C] transition-all hover:scale-[1.02]"
                     style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
                   >
-                    Book a strategy session
+                    Book an Operations Review
                   </Link>
                 </div>
 

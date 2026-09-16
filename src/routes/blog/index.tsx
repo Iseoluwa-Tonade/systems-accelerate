@@ -207,17 +207,17 @@ function BlogIndexPage() {
               <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
             </div>
             <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-              Want us to build your systems?
+              Want us to run your operations?
             </h2>
             <p className="mx-auto mt-3 max-w-md text-base text-white/60">
-              45 minutes. We review your setup and tell you where to start.
+              20 minutes. Tell us what's taking too much time and we'll tell you where to start.
             </p>
             <Link
               to="/book"
               className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_12px_28px_-6px_rgba(255,184,0,0.40)]"
               style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
             >
-              Book a strategy session
+              Book an Operations Review
               <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

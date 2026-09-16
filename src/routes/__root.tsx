@@ -74,11 +74,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SuperTelque | Revenue Systems Engineered for Scale" },
-      { name: "description", content: "SuperTelque is a GTM architecture and AI engineering firm for B2B companies that need more predictable pipeline, faster execution, and measurable revenue systems." },
+      { title: "SuperTelque | Managed Sales & Business Operations" },
+      { name: "description", content: "SuperTelque helps growing businesses manage sales, customer and back-office operations through people, automation and AI." },
       { name: "author", content: "SuperTelque" },
-      { property: "og:title", content: "SuperTelque | Revenue Systems Engineered for Scale" },
-      { property: "og:description", content: "Fractional RevOps leadership, autonomous AI engineering, and B2B demand systems built for measurable commercial outcomes." },
+      { property: "og:title", content: "SuperTelque | Managed Sales & Business Operations" },
+      { property: "og:description", content: "We build, automate and manage the sales, customer and operational processes that keep growing businesses running." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://supertelque.com" },
       { property: "og:image", content: "https://supertelque.com/og-image.png" },
@@ -125,7 +125,7 @@ function RootShell({ children }: { children: ReactNode }) {
           "name": "SuperTelque",
           "url": "https://supertelque.com",
           "logo": "https://supertelque.com/supertelque-logo.png",
-          "description": "SuperTelque is a GTM architecture and AI engineering firm that builds fractional RevOps, autonomous AI, and B2B demand systems for companies serving global markets.",
+          "description": "SuperTelque combines experienced people, structured processes, automation and AI to run the sales and operational workflows that help growing businesses move forward.",
           "email": "support@supertelque.com",
           "foundingLocation": { "@type": "Place", "addressCountry": "US" },
           "areaServed": [
@@ -134,11 +134,10 @@ function RootShell({ children }: { children: ReactNode }) {
             { "@type": "Country", "name": "United Kingdom" }
           ],
           "serviceType": [
-            "Fractional RevOps",
-            "Pipeline Architecture",
-            "Autonomous AI Engineering",
-            "B2B Demand Generation",
-            "Generative Engine Optimization"
+            "Managed Sales & Revenue Operations",
+            "Managed Customer Operations",
+            "Managed Business Operations",
+            "CRM & Workflow Engineering"
           ],
           "sameAs": [
             "https://www.linkedin.com/company/supertelque"

@@ -7,10 +7,10 @@ import { AgentAvatar } from "@/components/site/AgentAvatar";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About | SuperTelque RevOps" },
-      { name: "description", content: "SuperTelque is a global GTM architecture and AI engineering partner for B2B companies that need better revenue systems." },
-      { property: "og:title", content: "About | SuperTelque RevOps" },
-      { property: "og:description", content: "Senior RevOps advisory, GTM architecture, autonomous AI engineering, and B2B demand systems." },
+      { title: "About | SuperTelque" },
+      { name: "description", content: "SuperTelque combines experienced people, structured processes, automation and AI to run the sales and operational workflows that help growing businesses move forward." },
+      { property: "og:title", content: "About | SuperTelque" },
+      { property: "og:description", content: "Managed revenue, customer and business operations for growing companies. People + Process + Automation." },
     ],
   }),
   component: AboutPage,
@@ -20,9 +20,9 @@ const TEAM = [
   {
     v: 1 as const,
     name: "Sunny T.",
-    role: "RevOps Lead",
-    specialty: "HubSpot · Salesforce · Forecasting",
-    bio: "10+ years building revenue systems inside Series A to D B2B companies. Expert in CRM architecture, pipeline design, and GTM alignment.",
+    role: "Operations Lead",
+    specialty: "Revenue Systems · CRM · Workflow Design",
+    bio: "Leads client engagements across revenue operations and workflow design. Builds systems that connect CRM, pipeline, and reporting into a single operating picture.",
   },
   {
     v: 2 as const,
@@ -36,25 +36,25 @@ const TEAM = [
     name: "Israel O.",
     role: "Automation Engineer",
     specialty: "n8n · Make · AI Integrations",
-    bio: "Full-stack automation engineer. Specialises in no-code pipelines, AI-powered workflows, and integrations across the full revenue stack.",
+    bio: "Builds the automation layer between tools, teams and data. Specialises in workflow automation, AI-powered processes, and system integrations.",
   },
 ] as const;
 
 const PRINCIPLES = [
-  { k: "Data first", d: "We build on clean data. Bad CRM data isn't a reporting headache. It's what stops deals from closing." },
-  { k: "Systems before headcount", d: "Build the system before adding people. If a task repeats every week, it should probably be automated." },
-  { k: "One team, one number", d: "Sales, marketing, and CS work from the same funnel, the same definitions, and the same numbers." },
-  { k: "Build to last", d: "Build for where you're going, not where you are. Good systems get more valuable over time." },
-  { k: "Measurable outcomes", d: "Every engagement is measured against pipeline, conversion rate, or cost savings. Not hours." },
+  { k: "People + Process + Automation", d: "We combine the right people, structured processes and automation to deliver outcomes — not just tools or headcount." },
+  { k: "Operational responsibility", d: "We don't just install systems and leave. Under our Build & Manage model, we take responsibility for running the agreed workflow." },
+  { k: "Work owned by the client", d: "Every system we build belongs to you. Full documentation, training, and clear handover if you choose to run it internally." },
+  { k: "Honest outcomes", d: "We describe what we built and delivered. We don't fabricate metrics or claim results we can't verify." },
+  { k: "Technology as an enabler", d: "AI, automation and CRM architecture are tools in service of a better operational outcome — not the product you have to learn first." },
 ];
 
 const INDUSTRIES = [
-  { title: "Manufacturing", desc: "Automating inventory tracking, RFX routing, and vendor communication.", accent: "#1B5EFF" },
-  { title: "Real Estate", desc: "Lead intake, property database ingestion, and automated client sequencing.", accent: "#4F46E5" },
-  { title: "Ecommerce", desc: "Shopping platform syncs, order automation, and customer feedback triggers.", accent: "#14B8A6" },
-  { title: "Logistics & Supply Chain", desc: "Waybill processing, real-time dispatch alerts, and tracking integrations.", accent: "#8B5CF6" },
-  { title: "Healthcare & Pharma", desc: "Compliance-first intake flows, doctor matching queues, and scheduling syncs.", accent: "#1B5EFF" },
-  { title: "Edutech", desc: "Student onboarding workflows, automated course access, and event reminders.", accent: "#14B8A6" },
+  { title: "Home Services", desc: "Lead response, appointment coordination, estimate follow-up and customer operations.", accent: "#1B5EFF" },
+  { title: "Industrial & Commercial Services", desc: "Prospecting, quotation follow-up, CRM management and sales coordination.", accent: "#14B8A6" },
+  { title: "Property Management", desc: "Inquiry coordination, viewing scheduling and vendor communication.", accent: "#8B5CF6" },
+  { title: "Logistics & Distribution", desc: "Sales coordination, customer updates, workflow and administrative support.", accent: "#F59E0B" },
+  { title: "Professional Services", desc: "Client onboarding, scheduling, project coordination and operational reporting.", accent: "#10B981" },
+  { title: "Growing B2B Companies", desc: "Revenue operations, CRM implementation, workflow automation and AI-assisted processes.", accent: "#EC4899" },
 ] as const;
 
 function AboutPage() {
@@ -74,15 +74,15 @@ function AboutPage() {
         <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pt-16 lg:px-6">
           <Eyebrow>About</Eyebrow>
           <h1 className="mt-5 max-w-4xl font-display text-3xl font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[68px] lg:leading-[1.02]">
-            We are <span className="text-gradient-gold">technical revenue operators</span>,
-            <br className="hidden lg:block" /> not a marketing agency.
+            The company behind your{" "}
+            <span className="text-gradient-gold">operations.</span>
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
             <div className="mt-10 grid gap-8 lg:grid-cols-12">
               <p className="lg:col-span-7 text-lg leading-relaxed text-muted-foreground">
-                SuperTelque is a senior, remote-first team that combines fractional RevOps direction
-                with hands-on AI engineering. We work with founders and CROs who need the blueprint,
-                the build, and a revenue system their team can operate with confidence.
+                We combine experienced people, structured processes, automation and AI
+                to run the sales and operational workflows that help growing businesses
+                move forward — without the burden of building another internal department.
               </p>
               <div className="lg:col-span-5 rounded-2xl border border-white/10 bg-white/05 p-6 flex flex-col justify-center items-center text-center">
                 <img src="/supertelque-logo.png" alt="" className="h-10 w-10 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
@@ -102,29 +102,67 @@ function AboutPage() {
           <ScrollReveal variant="fadeUp">
             <div className="grid gap-10 lg:grid-cols-12">
               <div className="lg:col-span-4">
-                <SectionHeader eyebrow="Mission" title={<>Build systems. Grow revenue.</>} />
+                <SectionHeader eyebrow="Mission" title={<>Grow businesses. Not their workload.</>} />
               </div>
               <blockquote className="lg:col-span-8 border-l-2 border-[#FFB800]/40 pl-6 text-xl leading-relaxed text-white/75 lg:text-2xl">
-                "To give B2B leaders the revenue infrastructure they need to grow with certainty.
-                We turn fragmented data, manual work, and disconnected tools into measurable,
-                autonomous systems that compound over time."
+                "To give growing businesses the operational support they need to scale
+                with certainty. We take responsibility for defined workflows — supported
+                by the right people, processes and technology — so owners and operators
+                can focus on the work that matters most."
               </blockquote>
             </div>
           </ScrollReveal>
         </div>
       </section>
 
-      {/* Core Principles */}
+      {/* Operating Model */}
       <section className="sec-white py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <SectionHeader eyebrow="Core principles" title={<>How we operate.</>} />
+          <SectionHeader
+            eyebrow="Operating model"
+            title={<>How we deliver outcomes.</>}
+            description="We're not just consultants who hand you a plan. Under our Build & Manage model, we take responsibility for running the agreed workflow."
+          />
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            <ScrollReveal variant="fadeUp" delay={0.1}>
+              <div className="rounded-2xl border border-border bg-[#F4F6FA] p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                <div className="font-mono text-[11px] tracking-[0.2em] text-[#1B5EFF] mb-2">People</div>
+                <h3 className="font-display text-lg font-bold tracking-tight text-[#080D1C]">Assigned team members</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  The right people working on your workflows — from operations specialists to automation engineers.
+                </p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal variant="fadeUp" delay={0.2}>
+              <div className="rounded-2xl border border-border bg-[#F4F6FA] p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                <div className="font-mono text-[11px] tracking-[0.2em] text-[#FFB800] mb-2">Process</div>
+                <h3 className="font-display text-lg font-bold tracking-tight text-[#080D1C]">Structured workflows</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Defined processes with clear responsibilities, escalation paths and reporting so you know exactly what's running.
+                </p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal variant="fadeUp" delay={0.3}>
+              <div className="rounded-2xl border border-border bg-[#F4F6FA] p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+                <div className="font-mono text-[11px] tracking-[0.2em] text-[#8B5CF6] mb-2">Automation</div>
+                <h3 className="font-display text-lg font-bold tracking-tight text-[#080D1C]">AI and workflow systems</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  CRM, automation and AI-assisted processes that reduce manual work and keep everything running at scale.
+                </p>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Core Principles */}
+      <section className="sec-white border-t border-border py-14 lg:py-20">
+        <div className="mx-auto max-w-7xl px-4 lg:px-6">
+          <SectionHeader eyebrow="Core principles" title={<>What guides our work.</>} />
           <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-5">
             {PRINCIPLES.map((p, i) => (
               <ScrollReveal key={p.k} variant="fadeUp" delay={i * 0.09} className="rounded-xl border border-border bg-[#F4F6FA] p-5 transition-all duration-300 hover:bg-[#EEF3FF] hover:-translate-y-1 hover:shadow-md">
-                <div className="font-mono text-[11px] tracking-[0.2em] text-[#FFB800]">
-                  0{i + 1}
-                </div>
-                <h3 className="mt-3 font-display text-base font-bold tracking-tight text-[#080D1C]">{p.k}</h3>
+                <h3 className="font-display text-base font-bold tracking-tight text-[#080D1C]">{p.k}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.d}</p>
               </ScrollReveal>
             ))}
@@ -139,10 +177,11 @@ function AboutPage() {
             eyebrow="Meet the team"
             title={
               <>
-                The people who <span className="text-gradient-gold">build your systems.</span>
+                The people who{" "}
+                <span className="text-gradient-gold">run your operations.</span>
               </>
             }
-            description="A senior team. Every engagement is staffed by the specialists who know your stack."
+            description="A senior team. Every engagement is staffed by the specialists who know your workflow."
           />
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {TEAM.map((member, i) => (
@@ -167,10 +206,10 @@ function AboutPage() {
             eyebrow="Industries"
             title={
               <>
-                Sectors we <span className="text-gradient-gold">work in.</span>
+                Businesses we <span className="text-gradient-gold">help run.</span>
               </>
             }
-            description="Our approach is sector-agnostic. These are industries where we've shipped revenue operations."
+            description="Our approach works across industries. These are the markets we focus on and build for."
           />
           <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
             {INDUSTRIES.map((ind, i) => (
@@ -180,8 +219,7 @@ function AboutPage() {
                 delay={i * 0.08}
                 className="rounded-xl border border-border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
               >
-                <div className="flex items-center justify-between font-mono text-[10px] text-muted-foreground mb-3">
-                  <span style={{ color: ind.accent }}>SECTOR · 0{i + 1}</span>
+                <div className="flex items-center justify-between mb-3">
                   <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: ind.accent, opacity: 0.7 }} />
                 </div>
                 <h3 className="font-display text-lg font-bold tracking-tight text-[#080D1C]">{ind.title}</h3>
@@ -200,17 +238,17 @@ function AboutPage() {
               <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
             </div>
             <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-              Ready to work with us?
+              Ready to talk about your operations?
             </h2>
             <p className="mx-auto mt-3 max-w-md text-base text-white/60">
-              45 minutes. We review your setup and tell you where to start.
+              20 minutes. Tell us what's taking too much time and we'll tell you where to start.
             </p>
             <Link
               to="/book"
               className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_12px_28px_-6px_rgba(255,184,0,0.40)]"
               style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
             >
-              Book a strategy session →
+              Book an Operations Review →
             </Link>
           </ScrollReveal>
         </div>

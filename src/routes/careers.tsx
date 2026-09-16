@@ -7,9 +7,9 @@ export const Route = createFileRoute("/careers")({
   head: () => ({
     meta: [
       { title: "Open Roles | SuperTelque" },
-      { name: "description", content: "Join the SuperTelque team. We are a remote-first growth partner hiring across RevOps, automation, social media, and back-office operations." },
+      { name: "description", content: "Join the SuperTelque team. We are a remote-first team building managed operations for growing businesses globally." },
       { property: "og:title", content: "Open Roles | SuperTelque" },
-      { property: "og:description", content: "Join a senior, remote-first team building revenue systems for B2B companies globally." },
+      { property: "og:description", content: "Join a remote-first team that builds, automates and manages sales, customer and business operations." },
     ],
   }),
   component: CareersPage,
@@ -139,7 +139,7 @@ function CareersPage() {
               </h1>
               <ScrollReveal variant="fadeUp" delay={0.15}>
                 <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-[#4C5670]">
-                  We are a remote-first team. Every person works directly with clients and owns their output. No layers, no handoffs.
+                  We are a remote-first team. Every person works directly with clients and owns their output. We build, automate and manage the operations that growing businesses need.
                 </p>
               </ScrollReveal>
               <ScrollReveal variant="fadeUp" delay={0.25}>
@@ -277,14 +277,14 @@ function CareersPage() {
               Want to work with us as a client?
             </h2>
             <p className="mx-auto mt-3 max-w-md text-base text-white/60">
-              Book a 45-minute strategy session and we will show you what is possible.
+              Book a 20-minute operations review and we will show you what is possible.
             </p>
             <Link
               to="/book"
               className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_12px_28px_-6px_rgba(255,184,0,0.40)]"
               style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
             >
-              Book a strategy session →
+              Book an Operations Review →
             </Link>
           </ScrollReveal>
         </div>

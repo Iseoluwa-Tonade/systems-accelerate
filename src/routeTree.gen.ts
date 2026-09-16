@@ -20,6 +20,8 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
+import { Route as IndustriesHomeServicesRouteImport } from './routes/industries/home-services'
+import { Route as IndustriesIndustrialServicesRouteImport } from './routes/industries/industrial-services'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -76,6 +78,17 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IndustriesHomeServicesRoute = IndustriesHomeServicesRouteImport.update({
+  id: '/industries/home-services',
+  path: '/industries/home-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustriesIndustrialServicesRoute =
+  IndustriesIndustrialServicesRouteImport.update({
+    id: '/industries/industrial-services',
+    path: '/industries/industrial-services',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -88,6 +101,8 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/industries/home-services': typeof IndustriesHomeServicesRoute
+  '/industries/industrial-services': typeof IndustriesIndustrialServicesRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
@@ -101,6 +116,8 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/industries/home-services': typeof IndustriesHomeServicesRoute
+  '/industries/industrial-services': typeof IndustriesIndustrialServicesRoute
   '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
@@ -115,6 +132,8 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/industries/home-services': typeof IndustriesHomeServicesRoute
+  '/industries/industrial-services': typeof IndustriesIndustrialServicesRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
@@ -130,6 +149,8 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/industries/home-services'
+    | '/industries/industrial-services'
     | '/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -143,6 +164,8 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/industries/home-services'
+    | '/industries/industrial-services'
     | '/blog'
   id:
     | '__root__'
@@ -156,6 +179,8 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/blog/$slug'
+    | '/industries/home-services'
+    | '/industries/industrial-services'
     | '/blog/'
   fileRoutesById: FileRoutesById
 }
@@ -170,6 +195,8 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  IndustriesHomeServicesRoute: typeof IndustriesHomeServicesRoute
+  IndustriesIndustrialServicesRoute: typeof IndustriesIndustrialServicesRoute
   BlogIndexRoute: typeof BlogIndexRoute
 }
 
@@ -252,6 +279,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/industries/home-services': {
+      id: '/industries/home-services'
+      path: '/industries/home-services'
+      fullPath: '/industries/home-services'
+      preLoaderRoute: typeof IndustriesHomeServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industries/industrial-services': {
+      id: '/industries/industrial-services'
+      path: '/industries/industrial-services'
+      fullPath: '/industries/industrial-services'
+      preLoaderRoute: typeof IndustriesIndustrialServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -266,6 +307,8 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   BlogSlugRoute: BlogSlugRoute,
+  IndustriesHomeServicesRoute: IndustriesHomeServicesRoute,
+  IndustriesIndustrialServicesRoute: IndustriesIndustrialServicesRoute,
   BlogIndexRoute: BlogIndexRoute,
 }
 export const routeTree = rootRouteImport

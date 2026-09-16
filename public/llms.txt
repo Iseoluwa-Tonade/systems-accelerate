@@ -1,32 +1,33 @@
 # SuperTelque
 
-> SuperTelque builds the systems B2B companies run on. We handle CRM administration, RevOps, GTM engineering, workflow automation with AI, business technology management, solution consulting, business operations, and web development. Remote-first, serving clients globally.
+> SuperTelque combines experienced people, structured processes, automation and AI to run the sales and operational workflows that help growing businesses move forward. We build, automate and manage sales, customer and back-office operations. Remote-first, serving clients globally.
 
 ## What We Do
 
-- CRM administration, implementation, and migration across HubSpot, Salesforce, Pipedrive, Zoho CRM, Close, ActiveCampaign, Monday.com CRM, Keap, and other major platforms
-- Revenue Operations (RevOps) and GTM engineering: pipeline architecture, lifecycle stages, forecasting, cross-team alignment
+- Managed Sales & Revenue Operations: prospect research, outbound execution, lead qualification, appointment setting, CRM management, follow-up, sales coordination and reporting
+- Managed Customer Operations: inquiry management, appointment coordination, customer communications, service follow-up, escalation and customer operations reporting
+- Managed Business Operations: back-office administration, workflow coordination, data management, scheduling, SOPs, task management and operational reporting
+- CRM implementation and migration across HubSpot, Salesforce, Pipedrive, Zoho CRM, Close, ActiveCampaign, Monday.com CRM, Keap, and other major platforms
 - Workflow automation with n8n, Make, and Zapier, including AI-powered workflows using OpenAI and Claude
 - AI automation: AI agents, LLM integrations, AI-powered operational tooling, and prompt engineering
 - Business technology and stack management: tool selection, platform onboarding, integration architecture, vendor management
-- Solution consulting: fractional RevOps advisory, GTM strategy design, technology roadmaps, and process architecture
-- Web development: custom websites, landing pages, web applications, and CMS integration
-- Business operations: admin, back-office, commerce management, inbound handling, and order processing
 - Social media and community management across LinkedIn, X, and Instagram
 
 ## Who We Work With
 
-B2B founders and operators who need operational systems built, not slide decks. We work best with companies that have a repeatable offer and want to scale without adding headcount for every function.
+Growing businesses that need operational support — home services, industrial and commercial services, property management, logistics and distribution, professional services, and B2B companies scaling up. We work best with companies that have a repeatable offer and need help running the processes around it without building another internal department.
 
 ## How to Work With Us
 
-- Book a strategy session: https://supertelque.com/book
+- Book a 20-minute operations review: https://supertelque.com/book
 - Contact us: support@supertelque.com
 - Open roles: https://supertelque.com/careers
 
 ## Key Pages
 
 - [Services](https://supertelque.com/services)
+- [Home Services Support](https://supertelque.com/industries/home-services)
+- [Industrial Services Support](https://supertelque.com/industries/industrial-services)
 - [Case Studies](https://supertelque.com/case-studies)
 - [Blog](https://supertelque.com/blog)
 - [FAQ](https://supertelque.com/faq)

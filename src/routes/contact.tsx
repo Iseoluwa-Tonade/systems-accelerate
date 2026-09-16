@@ -9,10 +9,10 @@ import { submitContactForm } from "@/lib/form-actions";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact | SuperTelque LLC" },
-      { name: "description", content: "Reach the SuperTelque team. Remote-first, serving B2B companies globally." },
-      { property: "og:title", content: "Contact | SuperTelque LLC" },
-      { property: "og:description", content: "Email, LinkedIn and a direct contact form for B2B revenue infrastructure engagements." },
+      { title: "Contact | SuperTelque" },
+      { name: "description", content: "Get in touch with SuperTelque. We help growing businesses manage sales, customer and back-office operations." },
+      { property: "og:title", content: "Contact | SuperTelque" },
+      { property: "og:description", content: "Email, LinkedIn and a direct contact form for operations and automation engagements." },
     ],
   }),
   component: ContactPage,
@@ -27,7 +27,8 @@ function ContactPage() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [contactPref, setContactPref] = useState<"call" | "text">("call");
-  const [crm, setCrm] = useState("HubSpot");
+  const [supportType, setSupportType] = useState("Not sure");
+  const [companySize, setCompanySize] = useState("1-10");
   const [message, setMessage] = useState("");
   const [smsConsent, setSmsConsent] = useState(false);
 
@@ -46,7 +47,7 @@ function ContactPage() {
 
     setSending(true);
     try {
-      await submitContactForm({ data: { name, company, role, email, phone, contactPref, smsConsent, crm, message } });
+      await submitContactForm({ data: { name, company, role, email, phone, contactPref, smsConsent, crm: supportType, message } });
       toast.success("Message sent. We'll be in touch within 24 hours.");
       setName("");
       setCompany("");
@@ -54,7 +55,7 @@ function ContactPage() {
       setEmail("");
       setPhone("");
       setContactPref("call");
-      setCrm("HubSpot");
+      setSupportType("Not sure");
       setMessage("");
       setSmsConsent(false);
       setErrors({});
@@ -82,16 +83,17 @@ function ContactPage() {
             <div className="lg:col-span-7">
               <Eyebrow>Contact</Eyebrow>
               <h1 className="mt-5 font-display text-[34px] font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
-                Talk to a <span className="text-gradient-gold">revenue engineer.</span>
+                Let's talk about{" "}
+                <span className="text-gradient-gold">what's not working.</span>
               </h1>
               <ScrollReveal variant="fadeUp" delay={0.15}>
                 <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
-                  Tell us about your stack and what you are trying to fix. We will come back with a clear view of where to start.
+                  Tell us about the workflow or process that's slowing your team down. We will come back with a clear view of where to start.
                 </p>
               </ScrollReveal>
               <ScrollReveal variant="fadeUp" delay={0.25}>
                 <div className="mt-10 flex flex-wrap items-center gap-8 border-t border-border pt-8">
-                  {[["<24h", "Avg. response time"], ["50+", "Clients served"], ["100%", "NDA available"]].map(([v, l]) => (
+                  {[["<24h", "Avg. response time"], ["Remote-first", "Global delivery"], ["NDA", "On request"]].map(([v, l]) => (
                     <div key={l}>
                       <div className="font-display text-[22px] font-bold text-[#080D1C] leading-none">{v}</div>
                       <div className="mt-1 font-mono text-[9.5px] uppercase tracking-[0.18em] text-muted-foreground">{l}</div>
@@ -153,10 +155,9 @@ function ContactPage() {
                 <ul className="space-y-3">
                   {[
                     { icon: "🌍", text: "Remote-first · Global clients" },
-                    { icon: "🔒", text: "GDPR compliant" },
                     { icon: "📄", text: "NDA on request" },
                     { icon: "⚡", text: "Response within 24 hours" },
-                    { icon: "🎯", text: "No SDR handoffs, direct to engineers" },
+                    { icon: "🎯", text: "No SDR handoffs, direct to operators" },
                   ].map((item) => (
                     <li key={item.text} className="flex items-center gap-3 text-sm text-foreground/80">
                       <span className="text-base leading-none">{item.icon}</span>
@@ -173,13 +174,12 @@ function ContactPage() {
                 </div>
                 <ul className="space-y-2.5">
                   {[
-                    "Your current CRM and key tools",
-                    "What's not working right now",
-                    "Team size and growth stage",
+                    "What process or workflow is taking too much time",
+                    "How many people are involved",
+                    "What tools you currently use",
                     "What you'd like to fix first",
                   ].map((item, i) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/75">
-                      <span className="mt-1 font-mono text-[9px] text-[#FFB800] font-bold shrink-0">0{i + 1}</span>
                       {item}
                     </li>
                   ))}
@@ -196,7 +196,7 @@ function ContactPage() {
                 </div>
                 <Field label="Name" placeholder="Alex Morgan" value={name} onChange={(e) => setName(e.target.value)} error={errors.name} />
                 <Field label="Company" placeholder="Acme Inc." value={company} onChange={(e) => setCompany(e.target.value)} error={errors.company} />
-                <Field label="Role" placeholder="CRO / Head of RevOps" value={role} onChange={(e) => setRole(e.target.value)} error={errors.role} />
+                <Field label="Role" placeholder="Owner / Operations Director" value={role} onChange={(e) => setRole(e.target.value)} error={errors.role} />
                 <Field label="Email" placeholder="alex@company.com" type="email" value={email} onChange={(e) => setEmail(e.target.value)} error={errors.email} />
                 <div className="sm:col-span-2">
                   <Label>Phone number <span className="normal-case tracking-normal text-muted-foreground/60 font-normal">(optional — only if you'd like us to call or text you)</span></Label>
@@ -209,13 +209,13 @@ function ContactPage() {
                   />
                 </div>
                 <div className="sm:col-span-2">
-                  <Select label="Current CRM" options={["HubSpot", "Salesforce", "Pipedrive", "Zoho CRM", "Monday.com CRM", "Close", "ActiveCampaign", "Keap / Infusionsoft", "Other", "None / building"]} value={crm} onChange={(e) => setCrm(e.target.value)} />
+                  <Select label="Type of support needed" options={["Sales & Revenue Operations", "Customer Operations", "Business Operations", "CRM & Automation", "Not sure"]} value={supportType} onChange={(e) => setSupportType(e.target.value)} />
                 </div>
                 <div className="sm:col-span-2">
                   <Label>Message</Label>
                   <textarea
                     rows={5}
-                    placeholder="Tell us about your revenue stack and what you'd like to fix..."
+                    placeholder="Tell us about the workflow or process that's slowing your team down..."
                     className="mt-2 w-full resize-none rounded-md border border-border bg-[color:var(--surface)]/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
@@ -238,7 +238,6 @@ function ContactPage() {
                     </span>
                   </label>
 
-                  {/* Preference — shown only when opted in and phone provided */}
                   {smsConsent && phone.trim() && (
                     <div className="pl-7 flex items-center gap-4">
                       <span className="text-[11px] font-medium text-foreground/60">I prefer:</span>

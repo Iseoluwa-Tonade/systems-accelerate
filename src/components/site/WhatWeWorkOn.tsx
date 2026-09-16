@@ -33,14 +33,11 @@ export function WhatWeWorkOn() {
         <div className="mt-10 md:mt-14">
           <div className="sm:hidden overflow-x-auto -mx-4 px-4 pb-2">
             <div className="flex gap-4 w-max">
-              {WORK_ITEMS.map((item, i) => (
+{WORK_ITEMS.map((item) => (
                 <div
                   key={item.title}
                   className="surface-card group relative w-[260px] shrink-0 p-5 transition duration-300 hover:border-border/80"
                 >
-                  <div className="flex items-center justify-between font-mono text-[10px] text-[#FFB800]/60">
-                    <span>CAP · {String(i + 1).padStart(2, "0")}</span>
-                  </div>
                   <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground/90">
                     {item.title}
                   </h3>
@@ -51,12 +48,9 @@ export function WhatWeWorkOn() {
           </div>
 
           <StaggerReveal className="hidden sm:grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {WORK_ITEMS.map((item, i) => (
+            {WORK_ITEMS.map((item) => (
               <StaggerChild key={item.title}>
                 <div className="surface-card group relative p-6 transition duration-300 hover:border-border/80">
-                  <div className="flex items-center justify-between font-mono text-[10px] text-[#FFB800]/60">
-                    <span>CAP · {String(i + 1).padStart(2, "0")}</span>
-                  </div>
                   <h3 className="mt-4 font-display text-lg font-semibold tracking-tight text-foreground/90">
                     {item.title}
                   </h3>
