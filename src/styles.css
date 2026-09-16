@@ -574,28 +574,28 @@ html, body {
 .problem-carousel::after {
   position: absolute;
   top: 0;
-  bottom: 4rem;
+  bottom: 3.5rem;
   z-index: 5;
-  width: clamp(3rem, 8vw, 7rem);
+  width: clamp(4rem, 12vw, 10rem);
   pointer-events: none;
   content: "";
 }
 
 .problem-carousel::before {
   left: 0;
-  background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0.85) 40%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0.85) 35%, rgba(255,255,255,0) 100%);
 }
 
 .problem-carousel::after {
   right: 0;
-  background: linear-gradient(270deg, #ffffff 0%, rgba(255,255,255,0.85) 40%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(270deg, #ffffff 0%, rgba(255,255,255,0.85) 35%, rgba(255,255,255,0) 100%);
 }
 
 .problem-carousel-track {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 480px;
+  min-height: 440px;
   margin: 0 auto;
   gap: 0;
   position: relative;
