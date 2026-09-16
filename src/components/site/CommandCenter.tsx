@@ -206,7 +206,7 @@ function FlowSvg() {
           <rect width="120" height="48" rx="10" fill="url(#nodeBg)" />
           <circle cx="14" cy="24" r="4" fill={n.hue} />
           <circle cx="14" cy="24" r="7" fill="none" stroke={n.hue} strokeOpacity="0.35" />
-          <text x="28" y="22" fill="var(--foreground)" fontSize="12" fontFamily="Inter Tight, Inter, sans-serif" fontWeight="600">
+          <text x="28" y="22" fill="var(--foreground)" fontSize="12" fontFamily="Saans TRIAL, Inter Tight, Inter, sans-serif" fontWeight="600">
             {n.label}
           </text>
           <text x="28" y="36" fill="var(--muted-foreground)" fontSize="10" fontFamily="JetBrains Mono, monospace">

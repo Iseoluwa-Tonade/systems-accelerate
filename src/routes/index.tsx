@@ -135,7 +135,7 @@ function Hero() {
   return (
     <section className="sec-navy relative isolate min-h-[100svh] overflow-hidden">
       <img
-        src="/hero.jpg"
+        src="/hero1.jpg"
         alt="SuperTelque operations team working with a client"
         className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
       />
@@ -148,7 +148,7 @@ function Hero() {
       />
 
       <div className="relative mx-auto flex min-h-[100svh] max-w-[1440px] items-end px-4 pb-10 pt-32 lg:items-center lg:px-8 lg:pb-20 lg:pt-28">
-        <div className="flex flex-col gap-8 lg:gap-40 ">
+        <div className="flex flex-col gap-8 lg:gap-30 ">
           <div className="max-w-4xl">
             <div className="font-mono text-[13px] uppercase tracking-[0.22em] text-[#FFD44D] mb-4">
               Revenue · Operations · AI
@@ -165,7 +165,7 @@ function Hero() {
               </p>
             </ScrollReveal>
 
-            <div className="mt-7 grid max-w-xl grid-cols-3 gap-3 border-y border-white/15 py-5">
+            {/* <div className="mt-7 grid max-w-xl grid-cols-3 gap-3 border-y border-white/15 py-5">
               {[
                 ["People", "who deliver"],
                 ["Processes", "that run"],
@@ -176,10 +176,10 @@ function Hero() {
                   <div className="mt-1 text-md text-white/68">{b}</div>
                 </div>
               ))}
-            </div>
+            </div> */}
 
             <ScrollReveal variant="fadeUp" delay={0.25}>
-              <div className="mt-8 flex flex-wrap items-center gap-5">
+              <div className="mt-6 flex flex-wrap items-center gap-5">
                 <Link
                   to="/book"
                   className="group inline-flex items-center gap-2.5 rounded-full bg-[#FFD44D] px-5 py-3 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:bg-white"
@@ -379,14 +379,6 @@ function Problems() {
             ))}
           </div>
         </div>
-
-        <ScrollScene delay={0.3} direction="left">
-          <div className="mt-12 rounded-2xl border border-[#FFB800]/20 bg-[#FFFDF5] p-6 lg:p-8">
-            <p className="text-base leading-relaxed text-[#080D1C] font-medium">
-              We don't just provide people or install software. We design the workflow, assign the right team, automate repetitive steps and take responsibility for delivery.
-            </p>
-          </div>
-        </ScrollScene>
       </div>
     </section>
   );
