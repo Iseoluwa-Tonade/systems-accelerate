@@ -5,6 +5,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { Eyebrow, SectionHeader } from "@/components/site/Eyebrow";
 import { ScrollReveal } from "@/components/site/ScrollReveal";
 import * as L from "@/components/site/Logos";
+import { ToolFlow } from "@/components/site/ToolFlow";
 import { ArrowRight, Check, CircleAlert, Clock3, Layers3, MoveRight, Sparkles } from "lucide-react";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 
@@ -147,8 +148,8 @@ function Hero() {
         }}
       />
 
-      <div className="relative mx-auto flex min-h-[100svh] max-w-[1440px] items-end px-4 pb-10 pt-32 lg:items-center lg:px-8 lg:pb-20 lg:pt-28">
-        <div className="flex flex-col gap-8 lg:gap-30 ">
+      <div className="relative mx-auto grid min-h-[100svh] max-w-[1440px] items-end gap-10 px-4 pb-10 pt-28 lg:grid-cols-12 lg:items-center lg:gap-12 lg:px-8 lg:pb-20 lg:pt-32">
+        <div className="lg:col-span-7 xl:col-span-6">
           <div className="max-w-4xl">
             <div className="font-mono text-[13px] uppercase tracking-[0.22em] text-[#FFD44D] mb-4">
               Revenue · Operations · AI
@@ -199,23 +200,10 @@ function Hero() {
               </div>
             </ScrollReveal>
           </div>
+        </div>
 
-          <div className="w-full rounded-2xl border border-white/20 bg-[#ffffff]/20 p-8 text-white backdrop-blur-xl lg:w-[70%] lg:block lg:right-6">
-            <div className="font-mono text-[14px] uppercase tracking-[0.2em] text-[#FFD44D]">Built for growing service businesses</div>
-            <p className="mt-2 text-md leading-relaxed text-white/">We take responsibility for defined operational outcomes, supported by the right people, processes and technology.</p>
-            <div className="mt-4 flex justify-between border-t border-white/15 pt-3">
-              {[
-                { label: "Sales & Revenue" },
-                { label: "Customer Operations" },
-                { label: "Business Operations" },
-                { label: "AI & Automation" },
-              ].map(({ label }) => (
-                <div key={label} className="text-center">
-                  <div className="text-[13px] text-white/48 whitespace-nowrap font-mono">{label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="lg:col-span-5 xl:col-span-6">
+          <ToolFlow />
         </div>
       </div>
     </section>
