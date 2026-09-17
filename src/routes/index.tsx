@@ -162,7 +162,7 @@ function Hero() {
 
             <ScrollReveal variant="fadeUp" delay={0.15}>
               <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-white/72 sm:text-[17px]">
-                We build, automate and manage the sales, customer and back-office processes that keep growing businesses running — without the burden of building another internal department.
+                We build, automate and manage the sales, customer and back-office processes that keep growing businesses running, without the burden of building another internal department.
               </p>
             </ScrollReveal>
 
@@ -380,7 +380,6 @@ const SERVICES = [
     desc: "Build a more consistent sales pipeline without placing every task on your sales team.",
     bullets: ["Prospect research & enrichment", "Outbound execution & lead qualification", "CRM management & follow-up", "Sales coordination & reporting"],
     color: "#B9D6FF",
-    for: "Owners, Sales Directors, Heads of Sales",
   },
   {
     code: "02",
@@ -388,7 +387,6 @@ const SERVICES = [
     desc: "Make sure customer inquiries receive attention and appointments, communications and follow-ups stay organized.",
     bullets: ["Inquiry management", "Appointment coordination", "Customer communications", "Service follow-up & escalation"],
     color: "#FFD84D",
-    for: "Operations Directors, General Managers",
   },
   {
     code: "03",
@@ -396,7 +394,6 @@ const SERVICES = [
     desc: "Remove administrative bottlenecks and give your internal team more time for high-value work.",
     bullets: ["Back-office administration", "Workflow coordination & scheduling", "Data management & SOPs", "Operational reporting"],
     color: "#9BE3CC",
-    for: "Owners, COOs, Office Managers",
   },
   {
     code: "04",
@@ -404,7 +401,6 @@ const SERVICES = [
     desc: "Connect your tools, automate repetitive work and create systems that support your team.",
     bullets: ["CRM implementation & RevOps architecture", "Workflow automation & AI-assisted processes", "Integrations & dashboards", "Process documentation"],
     color: "#D4C4FF",
-    for: "Operations leaders, Sales Operations",
   },
 ] as const;
 
@@ -446,7 +442,7 @@ function Services() {
                 <Sparkles className="h-4 w-4 text-[#080D1C]/45 transition-transform duration-500 group-hover:rotate-45 group-hover:scale-125" />
               </div>
               <h3 className="relative max-w-[15rem] font-display text-lg font-bold tracking-tight text-[#080D1C]">{s.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-[#080D1C]/70">{s.desc}</p>
+              <p className="mt-3 text-sm leading-relaxed text-[#080D1C]">{s.desc}</p>
               <ul className="mt-4 space-y-1.5 font-mono text-[11px] text-[#080D1C]">
                 {s.bullets.map((b) => (
                   <li key={b} className="flex items-center gap-2">
@@ -455,9 +451,6 @@ function Services() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-4 border-t border-[#080D1C]/10 pt-3">
-                <div className="font-mono text-[9px] uppercase tracking-[0.15em] text-[#080D1C]/45">For: {s.for}</div>
-              </div>
             </motion.div>
             </ScrollScene>
           ))}
