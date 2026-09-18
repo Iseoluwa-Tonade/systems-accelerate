@@ -7,13 +7,15 @@ import { ScrollReveal } from "@/components/site/ScrollReveal";
 import * as L from "@/components/site/Logos";
 import { ToolFlow } from "@/components/site/ToolFlow";
 import { ArrowRight, Check, CircleAlert, Clock3, Layers3, MoveRight, Sparkles } from "lucide-react";
-import { AnimatePresence, motion, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel";
+import AccordionGallery from "@/components/site/AccordionGallery";
+import type { AccordionGalleryItem } from "@/components/site/AccordionGallery";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -555,16 +557,16 @@ const STEPS = [
   },
 ] as const;
 
-const cardColors = [
-  { bg: "#EFF6FF", accent: "#1B5EFF" },
-  { bg: "#FFF8E1", accent: "#B45309" },
-  { bg: "#ECFDF5", accent: "#059669" },
-  { bg: "#FFF3E0", accent: "#C2410C" },
-  { bg: "#F3E8FF", accent: "#7C3AED" },
-];
-
 function Methodology() {
   const [activeStep, setActiveStep] = useState(0);
+
+  const items: AccordionGalleryItem[] = STEPS.map((s) => ({
+    image: `/${s.k.toLowerCase()}.png`,
+    label: s.k,
+    alt: `${s.k} process illustration`,
+  }));
+
+  const activeStepData = STEPS[activeStep];
 
   return (
     <section className="sec-navy relative py-16 lg:py-24">
@@ -575,52 +577,20 @@ function Methodology() {
             <RevealWords text="From operational bottleneck to managed delivery." highlight="managed delivery." />
           }
         />
-        <div className="mt-10 flex flex-col gap-4 lg:flex-row">
-          {STEPS.map((s, i) => {
-            const c = cardColors[i];
-            const isActive = activeStep === i;
-            return (
-              <motion.button
-                type="button"
-                onClick={() => setActiveStep(i)}
-                key={s.k}
-                layout
-                transition={{
-                  layout: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-                }}
-                className={`method-card group min-w-0 overflow-hidden rounded-2xl p-6 text-left flex flex-col transition-[min-height,flex-grow,flex-basis,transform,box-shadow,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:min-h-[400px] ${isActive ? "min-h-[350px] shadow-[0_18px_38px_-18px_rgba(0,0,0,.35)] lg:flex-[3_1_0%]" : "min-h-[120px] opacity-75 hover:opacity-100 lg:flex-[1_1_0%]"}`}
-                style={{
-                  backgroundColor: c.bg,
-                  border: `1px solid ${c.accent}22`,
-                }}
-              >
-                <div className="flex items-center justify-end gap-2">
-                  <span className="h-2 w-2 rounded-full animate-pulse-dot" style={{ backgroundColor: c.accent }} />
-                </div>
-                <h3 className="mt-4 font-display text-xl font-bold tracking-tight text-[#080D1C]">
-                  {s.k}
-                </h3>
-                <AnimatePresence initial={false} mode="wait">
-                  {isActive && (
-                    <motion.p
-                      key={`${s.k}-description`}
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 12 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
-                      className="mt-auto w-full rounded-xl border border-white/60 bg-white/65 p-4 text-sm leading-relaxed text-[#080D1C]/75 shadow-sm backdrop-blur-md"
-                    >
-                      <span>{s.d}</span>
-                      <span className="mt-3 block border-t border-[#080D1C]/10 pt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-[#080D1C]/55">Output · {s.out}</span>
-                    </motion.p>
-                  )}
-                </AnimatePresence>
-              </motion.button>
-            );
-          })}
-        </div>
-        <div className="mt-5 font-mono text-[10px] uppercase tracking-[0.18em] text-white/45">
-          <TypeLine text="workflow engine // continuously improving" />
+        <div className="mt-10">
+          <AccordionGallery
+            items={items}
+            defaultIndex={0}
+            height={480}
+            accentColor="#FFB800"
+            overlayColor="#080D1C"
+            trigger="hover"
+            expandRatio={0.52}
+            onChange={setActiveStep}
+          />
+          <div className="mt-5 text-sm leading-relaxed text-white/80">
+            <TypeLine text={activeStepData.d} />
+          </div>
         </div>
       </div>
     </section>
