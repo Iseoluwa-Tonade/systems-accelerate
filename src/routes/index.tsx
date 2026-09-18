@@ -8,6 +8,12 @@ import * as L from "@/components/site/Logos";
 import { ToolFlow } from "@/components/site/ToolFlow";
 import { ArrowRight, Check, CircleAlert, Clock3, Layers3, MoveRight, Sparkles } from "lucide-react";
 import { AnimatePresence, motion, useInView } from "framer-motion";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -270,24 +276,27 @@ const PROBLEMS = [
 ] as const;
 
 function Problems() {
+  const [api, setApi] = useState<CarouselApi>();
   const [activeProblem, setActiveProblem] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const problemCount = PROBLEMS.length;
 
   useEffect(() => {
-    if (isPaused) return;
+    if (!api) return;
+    const onSelect = () => setActiveProblem(api.selectedScrollSnap());
+    onSelect();
+    api.on("select", onSelect);
+    api.on("reInit", onSelect);
+    return () => {
+      api.off("select", onSelect);
+      api.off("reInit", onSelect);
+    };
+  }, [api]);
 
-    const timer = window.setInterval(() => {
-      setActiveProblem((current) => (current + 1) % problemCount);
-    }, 5200);
-
+  useEffect(() => {
+    if (!isPaused || !api) return;
+    const timer = window.setInterval(() => api.scrollNext(), 5200);
     return () => window.clearInterval(timer);
-  }, [isPaused, problemCount]);
-
-  const visibleProblems = [-1, 0, 1].map((offset) => {
-    const index = (activeProblem + offset + problemCount) % problemCount;
-    return { ...PROBLEMS[index], index, offset };
-  });
+  }, [isPaused, api]);
 
   return (
     <section className="sec-white py-16 lg:py-24 overflow-hidden">
@@ -298,57 +307,50 @@ function Problems() {
             <RevealWords text="Your business is growing. Why does everything feel harder?" highlight="harder?" />
           }
         />
-        <div
-          className="problem-carousel mt-10 sm:mt-14"
+        <Carousel
+          setApi={setApi}
+          opts={{ align: "center", loop: true }}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
           onFocus={() => setIsPaused(true)}
           onBlur={() => setIsPaused(false)}
+          className="problem-carousel mt-10 sm:mt-14"
         >
-          <div className="problem-carousel-track" aria-live="polite">
-            {visibleProblems.map((p) => {
-              const isFocused = p.offset === 0;
+          <CarouselContent className="-ml-3 items-center sm:-ml-4" aria-live="polite">
+            {PROBLEMS.map((problem, index) => {
+              const isFocused = index === activeProblem;
               return (
-                <motion.article
-                  key={p.index}
-                  layout="position"
-                  initial={false}
-                  animate={{
-                    opacity: isFocused ? 1 : 0.65,
-                    scale: isFocused ? 1.12 : 0.84,
-                    zIndex: isFocused ? 3 : 1,
-                  }}
-                  transition={{
-                    layout: { duration: 0.85, ease: [0.16, 1, 0.3, 1] },
-                    default: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
-                  }}
-                  onClick={() => {
-                    if (!isFocused) {
-                      setActiveProblem(p.index);
-                    }
-                  }}
-                  className={`problem-card problem-carousel-card group relative overflow-hidden rounded-2xl border p-6 text-left shadow-[0_24px_50px_-28px_rgba(0,0,0,.65)] transition-colors sm:p-10 ${isFocused ? "problem-carousel-card-focused cursor-default" : "problem-carousel-card-side cursor-pointer hover:opacity-85"}`}
-                  style={{
-                    backgroundColor: isFocused ? "#162038" : "#0F1628",
-                    borderColor: isFocused ? `${p.accent}88` : "rgba(255,255,255,0.1)",
-                  }}
+                <CarouselItem
+                  key={problem.title}
+                  className="basis-[85%] pl-3 sm:basis-[70%] sm:pl-4"
                 >
-                  <img
-                    src={p.image}
-                    alt=""
-                    aria-hidden="true"
-                    className="problem-card-visual"
-                  />
-                  <div className="problem-card-visual-shade" aria-hidden="true" />
-                  <div className="problem-card-content">
-                    <p.icon className="h-7 w-7" style={{ color: p.accent }} strokeWidth={1.8} />
-                    <h3 className="mt-5 font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">{p.title}</h3>
-                    <p className="mt-3 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">{p.desc}</p>
-                  </div>
-                </motion.article>
+                  <article
+                    onClick={() => {
+                      if (!isFocused) api?.scrollTo(index);
+                    }}
+                    className={`problem-card group relative overflow-hidden rounded-2xl border p-6 text-left shadow-[0_24px_50px_-28px_rgba(0,0,0,.65)] transition-all duration-500 sm:p-10 ${isFocused ? "min-h-[24rem] cursor-default sm:min-h-[26rem]" : "min-h-[19rem] cursor-pointer hover:opacity-90 sm:min-h-[20rem]"}`}
+                    style={{
+                      backgroundColor: isFocused ? "#162038" : "#0F1628",
+                      borderColor: isFocused ? `${problem.accent}88` : "rgba(255,255,255,0.1)",
+                    }}
+                  >
+                    <img
+                      src={problem.image}
+                      alt=""
+                      aria-hidden="true"
+                      className="problem-card-visual"
+                    />
+                    <div className="problem-card-visual-shade" aria-hidden="true" />
+                    <div className="problem-card-content">
+                      <problem.icon className="h-7 w-7" style={{ color: problem.accent }} strokeWidth={1.8} />
+                      <h3 className="mt-5 font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">{problem.title}</h3>
+                      <p className="mt-3 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">{problem.desc}</p>
+                    </div>
+                  </article>
+                </CarouselItem>
               );
             })}
-          </div>
+          </CarouselContent>
 
           <div className="problem-carousel-indicators mt-7 flex items-center justify-center gap-2" role="tablist" aria-label="Problem carousel navigation">
             {PROBLEMS.map((problem, index) => (
@@ -358,7 +360,7 @@ function Problems() {
                 role="tab"
                 aria-selected={activeProblem === index}
                 aria-label={`Show problem ${index + 1}`}
-                onClick={() => setActiveProblem(index)}
+                onClick={() => api?.scrollTo(index)}
                 className={`problem-indicator ${activeProblem === index ? "problem-indicator-active" : ""}`}
                 style={{ "--indicator-color": problem.accent } as React.CSSProperties}
               >
@@ -366,7 +368,7 @@ function Problems() {
               </button>
             ))}
           </div>
-        </div>
+        </Carousel>
       </div>
     </section>
   );
