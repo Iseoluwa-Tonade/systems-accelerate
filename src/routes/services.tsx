@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BarChart3, CalendarDays, Check, ClipboardList, Gauge, Headphones, Settings2, UsersRound, Workflow } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
 import { ScrollReveal } from "@/components/site/ScrollReveal";
@@ -151,8 +151,9 @@ function ServicesPage() {
       </div>
 
       {/* Service blocks */}
-      <section className="sec-white py-16 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6 space-y-16 lg:space-y-28">
+      <section className="relative overflow-hidden bg-[#F7F9FD] py-14 lg:py-24">
+        <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.22]" />
+        <div className="relative mx-auto max-w-7xl space-y-5 px-4 lg:space-y-7 lg:px-6">
           {SERVICES.map((s, i) => (
             <ServiceBlock key={s.id} svc={s} reverse={i % 2 === 1} />
           ))}
@@ -223,45 +224,48 @@ function ServiceBlock({
   reverse: boolean;
 }) {
   return (
-    <section id={svc.id} className="scroll-mt-28">
-      <div className={"grid items-start gap-10 lg:grid-cols-12 " + (reverse ? "lg:[direction:rtl]" : "")}>
+    <section id={svc.id} className="scroll-mt-28 rounded-[1.75rem] border border-white/80 bg-white/80 p-5 shadow-[0_18px_55px_rgba(25,52,96,0.06)] backdrop-blur-sm sm:p-7 lg:p-10">
+      <div className={"grid items-center gap-8 lg:grid-cols-12 lg:gap-14 " + (reverse ? "lg:[direction:rtl]" : "")}>
         <ScrollReveal variant="slideRight" className="lg:col-span-5 [direction:ltr]">
-          <div className="flex items-center gap-3 mb-6">
+          <div className="mb-5 flex items-center gap-2.5">
             <span
-              className="flex h-8 w-8 items-center justify-center rounded-xl font-mono text-[11px] font-bold text-white shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
+              className="flex h-8 w-8 items-center justify-center rounded-full font-mono text-[11px] font-bold text-white shadow-sm"
               style={{ backgroundColor: svc.color }}
             >
-              <span className="h-2 w-2 rounded-full bg-white/70" />
+              {svc.code}
             </span>
             <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-muted-foreground">
-              Service
+              Managed service
             </span>
           </div>
-          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl lg:text-[42px] lg:leading-[1.06]">
+          <h2 className="max-w-xl font-display text-3xl font-extrabold leading-[1.04] tracking-tight text-[#0B1738] sm:text-4xl lg:text-[46px]">
             {svc.title}
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">{svc.blurb}</p>
-          <ul className="mt-6 grid grid-cols-2 gap-x-6 gap-y-2.5 text-sm">
+          <p className="mt-4 max-w-lg text-[15px] leading-relaxed text-muted-foreground">{svc.blurb}</p>
+          <ul className="mt-6 grid gap-y-2 text-[13px] sm:grid-cols-2 sm:gap-x-5">
             {svc.items.map((it, idx) => (
               <li
                 key={it}
                 className="flex items-center gap-2 text-foreground/85 animate-slide-up-fade"
                 style={{ animationDelay: `${idx * 70 + 200}ms` }}
               >
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: svc.color }} />
+                <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-white" style={{ backgroundColor: svc.color }}>
+                  <Check className="h-2.5 w-2.5" strokeWidth={3} />
+                </span>
                 {it}
               </li>
             ))}
           </ul>
-          <div className="mt-6 rounded-xl border border-border bg-[#F4F6FA] px-4 py-3">
-            <div className="font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">Best for</div>
-            <div className="mt-1 text-sm text-foreground/80">{svc.who}</div>
+          <div className="mt-6 rounded-xl border border-[#E5EBF5] bg-[#F7F9FD] px-4 py-3">
+            <div className="font-mono text-[9px] uppercase tracking-[0.15em] text-muted-foreground">Best for</div>
+            <div className="mt-1 text-[12px] leading-relaxed text-foreground/80">{svc.who}</div>
           </div>
           <Link
             to="/book"
-            className="mt-8 inline-flex items-center gap-2 rounded-full border border-border bg-white px-5 py-2.5 text-sm font-medium text-foreground/70 hover:bg-[#F4F6FA] hover:text-foreground transition-all"
+            className="mt-6 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[12px] font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg"
+            style={{ backgroundColor: svc.color }}
           >
-            Discuss this service →
+            Discuss this service <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </ScrollReveal>
         <ScrollReveal variant="slideLeft" className="lg:col-span-7 [direction:ltr]">
@@ -273,42 +277,35 @@ function ServiceBlock({
 }
 
 function ServiceDetails({ svc }: { svc: (typeof SERVICES)[number] }) {
+  const Icon = svc.id === "revenue" ? BarChart3 : svc.id === "customers" ? Headphones : svc.id === "operations" ? Settings2 : Workflow;
+  const stats = svc.id === "revenue" ? [["Prospects", "248"], ["Qualified", "64"], ["Meetings", "18"]] : svc.id === "customers" ? [["Open inquiries", "24"], ["Appointments", "12"], ["Satisfaction", "92%"]] : svc.id === "operations" ? [["Tasks completed", "248"], ["Active projects", "12"], ["Efficiency", "94%"]] : [["Workflows live", "32"], ["Hours saved", "146"], ["Sync health", "99.8%"]];
   return (
-    <div className="surface-card relative overflow-hidden p-5" style={{ borderTop: `2px solid ${svc.color}40` }}>
-      <div className="absolute inset-0 bg-grid opacity-30" />
+    <div className="relative overflow-hidden rounded-2xl border border-[#E3EAF5] bg-[#F8FAFE] p-3 shadow-[0_12px_30px_rgba(32,72,135,0.08)] sm:p-4" style={{ borderTop: `3px solid ${svc.color}` }}>
       <div className="relative">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between border-b border-[#E6ECF5] px-2 pb-3">
           <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: svc.color }} />
-            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-              service detail
-            </span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg text-white" style={{ backgroundColor: svc.color }}><Icon className="h-3.5 w-3.5" /></span>
+            <div><div className="font-display text-[13px] font-bold text-[#10234C]">{svc.title}</div><div className="font-mono text-[9px] uppercase tracking-[0.16em] text-muted-foreground">Operations dashboard</div></div>
           </div>
+          <span className="flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 font-mono text-[9px] uppercase text-emerald-600"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Live</span>
         </div>
-        <div className="mt-6 space-y-4">
-          <div className="rounded-xl border border-border bg-white/60 p-4">
-            <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground mb-2">What's included</div>
-            <div className="grid grid-cols-2 gap-2">
-              {svc.items.map((item) => (
-                <div key={item} className="flex items-center gap-2 text-sm text-foreground/80">
-                  <span className="h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: svc.color }} />
-                  {item}
-                </div>
-              ))}
+        <div className="mt-3 grid gap-2 sm:grid-cols-3">
+          {stats.map(([label, value]) => (
+            <div key={label} className="rounded-xl border border-[#E5EBF5] bg-white p-3">
+              <div className="font-mono text-[9px] uppercase tracking-[0.12em] text-muted-foreground">{label}</div>
+              <div className="mt-1 flex items-center justify-between"><span className="font-display text-xl font-bold text-[#10234C]">{value}</span><span className="text-[10px] font-semibold text-emerald-500">+12%</span></div>
             </div>
+          ))}
+        </div>
+        <div className="mt-2 grid gap-2 sm:grid-cols-[1.1fr_0.9fr]">
+          <div className="rounded-xl border border-[#E5EBF5] bg-white p-3">
+            <div className="mb-3 flex items-center justify-between"><span className="font-mono text-[9px] uppercase tracking-[0.12em] text-muted-foreground">Workflow progress</span><Gauge className="h-3.5 w-3.5" style={{ color: svc.color }} /></div>
+            <div className="flex h-20 items-end gap-2 px-1">{[35, 52, 42, 68, 58, 78, 92].map((height, index) => <div key={index} className="flex-1 rounded-t-sm" style={{ height: `${height}%`, backgroundColor: svc.color, opacity: 0.25 + index * 0.1 }} />)}</div>
+            <div className="mt-2 flex justify-between font-mono text-[8px] uppercase text-muted-foreground"><span>Mon</span><span>Today</span></div>
           </div>
-          <div className="rounded-xl border border-border bg-white/60 p-4">
-            <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground mb-2">Engagement model</div>
-            <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-lg border border-border bg-[#F4F6FA] p-3">
-                <div className="font-display text-sm font-bold text-[#080D1C]">Build & Handover</div>
-                <div className="mt-1 text-xs text-muted-foreground">We set it up, document it, train your team</div>
-              </div>
-              <div className="rounded-lg border border-[#FFB800]/30 bg-[#FFFDF5] p-3">
-                <div className="font-display text-sm font-bold text-[#080D1C]">Build & Manage</div>
-                <div className="mt-1 text-xs text-muted-foreground">We set it up and run it for you</div>
-              </div>
-            </div>
+          <div className="rounded-xl border border-[#E5EBF5] bg-white p-3">
+            <div className="mb-3 font-mono text-[9px] uppercase tracking-[0.12em] text-muted-foreground">Active queue</div>
+            <div className="space-y-2.5">{svc.items.slice(0, 3).map((item, index) => <div key={item} className="flex items-center gap-2 text-[10px] text-[#27375A]"><span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: `${svc.color}20`, color: svc.color }}>{index === 0 ? <UsersRound className="h-2.5 w-2.5" /> : index === 1 ? <CalendarDays className="h-2.5 w-2.5" /> : <ClipboardList className="h-2.5 w-2.5" />}</span><span className="truncate">{item}</span><Check className="ml-auto h-3 w-3 shrink-0 text-emerald-500" /></div>)}</div>
           </div>
         </div>
       </div>
