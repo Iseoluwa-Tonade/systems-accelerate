@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, BarChart3, CalendarDays, Check, ClipboardList, Gauge, Headphones, Settings2, UsersRound, Workflow } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
 import { ScrollReveal } from "@/components/site/ScrollReveal";
@@ -32,6 +32,8 @@ const SERVICES = [
     ],
     who: "Owners, Sales Directors, Heads of Sales and RevOps teams",
     color: "#1B5EFF",
+    background: "/bg.png",
+    image: "/service1.png",
   },
   {
     id: "customers",
@@ -48,6 +50,8 @@ const SERVICES = [
     ],
     who: "Operations Directors, General Managers and Customer Service Managers",
     color: "#F59E0B",
+    background: "/bg2.png",
+    image: "/service2.png",
   },
   {
     id: "operations",
@@ -64,6 +68,8 @@ const SERVICES = [
     ],
     who: "Owners, COOs, Operations Directors and Office Managers",
     color: "#10B981",
+    background: "/bg3.png",
+    image: "/service3.png",
   },
   {
     id: "systems",
@@ -80,6 +86,8 @@ const SERVICES = [
     ],
     who: "Operations leaders, Sales Operations and businesses scaling existing systems",
     color: "#8B5CF6",
+    background: "/bg4.png",
+    image: "/service4.png",
   },
 ] as const;
 
@@ -224,9 +232,16 @@ function ServiceBlock({
   reverse: boolean;
 }) {
   return (
-    <section id={svc.id} className="scroll-mt-28 rounded-[1.75rem] border border-white/80 bg-white/80 p-5 shadow-[0_18px_55px_rgba(25,52,96,0.06)] backdrop-blur-sm sm:p-7 lg:p-10">
+    <section id={svc.id} className="relative scroll-mt-28 px-1 py-6 sm:px-3 sm:py-8 lg:px-6 lg:py-10">
+      <img
+        src={svc.background}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/2 z-0 h-[132%] w-[70%] -translate-y-1/2 object-contain"
+        style={reverse ? { left: "-10%" } : { right: "-10%" }}
+      />
       <div className={"grid items-center gap-8 lg:grid-cols-12 lg:gap-14 " + (reverse ? "lg:[direction:rtl]" : "")}>
-        <ScrollReveal variant="slideRight" className="lg:col-span-5 [direction:ltr]">
+        <ScrollReveal variant="slideRight" className="relative z-20 lg:col-span-5 [direction:ltr]">
           <div className="mb-5 flex items-center gap-2.5">
             <span
               className="flex h-8 w-8 items-center justify-center rounded-full font-mono text-[11px] font-bold text-white shadow-sm"
@@ -269,47 +284,16 @@ function ServiceBlock({
           </Link>
         </ScrollReveal>
         <ScrollReveal variant="slideLeft" className="lg:col-span-7 [direction:ltr]">
-          <ServiceDetails svc={svc} />
+          <div className="relative z-10 flex min-h-[320px] items-center justify-center sm:min-h-[420px] lg:min-h-[520px]">
+            <img
+              src={svc.image}
+              alt={`${svc.title} workflow illustration`}
+              className="relative z-10 max-h-[400px] w-full scale-[1.08] object-contain drop-shadow-[0_18px_22px_rgba(25,52,96,0.12)] sm:max-h-[480px] lg:max-h-[560px]"
+            />
+          </div>
         </ScrollReveal>
       </div>
     </section>
-  );
-}
-
-function ServiceDetails({ svc }: { svc: (typeof SERVICES)[number] }) {
-  const Icon = svc.id === "revenue" ? BarChart3 : svc.id === "customers" ? Headphones : svc.id === "operations" ? Settings2 : Workflow;
-  const stats = svc.id === "revenue" ? [["Prospects", "248"], ["Qualified", "64"], ["Meetings", "18"]] : svc.id === "customers" ? [["Open inquiries", "24"], ["Appointments", "12"], ["Satisfaction", "92%"]] : svc.id === "operations" ? [["Tasks completed", "248"], ["Active projects", "12"], ["Efficiency", "94%"]] : [["Workflows live", "32"], ["Hours saved", "146"], ["Sync health", "99.8%"]];
-  return (
-    <div className="relative overflow-hidden rounded-2xl border border-[#E3EAF5] bg-[#F8FAFE] p-3 shadow-[0_12px_30px_rgba(32,72,135,0.08)] sm:p-4" style={{ borderTop: `3px solid ${svc.color}` }}>
-      <div className="relative">
-        <div className="flex items-center justify-between border-b border-[#E6ECF5] px-2 pb-3">
-          <div className="flex items-center gap-2">
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg text-white" style={{ backgroundColor: svc.color }}><Icon className="h-3.5 w-3.5" /></span>
-            <div><div className="font-display text-[13px] font-bold text-[#10234C]">{svc.title}</div><div className="font-mono text-[9px] uppercase tracking-[0.16em] text-muted-foreground">Operations dashboard</div></div>
-          </div>
-          <span className="flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 font-mono text-[9px] uppercase text-emerald-600"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Live</span>
-        </div>
-        <div className="mt-3 grid gap-2 sm:grid-cols-3">
-          {stats.map(([label, value]) => (
-            <div key={label} className="rounded-xl border border-[#E5EBF5] bg-white p-3">
-              <div className="font-mono text-[9px] uppercase tracking-[0.12em] text-muted-foreground">{label}</div>
-              <div className="mt-1 flex items-center justify-between"><span className="font-display text-xl font-bold text-[#10234C]">{value}</span><span className="text-[10px] font-semibold text-emerald-500">+12%</span></div>
-            </div>
-          ))}
-        </div>
-        <div className="mt-2 grid gap-2 sm:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-xl border border-[#E5EBF5] bg-white p-3">
-            <div className="mb-3 flex items-center justify-between"><span className="font-mono text-[9px] uppercase tracking-[0.12em] text-muted-foreground">Workflow progress</span><Gauge className="h-3.5 w-3.5" style={{ color: svc.color }} /></div>
-            <div className="flex h-20 items-end gap-2 px-1">{[35, 52, 42, 68, 58, 78, 92].map((height, index) => <div key={index} className="flex-1 rounded-t-sm" style={{ height: `${height}%`, backgroundColor: svc.color, opacity: 0.25 + index * 0.1 }} />)}</div>
-            <div className="mt-2 flex justify-between font-mono text-[8px] uppercase text-muted-foreground"><span>Mon</span><span>Today</span></div>
-          </div>
-          <div className="rounded-xl border border-[#E5EBF5] bg-white p-3">
-            <div className="mb-3 font-mono text-[9px] uppercase tracking-[0.12em] text-muted-foreground">Active queue</div>
-            <div className="space-y-2.5">{svc.items.slice(0, 3).map((item, index) => <div key={item} className="flex items-center gap-2 text-[10px] text-[#27375A]"><span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: `${svc.color}20`, color: svc.color }}>{index === 0 ? <UsersRound className="h-2.5 w-2.5" /> : index === 1 ? <CalendarDays className="h-2.5 w-2.5" /> : <ClipboardList className="h-2.5 w-2.5" />}</span><span className="truncate">{item}</span><Check className="ml-auto h-3 w-3 shrink-0 text-emerald-500" /></div>)}</div>
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
 
