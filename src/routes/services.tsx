@@ -237,7 +237,7 @@ function ServiceBlock({
         src={svc.background}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 z-0 h-[132%] w-[70%] -translate-y-1/2 object-contain"
+        className="pointer-events-none absolute top-1/2 z-0 hidden h-[152%] w-[82%] -translate-y-1/2 object-contain lg:block"
         style={reverse ? { left: "-10%" } : { right: "-10%" }}
       />
       <div className={"grid items-center gap-8 lg:grid-cols-12 lg:gap-14 " + (reverse ? "lg:[direction:rtl]" : "")}>
@@ -286,9 +286,15 @@ function ServiceBlock({
         <ScrollReveal variant="slideLeft" className="lg:col-span-7 [direction:ltr]">
           <div className="relative z-10 flex min-h-[320px] items-center justify-center sm:min-h-[420px] lg:min-h-[520px]">
             <img
+              src={svc.background}
+              alt=""
+              aria-hidden="true"
+              className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[108vw] w-[145vw] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain lg:hidden"
+            />
+            <img
               src={svc.image}
               alt={`${svc.title} workflow illustration`}
-              className="relative z-10 max-h-[400px] w-full scale-[1.08] object-contain drop-shadow-[0_18px_22px_rgba(25,52,96,0.12)] sm:max-h-[480px] lg:max-h-[560px]"
+              className="relative z-10 max-h-[500px] w-full scale-[1.18] object-contain drop-shadow-[0_18px_22px_rgba(25,52,96,0.12)] sm:max-h-[560px] sm:scale-[1.12] lg:max-h-[560px] lg:scale-[1.08]"
             />
           </div>
         </ScrollReveal>
