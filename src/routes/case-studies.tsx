@@ -68,52 +68,38 @@ const CASES = [
 
 function CaseStudiesPage() {
   return (
-    <SiteLayout headerTheme="light">
+    <SiteLayout headerTheme="dark">
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-border pt-24 md:pt-28" style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 60%, #FFF9F0 100%)" }}>
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-10 right-0 h-[400px] w-[400px] rounded-full opacity-35"
-            style={{ background: "radial-gradient(circle, rgba(27,94,255,0.09) 0%, transparent 70%)" }} />
-          <svg className="absolute left-8 bottom-4 h-[140px] w-[140px] opacity-[0.05]" viewBox="0 0 100 100">
-            <polygon points="50,5 95,95 5,95" fill="none" stroke="#FFB800" strokeWidth="1.5" className="animate-spin-slow" style={{ transformOrigin: "50px 50px" }} />
-          </svg>
-        </div>
-        <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pt-16 lg:px-6">
-          <div className="grid gap-10 lg:grid-cols-12 items-end">
-            <div className="lg:col-span-7">
-              <Eyebrow>Case studies</Eyebrow>
-              <h1 className="mt-5 font-display text-[34px] font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
-                Real problems.
-                <br />
-                <span className="text-gradient-gold">Practical solutions.</span>
-              </h1>
-              <ScrollReveal variant="fadeUp" delay={0.15}>
-                <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
-                  Examples of operational problems we've helped businesses solve — with the workflow, the tools, and the approach we used.
-                </p>
-              </ScrollReveal>
+      <section className="sec-navy relative isolate min-h-[540px] overflow-hidden border-b border-border lg:min-h-[600px]">
+        <img
+          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&q=80&auto=format&fit=crop"
+          alt="Operations and workflow management"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+        />
+        <div
+          className="absolute inset-0 -z-10 backdrop-blur-[8px]"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(8, 13, 28, 0.94) 0%, rgba(8, 13, 28, 0.72) 36%, rgba(8, 13, 28, 0) 68%)",
+          }}
+        />
+        <div className="relative mx-auto flex min-h-[540px] max-w-7xl flex-col justify-end px-4 pb-12 pt-32 lg:min-h-[600px] lg:justify-center lg:px-6 lg:pb-16 lg:pt-24">
+          <Eyebrow>Case studies</Eyebrow>
+          <h1 className="mt-5 font-display text-[34px] font-extrabold tracking-tight text-white sm:text-5xl lg:text-[72px] lg:leading-[1.03]">
+            Real problems.
+            <br />
+            <span className="text-gradient-gold">Practical solutions.</span>
+          </h1>
+          <ScrollReveal variant="fadeUp" delay={0.15}>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/72 sm:text-lg">
+              Examples of operational problems we've helped businesses solve — with the workflow, the tools, and the approach we used.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal variant="fadeUp" delay={0.25}>
+            <div className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-white/55">
+              Real examples · Honest outcomes
             </div>
-            <ScrollReveal variant="fadeUp" delay={0.2} className="lg:col-span-5">
-              <div className="rounded-2xl border border-border overflow-hidden">
-                <div className="relative h-48 lg:h-56 overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&auto=format&fit=crop"
-                    alt="Operations and workflow management"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#080D1C]/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Outcomes over outputs</div>
-                    <div className="mt-0.5 font-display text-sm font-bold text-white">What was built and delivered.</div>
-                  </div>
-                </div>
-                <div className="px-5 py-4 bg-[#F4F7FF] flex items-center gap-3">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#4C5670]">Real examples · Honest outcomes</span>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 

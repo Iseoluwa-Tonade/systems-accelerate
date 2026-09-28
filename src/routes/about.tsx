@@ -59,38 +59,37 @@ const INDUSTRIES = [
 
 function AboutPage() {
   return (
-    <SiteLayout headerTheme="light">
+    <SiteLayout headerTheme="dark">
       {/* Hero */}
-      <section
-        className="relative overflow-hidden border-b border-border pt-24 md:pt-28"
-        style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 60%, #FFF9F0 100%)" }}
-      >
-        <div className="pointer-events-none absolute inset-0">
-          <div
-            className="absolute -top-20 right-0 h-[400px] w-[400px] rounded-full opacity-40"
-            style={{ background: "radial-gradient(circle, rgba(255,184,0,0.12) 0%, transparent 70%)" }}
-          />
-        </div>
-        <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pt-16 lg:px-6">
+      <section className="sec-navy relative isolate min-h-[540px] overflow-hidden border-b border-border lg:min-h-[600px]">
+        <img
+          src="/accelerate.jpg"
+          alt="SuperTelque operations team at work"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+        />
+        <div
+          className="absolute inset-0 -z-10 backdrop-blur-[8px]"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(8, 13, 28, 0.94) 0%, rgba(8, 13, 28, 0.72) 36%, rgba(8, 13, 28, 0) 68%)",
+          }}
+        />
+        <div className="relative mx-auto flex min-h-[540px] max-w-7xl flex-col justify-end px-4 pb-12 pt-32 lg:min-h-[600px] lg:justify-center lg:px-6 lg:pb-16 lg:pt-24">
           <Eyebrow>About</Eyebrow>
-          <h1 className="mt-5 max-w-4xl font-display text-3xl font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[68px] lg:leading-[1.02]">
+          <h1 className="mt-5 max-w-4xl font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-[68px] lg:leading-[1.02]">
             The company behind your{" "}
             <span className="text-gradient-gold">operations.</span>
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>
-            <div className="mt-10 grid gap-8 lg:grid-cols-12">
-              <p className="lg:col-span-7 text-lg leading-relaxed text-muted-foreground">
-                We combine experienced people, structured processes, automation and AI
-                to run the sales and operational workflows that help growing businesses
-                move forward — without the burden of building another internal department.
-              </p>
-              <div className="lg:col-span-5 rounded-2xl border border-white/10 bg-white/05 p-6 flex flex-col justify-center items-center text-center">
-                <img src="/supertelque-logo.png" alt="" className="h-10 w-10 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
-                <div className="mt-3 font-display text-2xl font-bold text-white">Global delivery</div>
-                <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.18em] text-[#FFB800]/70">
-                  United States · Lagos · Remote-first
-                </div>
-              </div>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/72 sm:text-lg">
+              We combine experienced people, structured processes, automation and AI
+              to run the sales and operational workflows that help growing businesses
+              move forward — without the burden of building another internal department.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal variant="fadeUp" delay={0.25}>
+            <div className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-white/55">
+              United States · Lagos · Remote-first
             </div>
           </ScrollReveal>
         </div>

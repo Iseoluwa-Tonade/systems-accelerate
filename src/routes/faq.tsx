@@ -140,65 +140,49 @@ function AccordionItem({ q, a }: { q: string; a: string }) {
 
 function FaqPage() {
   return (
-    <SiteLayout headerTheme="light">
+    <SiteLayout headerTheme="dark">
       {/* Hero */}
-      <section
-        className="relative overflow-hidden border-b border-border pt-24 md:pt-28"
-        style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 60%, #FFF9F0 100%)" }}
-      >
-        <div className="pointer-events-none absolute inset-0">
-          <div
-            className="absolute -top-20 right-0 h-[400px] w-[400px] rounded-full opacity-40"
-            style={{ background: "radial-gradient(circle, rgba(255,184,0,0.12) 0%, transparent 70%)" }}
-          />
-        </div>
-        <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pt-16 lg:px-6">
-          <div className="grid gap-10 lg:grid-cols-12 items-end">
-            <div className="lg:col-span-7">
-              <Eyebrow>FAQ</Eyebrow>
-              <h1 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[64px] lg:leading-[1.04]">
-                Questions we <span className="text-gradient-gold">get asked.</span>
-              </h1>
-              <ScrollReveal variant="fadeUp" delay={0.15}>
-                <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-[#4C5670]">
-                  Straight answers about how we work, what we build, and what to expect from an engagement.
-                </p>
-              </ScrollReveal>
-              <ScrollReveal variant="fadeUp" delay={0.25}>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  {FAQS.map((cat) => (
-                    <a
-                      key={cat.category}
-                      href={`#${cat.category.toLowerCase().replace(/\s+/g, "-")}`}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-[#E8EEFF] bg-white px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em] text-[#4C5670] transition-colors hover:border-[#1B5EFF]/30 hover:text-[#1B5EFF]"
-                    >
-                      {cat.category}
-                    </a>
-                  ))}
-                </div>
-              </ScrollReveal>
+      <section className="sec-navy relative isolate min-h-[540px] overflow-hidden border-b border-border lg:min-h-[600px]">
+        <img
+          src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=1600&q=80&auto=format&fit=crop"
+          alt="Person thinking through a business problem"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-top"
+        />
+        <div
+          className="absolute inset-0 -z-10 backdrop-blur-[8px]"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(8, 13, 28, 0.94) 0%, rgba(8, 13, 28, 0.72) 36%, rgba(8, 13, 28, 0) 68%)",
+          }}
+        />
+        <div className="relative mx-auto flex min-h-[540px] max-w-7xl flex-col justify-end px-4 pb-12 pt-32 lg:min-h-[600px] lg:justify-center lg:px-6 lg:pb-16 lg:pt-24">
+          <Eyebrow>FAQ</Eyebrow>
+          <h1 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-[64px] lg:leading-[1.04]">
+            Questions we <span className="text-gradient-gold">get asked.</span>
+          </h1>
+          <ScrollReveal variant="fadeUp" delay={0.15}>
+            <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-white/72">
+              Straight answers about how we work, what we build, and what to expect from an engagement.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal variant="fadeUp" delay={0.25}>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {FAQS.map((cat) => (
+                <a
+                  key={cat.category}
+                  href={`#${cat.category.toLowerCase().replace(/\s+/g, "-")}`}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em] text-white/75 transition-colors hover:border-[#FFD44D]/50 hover:text-[#FFD44D]"
+                >
+                  {cat.category}
+                </a>
+              ))}
             </div>
-            <ScrollReveal variant="fadeUp" delay={0.2} className="lg:col-span-5">
-              <div className="rounded-2xl border border-border overflow-hidden">
-                <div className="relative h-48 lg:h-56 overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80&auto=format&fit=crop"
-                    alt="Person thinking through a business problem"
-                    className="w-full h-full object-cover object-top"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#080D1C]/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">Straight answers</div>
-                    <div className="mt-0.5 font-display text-sm font-bold text-white">No jargon. No runaround.</div>
-                  </div>
-                </div>
-                <div className="px-5 py-4 bg-[#F4F7FF] flex items-center gap-3">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#4C5670]">{FAQS.reduce((a, c) => a + c.items.length, 0)} questions answered</span>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
+          </ScrollReveal>
+          <ScrollReveal variant="fadeUp" delay={0.3}>
+            <div className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-white/55">
+              {FAQS.reduce((a, c) => a + c.items.length, 0)} questions answered
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

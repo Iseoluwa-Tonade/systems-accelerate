@@ -33,66 +33,50 @@ function BlogIndexPage() {
   const rest = POSTS.slice(1);
 
   return (
-    <SiteLayout headerTheme="light">
+    <SiteLayout headerTheme="dark">
       {/* Hero */}
-      <section
-        className="relative overflow-hidden border-b border-border pt-24 md:pt-28"
-        style={{ background: "linear-gradient(155deg, #EEF4FF 0%, #FFFFFF 60%, #FFF9F0 100%)" }}
-      >
-        <div className="pointer-events-none absolute inset-0">
-          <div
-            className="absolute -top-20 right-0 h-[400px] w-[400px] rounded-full opacity-40"
-            style={{ background: "radial-gradient(circle, rgba(255,184,0,0.12) 0%, transparent 70%)" }}
-          />
-        </div>
-        <div className="relative mx-auto max-w-7xl px-4 pb-14 lg:pt-16 lg:px-6">
-          <div className="grid gap-10 lg:grid-cols-12 items-end">
-            <div className="lg:col-span-7">
-              <Eyebrow>Blog</Eyebrow>
-              <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight text-[#080D1C] sm:text-5xl lg:text-[64px] lg:leading-[1.04]">
-                Build it right.<br />
-                <span className="text-gradient-gold">Run it well.</span>
-              </h1>
-              <ScrollReveal variant="fadeUp" delay={0.15}>
-                <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-[#4C5670]">
-                  Practical guides on starting, running, and growing a business that lasts. No fluff. Real teaching from operators who have done the work.
-                </p>
-              </ScrollReveal>
-              <ScrollReveal variant="fadeUp" delay={0.25}>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  {CATEGORIES.map((cat) => (
-                    <span
-                      key={cat.key}
-                      className="inline-flex items-center gap-1.5 rounded-full border px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em]"
-                      style={{ color: cat.color, borderColor: `${cat.color}30`, background: `${cat.color}0D` }}
-                    >
-                      {cat.count} posts · {cat.label}
-                    </span>
-                  ))}
-                </div>
-              </ScrollReveal>
+      <section className="sec-navy relative isolate min-h-[540px] overflow-hidden border-b border-border lg:min-h-[600px]">
+        <img
+          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&q=80&auto=format&fit=crop"
+          alt="Team working and collaborating"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+        />
+        <div
+          className="absolute inset-0 -z-10 backdrop-blur-[8px]"
+          style={{
+            background:
+              "linear-gradient(to right, rgba(8, 13, 28, 0.94) 0%, rgba(8, 13, 28, 0.72) 36%, rgba(8, 13, 28, 0) 68%)",
+          }}
+        />
+        <div className="relative mx-auto flex min-h-[540px] max-w-7xl flex-col justify-end px-4 pb-12 pt-32 lg:min-h-[600px] lg:justify-center lg:px-6 lg:pb-16 lg:pt-24">
+          <Eyebrow>Blog</Eyebrow>
+          <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-[64px] lg:leading-[1.04]">
+            Build it right.<br />
+            <span className="text-gradient-gold">Run it well.</span>
+          </h1>
+          <ScrollReveal variant="fadeUp" delay={0.15}>
+            <p className="mt-7 max-w-xl text-[17px] leading-relaxed text-white/72">
+              Practical guides on starting, running, and growing a business that lasts. No fluff. Real teaching from operators who have done the work.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal variant="fadeUp" delay={0.25}>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {CATEGORIES.map((cat) => (
+                <span
+                  key={cat.key}
+                  className="inline-flex items-center gap-1.5 rounded-full border px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em] backdrop-blur-sm"
+                  style={{ color: cat.color, borderColor: `${cat.color}66`, background: `${cat.color}1F` }}
+                >
+                  {cat.count} posts · {cat.label}
+                </span>
+              ))}
             </div>
-            <ScrollReveal variant="fadeUp" delay={0.2} className="lg:col-span-5">
-              <div className="rounded-2xl border border-border overflow-hidden">
-                <div className="relative h-48 lg:h-56 overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80&auto=format&fit=crop"
-                    alt="Team working and collaborating"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#080D1C]/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/70">From the team</div>
-                    <div className="mt-0.5 font-display text-sm font-bold text-white">Practical. Operator-led. Real.</div>
-                  </div>
-                </div>
-                <div className="px-5 py-4 bg-[#F4F7FF] flex items-center gap-3">
-                  <span className="h-2 w-2 rounded-full bg-emerald-400" />
-                  <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#4C5670]">{POSTS.length} posts published</span>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
+          </ScrollReveal>
+          <ScrollReveal variant="fadeUp" delay={0.3}>
+            <div className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-white/55">
+              {POSTS.length} posts published
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
