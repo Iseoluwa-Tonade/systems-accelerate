@@ -324,13 +324,17 @@ function Problems() {
               return (
                 <CarouselItem
                   key={problem.title}
-                  className="basis-[85%] pl-3 sm:basis-[70%] sm:pl-4"
+                  className="basis-[85%] pl-3 sm:basis-[72%] lg:basis-[64%] sm:pl-4"
                 >
                   <article
                     onClick={() => {
                       if (!isFocused) api?.scrollTo(index);
                     }}
-                    className={`problem-card group relative overflow-hidden rounded-2xl border p-6 text-left shadow-[0_24px_50px_-28px_rgba(0,0,0,.65)] transition-all duration-500 sm:p-10 ${isFocused ? "min-h-[24rem] cursor-default sm:min-h-[26rem]" : "min-h-[19rem] cursor-pointer hover:opacity-90 sm:min-h-[20rem]"}`}
+                    className={`problem-card group relative overflow-hidden rounded-2xl border p-6 text-left shadow-[0_24px_50px_-28px_rgba(0,0,0,.65)] transition-all duration-500 min-h-[24rem] sm:min-h-[26rem] sm:p-10 origin-center ${
+                      isFocused
+                        ? "scale-100 opacity-100 cursor-default shadow-[0_30px_60px_-20px_rgba(0,0,0,.85)]"
+                        : "scale-[0.84] opacity-55 cursor-pointer hover:opacity-80"
+                    }`}
                     style={{
                       backgroundColor: isFocused ? "#162038" : "#0F1628",
                       borderColor: isFocused ? `${problem.accent}88` : "rgba(255,255,255,0.1)",
@@ -416,7 +420,7 @@ function Services() {
           <SectionHeader
             eyebrow="Services"
             title={
-              <RevealWords text="Four services. One accountable partner." highlight="accountable partner." />
+              <>Four services. <span className="text-gradient-gold">One accountable partner.</span></>
             }
             description="We combine experienced people, structured processes, automation and AI to run the workflows that help your business move forward."
           />
@@ -430,33 +434,30 @@ function Services() {
 
         <div className="services-stack mt-8 grid gap-3 sm:mt-12 sm:grid-cols-2 lg:grid-cols-12 lg:grid-rows-[minmax(260px,1fr)_minmax(260px,1fr)]">
           {SERVICES.map((s, i) => (
-            <ScrollScene
+            <div
               key={s.code}
-              delay={i * 0.1}
-              direction={["left", "down", "up", "right"][i] as "left" | "down" | "up" | "right"}
               className={`services-stack-item services-stack-item-${i + 1}`}
             >
-            <motion.div
-              whileHover={{ y: -8, rotate: i % 2 === 0 ? -0.5 : 0.5 }}
-              className="service-card group relative h-full overflow-hidden rounded-[1.45rem] border border-black/8 p-7 shadow-[0_12px_30px_-24px_rgba(8,13,28,.35)] transition-shadow duration-300 hover:border-[#1B5EFF]/35 hover:shadow-[0_22px_45px_-26px_rgba(27,94,255,.38)]"
-              style={{ backgroundColor: s.color }}
-            >
-              <div className="absolute right-0 top-0 h-20 w-20 rounded-bl-[5rem] bg-white/35 transition-colors group-hover:bg-white/50" />
-              <div className="relative mb-10 flex items-center justify-between">
-                <Sparkles className="h-4 w-4 text-[#080D1C]/45 transition-transform duration-500 group-hover:rotate-45 group-hover:scale-125" />
+              <div
+                className="service-card group relative h-full overflow-hidden rounded-[1.45rem] border border-black/8 p-7 shadow-[0_12px_30px_-24px_rgba(8,13,28,.35)]"
+                style={{ backgroundColor: s.color }}
+              >
+                <div className="absolute right-0 top-0 h-20 w-20 rounded-bl-[5rem] bg-white/35" />
+                <div className="relative mb-10 flex items-center justify-between">
+                  <Sparkles className="h-4 w-4 text-[#080D1C]/45" />
+                </div>
+                <h3 className="relative max-w-[15rem] font-display text-lg font-bold tracking-tight text-[#080D1C]">{s.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#080D1C]">{s.desc}</p>
+                <ul className="mt-4 space-y-1.5 font-mono text-[11px] text-[#080D1C]">
+                  {s.bullets.map((b) => (
+                    <li key={b} className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#FFB800]" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h3 className="relative max-w-[15rem] font-display text-lg font-bold tracking-tight text-[#080D1C]">{s.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-[#080D1C]">{s.desc}</p>
-              <ul className="mt-4 space-y-1.5 font-mono text-[11px] text-[#080D1C]">
-                {s.bullets.map((b) => (
-                  <li key={b} className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#FFB800]" />
-                    {b}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-            </ScrollScene>
+            </div>
           ))}
         </div>
 

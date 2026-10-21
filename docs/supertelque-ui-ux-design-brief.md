@@ -692,7 +692,7 @@ The most important visual preferences to carry into the redesign are:
 
 - Make the hero image-led, using a strong background or primary visual rather than a dashboard as the only focal point.
 - Use colorful cards as a defining part of the interface. The colors should feel intentional, coordinated, and tied to content categories.
-- Keep gradients rare. Prefer well-chosen flat colors, soft surfaces, photography, and composition to create visual richness.
+- Keep gradients rare. Prefer well-chosen colors, soft surfaces, photography, and composition to create visual richness.
 - Remove unnecessary decorative numbering from cards. Number content only when it represents a real process order.
 - Use imagery throughout the page: hero, service explanations, case studies, About, testimonials, and contact.
 - Keep the overall result clean and premium by balancing colorful components with generous whitespace and restrained typography.

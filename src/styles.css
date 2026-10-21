@@ -852,32 +852,12 @@ html, body {
 }
 
 .services-stack-item .service-card {
-  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 500ms ease, border-color 300ms ease;
+  transition: box-shadow 300ms ease, border-color 300ms ease;
 }
 
 .services-stack-item:hover {
   z-index: 10;
 }
-
-.services-stack-item:hover .service-card {
-  transform: translateY(-8px) rotate(0deg) scale(1.015);
-}
-
-.service-card {
-  transform-style: preserve-3d;
-  perspective: 900px;
-}
-
-.service-card h3,
-.service-card p,
-.service-card ul,
-.service-card > div:last-child {
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.service-card:hover h3 { transform: translateZ(16px); }
-.service-card:hover p { transform: translateZ(10px); }
-.service-card:hover ul { transform: translateZ(7px); }
 
 .method-card::before {
   position: absolute;
@@ -1013,3 +993,51 @@ html, body {
 @utility animate-aurora-1 { animation: aurora-drift     22s ease-in-out infinite; }
 @utility animate-aurora-2 { animation: aurora-drift-alt 28s ease-in-out infinite; }
 
+
+
+/* ── Modern Bright Theme & Stacking Reveal Classes ── */
+.bg-mesh-light {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255, 184, 0, 0.09) 0%, transparent 40%),
+    radial-gradient(circle at 82% 88%, rgba(27, 94, 255, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(244, 246, 250, 0.6) 0%, transparent 70%),
+    #FAFBFD;
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.08) 1.2px, transparent 1.2px);
+  background-size: 26px 26px;
+}
+
+.section-shell-top {
+  border-top-left-radius: clamp(2.25rem, 5vw, 4.5rem);
+  border-top-right-radius: clamp(2.25rem, 5vw, 4.5rem);
+  box-shadow: 0 -30px 70px -20px rgba(15, 23, 42, 0.12);
+  position: relative;
+  z-index: 20;
+}
+
+.section-shell-bottom {
+  border-bottom-left-radius: clamp(2.25rem, 5vw, 4.5rem);
+  border-bottom-right-radius: clamp(2.25rem, 5vw, 4.5rem);
+  box-shadow: 0 30px 70px -20px rgba(15, 23, 42, 0.12);
+  position: relative;
+  z-index: 20;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+.problem-card-visual-shade-light {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.86) 40%, rgba(255,255,255,0.15) 100%);
+}
