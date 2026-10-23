@@ -162,7 +162,7 @@ function Hero() {
             <div className="font-mono text-[13px] uppercase tracking-[0.22em] text-[#FFD44D] mb-4">
               Revenue · Operations · AI
             </div>
-            <h1 className="font-display text-[42px] font-extrabold leading-[1.02] tracking-tight text-white sm:text-[58px] lg:text-[78px] lg:leading-[0.98]">
+            <h1 className="font-display text-[38px] font-extrabold leading-[1.02] tracking-tight text-white sm:text-[52px] lg:text-[54px] lg:leading-[0.98]">
               Grow your business.
               <br />
               <span className="text-[#FFD44D]">Not your workload.</span>

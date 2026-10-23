@@ -50,7 +50,7 @@ function BlogIndexPage() {
         />
         <div className="relative mx-auto flex min-h-[540px] max-w-7xl flex-col justify-end px-4 pb-12 pt-32 lg:min-h-[600px] lg:justify-center lg:px-6 lg:pb-16 lg:pt-24">
           <Eyebrow>Blog</Eyebrow>
-          <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-[64px] lg:leading-[1.04]">
+          <h1 className="mt-5 max-w-3xl font-display text-3xl font-extrabold tracking-tight text-white sm:text-[44px] lg:text-[44px] lg:leading-[1.04]">
             Build it right.<br />
             <span className="text-gradient-gold">Run it well.</span>
           </h1>

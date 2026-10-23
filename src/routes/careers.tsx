@@ -135,7 +135,7 @@ function CareersPage() {
         />
         <div className="relative mx-auto flex min-h-[540px] max-w-7xl flex-col justify-end px-4 pb-12 pt-32 lg:min-h-[600px] lg:justify-center lg:px-6 lg:pb-16 lg:pt-24">
           <Eyebrow>Open Roles</Eyebrow>
-          <h1 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-[64px] lg:leading-[1.04]">
+          <h1 className="mt-5 font-display text-3xl font-extrabold tracking-tight text-white sm:text-[44px] lg:text-[44px] lg:leading-[1.04]">
             Build with a team that <span className="text-gradient-gold">ships real systems.</span>
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>

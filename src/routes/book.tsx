@@ -90,7 +90,7 @@ function BookPage() {
         />
         <div className="relative mx-auto flex min-h-[540px] max-w-7xl flex-col justify-end px-4 pb-12 pt-32 lg:min-h-[600px] lg:justify-center lg:px-6 lg:pb-16 lg:pt-24">
           <Eyebrow>Book a session</Eyebrow>
-          <h1 className="mt-5 font-display text-[34px] font-extrabold tracking-tight text-white sm:text-5xl lg:text-[68px] lg:leading-[1.03]">
+          <h1 className="mt-5 font-display text-[32px] font-extrabold tracking-tight text-white sm:text-[44px] lg:text-[46px] lg:leading-[1.03]">
             Book a <span className="text-gradient-gold">20-minute</span> operations review.
           </h1>
           <ScrollReveal variant="fadeUp" delay={0.15}>

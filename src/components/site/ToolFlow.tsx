@@ -7,8 +7,6 @@ type FlowNode = {
   id: string;
   label: string;
   sub: string;
-  x: number;
-  y: number;
   hue: string;
   logo: ComponentType<ComponentProps<"svg">>;
 };
@@ -22,19 +20,25 @@ const CYCLE_MS = 30000;
 const SPIN_MS = 14000;
 
 const NODES: FlowNode[] = [
-  { id: "clay", label: "Clay", sub: "enrich", x: 40, y: 80, hue: "#14B8A6", logo: L.Clay },
-  { id: "apollo", label: "Apollo", sub: "prospect", x: 40, y: 240, hue: "#4B80FF", logo: L.Apollo },
-  { id: "lemlist", label: "Lemlist", sub: "outbound", x: 40, y: 400, hue: "#8B5CF6", logo: L.Lemlist },
-  { id: "openai", label: "OpenAI", sub: "AI assist", x: 240, y: 48, hue: "#10B981", logo: L.OpenAI },
-  { id: "hub", label: "HubSpot", sub: "CRM · lifecycle", x: 240, y: 280, hue: "#FFB800", logo: L.HubSpot },
-  { id: "zapier", label: "Zapier", sub: "automate", x: 440, y: 98, hue: "#FF6A00", logo: L.Zapier },
-  { id: "slack", label: "Slack", sub: "alerts", x: 440, y: 250, hue: "#D946EF", logo: L.Slack },
-  { id: "powerbi", label: "Power BI", sub: "report", x: 440, y: 434, hue: "#F2C811", logo: L.PowerBI },
+  { id: "clay", label: "Clay", sub: "enrich", hue: "#14B8A6", logo: L.Clay },
+  { id: "apollo", label: "Apollo", sub: "prospect", hue: "#4B80FF", logo: L.Apollo },
+  { id: "lemlist", label: "Lemlist", sub: "outbound", hue: "#8B5CF6", logo: L.Lemlist },
+  { id: "openai", label: "OpenAI", sub: "AI assist", hue: "#10B981", logo: L.OpenAI },
+  { id: "hub", label: "HubSpot", sub: "CRM · lifecycle", hue: "#FFB800", logo: L.HubSpot },
+  { id: "zapier", label: "Zapier", sub: "automate", hue: "#FF6A00", logo: L.Zapier },
+  { id: "slack", label: "Slack", sub: "alerts", hue: "#D946EF", logo: L.Slack },
+  { id: "powerbi", label: "Power BI", sub: "report", hue: "#F2C811", logo: L.PowerBI },
+  { id: "claude", label: "Claude", sub: "AI assist", hue: "#D97757", logo: L.Claude },
+  { id: "instantly", label: "Instantly", sub: "outbound", hue: "#6C5CE7", logo: L.Instantly },
+  { id: "jira", label: "Jira", sub: "projects", hue: "#2684FF", logo: L.Jira },
+  { id: "n8n", label: "n8n", sub: "automate", hue: "#EA4B71", logo: L.N8n },
+  { id: "adobe", label: "Adobe", sub: "creative", hue: "#FF3B30", logo: L.Adobe },
+  { id: "canva", label: "Canva", sub: "design", hue: "#00C4CC", logo: L.Canva },
 ];
 
-const ORBITS = NODES.filter((n) => n.id !== "hub").map((n) => ({
+const ORBITS = NODES.map((n, i, arr) => ({
   node: n,
-  phi: Math.atan2(n.y - CENTER.y, n.x - CENTER.x),
+  phi: (i / arr.length) * Math.PI * 2 - Math.PI / 2,
 }));
 
 function pct(px: number, total: number) {
@@ -166,23 +170,6 @@ export function ToolFlow() {
           })}
         </svg>
 
-        {/* Hub */}
-        <div
-          className="absolute -translate-x-1/2 -translate-y-1/2 flex items-center gap-2.5 rounded-xl border border-[#FFB800]/50 bg-[#FFB800]/10 px-3.5 py-2.5 shadow-[0_0_28px_rgba(255,184,0,0.35)] backdrop-blur-md"
-          style={{ left: pct(CENTER.x, VIEW_W), top: pct(CENTER.y, VIEW_H) }}
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.7 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="relative"
-          >
-            <span className="absolute inset-0 -z-10 rounded-xl animate-ping bg-[#FFB800]/10 pointer-events-none" />
-            <L.HubSpot className="h-9 w-9" />
-          </motion.div>
-        </div>
-
         {/* Orbiting tools */}
         {ORBITS.map(({ node }, i) => {
           const home = fromPhi(ORBITS[i].phi);
@@ -201,7 +188,7 @@ export function ToolFlow() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: (i + 1) * 0.08, ease: "easeOut" }}
               >
-                <node.logo className="h-5 w-5" />
+                <node.logo className="h-7 w-7" showLabel={false} />
               </motion.div>
             </div>
           );

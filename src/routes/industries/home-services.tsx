@@ -62,7 +62,7 @@ function HomeServicesPage() {
         <div className="relative mx-auto flex min-h-[500px] max-w-[1440px] items-end px-4 pb-10 pt-32 lg:items-center lg:px-8 lg:pb-16 lg:pt-28">
           <div className="max-w-4xl">
             <Eyebrow>Industry Solutions</Eyebrow>
-            <h1 className="mt-5 max-w-4xl font-display text-[42px] font-extrabold leading-[1.02] tracking-tight text-white sm:text-[58px] lg:text-[72px] lg:leading-[0.98]">
+            <h1 className="mt-5 max-w-4xl font-display text-[38px] font-extrabold leading-[1.02] tracking-tight text-white sm:text-[52px] lg:text-[50px] lg:leading-[0.98]">
               Sales & operations support for{" "}
               <span className="text-[#FFD44D]">home service companies.</span>
             </h1>
