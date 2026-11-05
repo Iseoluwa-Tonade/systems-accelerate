@@ -1,257 +1,239 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteLayout } from "@/components/site/SiteLayout";
-import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
-import { ScrollReveal } from "@/components/site/ScrollReveal";
-import { AgentAvatar } from "@/components/site/AgentAvatar";
+import { createFileRoute } from "@tanstack/react-router";
+import { Page, PageIntro, Cta } from "@/components/site/chrome";
+import { Reveal, ExpandingImage, HorizontalRail, MaskText } from "@/components/site/motion";
+import { principles, industries, team, faqs } from "@/lib/content";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
+import { photos } from "@/lib/photography";
+
+const railPhotos = [
+  photos.analytics,
+  photos.team,
+  photos.work,
+  photos.architecture,
+  photos.workplace,
+];
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About | SuperTelque" },
-      { name: "description", content: "SuperTelque combines experienced people, structured processes, automation and AI to run the sales and operational workflows that help growing businesses move forward." },
-      { property: "og:title", content: "About | SuperTelque" },
-      { property: "og:description", content: "Managed revenue, customer and business operations for growing companies. People + Process + Automation." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: photos.team },
+      { name: "twitter:image", content: photos.team },
+      { title: "About — SuperTelque" },
+      {
+        name: "description",
+        content:
+          "Experienced people, structured processes, automation and AI behind your business operations.",
+      },
+      { property: "og:title", content: "About — SuperTelque" },
+      {
+        property: "og:description",
+        content: "The company behind your operations. United States · Lagos · Remote-first.",
+      },
     ],
   }),
-  component: AboutPage,
+  component: About,
 });
 
-const TEAM = [
-  {
-    v: 1 as const,
-    name: "Sunny T.",
-    role: "Operations Lead",
-    specialty: "Revenue Systems · CRM · Workflow Design",
-    bio: "Leads client engagements across revenue operations and workflow design. Builds systems that connect CRM, pipeline, and reporting into a single operating picture.",
-  },
-  {
-    v: 2 as const,
-    name: "Rhoda O.",
-    role: "Community Manager",
-    specialty: "Social Media · Community · Content",
-    bio: "Builds engaged communities and consistent brand presence across channels. Specialist in social media strategy, scheduling, and audience growth.",
-  },
-  {
-    v: 3 as const,
-    name: "Israel O.",
-    role: "Automation Engineer",
-    specialty: "n8n · Make · AI Integrations",
-    bio: "Builds the automation layer between tools, teams and data. Specialises in workflow automation, AI-powered processes, and system integrations.",
-  },
-] as const;
-
-const PRINCIPLES = [
-  { k: "People + Process + Automation", d: "We combine the right people, structured processes and automation to deliver outcomes — not just tools or headcount." },
-  { k: "Operational responsibility", d: "We don't just install systems and leave. Under our Build & Manage model, we take responsibility for running the agreed workflow." },
-  { k: "Work owned by the client", d: "Every system we build belongs to you. Full documentation, training, and clear handover if you choose to run it internally." },
-  { k: "Honest outcomes", d: "We describe what we built and delivered. We don't fabricate metrics or claim results we can't verify." },
-  { k: "Technology as an enabler", d: "AI, automation and CRM architecture are tools in service of a better operational outcome — not the product you have to learn first." },
-];
-
-const INDUSTRIES = [
-  { title: "Home Services", desc: "Lead response, appointment coordination, estimate follow-up and customer operations.", accent: "#1B5EFF" },
-  { title: "Industrial & Commercial Services", desc: "Prospecting, quotation follow-up, CRM management and sales coordination.", accent: "#14B8A6" },
-  { title: "Property Management", desc: "Inquiry coordination, viewing scheduling and vendor communication.", accent: "#8B5CF6" },
-  { title: "Logistics & Distribution", desc: "Sales coordination, customer updates, workflow and administrative support.", accent: "#F59E0B" },
-  { title: "Professional Services", desc: "Client onboarding, scheduling, project coordination and operational reporting.", accent: "#10B981" },
-  { title: "Growing B2B Companies", desc: "Revenue operations, CRM implementation, workflow automation and AI-assisted processes.", accent: "#EC4899" },
-] as const;
-
-function AboutPage() {
+function About() {
   return (
-    <SiteLayout headerTheme="dark">
-      {/* Hero */}
-      <section className="sec-navy relative isolate min-h-[540px] overflow-hidden border-b border-border lg:min-h-[600px]">
-        <img
-          src="/accelerate.jpg"
-          alt="SuperTelque operations team at work"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
-        />
-        <div
-          className="absolute inset-0 -z-10 backdrop-blur-[8px]"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(8, 13, 28, 0.94) 0%, rgba(8, 13, 28, 0.72) 36%, rgba(8, 13, 28, 0) 68%)",
-          }}
-        />
-        <div className="relative mx-auto flex min-h-[540px] max-w-7xl flex-col justify-end px-4 pb-12 pt-32 lg:min-h-[600px] lg:justify-center lg:px-6 lg:pb-16 lg:pt-24">
-          <Eyebrow>About</Eyebrow>
-          <h1 className="mt-5 max-w-4xl font-display text-3xl font-extrabold tracking-tight text-white sm:text-[44px] lg:text-[46px] lg:leading-[1.02]">
-            The company behind your{" "}
-            <span className="text-gradient-gold">operations.</span>
-          </h1>
-          <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/72 sm:text-lg">
-              We combine experienced people, structured processes, automation and AI
-              to run the sales and operational workflows that help growing businesses
-              move forward — without the burden of building another internal department.
-            </p>
-          </ScrollReveal>
-          <ScrollReveal variant="fadeUp" delay={0.25}>
-            <div className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-white/55">
-              United States · Lagos · Remote-first
-            </div>
-          </ScrollReveal>
-        </div>
+    <Page darkHeader>
+      <PageIntro
+        eyebrow="About SuperTelque"
+        image={photos.team}
+        title="The company behind your operations."
+        lede="We combine experienced people, structured processes, automation and AI to run the sales and operational workflows that help growing businesses move forward — without the burden of building another internal department."
+      />
+      <section className="mx-auto grid max-w-6xl gap-12 px-6 py-32 md:grid-cols-[1fr_1.4fr]">
+        <p className="eyebrow text-muted-foreground">Mission</p>
+        <h2 className="h-section">
+          <MaskText text="Grow businesses. Not their workload." />
+        </h2>
+        <p className="text-lg text-muted-foreground md:col-start-2">
+          To give growing businesses the operational support they need to scale with certainty. We
+          take responsibility for defined workflows — supported by the right people, processes and
+          technology — so owners and operators can focus on the work that matters most.
+        </p>
       </section>
 
-      {/* Mission */}
-      <section className="sec-white border-b border-border py-14 lg:py-20">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <ScrollReveal variant="fadeUp">
-            <div className="grid gap-10 lg:grid-cols-12">
-              <div className="lg:col-span-4">
-                <SectionHeader eyebrow="Mission" title={<>Grow businesses. Not their workload.</>} />
-              </div>
-              <blockquote className="lg:col-span-8 border-l-2 border-[#FFB800]/40 pl-6 text-xl leading-relaxed text-white/75 lg:text-2xl">
-                "To give growing businesses the operational support they need to scale
-                with certainty. We take responsibility for defined workflows — supported
-                by the right people, processes and technology — so owners and operators
-                can focus on the work that matters most."
-              </blockquote>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Operating Model */}
-      <section className="sec-white py-14 lg:py-20">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <SectionHeader
-            eyebrow="Operating model"
-            title={<>How we deliver outcomes.</>}
-            description="We're not just consultants who hand you a plan. Under our Build & Manage model, we take responsibility for running the agreed workflow."
-          />
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            <ScrollReveal variant="fadeUp" delay={0.1}>
-              <div className="rounded-2xl border border-border bg-[#F4F6FA] p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                <div className="font-mono text-[11px] tracking-[0.2em] text-[#1B5EFF] mb-2">People</div>
-                <h3 className="font-display text-lg font-bold tracking-tight text-[#080D1C]">Assigned team members</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  The right people working on your workflows — from operations specialists to automation engineers.
-                </p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal variant="fadeUp" delay={0.2}>
-              <div className="rounded-2xl border border-border bg-[#F4F6FA] p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                <div className="font-mono text-[11px] tracking-[0.2em] text-[#FFB800] mb-2">Process</div>
-                <h3 className="font-display text-lg font-bold tracking-tight text-[#080D1C]">Structured workflows</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  Defined processes with clear responsibilities, escalation paths and reporting so you know exactly what's running.
-                </p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal variant="fadeUp" delay={0.3}>
-              <div className="rounded-2xl border border-border bg-[#F4F6FA] p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                <div className="font-mono text-[11px] tracking-[0.2em] text-[#8B5CF6] mb-2">Automation</div>
-                <h3 className="font-display text-lg font-bold tracking-tight text-[#080D1C]">AI and workflow systems</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  CRM, automation and AI-assisted processes that reduce manual work and keep everything running at scale.
-                </p>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Core Principles */}
-      <section className="sec-white border-t border-border py-14 lg:py-20">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <SectionHeader eyebrow="Core principles" title={<>What guides our work.</>} />
-          <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-5">
-            {PRINCIPLES.map((p, i) => (
-              <ScrollReveal key={p.k} variant="fadeUp" delay={i * 0.09} className="rounded-xl border border-border bg-[#F4F6FA] p-5 transition-all duration-300 hover:bg-[#EEF3FF] hover:-translate-y-1 hover:shadow-md">
-                <h3 className="font-display text-base font-bold tracking-tight text-[#080D1C]">{p.k}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.d}</p>
-              </ScrollReveal>
+      <section className="relative z-10 bg-paper">
+        <div className="mx-auto max-w-6xl px-6 pb-28">
+          <p className="eyebrow section-kicker">Operating model</p>
+          <h2 className="h-section mt-5">How we deliver outcomes.</h2>
+          <p className="mt-6 max-w-2xl text-muted-foreground">
+            We're not just consultants who hand you a plan. Under our Build & Manage model, we take
+            responsibility for running the agreed workflow.
+          </p>
+          <div className="mt-10 grid gap-8 md:grid-cols-3">
+            {[
+              [
+                "People",
+                "Assigned team members",
+                "The right people working on your workflows — from operations specialists to automation engineers.",
+              ],
+              [
+                "Process",
+                "Structured workflows",
+                "Defined processes with clear responsibilities, escalation paths and reporting so you know exactly what's running.",
+              ],
+              [
+                "Automation",
+                "AI and workflow systems",
+                "CRM, automation and AI-assisted processes that reduce manual work and keep everything running at scale.",
+              ],
+            ].map(([kind, title, body]) => (
+              <Reveal key={kind} className="border-t-2 border-orange pt-6">
+                <p className="eyebrow text-muted-foreground">{kind}</p>
+                <h3 className="mt-4 text-xl">{title}</h3>
+                <p className="mt-4 text-muted-foreground">{body}</p>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Team */}
-      <section className="sec-white border-t border-border py-14 lg:py-20">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <SectionHeader
-            eyebrow="Meet the team"
-            title={
-              <>
-                The people who{" "}
-                <span className="text-gradient-gold">run your operations.</span>
-              </>
-            }
-            description="A senior team. Every engagement is staffed by the specialists who know your workflow."
-          />
-          <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            {TEAM.map((member, i) => (
-              <ScrollReveal key={member.name} variant="zoomIn" delay={i * 0.12}>
-                <div className="rounded-2xl border border-border bg-[#F8FAFF] p-8 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-[#FFB800]/30">
-                  <AgentAvatar v={member.v} size={108} />
-                  <div className="mt-5 font-display text-xl font-bold tracking-tight text-[#080D1C]">{member.name}</div>
-                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{member.role}</div>
-                  <div className="mt-2 text-xs font-mono text-[#1B5EFF]">{member.specialty}</div>
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{member.bio}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Industries */}
-      <section className="sec-mid border-y border-border py-14 lg:py-20">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <SectionHeader
-            eyebrow="Industries"
-            title={
-              <>
-                Businesses we <span className="text-gradient-gold">help run.</span>
-              </>
-            }
-            description="Our approach works across industries. These are the markets we focus on and build for."
-          />
-          <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3">
-            {INDUSTRIES.map((ind, i) => (
-              <ScrollReveal
-                key={ind.title}
-                variant="fadeUp"
-                delay={i * 0.08}
-                className="rounded-xl border border-border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: ind.accent, opacity: 0.7 }} />
-                </div>
-                <h3 className="font-display text-lg font-bold tracking-tight text-[#080D1C]">{ind.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{ind.desc}</p>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="sec-navy py-14 lg:py-20">
-        <div className="mx-auto max-w-4xl px-4 lg:px-6 text-center">
-          <ScrollReveal variant="scaleIn">
-            <div className="flex items-center justify-center gap-2.5 mb-4">
-              <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
+      <div className="relative z-10 rounded-t-[28px] bg-blue text-ink-foreground graphic-lines">
+        <HorizontalRail
+          heightVh={300}
+          header={() => (
+            <div className="mx-auto mb-8 w-full max-w-6xl px-6">
+              <p className="eyebrow text-gold">Operating principles</p>
+              <h2 className="h-section mt-3">What guides our work.</h2>
             </div>
-            <h2 className="font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-              Ready to talk about your operations?
-            </h2>
-            <p className="mx-auto mt-3 max-w-md text-base text-white/60">
-              20 minutes. Tell us what's taking too much time and we'll tell you where to start.
-            </p>
-            <Link
-              to="/book"
-              className="mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_12px_28px_-6px_rgba(255,184,0,0.40)]"
-              style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
+          )}
+        >
+          {principles.map(([t, d], i) => (
+            <article
+              key={t}
+              className="relative flex h-[min(52vh,460px)] w-[78vw] shrink-0 flex-col justify-end overflow-hidden rounded-xl p-8 md:w-[34vw]"
             >
-              Book an Operations Review →
-            </Link>
-          </ScrollReveal>
+              <img
+                src={railPhotos[i % railPhotos.length]}
+                alt=""
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 image-shade" />
+              <div className="relative">
+                <p className="eyebrow text-lime">0{i + 1}</p>
+                <h3 className="mt-3 font-serif text-3xl font-semibold">{t}</h3>
+                <p className="mt-3 text-ink-foreground/85">{d}</p>
+              </div>
+            </article>
+          ))}
+        </HorizontalRail>
+      </div>
+
+      <section className="relative z-10 bg-paper">
+        <div className="mx-auto max-w-6xl px-6 py-28">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="eyebrow text-muted-foreground">Meet the team</p>
+              <h2 className="h-section mt-4 max-w-xl">The people who run your operations.</h2>
+            </div>
+            <p className="max-w-sm text-muted-foreground">
+              A senior team. Every engagement is staffed by the specialists who know your workflow.
+            </p>
+          </div>
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {team.map((m, i) => (
+              <Reveal key={m.name} delay={i * 0.08}>
+                <article className="group">
+                  <div
+                    className="flex aspect-[4/3] items-center justify-center rounded-md bg-stone graphic-lines"
+                    aria-label={`Photo awaiting approval for ${m.name}`}
+                  >
+                    <span aria-hidden className="font-serif text-6xl text-green">
+                      {m.name
+                        .split(" ")
+                        .map((part) => part[0])
+                        .join("")}
+                    </span>
+                  </div>
+                  <h3 className="mt-5 font-serif text-xl font-semibold">{m.name}</h3>
+                  <p className="text-sm text-orange">{m.role}</p>
+                  <p className="mt-3 text-xs font-medium text-green">{m.specialties}</p>
+                  <p className="mt-3 text-sm text-muted-foreground">{m.bio}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
-    </SiteLayout>
+
+      <section className="relative z-10 -mt-8 rounded-t-[28px] bg-ink text-ink-foreground graphic-lines">
+        <div className="mx-auto grid max-w-6xl gap-14 px-6 py-28 md:grid-cols-[0.85fr_1.15fr]">
+          <div className="md:sticky md:top-28 md:self-start">
+            <p className="eyebrow text-lime">Questions</p>
+            <h2 className="h-section mt-4">Answers, before you ask.</h2>
+            <p className="mt-6 max-w-xs text-ink-foreground/70">
+              What business owners and operations leaders raise on the first call. If yours is not
+              here, send it over.
+            </p>
+            <Cta to="/contact" tone="ghost-light" className="mt-9">
+              Ask a question
+            </Cta>
+          </div>
+          <Accordion type="single" collapsible className="faq-list">
+            {faqs.map(([q, a], i) => (
+              <AccordionItem key={q} value={`faq-${i}`} className="faq-item">
+                <AccordionTrigger className="group gap-6 py-6 text-left font-medium hover:no-underline [&>svg]:hidden">
+                  <span className="flex items-baseline gap-5 font-serif text-lg leading-snug transition-colors duration-300 group-hover:text-lime md:text-2xl">
+                    <span className="eyebrow text-lime">0{i + 1}</span>
+                    <span>{q}</span>
+                  </span>
+                  <span aria-hidden className="faq-mark" />
+                </AccordionTrigger>
+                <AccordionContent className="max-w-xl pb-8 text-base leading-7 text-ink-foreground/70 md:pl-[3.6rem]">
+                  {a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
+
+      <ExpandingImage src={photos.workplace} alt="A bright collaborative workplace">
+        <p className="eyebrow text-lime">Built together</p>
+        <h2 className="h-section mt-5">Senior thinking. Hands-on delivery.</h2>
+      </ExpandingImage>
+      <section className="relative z-10 -mt-8 rounded-t-[28px] bg-paper">
+        <div className="mx-auto grid max-w-6xl gap-16 px-6 py-28 md:grid-cols-2">
+          <div>
+            <p className="eyebrow text-muted-foreground">Industries</p>
+            <ul className="mt-6">
+              {industries.map(([x, description], i) => (
+                <Reveal key={x} delay={i * 0.05} y={12}>
+                  <li className="border-t border-border py-4 font-serif text-2xl font-light">
+                    {x}
+                    <p className="mt-3 font-sans text-sm font-normal text-muted-foreground">
+                      {description}
+                    </p>
+                  </li>
+                </Reveal>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p className="eyebrow text-muted-foreground">Footprint</p>
+            <Reveal>
+              <p className="mt-6 text-lg leading-relaxed">
+                Teams in the United States and Lagos, Nigeria, delivering remotely for clients
+                worldwide. We work inside your tools and your time zone.
+              </p>
+              <Cta to="/contact" tone="ink" className="mt-10">
+                Talk to the team
+              </Cta>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+    </Page>
   );
 }

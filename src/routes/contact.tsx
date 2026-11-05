@@ -1,26 +1,44 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
-import { SiteLayout } from "@/components/site/SiteLayout";
-import { Eyebrow } from "@/components/site/Eyebrow";
-import { ScrollReveal } from "@/components/site/ScrollReveal";
+import { Page, PageIntro, Cta } from "@/components/site/chrome";
+import { photos } from "@/lib/photography";
+import { Reveal } from "@/components/site/motion";
+import { Field, SelectField, AreaField, SubmitButton } from "@/components/site/fields";
 import { submitContactForm } from "@/lib/form-actions";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: photos.team },
+      { name: "twitter:image", content: photos.team },
       { title: "Contact | SuperTelque" },
-      { name: "description", content: "Get in touch with SuperTelque. We help growing businesses manage sales, customer and back-office operations." },
+      {
+        name: "description",
+        content: "Talk about managed sales, customer or business operations, CRM and automation.",
+      },
       { property: "og:title", content: "Contact | SuperTelque" },
-      { property: "og:description", content: "Email, LinkedIn and a direct contact form for operations and automation engagements." },
+      { property: "og:description", content: "Discuss the workflows taking time from your team." },
     ],
   }),
-  component: ContactPage,
+  component: Contact,
 });
 
-function ContactPage() {
-  const [sending, setSending] = useState(false);
+const supportTypes = [
+  "Sales & Revenue Operations",
+  "Customer Operations",
+  "Business Operations",
+  "CRM & Automation",
+  "Not sure",
+];
+
+function Contact() {
+  const [busy, setBusy] = useState(false);
+  const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
@@ -28,13 +46,12 @@ function ContactPage() {
   const [phone, setPhone] = useState("");
   const [contactPref, setContactPref] = useState<"call" | "text">("call");
   const [supportType, setSupportType] = useState("Not sure");
-  const [companySize, setCompanySize] = useState("1-10");
   const [message, setMessage] = useState("");
   const [smsConsent, setSmsConsent] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (sending) return;
+    if (busy) return;
 
     const errs: Record<string, string> = {};
     if (!name.trim()) errs.name = "Required";
@@ -45,9 +62,21 @@ function ContactPage() {
     setErrors(errs);
     if (Object.keys(errs).length > 0) return;
 
-    setSending(true);
+    setBusy(true);
     try {
-      await submitContactForm({ data: { name, company, role, email, phone, contactPref, smsConsent, crm: supportType, message } });
+      await submitContactForm({
+        data: {
+          name,
+          company,
+          role,
+          email,
+          phone,
+          contactPref,
+          smsConsent,
+          crm: supportType,
+          message,
+        },
+      });
       toast.success("Message sent. We'll be in touch within 24 hours.");
       setName("");
       setCompany("");
@@ -59,248 +88,214 @@ function ContactPage() {
       setMessage("");
       setSmsConsent(false);
       setErrors({});
+      setSent(true);
     } catch (err) {
       console.error("[contact]", err);
       toast.error("Something went wrong. Please email support@supertelque.com directly.");
     } finally {
-      setSending(false);
+      setBusy(false);
     }
   }
 
   return (
-    <SiteLayout headerTheme="dark">
-      {/* Hero */}
-      <section className="sec-navy relative isolate min-h-[540px] overflow-hidden border-b border-border lg:min-h-[600px]">
-        <img
-          src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1600&q=80&auto=format&fit=crop"
-          alt="Person on a professional call"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
-        />
-        <div
-          className="absolute inset-0 -z-10 backdrop-blur-[8px]"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(8, 13, 28, 0.94) 0%, rgba(8, 13, 28, 0.72) 36%, rgba(8, 13, 28, 0) 68%)",
-          }}
-        />
-        <div className="relative mx-auto flex min-h-[540px] max-w-7xl flex-col justify-end px-4 pb-12 pt-32 lg:min-h-[600px] lg:justify-center lg:px-6 lg:pb-16 lg:pt-24">
-          <Eyebrow>Contact</Eyebrow>
-          <h1 className="mt-5 font-display text-[32px] font-extrabold tracking-tight text-white sm:text-[44px] lg:text-[46px] lg:leading-[1.03]">
-            Let's talk about{" "}
-            <span className="text-gradient-gold">what's not working.</span>
-          </h1>
-          <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/72 sm:text-lg">
-              Tell us about the workflow or process that's slowing your team down. We will come back with a clear view of where to start.
-            </p>
-          </ScrollReveal>
-          <ScrollReveal variant="fadeUp" delay={0.25}>
-            <div className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-white/55">
-              Remote-first · Global clients
+    <Page darkHeader>
+      <PageIntro
+        compact
+        eyebrow="Contact"
+        title="Let's talk about your next stage."
+        lede="A senior operator. A real conversation. Your operational challenges, without the sales pitch."
+        image={photos.team}
+      />
+      <section className="mx-auto grid max-w-6xl gap-16 px-6 py-20 md:grid-cols-[1fr_1.2fr]">
+        <div>
+          <p className="eyebrow text-muted-foreground">Contact</p>
+          <h2 className="h-section mt-6">Tell us what's slowing your business down.</h2>
+          <p className="mt-6 max-w-sm text-muted-foreground">
+            A senior operator reads every message. Ready to talk now? Book an Operations Review
+            instead.
+          </p>
+          <Cta to="/book" tone="ghost" className="mt-8">
+            Book an Operations Review
+          </Cta>
+          <dl className="mt-16 space-y-5 text-sm">
+            <div className="border-t border-border pt-4">
+              <dt className="text-muted-foreground">Email</dt>
+              <dd className="mt-1">
+                <a className="link-underline" href="mailto:support@supertelque.com">
+                  support@supertelque.com
+                </a>
+              </dd>
             </div>
-          </ScrollReveal>
+            <div className="border-t border-border pt-4">
+              <dt className="text-muted-foreground">Phone</dt>
+              <dd className="mt-1">
+                <a className="link-underline" href="tel:+13074293798">
+                  +1 (307) 429-3798
+                </a>
+              </dd>
+            </div>
+            <div className="border-t border-border pt-4">
+              <dt className="text-muted-foreground">Text message</dt>
+              <dd className="mt-1">
+                <a className="link-underline" href="sms:+13074293798">
+                  +1 (307) 429-3798
+                </a>
+              </dd>
+            </div>
+            <div className="border-t border-border pt-4">
+              <dt className="text-muted-foreground">LinkedIn</dt>
+              <dd className="mt-1">
+                <a
+                  className="link-underline"
+                  href="https://linkedin.com/company/supertelque"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  linkedin.com/company/supertelque
+                </a>
+              </dd>
+            </div>
+            <div className="border-t border-border pt-4">
+              <dt className="text-muted-foreground">Office</dt>
+              <dd className="mt-1">Lagos, Nigeria - Remote-first</dd>
+            </div>
+          </dl>
+          <p className="mt-6 border-t border-border pt-4 text-[11px] leading-relaxed text-muted-foreground">
+            SMS/text consent is collected at form submission. Msg &amp; data rates may apply. Reply
+            STOP to cancel, HELP for help. Subject to TCPA (US). We do not sell your number.
+          </p>
         </div>
-      </section>
+        <Reveal className="border-t-4 border-blue bg-stone p-8 md:p-12">
+          {sent ? (
+            <div className="flex min-h-[420px] flex-col justify-center">
+              <p className="eyebrow text-muted-foreground">Received</p>
+              <h2 className="h-section mt-4">Thank you - your message is with us.</h2>
+              <p className="mt-4 text-muted-foreground">
+                We'll reply from a real person, not a sequence.
+              </p>
+              <button
+                type="button"
+                onClick={() => setSent(false)}
+                className="mt-8 self-start rounded-full border border-ink/25 px-6 py-3 text-sm font-medium transition-colors hover:border-ink"
+              >
+                Send another message
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={onSubmit} className="grid gap-8 sm:grid-cols-2">
+              <Field
+                label="Name"
+                placeholder="Alex Morgan"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                error={errors.name}
+              />
+              <Field
+                label="Company"
+                placeholder="Acme Inc."
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+                error={errors.company}
+              />
+              <Field
+                label="Role"
+                placeholder="Owner / Operations Director"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                error={errors.role}
+              />
+              <Field
+                label="Work email"
+                placeholder="alex@company.com"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                error={errors.email}
+              />
+              <div className="sm:col-span-2">
+                <Field
+                  label="Phone number (optional)"
+                  placeholder="+1 (555) 000-0000"
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <SelectField
+                  label="Type of support needed"
+                  options={supportTypes}
+                  value={supportType}
+                  onChange={(e) => setSupportType(e.target.value)}
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <AreaField
+                  label="Message"
+                  placeholder="Tell us about the workflow or process that's slowing your team down..."
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  error={errors.message}
+                />
+              </div>
 
-      <section className="sec-white">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6 py-16 lg:py-20">
-          <div className="grid gap-10 lg:grid-cols-12">
-            {/* Sidebar */}
-            <div className="lg:col-span-4 space-y-4">
-              {/* Direct channels */}
-              <div className="surface-card p-6">
-                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
-                  Direct channels
-                </div>
-                <dl className="space-y-4">
-                  <Row k="Email" v="support@supertelque.com" href="mailto:support@supertelque.com" />
-                  <Row k="Phone" v="+1 (307) 429-3798" href="tel:+13074293798" />
-                  <Row k="Text message" v="+1 (307) 429-3798" href="sms:+13074293798" />
-                  <Row k="LinkedIn" v="linkedin.com/company/supertelque" href="https://linkedin.com/company/supertelque" />
-                </dl>
-                <p className="mt-4 border-t border-border pt-3 text-[10px] leading-relaxed text-muted-foreground">
-                  SMS/text consent is collected at form submission. Msg &amp; data rates may apply. Reply STOP to cancel, HELP for help. Subject to TCPA (US). We do not sell your number.
+              <div className="sm:col-span-2 rounded-md border border-border bg-paper/60 p-5 space-y-3">
+                <label className="flex items-start gap-3 cursor-pointer group">
+                  <input
+                    type="checkbox"
+                    checked={smsConsent}
+                    onChange={(e) => setSmsConsent(e.target.checked)}
+                    className="mt-0.5 h-4 w-4 shrink-0 rounded border border-border accent-[var(--gold)] cursor-pointer"
+                  />
+                  <span className="text-[12px] leading-relaxed text-foreground/75 group-hover:text-foreground transition-colors">
+                    <strong>Yes, SuperTelque can reach me at the number above.</strong> This is
+                    optional and completely free to me. SuperTelque may call or text to verify my
+                    details, clarify my inquiry, or follow up on my request. I am not charged for
+                    any call or message I receive.
+                  </span>
+                </label>
+
+                {smsConsent && phone.trim() && (
+                  <div className="pl-7 flex flex-wrap items-center gap-4">
+                    <span className="text-[11px] font-medium text-foreground/60">I prefer:</span>
+                    {(["call", "text"] as const).map((pref) => (
+                      <label
+                        key={pref}
+                        className="flex items-center gap-1.5 cursor-pointer text-[12px] text-foreground/75 hover:text-foreground transition-colors capitalize"
+                      >
+                        <input
+                          type="radio"
+                          name="contactPref"
+                          value={pref}
+                          checked={contactPref === pref}
+                          onChange={() => setContactPref(pref)}
+                          className="accent-[var(--gold)]"
+                        />
+                        {pref === "call" ? "A phone call (to verify / discuss)" : "A text message"}
+                      </label>
+                    ))}
+                  </div>
+                )}
+
+                <p className="pl-7 text-[10px] leading-relaxed text-muted-foreground">
+                  By checking the box above I consent to receive calls and/or texts from SuperTelque
+                  LLC at the number provided. Consent is not a condition of any purchase. Msg &amp;
+                  data rates may apply for texts. Message frequency varies. Reply STOP to opt out of
+                  texts, HELP for assistance. Subject to TCPA (US). We do not sell your number to
+                  third parties.
                 </p>
               </div>
 
-              {/* How we work */}
-              <div className="surface-card p-6">
-                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
-                  How we work
-                </div>
-                <ul className="space-y-3">
-                  {[
-                    { icon: "🌍", text: "Remote-first · Global clients" },
-                    { icon: "📄", text: "NDA on request" },
-                    { icon: "⚡", text: "Response within 24 hours" },
-                    { icon: "🎯", text: "No SDR handoffs, direct to operators" },
-                  ].map((item) => (
-                    <li key={item.text} className="flex items-center gap-3 text-sm text-foreground/80">
-                      <span className="text-base leading-none">{item.icon}</span>
-                      {item.text}
-                    </li>
-                  ))}
-                </ul>
+              <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-5">
+                <p className="font-mono text-[11px] text-muted-foreground">
+                  Typical response in under 24 hours.
+                </p>
+                <SubmitButton busy={busy}>Send message</SubmitButton>
               </div>
-
-              {/* What to include */}
-              <div className="surface-card p-6">
-                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground mb-4">
-                  What to include
-                </div>
-                <ul className="space-y-2.5">
-                  {[
-                    "What process or workflow is taking too much time",
-                    "How many people are involved",
-                    "What tools you currently use",
-                    "What you'd like to fix first",
-                  ].map((item, i) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/75">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Form */}
-            <ScrollReveal variant="fadeUp" className="lg:col-span-8">
-              <form className="surface-card p-6 lg:p-8 grid gap-5 sm:grid-cols-2" onSubmit={handleSubmit}>
-                <div className="sm:col-span-2">
-                  <div className="font-display text-xl font-semibold text-[#080D1C] mb-1">Send us a message</div>
-                  <p className="text-sm text-muted-foreground">We'll review your details and respond within 24 hours.</p>
-                </div>
-                <Field label="Name" placeholder="Alex Morgan" value={name} onChange={(e) => setName(e.target.value)} error={errors.name} />
-                <Field label="Company" placeholder="Acme Inc." value={company} onChange={(e) => setCompany(e.target.value)} error={errors.company} />
-                <Field label="Role" placeholder="Owner / Operations Director" value={role} onChange={(e) => setRole(e.target.value)} error={errors.role} />
-                <Field label="Email" placeholder="alex@company.com" type="email" value={email} onChange={(e) => setEmail(e.target.value)} error={errors.email} />
-                <div className="sm:col-span-2">
-                  <Label>Phone number <span className="normal-case tracking-normal text-muted-foreground/60 font-normal">(optional — only if you'd like us to call or text you)</span></Label>
-                  <input
-                    type="tel"
-                    placeholder="+1 (555) 000-0000"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="mt-2 w-full rounded-md border border-border bg-[color:var(--surface)]/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-                  />
-                </div>
-                <div className="sm:col-span-2">
-                  <Select label="Type of support needed" options={["Sales & Revenue Operations", "Customer Operations", "Business Operations", "CRM & Automation", "Not sure"]} value={supportType} onChange={(e) => setSupportType(e.target.value)} />
-                </div>
-                <div className="sm:col-span-2">
-                  <Label>Message</Label>
-                  <textarea
-                    rows={5}
-                    placeholder="Tell us about the workflow or process that's slowing your team down..."
-                    className="mt-2 w-full resize-none rounded-md border border-border bg-[color:var(--surface)]/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                  />
-                  {errors.message && (
-                    <p className="mt-1 font-mono text-[11px] text-red-500">{errors.message}</p>
-                  )}
-                </div>
-                {/* Call / text opt-in — only relevant if phone provided */}
-                <div className="sm:col-span-2 rounded-xl border border-border bg-[#F8F9FF] p-4 space-y-3">
-                  <label className="flex items-start gap-3 cursor-pointer group">
-                    <input
-                      type="checkbox"
-                      checked={smsConsent}
-                      onChange={(e) => setSmsConsent(e.target.checked)}
-                      className="mt-0.5 h-4 w-4 shrink-0 rounded border border-border accent-[#FFB800] cursor-pointer"
-                    />
-                    <span className="text-[12px] leading-relaxed text-foreground/75 group-hover:text-foreground transition-colors">
-                      <strong>Yes, SuperTelque can reach me at the number above.</strong> This is optional and completely free to me. SuperTelque may call or text to verify my details, clarify my inquiry, or follow up on my request. I am not charged for any call or message I receive.
-                    </span>
-                  </label>
-
-                  {smsConsent && phone.trim() && (
-                    <div className="pl-7 flex items-center gap-4">
-                      <span className="text-[11px] font-medium text-foreground/60">I prefer:</span>
-                      {(["call", "text"] as const).map((pref) => (
-                        <label key={pref} className="flex items-center gap-1.5 cursor-pointer text-[12px] text-foreground/75 hover:text-foreground transition-colors capitalize">
-                          <input
-                            type="radio"
-                            name="contactPref"
-                            value={pref}
-                            checked={contactPref === pref}
-                            onChange={() => setContactPref(pref)}
-                            className="accent-[#FFB800]"
-                          />
-                          {pref === "call" ? "A phone call (to verify / discuss)" : "A text message"}
-                        </label>
-                      ))}
-                    </div>
-                  )}
-
-                  <p className="pl-7 text-[10px] leading-relaxed text-muted-foreground">
-                    By checking the box above I consent to receive calls and/or texts from SuperTelque LLC at the number provided. Consent is not a condition of any purchase. Msg &amp; data rates may apply for texts. Message frequency varies. Reply STOP to opt out of texts, HELP for assistance. Subject to TCPA (US). We do not sell your number to third parties.
-                  </p>
-                </div>
-
-                <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-5">
-                  <div className="font-mono text-[11px] text-muted-foreground">Typical response in under 24 hours.</div>
-                  <button
-                    type="submit"
-                    disabled={sending}
-                    className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-[#080D1C] disabled:opacity-40 disabled:pointer-events-none transition hover:scale-[1.02] hover:shadow-[0_8px_24px_-6px_rgba(255,184,0,0.40)]"
-                    style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
-                  >
-                    {sending ? "Sending..." : "Send message →"}
-                  </button>
-                </div>
-              </form>
-            </ScrollReveal>
-          </div>
-        </div>
+            </form>
+          )}
+        </Reveal>
       </section>
-    </SiteLayout>
-  );
-}
-
-function Row({ k, v, href }: { k: string; v: string; href?: string }) {
-  return (
-    <div className="flex flex-col gap-1 border-b border-border pb-3.5 last:border-b-0 last:pb-0">
-      <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground">{k}</dt>
-      <dd className="text-sm text-foreground/90 break-all">
-        {href ? (
-          <a href={href} target={href.startsWith("mailto") ? undefined : "_blank"} rel="noopener noreferrer" className="hover:text-[#1B5EFF] transition-colors">
-            {v}
-          </a>
-        ) : v}
-      </dd>
-    </div>
-  );
-}
-function Label({ children }: { children: React.ReactNode }) {
-  return <label className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">{children}</label>;
-}
-function Field({ label, error, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string; error?: string }) {
-  return (
-    <div>
-      <Label>{label}</Label>
-      <input
-        {...props}
-        className="mt-2 w-full rounded-md border border-border bg-[color:var(--surface)]/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-      />
-      {error && (
-        <p className="mt-1 font-mono text-[11px] text-red-500">{error}</p>
-      )}
-    </div>
-  );
-}
-function Select({ label, options, ...props }: { label: string; options: string[] } & React.SelectHTMLAttributes<HTMLSelectElement>) {
-  return (
-    <div>
-      <Label>{label}</Label>
-      <select
-        {...props}
-        className="mt-2 w-full rounded-md border border-border bg-[color:var(--surface)]/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
-      >
-        {options.map((o) => (
-          <option key={o} className="bg-background">{o}</option>
-        ))}
-      </select>
-    </div>
+    </Page>
   );
 }

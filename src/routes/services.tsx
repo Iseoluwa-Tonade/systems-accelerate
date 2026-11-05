@@ -1,350 +1,115 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check } from "lucide-react";
-import { SiteLayout } from "@/components/site/SiteLayout";
-import { SectionHeader, Eyebrow } from "@/components/site/Eyebrow";
-import { ScrollReveal } from "@/components/site/ScrollReveal";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { Page, PageIntro, Cta } from "@/components/site/chrome";
+import { Reveal, ExpandingImage, ParallaxImage } from "@/components/site/motion";
+import { EngagementModels } from "@/components/site/engagement-models";
+import { services } from "@/lib/content";
+import { photos, servicePhotos } from "@/lib/photography";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services | Managed Sales & Business Operations | SuperTelque" },
-      { name: "description", content: "Managed revenue, customer and business operations for growing companies. People, process, automation and AI — delivered as a service." },
-      { property: "og:title", content: "Services | Managed Sales & Business Operations | SuperTelque" },
-      { property: "og:description", content: "Four operational services: Sales & Revenue, Customer Operations, Business Operations, and CRM & Automation Engineering." },
+      { title: "Services — SuperTelque" },
+      {
+        name: "description",
+        content:
+          "Managed sales, customer and business operations, supported by CRM, AI and workflow engineering.",
+      },
+      { property: "og:title", content: "Services — SuperTelque" },
+      {
+        property: "og:description",
+        content: "Four services. One accountable partner for growing businesses.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: photos.workplace },
+      { name: "twitter:image", content: photos.workplace },
     ],
   }),
-  component: ServicesPage,
+  component: Services,
 });
-
-const SERVICES = [
-  {
-    id: "revenue",
-    code: "01",
-    title: "Managed Sales & Revenue Operations",
-    blurb: "Build a more consistent sales pipeline without placing every task on your sales team. We handle prospect research, outbound execution, lead qualification, CRM management and reporting.",
-    items: [
-      "Prospect research & enrichment",
-      "Outbound execution & lead qualification",
-      "Appointment setting",
-      "CRM management & follow-up",
-      "Sales coordination",
-      "Pipeline reporting",
-    ],
-    who: "Owners, Sales Directors, Heads of Sales and RevOps teams",
-    color: "#1B5EFF",
-    background: "/bg.png",
-    image: "/service1.png",
-  },
-  {
-    id: "customers",
-    code: "02",
-    title: "Managed Customer Operations",
-    blurb: "Make sure customer inquiries receive attention and appointments, communications and follow-ups stay organized. We manage the front line of your customer experience.",
-    items: [
-      "Inquiry management",
-      "Appointment coordination",
-      "Customer communications",
-      "Service follow-up",
-      "Escalation handling",
-      "Customer operations reporting",
-    ],
-    who: "Operations Directors, General Managers and Customer Service Managers",
-    color: "#F59E0B",
-    background: "/bg2.png",
-    image: "/service2.png",
-  },
-  {
-    id: "operations",
-    code: "03",
-    title: "Managed Business Operations",
-    blurb: "Remove administrative bottlenecks and give your internal team more time for high-value work. We run the back-office tasks that keep your business moving.",
-    items: [
-      "Back-office administration",
-      "Workflow coordination",
-      "Data management & scheduling",
-      "SOPs & task management",
-      "Operational reporting",
-      "Process improvement",
-    ],
-    who: "Owners, COOs, Operations Directors and Office Managers",
-    color: "#10B981",
-    background: "/bg3.png",
-    image: "/service3.png",
-  },
-  {
-    id: "systems",
-    code: "04",
-    title: "CRM, AI & Workflow Engineering",
-    blurb: "Connect your tools, automate repetitive work and create systems that support your team. This is the technical foundation that powers the other three services.",
-    items: [
-      "CRM implementation & RevOps architecture",
-      "Workflow automation",
-      "AI-assisted processes",
-      "Integrations & dashboards",
-      "Process documentation",
-      "System optimization",
-    ],
-    who: "Operations leaders, Sales Operations and businesses scaling existing systems",
-    color: "#8B5CF6",
-    background: "/bg4.png",
-    image: "/service4.png",
-  },
-] as const;
-
-function ServicesPage() {
+const accents = ["bg-green", "bg-blue", "bg-orange", "bg-green"];
+function Services() {
   return (
-    <SiteLayout headerTheme="dark">
-      <section className="sec-navy relative isolate min-h-[620px] overflow-hidden border-b border-border lg:min-h-[680px]">
-        <img
-          src="/hero.jpg"
-          alt="SuperTelque operations team working with a client"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
-        />
-        <div
-          className="absolute inset-0 -z-10 backdrop-blur-[8px]"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(8, 13, 28, 0.94) 0%, rgba(8, 13, 28, 0.72) 36%, rgba(8, 13, 28, 0) 68%)",
-          }}
-        />
-
-        <div className="relative mx-auto flex min-h-[620px] max-w-[1440px] items-end px-4 pb-10 pt-32 lg:min-h-[680px] lg:items-center lg:px-8 lg:pb-16 lg:pt-28">
-          <div className="max-w-4xl">
-            <Eyebrow>Services</Eyebrow>
-            <h1 className="mt-5 max-w-4xl font-display text-[38px] font-extrabold leading-[1.02] tracking-tight text-white sm:text-[52px] lg:text-[50px] lg:leading-[0.98]">
-              Operational support that{" "}
-              <span className="text-[#FFD44D]">grows with your business.</span>
-            </h1>
-            <ScrollReveal variant="fadeUp" delay={0.15}>
-              <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/72 sm:text-lg">
-                We combine experienced people, structured processes, automation and AI to run the sales and operational workflows that help growing businesses move forward.
-              </p>
-            </ScrollReveal>
-            <ScrollReveal variant="fadeUp" delay={0.25}>
-              <div className="mt-8 flex flex-wrap items-center gap-5">
-                <Link
-                  to="/book"
-                  className="group inline-flex items-center gap-2.5 rounded-full bg-[#FFD44D] px-5 py-3 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:bg-white"
-                >
-                  Discuss your operations
-                  <span className="header-action-arrow" aria-hidden="true">
-                    <ArrowRight className="h-5 w-5" strokeWidth={2.25} />
-                  </span>
-                </Link>
-                <span className="font-mono text-[12px] uppercase tracking-[0.16em] text-white/55">
-                  Revenue · Customers · Operations · Systems
-                </span>
+    <Page darkHeader>
+      <PageIntro
+        eyebrow="Our expertise"
+        title="Four services. One accountable partner."
+        lede="We combine experienced people, structured processes, automation and AI to run the workflows that help your business move forward."
+        image={photos.workplace}
+      >
+        <div className="hero-bottom">
+          <Cta to="/book">Discuss your engagement</Cta>
+        </div>
+      </PageIntro>
+      <div className="mx-auto max-w-6xl px-6 pt-16 pb-6 grid gap-6 md:grid-cols-[1fr_1.5fr]">
+        <p className="eyebrow section-kicker">Built for the whole system</p>
+        <p className="text-xl max-w-2xl">
+          Each engagement starts with the business problem, then maps it to the right mix of people,
+          processes and technology.
+        </p>
+      </div>
+      {services.map((s, i) => (
+        <section key={s.slug} id={s.slug} className="service-editorial">
+          <div className="mx-auto max-w-6xl px-6 grid gap-12 md:grid-cols-2 md:items-center">
+            <div className={i === 1 ? "md:order-2" : ""}>
+              <Reveal>
+                <p className="eyebrow section-kicker">{s.kind}</p>
+                <h2 className="h-section mt-5">{s.title}</h2>
+                <p className="mt-6 text-muted-foreground">{s.body}</p>
+              </Reveal>
+              <div className="mt-8 grid grid-cols-2 gap-3">
+                {s.capabilities.map((c, j) => (
+                  <Reveal key={c} delay={j * 0.07}>
+                    <div className="capability-card h-full text-sm font-medium">{c}</div>
+                  </Reveal>
+                ))}
               </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Sticky anchor nav */}
-      <div className="sticky top-[72px] z-20 border-b border-border bg-white/95 backdrop-blur-sm">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <div className="flex items-center gap-1.5 overflow-x-auto py-3" style={{ scrollbarWidth: "none" }}>
-            {SERVICES.map((s) => (
-              <a
-                key={s.id}
-                href={`#${s.id}`}
-                className="shrink-0 flex items-center gap-2 rounded-full border border-border px-3.5 py-1.5 font-mono text-[10px] text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all whitespace-nowrap"
-              >
-                <span className="h-1.5 w-1.5 rounded-full shrink-0" style={{ backgroundColor: s.color }} />
-                {s.title.split(" & ")[0].split(" ").slice(0, 2).join(" ")}
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Service blocks */}
-      <section className="relative overflow-hidden bg-[#F7F9FD] py-14 lg:py-24">
-        <div className="pointer-events-none absolute inset-0 bg-grid opacity-[0.22]" />
-        <div className="relative mx-auto max-w-7xl space-y-5 px-4 lg:space-y-7 lg:px-6">
-          {SERVICES.map((s, i) => (
-            <ServiceBlock key={s.id} svc={s} reverse={i % 2 === 1} />
-          ))}
-        </div>
-      </section>
-
-      {/* Delivery Models */}
-      <section className="sec-mid border-y border-border py-16 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <SectionHeader
-            eyebrow="How we deliver"
-            title={
-              <>
-                Two ways to <span className="text-gradient-gold">work with us.</span>
-              </>
-            }
-            description="Choose the engagement model that fits where you are right now."
-          />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            <ScrollReveal variant="fadeUp" delay={0.1}>
-              <div className="rounded-2xl border border-border bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#1B5EFF] mb-3">Build & Handover</div>
-                <h3 className="font-display text-2xl font-bold tracking-tight text-[#080D1C]">Design the system. Train your team.</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  We design and implement the system, document it and train your team. You own everything and run it internally going forward.
-                </p>
-                <ul className="mt-5 space-y-2 text-sm text-foreground/80">
-                  {["System design & implementation", "Full documentation", "Team training & handover", "You own the system and processes"].map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#1B5EFF]" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+              <p className="eyebrow mt-8 text-muted-foreground">Best for</p>
+              <p className="mt-3 text-sm">{s.bestFor}</p>
+              <Cta to="/book" tone="ink" className="mt-6">
+                Discuss this service
+              </Cta>
+            </div>
+            <Reveal y={48} className={i === 1 ? "md:order-1" : ""}>
+              <div className="service-photo">
+                <ParallaxImage
+                  src={servicePhotos[i] ?? photos.team}
+                  alt={`${s.kind}: business planning and revenue systems`}
+                  w={1800}
+                  h={1200}
+                  className="h-full"
+                />
+                <div className={`service-photo-note ${accents[i]}`}>
+                  <p className="eyebrow opacity-75">From insight to execution</p>
+                  <p className="mt-3 text-sm font-medium">
+                    {s.flow.map((step, k) => (
+                      <span key={step}>
+                        {k > 0 && (
+                          <ArrowRight
+                            strokeWidth={3}
+                            className="mx-2 inline size-[1em] align-[-0.125em]"
+                          />
+                        )}
+                        {step}
+                      </span>
+                    ))}
+                  </p>
+                </div>
               </div>
-            </ScrollReveal>
-            <ScrollReveal variant="fadeUp" delay={0.2}>
-              <div className="rounded-2xl border-2 border-[#FFB800]/40 bg-[#FFFDF5] p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#FFB800] mb-3">Build & Manage</div>
-                <h3 className="font-display text-2xl font-bold tracking-tight text-[#080D1C]">We implement and run it for you.</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  We implement the workflow, operate it under an agreed scope and report on performance. We take responsibility for delivery.
-                </p>
-                <ul className="mt-5 space-y-2 text-sm text-foreground/80">
-                  {["Everything in Build & Handover", "Ongoing managed operations", "Assigned people & automated steps", "Performance reporting & improvement"].map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#FFB800]" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </ScrollReveal>
+            </Reveal>
           </div>
-        </div>
-      </section>
-
-      <CTA />
-    </SiteLayout>
-  );
-}
-
-function ServiceBlock({
-  svc,
-  reverse,
-}: {
-  svc: (typeof SERVICES)[number];
-  reverse: boolean;
-}) {
-  return (
-    <section id={svc.id} className="relative scroll-mt-28 px-1 py-6 sm:px-3 sm:py-8 lg:px-6 lg:py-10">
-      <img
-        src={svc.background}
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none absolute top-1/2 z-0 hidden h-[152%] w-[82%] -translate-y-1/2 object-contain lg:block"
-        style={reverse ? { left: "-10%" } : { right: "-10%" }}
-      />
-      <div className={"grid items-center gap-8 lg:grid-cols-12 lg:gap-14 " + (reverse ? "lg:[direction:rtl]" : "")}>
-        <ScrollReveal variant="slideRight" className="relative z-20 lg:col-span-5 [direction:ltr]">
-          <div className="mb-5 flex items-center gap-2.5">
-            <span
-              className="flex h-8 w-8 items-center justify-center rounded-full font-mono text-[11px] font-bold text-white shadow-sm"
-              style={{ backgroundColor: svc.color }}
-            >
-              {svc.code}
-            </span>
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-muted-foreground">
-              Managed service
-            </span>
-          </div>
-          <h2 className="max-w-xl font-display text-3xl font-extrabold leading-[1.04] tracking-tight text-[#0B1738] sm:text-4xl lg:text-[46px]">
-            {svc.title}
-          </h2>
-          <p className="mt-4 max-w-lg text-[15px] leading-relaxed text-muted-foreground">{svc.blurb}</p>
-          <ul className="mt-6 grid gap-y-2 text-[13px] sm:grid-cols-2 sm:gap-x-5">
-            {svc.items.map((it, idx) => (
-              <li
-                key={it}
-                className="flex items-center gap-2 text-foreground/85 animate-slide-up-fade"
-                style={{ animationDelay: `${idx * 70 + 200}ms` }}
-              >
-                <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-white" style={{ backgroundColor: svc.color }}>
-                  <Check className="h-2.5 w-2.5" strokeWidth={3} />
-                </span>
-                {it}
-              </li>
-            ))}
-          </ul>
-          <div className="mt-6 rounded-xl border border-[#E5EBF5] bg-[#F7F9FD] px-4 py-3">
-            <div className="font-mono text-[9px] uppercase tracking-[0.15em] text-muted-foreground">Best for</div>
-            <div className="mt-1 text-[12px] leading-relaxed text-foreground/80">{svc.who}</div>
-          </div>
-          <Link
-            to="/book"
-            className="mt-6 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[12px] font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg"
-            style={{ backgroundColor: svc.color }}
-          >
-            Discuss this service <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
-        </ScrollReveal>
-        <ScrollReveal variant="slideLeft" className="lg:col-span-7 [direction:ltr]">
-          <div className="relative z-10 flex min-h-[320px] items-center justify-center sm:min-h-[420px] lg:min-h-[520px]">
-            <img
-              src={svc.background}
-              alt=""
-              aria-hidden="true"
-              className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[108vw] w-[145vw] max-w-none -translate-x-1/2 -translate-y-1/2 object-contain lg:hidden"
-            />
-            <img
-              src={svc.image}
-              alt={`${svc.title} workflow illustration`}
-              className="relative z-10 max-h-[500px] w-full scale-[1.18] object-contain drop-shadow-[0_18px_22px_rgba(25,52,96,0.12)] sm:max-h-[560px] sm:scale-[1.12] lg:max-h-[560px] lg:scale-[1.08]"
-            />
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
-  );
-}
-
-function CTA() {
-  return (
-    <section className="sec-navy relative overflow-hidden border-t border-white/08 py-20 lg:py-28">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-grid opacity-[0.04]" />
-        <div
-          className="absolute -bottom-10 left-1/2 -translate-x-1/2 h-[350px] w-[700px] rounded-full"
-          style={{ background: "radial-gradient(ellipse, rgba(255,184,0,0.12) 0%, transparent 65%)", filter: "blur(40px)" }}
-        />
-      </div>
-      <div className="relative mx-auto max-w-4xl px-4 lg:px-6 text-center">
-        <ScrollReveal variant="scaleIn">
-          <div className="flex items-center justify-center gap-2.5 mb-6">
-            <img src="/supertelque-logo.png" alt="" className="h-7 w-7 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
-            <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/40">SuperTelque LLC</span>
-          </div>
-          <h2 className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-            Not sure where to begin?
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-white/50">
-            Book a 20-minute call. Tell us what's taking too much time, and we'll tell you where support or automation could help. No pressure, no pitch.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-white/30">
-            {["Free · no pressure", "Response in 24 hours", "Senior operator, not an SDR"].map((t, i) => (
-              <span key={t} className="flex items-center gap-2 font-mono text-[11px]">
-                {i > 0 && <span className="h-px w-3 bg-white/20" />}
-                {t}
-              </span>
-            ))}
-          </div>
-          <Link
-            to="/book"
-            className="mt-10 inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-[15px] font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_16px_40px_-8px_rgba(255,184,0,0.50)]"
-            style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 60%, #E08A00 100%)" }}
-          >
-            Book an Operations Review
-            <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
-        </ScrollReveal>
-      </div>
-    </section>
+        </section>
+      ))}
+      <ExpandingImage src={photos.team} alt="Colleagues collaborating on a business strategy">
+        <p className="eyebrow text-lime">Connected by design</p>
+        <h2 className="h-section mt-5">People. Process. Automation.</h2>
+        <p className="mt-5 max-w-lg">
+          Assigned specialists and connected systems, working together inside the tools your team
+          already uses.
+        </p>
+      </ExpandingImage>
+      <EngagementModels />
+    </Page>
   );
 }

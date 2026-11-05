@@ -1,300 +1,110 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { SiteLayout } from "@/components/site/SiteLayout";
-import { Eyebrow } from "@/components/site/Eyebrow";
-import { ScrollReveal, StaggerReveal, StaggerChild } from "@/components/site/ScrollReveal";
-
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { Page, PageIntro, Cta } from "@/components/site/chrome";
+import { Reveal, ExpandingImage } from "@/components/site/motion";
+import { cases } from "@/lib/content";
+import { photos, casePhotos } from "@/lib/photography";
 export const Route = createFileRoute("/case-studies")({
   head: () => ({
     meta: [
-      { title: "Case Studies | SuperTelque" },
-      { name: "description", content: "How SuperTelque helps growing businesses manage sales, customer and back-office operations through people, automation and AI." },
-      { property: "og:title", content: "Case Studies | SuperTelque" },
-      { property: "og:description", content: "Real examples of operational problems solved with managed services, workflow automation and AI." },
+      { title: "Case studies — SuperTelque" },
+      {
+        name: "description",
+        content:
+          "Illustrative workflow designs for connected sales, customer and business operations.",
+      },
+      { property: "og:title", content: "Case studies — SuperTelque" },
+      {
+        property: "og:description",
+        content: "Explore example system designs, not unverified client claims.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: photos.architecture },
+      { name: "twitter:image", content: photos.architecture },
     ],
   }),
-  component: CaseStudiesPage,
+  component: Cases,
 });
-
-const CASES = [
-  {
-    tag: "Home Services",
-    color: "#1B5EFF",
-    title: "Appointment coordination and customer follow-up for a growing service company",
-    challenge:
-      "New customer inquiries were coming in through multiple channels — phone, email, website forms — but responses were inconsistent. Estimate follow-ups were being missed, and the operations team spent most of their day on manual coordination.",
-    solution:
-      "Implemented a unified inquiry management workflow. Set up automated appointment scheduling, estimate follow-up sequences, and a customer communications system that keeps records accurate across channels.",
-    stack: ["HubSpot", "GoHighLevel", "n8n", "Slack"],
-    deliverables: [
-      "Unified inquiry routing across all channels",
-      "Automated estimate follow-up sequences",
-      "Appointment scheduling and coordination",
-      "Customer operations reporting dashboard",
-    ],
-  },
-  {
-    tag: "Industrial Services",
-    color: "#14B8A6",
-    title: "Prospecting and quotation management support for a commercial services firm",
-    challenge:
-      "The sales team was handling both prospecting and quotation management manually. New leads were being researched during the same hours as client delivery, creating inconsistent follow-up and missed opportunities.",
-    solution:
-      "Built a prospecting workflow with research enrichment, automated outreach sequences, and a quotation management system that tracks every opportunity from first contact through to close.",
-    stack: ["Apollo", "Clay", "Pipedrive", "n8n", "Slack"],
-    deliverables: [
-      "Prospect research and enrichment pipeline",
-      "Automated outbound sequences",
-      "Quotation tracking and follow-up",
-      "Weekly pipeline reporting",
-    ],
-  },
-  {
-    tag: "Professional Services",
-    color: "#8B5CF6",
-    title: "Back-office administration and scheduling automation for a services business",
-    challenge:
-      "The business owner was spending over half their week on administrative tasks — data entry, scheduling, document preparation, and internal coordination — instead of business development and client delivery.",
-    solution:
-      "Automated repetitive administrative workflows, set up structured scheduling and task management, and created SOPs for the processes that needed human oversight.",
-    stack: ["Google Workspace", "Zapier", "Notion", "Calendly"],
-    deliverables: [
-      "Automated data entry and document workflows",
-      "Structured scheduling and task management",
-      "Process documentation and SOPs",
-      "Weekly operations reporting",
-    ],
-  },
-];
-
-function CaseStudiesPage() {
+const accents = ["bg-blue", "bg-orange", "bg-green"];
+function Cases() {
   return (
-    <SiteLayout headerTheme="dark">
-      {/* Hero */}
-      <section className="sec-navy relative isolate min-h-[540px] overflow-hidden border-b border-border lg:min-h-[600px]">
-        <img
-          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&q=80&auto=format&fit=crop"
-          alt="Operations and workflow management"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
-        />
-        <div
-          className="absolute inset-0 -z-10 backdrop-blur-[8px]"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(8, 13, 28, 0.94) 0%, rgba(8, 13, 28, 0.72) 36%, rgba(8, 13, 28, 0) 68%)",
-          }}
-        />
-        <div className="relative mx-auto flex min-h-[540px] max-w-7xl flex-col justify-end px-4 pb-12 pt-32 lg:min-h-[600px] lg:justify-center lg:px-6 lg:pb-16 lg:pt-24">
-          <Eyebrow>Case studies</Eyebrow>
-          <h1 className="mt-5 font-display text-[32px] font-extrabold tracking-tight text-white sm:text-[44px] lg:text-[50px] lg:leading-[1.03]">
-            Real problems.
-            <br />
-            <span className="text-gradient-gold">Practical solutions.</span>
-          </h1>
-          <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/72 sm:text-lg">
-              Examples of operational problems we've helped businesses solve — with the workflow, the tools, and the approach we used.
-            </p>
-          </ScrollReveal>
-          <ScrollReveal variant="fadeUp" delay={0.25}>
-            <div className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-white/55">
-              Real examples · Honest outcomes
-            </div>
-          </ScrollReveal>
+    <Page darkHeader>
+      <PageIntro
+        eyebrow="Illustrative workflows"
+        title="Connected workflows. Clear responsibility."
+        lede="Example workflow designs that show our approach. These are illustrations, not verified client case studies or measured results."
+        image={photos.architecture}
+      />
+      <div className="mx-auto max-w-6xl px-6 py-14 flex flex-wrap items-center justify-between gap-6">
+        <p className="eyebrow section-kicker">Inside the workflows</p>
+        <div className="flex flex-wrap gap-6 text-sm">
+          {cases.map((c) => (
+            <a href={`#${c.slug}`} key={c.slug} className="link-underline">
+              {c.sector}{" "}
+              <ArrowUpRight strokeWidth={3} className="inline size-[1em] align-[-0.125em]" />
+            </a>
+          ))}
         </div>
-      </section>
-
-      {/* Case study blocks */}
-      <section className="sec-white py-16 lg:py-24">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          {CASES.map((c, i) => (
-            <ScrollReveal key={c.title} variant="fadeUp" delay={0.05}>
-              <div>
-                {i > 0 && (
-                  <div className="my-16 lg:my-24 flex items-center gap-6">
-                    <div className="flex-1 h-px bg-border" />
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                      Next case
-                    </span>
-                    <div className="flex-1 h-px bg-border" />
-                  </div>
-                )}
-                <Study c={c} />
+      </div>
+      {cases.map((c, i) => (
+        <section key={c.slug} id={c.slug} className="mx-auto max-w-6xl px-6 pb-24 scroll-mt-24">
+          <Reveal y={40}>
+            <div className="case-visual">
+              <img
+                src={casePhotos[i]}
+                alt={`${c.sector}: an editorial view of modern business`}
+                loading="lazy"
+              />
+              <div className="case-cover-copy">
+                <p className="eyebrow mb-5">{c.sector} / Illustrative design</p>
+                <h2>{c.headline}</h2>
               </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="sec-navy relative overflow-hidden border-t border-white/08 py-20 lg:py-28">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute inset-0 bg-grid opacity-[0.04]" />
-          <div
-            className="absolute -bottom-10 left-1/2 -translate-x-1/2 h-[350px] w-[700px] rounded-full"
-            style={{ background: "radial-gradient(ellipse, rgba(255,184,0,0.12) 0%, transparent 65%)", filter: "blur(40px)" }}
-          />
-        </div>
-        <div className="relative mx-auto max-w-4xl px-4 lg:px-6 text-center">
-          <ScrollReveal variant="scaleIn">
-            <div className="flex items-center justify-center gap-2.5 mb-6">
-              <img src="/supertelque-logo.png" alt="" className="h-7 w-7 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-white/40">SuperTelque LLC</span>
             </div>
-            <h2 className="font-display text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-              Your operations could be next.
-            </h2>
-            <p className="mx-auto mt-4 max-w-md text-[17px] leading-relaxed text-white/50">
-              20 minutes. Tell us what's slowing your team down and we'll tell you where support or automation could help.
-            </p>
-            <Link
-              to="/book"
-              className="mt-10 inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-[15px] font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_16px_40px_-8px_rgba(255,184,0,0.50)]"
-              style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 60%, #E08A00 100%)" }}
-            >
-              Book an Operations Review
-              <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </Link>
-          </ScrollReveal>
-        </div>
-      </section>
-    </SiteLayout>
-  );
-}
-
-function Study({ c }: { c: (typeof CASES)[number] }) {
-  return (
-    <article className="grid gap-10 lg:grid-cols-12">
-      <div className="lg:col-span-5">
-        <div className="flex items-center gap-3 mb-5">
-          <span
-            className="inline-flex items-center rounded-full px-3 py-1 font-mono text-[10px] font-semibold text-white"
-            style={{ backgroundColor: c.color }}
-          >
-            {c.tag}
-          </span>
-        </div>
-        <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
-          {c.title}
-        </h2>
-        <div className="mt-8 space-y-6 text-[15px] leading-relaxed">
-          <Field k="Challenge" v={c.challenge} color={c.color} />
-          <Field k="Solution" v={c.solution} color={c.color} />
-          <div>
-            <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-              Stack
-            </div>
-            <div className="mt-2 flex flex-wrap gap-1.5">
-              {c.stack.map((s) => (
-                <span
-                  key={s}
-                  className="rounded-full border border-border bg-white px-3 py-1 font-mono text-[11px] text-foreground/80 hover:border-foreground/20 transition-colors"
-                >
-                  {s}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="lg:col-span-7 space-y-4">
-        <DashboardMock c={c} />
-        <StaggerReveal className="grid grid-cols-2 gap-3">
-          {c.deliverables.map((d) => (
-            <StaggerChild key={d} className="rounded-xl border border-border bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#FFB800]/30">
-              <div className="flex items-start gap-3">
-                <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#FFB800]/15">
-                  <svg viewBox="0 0 10 10" fill="none" className="h-2.5 w-2.5">
-                    <path d="M2 5l2.5 2.5L8 3" stroke="#B45309" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </span>
-                <div className="text-sm text-foreground/80 leading-snug">{d}</div>
-              </div>
-            </StaggerChild>
-          ))}
-        </StaggerReveal>
-      </div>
-    </article>
-  );
-}
-
-function Field({ k, v, color }: { k: string; v: string; color: string }) {
-  return (
-    <div className="pl-4" style={{ borderLeft: `2px solid ${color}40` }}>
-      <div className="font-mono text-[11px] uppercase tracking-[0.2em]" style={{ color }}>
-        {k}
-      </div>
-      <p className="mt-2 text-foreground/80 text-[14px]">{v}</p>
-    </div>
-  );
-}
-
-function DashboardMock({ c }: { c: (typeof CASES)[number] }) {
-  const seed = c.title.length;
-  const bars = Array.from({ length: 16 }, (_, i) => 20 + ((seed * (i + 3)) % 70));
-  return (
-    <div className="rounded-2xl border border-white/10 bg-[#0B1120] shadow-[0_24px_60px_-12px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.06)] overflow-hidden">
-      <div className="flex items-center justify-between border-b border-white/07 px-5 py-3.5">
-        <div className="flex items-center gap-2.5">
-          <div className="flex gap-1.5">
-            <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
-            <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
-            <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
-          </div>
-          <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/30 ml-2">
-            operations · workflow overview
-          </div>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
-            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
-          </span>
-          <span className="font-mono text-[9px] text-emerald-400/70">delivered</span>
-        </div>
-      </div>
-
-      <div className="p-5">
-        <div className="grid grid-cols-2 gap-2 mb-4">
-          {c.deliverables.slice(0, 2).map((d) => (
-            <div key={d} className="rounded-xl border border-white/07 bg-white/03 p-3">
-              <div className="font-mono text-[9px] text-white/35 leading-tight">{d}</div>
-            </div>
-          ))}
-        </div>
-
-        <div className="rounded-xl border border-white/06 bg-white/02 p-3 mb-3">
-          <div className="flex items-center justify-between mb-2.5">
-            <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/25">Delivery timeline</div>
-          </div>
-          <div className="flex items-end gap-[3px] h-12">
-            {bars.map((h, i) => (
-              <div key={i} className="flex-1">
-                <div
-                  className="w-full rounded-[2px]"
-                  style={{
-                    height: `${h}%`,
-                    background: i >= 12
-                      ? `linear-gradient(to top, ${c.color}, ${c.color}88)`
-                      : `linear-gradient(to top, ${c.color}45, ${c.color}22)`,
-                  }}
-                />
+          </Reveal>
+          <div className="case-outcomes">
+            {c.outcomes.map(([value, label]) => (
+              <div key={label} className={accents[i]}>
+                <strong>{value}</strong>
+                <span>{label}</span>
               </div>
             ))}
           </div>
-        </div>
-
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1 flex-wrap">
-            {c.stack.map((t) => (
-              <span key={t} className="rounded px-1.5 py-0.5 font-mono text-[8.5px] text-white/35 border border-white/07">{t}</span>
-            ))}
+          <div className="grid gap-10 py-10 md:grid-cols-[.8fr_1fr_1fr]">
+            <aside>
+              <p className="eyebrow section-kicker">{c.type}</p>
+              <p className="text-sm mt-6 text-muted-foreground">Technology stack</p>
+              <div className="flex flex-wrap gap-2 mt-3">
+                {c.stack.map((s) => (
+                  <span key={s} className="border border-border rounded-md px-3 py-2 text-xs">
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </aside>
+            <Reveal>
+              <h3 className="text-xl">The workflow challenge</h3>
+              <p className="mt-4 text-muted-foreground">{c.challenge}</p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h3 className="text-xl">Example solution</h3>
+              <p className="mt-4 text-muted-foreground">{c.solution}</p>
+            </Reveal>
           </div>
-          <span className="font-mono text-[8.5px] text-white/20">delivered</span>
-        </div>
-      </div>
-    </div>
+          <div className="border-b border-border pb-3">
+            <Cta to="/book" tone="ghost">
+              Discuss a similar challenge
+            </Cta>
+          </div>
+        </section>
+      ))}
+      <ExpandingImage src={photos.team} alt="Business colleagues discussing a workflow">
+        <p className="eyebrow text-lime">Your next chapter</p>
+        <h2 className="h-section mt-5">Recognise one of these? Let's look at yours.</h2>
+        <Cta to="/book" className="mt-8">
+          Book an Operations Review
+        </Cta>
+      </ExpandingImage>
+    </Page>
   );
 }

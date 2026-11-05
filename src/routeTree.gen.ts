@@ -11,17 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as BookRouteImport } from './routes/book'
-import { Route as CareersRouteImport } from './routes/careers'
 import { Route as CaseStudiesRouteImport } from './routes/case-studies'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as BlogIndexRouteImport } from './routes/blog/index'
-import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
-import { Route as IndustriesHomeServicesRouteImport } from './routes/industries/home-services'
-import { Route as IndustriesIndustrialServicesRouteImport } from './routes/industries/industrial-services'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -33,14 +30,14 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BookRoute = BookRouteImport.update({
   id: '/book',
   path: '/book',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CareersRoute = CareersRouteImport.update({
-  id: '/careers',
-  path: '/careers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CaseStudiesRoute = CaseStudiesRouteImport.update({
@@ -51,11 +48,6 @@ const CaseStudiesRoute = CaseStudiesRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FaqRoute = FaqRouteImport.update({
-  id: '/faq',
-  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -69,71 +61,50 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
-  id: '/blog/',
-  path: '/blog/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => BlogRoute,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/blog/$slug',
-  path: '/blog/$slug',
-  getParentRoute: () => rootRouteImport,
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
 } as any)
-const IndustriesHomeServicesRoute = IndustriesHomeServicesRouteImport.update({
-  id: '/industries/home-services',
-  path: '/industries/home-services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndustriesIndustrialServicesRoute =
-  IndustriesIndustrialServicesRouteImport.update({
-    id: '/industries/industrial-services',
-    path: '/industries/industrial-services',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/blog': typeof BlogRouteWithChildren
   '/book': typeof BookRoute
-  '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
-  '/faq': typeof FaqRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/industries/home-services': typeof IndustriesHomeServicesRoute
-  '/industries/industrial-services': typeof IndustriesIndustrialServicesRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/book': typeof BookRoute
-  '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
-  '/faq': typeof FaqRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/industries/home-services': typeof IndustriesHomeServicesRoute
-  '/industries/industrial-services': typeof IndustriesIndustrialServicesRoute
   '/blog': typeof BlogIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/blog': typeof BlogRouteWithChildren
   '/book': typeof BookRoute
-  '/careers': typeof CareersRoute
   '/case-studies': typeof CaseStudiesRoute
   '/contact': typeof ContactRoute
-  '/faq': typeof FaqRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/industries/home-services': typeof IndustriesHomeServicesRoute
-  '/industries/industrial-services': typeof IndustriesIndustrialServicesRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
@@ -141,63 +112,48 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/blog'
     | '/book'
-    | '/careers'
     | '/case-studies'
     | '/contact'
-    | '/faq'
     | '/services'
     | '/sitemap.xml'
     | '/blog/$slug'
-    | '/industries/home-services'
-    | '/industries/industrial-services'
     | '/blog/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/book'
-    | '/careers'
     | '/case-studies'
     | '/contact'
-    | '/faq'
     | '/services'
     | '/sitemap.xml'
     | '/blog/$slug'
-    | '/industries/home-services'
-    | '/industries/industrial-services'
     | '/blog'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/blog'
     | '/book'
-    | '/careers'
     | '/case-studies'
     | '/contact'
-    | '/faq'
     | '/services'
     | '/sitemap.xml'
     | '/blog/$slug'
-    | '/industries/home-services'
-    | '/industries/industrial-services'
     | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BlogRoute: typeof BlogRouteWithChildren
   BookRoute: typeof BookRoute
-  CareersRoute: typeof CareersRoute
   CaseStudiesRoute: typeof CaseStudiesRoute
   ContactRoute: typeof ContactRoute
-  FaqRoute: typeof FaqRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  BlogSlugRoute: typeof BlogSlugRoute
-  IndustriesHomeServicesRoute: typeof IndustriesHomeServicesRoute
-  IndustriesIndustrialServicesRoute: typeof IndustriesIndustrialServicesRoute
-  BlogIndexRoute: typeof BlogIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -216,18 +172,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/book': {
       id: '/book'
       path: '/book'
       fullPath: '/book'
       preLoaderRoute: typeof BookRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/careers': {
-      id: '/careers'
-      path: '/careers'
-      fullPath: '/careers'
-      preLoaderRoute: typeof CareersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/case-studies': {
@@ -242,13 +198,6 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/faq': {
-      id: '/faq'
-      path: '/faq'
-      fullPath: '/faq'
-      preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -267,49 +216,42 @@ declare module '@tanstack/react-router' {
     }
     '/blog/': {
       id: '/blog/'
-      path: '/blog'
+      path: '/'
       fullPath: '/blog/'
       preLoaderRoute: typeof BlogIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof BlogRoute
     }
     '/blog/$slug': {
       id: '/blog/$slug'
-      path: '/blog/$slug'
+      path: '/$slug'
       fullPath: '/blog/$slug'
       preLoaderRoute: typeof BlogSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/industries/home-services': {
-      id: '/industries/home-services'
-      path: '/industries/home-services'
-      fullPath: '/industries/home-services'
-      preLoaderRoute: typeof IndustriesHomeServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/industries/industrial-services': {
-      id: '/industries/industrial-services'
-      path: '/industries/industrial-services'
-      fullPath: '/industries/industrial-services'
-      preLoaderRoute: typeof IndustriesIndustrialServicesRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof BlogRoute
     }
   }
 }
 
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BlogRoute: BlogRouteWithChildren,
   BookRoute: BookRoute,
-  CareersRoute: CareersRoute,
   CaseStudiesRoute: CaseStudiesRoute,
   ContactRoute: ContactRoute,
-  FaqRoute: FaqRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  BlogSlugRoute: BlogSlugRoute,
-  IndustriesHomeServicesRoute: IndustriesHomeServicesRoute,
-  IndustriesIndustrialServicesRoute: IndustriesIndustrialServicesRoute,
-  BlogIndexRoute: BlogIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

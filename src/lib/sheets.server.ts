@@ -21,9 +21,7 @@ export async function appendToSheet(
   if (!response.ok) {
     const body = await response.text();
     console.error("[sheets] Request failed", response.status, body);
-    throw new Error(
-      `Apps Script request failed: ${response.status} ${body}`,
-    );
+    throw new Error(`Apps Script request failed: ${response.status} ${body}`);
   }
 
   console.log("[sheets] OK");

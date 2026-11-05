@@ -28,7 +28,9 @@ export const submitContactForm = createServerFn({ method: "POST" })
         phone: data.phone ?? "",
         contactPreference: data.phone
           ? data.smsConsent
-            ? data.contactPref === "text" ? "Text message" : "Phone call"
+            ? data.contactPref === "text"
+              ? "Text message"
+              : "Phone call"
             : "No callback requested"
           : "No phone provided",
         smsConsent: data.smsConsent ? "Yes" : "No",

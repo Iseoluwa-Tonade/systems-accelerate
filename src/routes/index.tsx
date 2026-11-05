@@ -1,642 +1,425 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { SiteLayout } from "@/components/site/SiteLayout";
-import { Eyebrow, SectionHeader } from "@/components/site/Eyebrow";
-import { ScrollReveal } from "@/components/site/ScrollReveal";
-import * as L from "@/components/site/Logos";
-import { ToolFlow } from "@/components/site/ToolFlow";
-import { ArrowRight, Check, CircleAlert, Clock3, Layers3, MoveRight, Sparkles } from "lucide-react";
-import { motion, useInView } from "framer-motion";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } from "motion/react";
+import { useRef } from "react";
+import { Page, Cta, HERO_INSET } from "@/components/site/chrome";
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  type CarouselApi,
-} from "@/components/ui/carousel";
-import AccordionGallery from "@/components/site/AccordionGallery";
-import type { AccordionGalleryItem } from "@/components/site/AccordionGallery";
+  Reveal,
+  MaskText,
+  HorizontalRail,
+  ExpandingImage,
+  ProgressLine,
+} from "@/components/site/motion";
+import { EngagementModels } from "@/components/site/engagement-models";
+import { services, cases } from "@/lib/content";
+import { photos, servicePhotos, casePhotos } from "@/lib/photography";
+import { toolLogos, heroArcLogos, heroArcOpacity } from "@/lib/tool-logos";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Managed Sales & Business Operations | SuperTelque" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: photos.sky },
+      { name: "twitter:image", content: photos.sky },
+      { title: "SuperTelque — Grow your business. Not your workload." },
       {
         name: "description",
         content:
-          "SuperTelque helps growing businesses manage sales, customer and back-office operations through people, automation and AI.",
+          "We build, automate and manage sales, customer and back-office workflows for growing businesses.",
       },
-      { property: "og:title", content: "Managed Sales & Business Operations | SuperTelque" },
+      { property: "og:title", content: "SuperTelque — Grow your business. Not your workload." },
       {
         property: "og:description",
-        content:
-          "We build, automate and manage the sales, customer and operational processes that keep growing businesses running.",
+        content: "People, processes, automation and AI. Book a 20-minute Operations Review.",
       },
     ],
   }),
-  component: HomePage,
+  component: Home,
 });
 
-function HomePage() {
+const problems = [
+  [
+    "Leads and inquiries go unanswered",
+    "Your team is too busy delivering the service to consistently follow up with new opportunities.",
+  ],
+  [
+    "Your best people are buried in admin",
+    "Salespeople, managers and owners spend valuable time updating systems and chasing routine tasks.",
+  ],
+  [
+    "Work gets lost between people and tools",
+    "Emails, CRM records, scheduling and customer updates are disconnected.",
+  ],
+  [
+    "You need more capacity, not more management",
+    "You want work completed reliably without coordinating several additional hires or freelancers.",
+  ],
+];
+
+function Home() {
   return (
-    <SiteLayout headerTheme="dark">
-      <div className="sec-mid">
-        <Hero />
-        <TrustBar />
-        <Problems />
-        <Services />
-        <DeliveryModels />
-        <Methodology />
-        <FinalCTA />
-      </div>
-    </SiteLayout>
-  );
-}
+    <Page darkHeader heroInset>
+      <HeroArc />
 
-function ScrollScene({
-  children,
-  delay = 0,
-  direction = "up",
-  className,
-}: {
-  children: ReactNode;
-  delay?: number;
-  direction?: "up" | "down" | "left" | "right";
-  className?: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: false, margin: "-14% 0px -14% 0px" });
-  const offset = direction === "left" ? -120 : direction === "right" ? 120 : direction === "down" ? -120 : 110;
-  const isVertical = direction === "up" || direction === "down";
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 1, x: isVertical ? 0 : offset, y: isVertical ? offset : 0 }}
-      animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 1, x: isVertical ? 0 : offset * 0.55, y: isVertical ? offset * 0.55 : 0 }}
-      transition={{ duration: 1.5, delay, ease: [0.22, 1, 0.36, 1] }}
-      style={{ filter: "none", willChange: "transform" }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function RevealWords({ text, highlight }: { text: string; highlight?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: false, margin: "-12% 0px -12% 0px" });
-  const words = text.split(" ");
-
-  return (
-    <span ref={ref} aria-label={text}>
-      {words.map((word, index) => {
-        const cleanWord = word.replace(/[.,!?]/g, "");
-        const isHighlighted = highlight?.split(" ").includes(cleanWord);
-        return (
-          <span key={`${word}-${index}`} className={`inline-block overflow-hidden align-bottom ${index < words.length - 1 ? "mr-[0.22em]" : ""}`}>
-            <motion.span
-              className={`inline-block ${isHighlighted ? "text-gradient-gold" : ""}`}
-              initial={{ y: "110%", opacity: 0 }}
-              animate={isInView ? { y: "0%", opacity: 1 } : { y: "110%", opacity: 0 }}
-              transition={{ duration: 0.55, delay: index * 0.045, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {word}
-            </motion.span>
-          </span>
-        );
-      })}
-    </span>
-  );
-}
-
-function TypeLine({ text }: { text: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: false, margin: "-10% 0px -10% 0px" });
-  const [visibleText, setVisibleText] = useState("");
-
-  useEffect(() => {
-    if (!isInView) {
-      setVisibleText("");
-      return;
-    }
-
-    let index = 0;
-    const timer = window.setInterval(() => {
-      index += 1;
-      setVisibleText(text.slice(0, index));
-      if (index >= text.length) window.clearInterval(timer);
-    }, 26);
-
-    return () => window.clearInterval(timer);
-  }, [isInView, text]);
-
-  return (
-    <span ref={ref} className="inline-flex items-center">
-      {visibleText}
-      <span className="ml-1 inline-block h-4 w-px bg-current animate-pulse" aria-hidden="true" />
-    </span>
-  );
-}
-
-/* --------------------------------- HERO --------------------------------- */
-function Hero() {
-  return (
-    <section className="sec-navy relative isolate min-h-[100svh] overflow-hidden">
-      <img
-        src="/hero1.jpg"
-        alt="SuperTelque operations team working with a client"
-        className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
-      />
-      <div
-        className="absolute inset-0 -z-10 backdrop-blur-[8px]"
-        style={{
-          background:
-            "linear-gradient(to right, rgba(8, 13, 28, 0.92) 0%, rgba(8, 13, 28, 0.68) 34%, rgba(8, 13, 28, 0) 60%)",
-        }}
-      />
-
-      <div className="relative mx-auto grid min-h-[100svh] max-w-[1440px] items-end gap-10 px-4 pb-10 pt-28 lg:grid-cols-12 lg:items-center lg:gap-12 lg:px-8 lg:pb-20 lg:pt-32">
-        <div className="lg:col-span-7 xl:col-span-6">
-          <div className="max-w-4xl">
-            <div className="font-mono text-[13px] uppercase tracking-[0.22em] text-[#FFD44D] mb-4">
-              Revenue · Operations · AI
-            </div>
-            <h1 className="font-display text-[38px] font-extrabold leading-[1.02] tracking-tight text-white sm:text-[52px] lg:text-[54px] lg:leading-[0.98]">
-              Grow your business.
-              <br />
-              <span className="text-[#FFD44D]">Not your workload.</span>
-            </h1>
-
-            <ScrollReveal variant="fadeUp" delay={0.15}>
-              <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-white/72 sm:text-[17px]">
-                We build, automate and manage the sales, customer and back-office processes that keep growing businesses running, without the burden of building another internal department.
-              </p>
-            </ScrollReveal>
-
-            {/* <div className="mt-7 grid max-w-xl grid-cols-3 gap-3 border-y border-white/15 py-5">
-              {[
-                ["People", "who deliver"],
-                ["Processes", "that run"],
-                ["Automation", "that scales"],
-              ].map(([a, b]) => (
-                <div key={a}>
-                  <div className="font-mono text-[14px] uppercase tracking-[0.16em] text-[#FFD44D]">{a}</div>
-                  <div className="mt-1 text-md text-white/68">{b}</div>
+      {/* Statement + problem map — slides over the hero */}
+      <div className="relative z-10 -mt-8 rounded-t-[28px] bg-paper">
+        <section className="mx-auto max-w-6xl px-6 py-28">
+          <div className="grid gap-16 md:grid-cols-[1fr_1.3fr]">
+            <div className="md:sticky md:top-32 md:self-start">
+              <div className="flex gap-1.5" aria-hidden>
+                <span className="h-1.5 w-10 rounded-full bg-orange" />
+                <span className="h-1.5 w-10 rounded-full bg-green" />
+                <span className="h-1.5 w-10 rounded-full bg-blue" />
+              </div>
+              <p className="eyebrow mt-5 text-muted-foreground">The problem</p>
+              <h2 className="h-section mt-5">
+                <MaskText text="Your business is growing." />{" "}
+                <MaskText
+                  text="Why does everything feel harder?"
+                  className="text-blue"
+                  delay={0.2}
+                />
+              </h2>
+              <Reveal delay={0.3}>
+                <p className="mt-6 max-w-sm text-muted-foreground">
+                  We bring structure and capacity to the work that gets harder as your business
+                  grows.
+                </p>
+              </Reveal>
+              <Reveal delay={0.4}>
+                <div className="mt-10 grid max-w-sm grid-cols-3 overflow-hidden rounded-md text-ink-foreground">
+                  <div className="bg-orange p-5">
+                    <p className="font-serif text-2xl font-semibold">4</p>
+                    <p className="mt-1 text-xs opacity-85">services, one partner</p>
+                  </div>
+                  <div className="bg-green p-5">
+                    <p className="font-serif text-2xl font-semibold">
+                      20<span className="text-sm">min</span>
+                    </p>
+                    <p className="mt-1 text-xs opacity-85">operations review</p>
+                  </div>
+                  <div className="bg-blue p-5">
+                    <p className="font-serif text-2xl font-semibold">2</p>
+                    <p className="mt-1 text-xs opacity-85">ways to engage</p>
+                  </div>
                 </div>
-              ))}
-            </div> */}
+              </Reveal>
+            </div>
+            <div>
+              <p className="eyebrow mb-4 flex justify-between text-muted-foreground">
+                <span>If this sounds familiar</span>
+              </p>
+              {problems.map(([p, s], i) => {
+                const accent = [
+                  "text-orange border-orange/40 hover:border-orange",
+                  "text-blue border-blue/40 hover:border-blue",
+                  "text-green border-green/40 hover:border-green",
+                  "text-orange border-orange/40 hover:border-orange",
+                ][i % 4];
+                return (
+                  <Reveal key={p} delay={i * 0.06} y={16}>
+                    <div
+                      className={`group flex flex-col items-start justify-between gap-3 border-t-2 py-6 transition-all duration-500 sm:flex-row sm:items-baseline sm:gap-6 ${accent}`}
+                    >
+                      <p className="flex items-baseline gap-4 font-serif text-xl font-light leading-snug transition-transform duration-500 group-hover:translate-x-2">
+                        <span className="font-mono text-xs font-semibold">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="text-ink">{p}</span>
+                      </p>
+                      <p className="max-w-sm text-left text-sm text-muted-foreground transition-colors group-hover:text-ink">
+                        {s}
+                      </p>
+                    </div>
+                  </Reveal>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      </div>
 
-            <ScrollReveal variant="fadeUp" delay={0.25}>
-              <div className="mt-6 flex flex-wrap items-center gap-5">
-                <Link
-                  to="/book"
-                  className="group inline-flex items-center gap-2.5 rounded-full bg-[#FFD44D] px-5 py-3 text-[15px] font-bold text-[#080D1C] transition-all duration-200 hover:scale-[1.03] hover:bg-white"
-                >
-                  Book an Operations Review
-                  <span className="header-action-arrow" aria-hidden="true">
-                    <ArrowRight className="h-5 w-5" strokeWidth={2.25} />
-                  </span>
-                </Link>
-                
-                <Link to="/services" className="group inline-flex items-center gap-2.5 text-[15px] font-medium text-white/75 transition-colors hover:text-white border border-white px-4 py-3 rounded-full">
-                  Explore our services 
-                  <span className="header-action-arrow" aria-hidden="true">
-                    <ArrowRight className="h-5 w-5" strokeWidth={2.25} />
-                  </span>
+      {/* Services — horizontal rail driven by vertical scroll */}
+      <div className="relative z-10 -mt-8 rounded-t-[28px] bg-paper">
+        <HorizontalRail
+          heightVh={320}
+          header={(p) => (
+            <div className="mx-auto mb-10 w-full max-w-6xl px-6">
+              <div className="flex items-end justify-between gap-6">
+                <div>
+                  <p className="eyebrow text-muted-foreground">What we do</p>
+                  <h2 className="h-section mt-4 max-w-lg">
+                    Four services. One accountable partner.
+                  </h2>
+                </div>
+                <Link to="/services" className="link-underline hidden text-sm md:block">
+                  All services{" "}
+                  <ArrowRight strokeWidth={3} className="inline size-[1em] align-[-0.125em]" />
                 </Link>
               </div>
-            </ScrollReveal>
-          </div>
-        </div>
-
-        <div className="lg:col-span-5 xl:col-span-6">
-          <ToolFlow />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------- TRUST BAR ------------------------------ */
-function TrustBar() {
-  const items = [
-    L.HubSpot, L.Salesforce, L.Apollo, L.Clay, L.OpenAI, L.Stripe,
-    L.PowerBI, L.Zapier, L.N8n, L.Make, L.Slack, L.GoHighLevel,
-    L.Lemlist, L.Instantly, L.LowNoCode, L.Supabase,
-  ];
-  return (
-    <section className="sec-navy border-y border-white/06">
-      <div className="mx-auto max-w-[1440px] px-4 py-8 md:px-6 md:py-10">
-        <div className="flex items-center gap-3 md:gap-6">
-          <div className="hidden shrink-0 font-mono text-[18px] uppercase tracking-[0.22em] text-[#FFD44D] sm:block">
-            Tools we work with
-          </div>
-          <div className="relative w-full overflow-hidden mask-[linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-            <div className="flex w-max gap-14 animate-ticker md:gap-20">
-              {[...items, ...items].map((Logo, i) => (
-                <Logo key={i} />
-              ))}
+              <div className="mt-8 [&_.bg-ink-line]:bg-border">
+                <ProgressLine progress={p} />
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------- PROBLEMS ------------------------------ */
-const PROBLEMS = [
-  {
-    icon: CircleAlert,
-    image: "/problem-leads.jpg",
-    title: "Leads and inquiries go unanswered",
-    desc: "Your team is too busy delivering the service to consistently follow up with new opportunities.",
-    accent: "#FFB800",
-  },
-  {
-    icon: Clock3,
-    image: "/problem-admin.jpg",
-    title: "Your best people are buried in admin",
-    desc: "Salespeople, managers and owners spend valuable time updating systems and chasing routine tasks.",
-    accent: "#1B5EFF",
-  },
-  {
-    icon: Layers3,
-    image: "/problem-tools.jpg",
-    title: "Work gets lost between people and tools",
-    desc: "Emails, CRM records, scheduling and customer updates are disconnected.",
-    accent: "#14B8A6",
-  },
-  {
-    icon: MoveRight,
-    image: "/problem-capacity.jpg",
-    title: "You need more capacity, not more management",
-    desc: "You want work completed reliably without coordinating several additional hires or freelancers.",
-    accent: "#8B5CF6",
-  },
-] as const;
-
-function Problems() {
-  const [api, setApi] = useState<CarouselApi>();
-  const [activeProblem, setActiveProblem] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-
-  useEffect(() => {
-    if (!api) return;
-    const onSelect = () => setActiveProblem(api.selectedScrollSnap());
-    onSelect();
-    api.on("select", onSelect);
-    api.on("reInit", onSelect);
-    return () => {
-      api.off("select", onSelect);
-      api.off("reInit", onSelect);
-    };
-  }, [api]);
-
-  useEffect(() => {
-    if (!isPaused || !api) return;
-    const timer = window.setInterval(() => api.scrollNext(), 5200);
-    return () => window.clearInterval(timer);
-  }, [isPaused, api]);
-
-  return (
-    <section className="sec-white py-16 lg:py-24 overflow-hidden">
-      <div className="mx-auto max-w-[1440px] px-4 lg:px-8">
-        <SectionHeader
-          eyebrow="The problem"
-          title={
-            <RevealWords text="Your business is growing. Why does everything feel harder?" highlight="harder?" />
-          }
-        />
-        <Carousel
-          setApi={setApi}
-          opts={{ align: "center", loop: true }}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          onFocus={() => setIsPaused(true)}
-          onBlur={() => setIsPaused(false)}
-          className="problem-carousel mt-10 sm:mt-14"
+          )}
         >
-          <CarouselContent className="-ml-3 items-center sm:-ml-4" aria-live="polite">
-            {PROBLEMS.map((problem, index) => {
-              const isFocused = index === activeProblem;
-              return (
-                <CarouselItem
-                  key={problem.title}
-                  className="basis-[85%] pl-3 sm:basis-[72%] lg:basis-[64%] sm:pl-4"
-                >
-                  <article
-                    onClick={() => {
-                      if (!isFocused) api?.scrollTo(index);
-                    }}
-                    className={`problem-card group relative overflow-hidden rounded-2xl border p-6 text-left shadow-[0_24px_50px_-28px_rgba(0,0,0,.65)] transition-all duration-500 min-h-[24rem] sm:min-h-[26rem] sm:p-10 origin-center ${
-                      isFocused
-                        ? "scale-100 opacity-100 cursor-default shadow-[0_30px_60px_-20px_rgba(0,0,0,.85)]"
-                        : "scale-[0.84] opacity-55 cursor-pointer hover:opacity-80"
-                    }`}
-                    style={{
-                      backgroundColor: isFocused ? "#162038" : "#0F1628",
-                      borderColor: isFocused ? `${problem.accent}88` : "rgba(255,255,255,0.1)",
-                    }}
-                  >
-                    <img
-                      src={problem.image}
-                      alt=""
-                      aria-hidden="true"
-                      className="problem-card-visual"
-                    />
-                    <div className="problem-card-visual-shade" aria-hidden="true" />
-                    <div className="problem-card-content">
-                      <problem.icon className="h-7 w-7" style={{ color: problem.accent }} strokeWidth={1.8} />
-                      <h3 className="mt-5 font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">{problem.title}</h3>
-                      <p className="mt-3 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">{problem.desc}</p>
-                    </div>
-                  </article>
-                </CarouselItem>
-              );
-            })}
-          </CarouselContent>
+          {services.map((s, i) => (
+            <article
+              key={s.slug}
+              className="relative flex h-[60vh] min-h-[420px] w-[84vw] shrink-0 flex-col justify-end overflow-hidden rounded-md p-8 text-ink-foreground md:w-[42vw] md:p-10"
+            >
+              <img
+                src={servicePhotos[i]}
+                alt={`${s.kind}: business systems in action`}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-ink/55" />
+              <div className="absolute inset-0 image-shade" />
+              <div className="relative">
+                <p className="eyebrow text-lime">{s.kind}</p>
+                <h3 className="mt-4 font-serif text-2xl font-semibold leading-tight md:text-3xl">
+                  {s.title}
+                </h3>
+                <p className="mt-4 max-w-md text-ink-foreground/85">{s.short}</p>
+                <Cta to="/services" tone="ghost-light" className="mt-6">
+                  Explore this service
+                </Cta>
+              </div>
+            </article>
+          ))}
+          <article className="relative flex h-[60vh] min-h-[420px] w-[84vw] shrink-0 flex-col justify-end overflow-hidden rounded-md md:w-[42vw]">
+            <img
+              src={photos.work}
+              alt="Sketching a revenue system architecture"
+              width={1408}
+              height={1408}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 image-shade" />
+            <div className="relative bg-ink/70 p-8 text-ink-foreground backdrop-blur-sm md:p-10">
+              <p className="font-serif text-2xl">Not sure which you need?</p>
+              <Cta to="/book" className="mt-4">
+                Book an Operations Review
+              </Cta>
+            </div>
+          </article>
+        </HorizontalRail>
+      </div>
 
-          <div className="problem-carousel-indicators mt-7 flex items-center justify-center gap-2" role="tablist" aria-label="Problem carousel navigation">
-            {PROBLEMS.map((problem, index) => (
-              <button
-                key={problem.title}
-                type="button"
-                role="tab"
-                aria-selected={activeProblem === index}
-                aria-label={`Show problem ${index + 1}`}
-                onClick={() => api?.scrollTo(index)}
-                className={`problem-indicator ${activeProblem === index ? "problem-indicator-active" : ""}`}
-                style={{ "--indicator-color": problem.accent } as React.CSSProperties}
-              >
-                {activeProblem === index && <span className={`problem-indicator-progress ${isPaused ? "problem-indicator-progress-paused" : ""}`} />}
-              </button>
+      <EngagementModels />
+      <Method />
+
+      {/* Case index */}
+      <section className="relative z-10 bg-paper">
+        <div className="mx-auto max-w-6xl px-6 py-32">
+          <div className="flex flex-wrap items-end justify-between gap-5">
+            <div>
+              <p className="eyebrow text-muted-foreground">Illustrative workflows</p>
+              <h2 className="h-section mt-4">What connected operations can look like.</h2>
+            </div>
+            <Link to="/case-studies" className="link-underline text-sm">
+              Explore the workflows{" "}
+              <ArrowRight strokeWidth={3} className="inline size-[1em] align-[-0.125em]" />
+            </Link>
+          </div>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {cases.map((c, i) => (
+              <Reveal key={c.slug} delay={i * 0.1}>
+                <Link to="/case-studies" className="photo-tile block h-full">
+                  <img src={casePhotos[i]} alt={`${c.sector} engagement`} loading="lazy" />
+                  <div className="tile-copy">
+                    <p className="eyebrow text-lime">
+                      {c.sector} · {c.stage}
+                    </p>
+                    <h3 className="mt-4">{c.headline}</h3>
+                    <p className="mt-6 text-sm">
+                      <strong className="text-xl">{c.outcomes[0]?.[0]}</strong> {c.outcomes[0]?.[1]}{" "}
+                      <ArrowUpRight
+                        strokeWidth={3}
+                        className="inline size-[1em] align-[-0.125em]"
+                      />
+                    </p>
+                  </div>
+                </Link>
+              </Reveal>
             ))}
           </div>
-        </Carousel>
-      </div>
-    </section>
+        </div>
+        <div className="overflow-hidden border-y border-border py-6">
+          <div className="marquee flex w-max gap-16 whitespace-nowrap">
+            {[...toolLogos, ...toolLogos].map((t, i) => (
+              <span key={i} className="flex items-center gap-3">
+                <img src={t.logo} alt="" loading="lazy" className="h-7 w-7 object-contain" />
+                <span className="font-serif text-2xl font-light text-muted-foreground">
+                  {t.name}
+                </span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <ExpandingImage src={photos.workplace} alt="A bright space for collaboration and strategy">
+        <p className="eyebrow text-lime">20 minutes · Remote · No obligation</p>
+        <h2 className="h-section mt-5">Ready to stop running everything manually?</h2>
+        <p className="mt-5 max-w-lg text-ink-foreground/85">
+          Tell us what's taking too much time from your team. We'll discuss the workflow, identify
+          where support or automation could help, and determine whether there's a practical fit.
+        </p>
+        <Cta to="/book" className="mt-8">
+          Book an Operations Review
+        </Cta>
+      </ExpandingImage>
+    </Page>
   );
 }
 
-/* -------------------------------- SERVICES ------------------------------ */
-const SERVICES = [
-  {
-    code: "01",
-    title: "Managed Sales & Revenue Operations",
-    desc: "Build a more consistent sales pipeline without placing every task on your sales team.",
-    bullets: ["Prospect research & enrichment", "Outbound execution & lead qualification", "CRM management & follow-up", "Sales coordination & reporting"],
-    color: "#B9D6FF",
-  },
-  {
-    code: "02",
-    title: "Managed Customer Operations",
-    desc: "Make sure customer inquiries receive attention and appointments, communications and follow-ups stay organized.",
-    bullets: ["Inquiry management", "Appointment coordination", "Customer communications", "Service follow-up & escalation"],
-    color: "#FFD84D",
-  },
-  {
-    code: "03",
-    title: "Managed Business Operations",
-    desc: "Remove administrative bottlenecks and give your internal team more time for high-value work.",
-    bullets: ["Back-office administration", "Workflow coordination & scheduling", "Data management & SOPs", "Operational reporting"],
-    color: "#9BE3CC",
-  },
-  {
-    code: "04",
-    title: "CRM, AI & Workflow Engineering",
-    desc: "Connect your tools, automate repetitive work and create systems that support your team.",
-    bullets: ["CRM implementation & RevOps architecture", "Workflow automation & AI-assisted processes", "Integrations & dashboards", "Process documentation"],
-    color: "#D4C4FF",
-  },
-] as const;
+const steps = [
+  ["Diagnose", "Understand the workflow, bottlenecks and responsibilities."],
+  ["Design", "Define the process, people, systems and delivery scope."],
+  ["Build", "Implement the workflow and connect the tools your team uses."],
+  ["Operate", "Run the agreed work, with clear ownership and reporting."],
+  ["Improve", "Use operational feedback to refine the process over time."],
+];
 
-function Services() {
+function Method() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 60%", "end 60%"] });
+  const h = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   return (
-    <section className="sec-navy relative py-16 lg:py-24">
-      <div className="mx-auto max-w-[1440px] px-4 lg:px-8">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHeader
-            eyebrow="Services"
-            title={
-              <>Four services. <span className="text-gradient-gold">One accountable partner.</span></>
-            }
-            description="We combine experienced people, structured processes, automation and AI to run the workflows that help your business move forward."
-          />
-          <Link
-            to="/services"
-            className="hidden lg:inline-flex items-center gap-1.5 text-sm text-foreground/80 hover:text-foreground"
-          >
-            See all services <span aria-hidden>→</span>
-          </Link>
+    <section className="relative z-10 bg-blue text-ink-foreground graphic-lines">
+      <div ref={ref} className="mx-auto grid max-w-6xl gap-16 px-6 py-32 md:grid-cols-[1fr_1.3fr]">
+        <div className="md:sticky md:top-32 md:self-start">
+          <p className="eyebrow text-gold">How we work</p>
+          <h2 className="h-section mt-4">From operational bottleneck to managed delivery.</h2>
         </div>
-
-        <div className="services-stack mt-8 grid gap-3 sm:mt-12 sm:grid-cols-2 lg:grid-cols-12 lg:grid-rows-[minmax(260px,1fr)_minmax(260px,1fr)]">
-          {SERVICES.map((s, i) => (
-            <div
-              key={s.code}
-              className={`services-stack-item services-stack-item-${i + 1}`}
-            >
-              <div
-                className="service-card group relative h-full overflow-hidden rounded-[1.45rem] border border-black/8 p-7 shadow-[0_12px_30px_-24px_rgba(8,13,28,.35)]"
-                style={{ backgroundColor: s.color }}
-              >
-                <div className="absolute right-0 top-0 h-20 w-20 rounded-bl-[5rem] bg-white/35" />
-                <div className="relative mb-10 flex items-center justify-between">
-                  <Sparkles className="h-4 w-4 text-[#080D1C]/45" />
-                </div>
-                <h3 className="relative max-w-[15rem] font-display text-lg font-bold tracking-tight text-[#080D1C]">{s.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-[#080D1C]">{s.desc}</p>
-                <ul className="mt-4 space-y-1.5 font-mono text-[11px] text-[#080D1C]">
-                  {s.bullets.map((b) => (
-                    <li key={b} className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#FFB800]" />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+        <div className="relative pl-8">
+          <div className="absolute left-0 top-0 h-full w-px bg-ink-line" />
+          <motion.div style={{ height: h }} className="absolute left-0 top-0 w-px bg-gold" />
+          {steps.map(([t, d]) => (
+            <Reveal key={t} className="pb-20 last:pb-0">
+              <h3 className="font-serif text-3xl font-light">{t}</h3>
+              <p className="mt-3 max-w-md text-ink-foreground/70">{d}</p>
+            </Reveal>
           ))}
         </div>
-
-        <div className="mt-6 text-center lg:hidden">
-          <Link to="/services" className="text-sm text-foreground/70 hover:text-foreground">
-            See all services →
-          </Link>
-        </div>
       </div>
     </section>
   );
 }
 
-/* ----------------------------- DELIVERY MODELS -------------------------- */
-function DeliveryModels() {
+// Edge duplicates: last logo leads, first logo trails, so neither end is cut off.
+const arcCards = heroArcLogos;
+const STEP = 360 / arcCards.length;
+
+/** Inset card hero that expands to full bleed, then turns a 3D ring of cards — all pinned to scroll. */
+function HeroArc() {
+  const ref = useRef<HTMLElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
+  // Section is 400vh to 300vh of scroll; expansion takes the first 50vh (matches header).
+  const grow = 0.5 / 3;
+  const inset = useTransform(scrollYProgress, [0, grow], [HERO_INSET, 0]);
+  const radius = useTransform(scrollYProgress, [0, grow], [28, 0]);
+  // The first group faces you initially; scrolling brings each remaining logo forward.
+  // Turn until the last card reaches the front of the ring.
+  const rot = useTransform(scrollYProgress, [grow, 0.95], [0, -STEP * (arcCards.length - 3)]);
   return (
-    <section className="sec-white py-16 lg:py-24">
-      <div className="mx-auto max-w-[1440px] px-4 lg:px-8">
-        <SectionHeader
-          eyebrow="How we work"
-          title={
-            <RevealWords text="Two ways to work with us." highlight="work with us." />
+    <section
+      ref={ref}
+      className="relative bg-paper"
+      style={{ height: reduce ? "100dvh" : "400vh" }}
+    >
+      <div className="sticky top-0 h-dvh min-h-svh overflow-hidden">
+        <motion.div
+          style={
+            reduce
+              ? {}
+              : { left: inset, right: inset, bottom: inset, top: inset, borderRadius: radius }
           }
-        />
-        <div className="mt-10 grid gap-6 sm:grid-cols-2">
-          <ScrollScene direction="left" delay={0.1}>
-            <div className="delivery-card group relative overflow-hidden rounded-2xl border border-border bg-[#F4F6FA] p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-              <div className="absolute -right-10 -top-12 h-36 w-36 rounded-full bg-[#1B5EFF]/10 transition-transform duration-500 group-hover:scale-150" />
-              <div className="relative flex items-center justify-end">
-                <span className="rounded-full border border-[#1B5EFF]/20 bg-[#1B5EFF]/10 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-[#1B5EFF]">Build</span>
-              </div>
-              <h3 className="font-display text-2xl font-bold tracking-tight text-[#080D1C]">Build & Handover</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                We design and implement the system, document it and train your team. You own everything and run it internally.
-              </p>
-              <ul className="mt-5 space-y-2 text-sm text-foreground/80">
-                {["System design & implementation", "Full documentation", "Team training & handover", "You own the system and processes"].map((item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <Check className="h-3.5 w-3.5 text-[#1B5EFF]" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </ScrollScene>
-          <ScrollScene direction="right" delay={0.2}>
-            <div className="delivery-card group relative overflow-hidden rounded-2xl border-2 border-[#FFB800]/40 bg-[#FFFDF5] p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-              <div className="absolute -right-10 -top-12 h-36 w-36 rounded-full bg-[#FFB800]/15 transition-transform duration-500 group-hover:scale-150" />
-              <div className="relative flex items-center justify-end">
-                <span className="rounded-full bg-[#FFB800] px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-[#080D1C]">Most popular</span>
-              </div>
-              <h3 className="font-display text-2xl font-bold tracking-tight text-[#080D1C]">Build & Manage</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                We implement the workflow, operate it under an agreed scope and report on performance. We take responsibility for delivery.
-              </p>
-              <ul className="mt-5 space-y-2 text-sm text-foreground/80">
-                {["Everything in Build & Handover", "Ongoing managed operations", "Assigned people & automated steps", "Performance reporting & improvement"].map((item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <Check className="h-3.5 w-3.5 text-[#FFB800]" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </ScrollScene>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------- METHODOLOGY ---------------------------- */
-const STEPS = [
-  {
-    k: "Diagnose",
-    d: "Identify where time, customers or revenue are being lost.",
-    out: "Operational bottleneck identified",
-  },
-  {
-    k: "Design",
-    d: "Map the process, define responsibilities and agree on measurable outcomes.",
-    out: "Process map & responsibilities",
-  },
-  {
-    k: "Build",
-    d: "Configure systems, automations, documentation and operating procedures.",
-    out: "Live workflow & documentation",
-  },
-  {
-    k: "Operate",
-    d: "Run the agreed workflow with assigned people, automated steps and human oversight.",
-    out: "Managed delivery",
-  },
-  {
-    k: "Improve",
-    d: "Review performance, address exceptions and improve the process against agreed KPIs.",
-    out: "Ongoing optimization",
-  },
-] as const;
-
-function Methodology() {
-  const [activeStep, setActiveStep] = useState(0);
-
-  const items: AccordionGalleryItem[] = STEPS.map((s) => ({
-    image: `/${s.k.toLowerCase()}.png`,
-    label: s.k,
-    alt: `${s.k} process illustration`,
-  }));
-
-  const activeStepData = STEPS[activeStep];
-
-  return (
-    <section className="sec-navy relative py-16 lg:py-24">
-      <div className="mx-auto max-w-[1440px] px-4 lg:px-8">
-        <SectionHeader
-          eyebrow="Our process"
-          title={
-            <RevealWords text="From operational bottleneck to managed delivery." highlight="managed delivery." />
-          }
-        />
-        <div className="mt-10">
-          <AccordionGallery
-            items={items}
-            defaultIndex={0}
-            height={480}
-            accentColor="#FFB800"
-            overlayColor="#080D1C"
-            trigger="hover"
-            expandRatio={0.52}
-            onChange={setActiveStep}
+          className="absolute inset-0 overflow-hidden bg-blue text-ink-foreground"
+        >
+          <img
+            src={photos.sky}
+            alt="Open blue sky above the clouds"
+            fetchPriority="high"
+            className="absolute inset-0 h-full w-full object-cover"
           />
-          <div className="mt-5 text-sm leading-relaxed text-white/80">
-            <TypeLine text={activeStepData.d} />
+          <div className="absolute inset-0 hero-shade" />
+          <div className="home-hero-copy relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6 pt-[15vh] text-center">
+            <Reveal>
+              <p className="eyebrow text-lime">Revenue · Operations · AI</p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h1 className="display mt-5">Grow your business. Not your workload.</h1>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mx-auto mt-5 max-w-xl text-ink-foreground/85">
+                We build, automate and manage the sales, customer and back-office processes that
+                keep growing businesses running, without the burden of building another internal
+                department.
+              </p>
+              <div className="mt-6 flex flex-wrap justify-center gap-3">
+                <Cta to="/book">Book an Operations Review</Cta>
+                <Cta to="/services" tone="ghost-light" className="hidden sm:inline-flex">
+                  View services
+                </Cta>
+              </div>
+            </Reveal>
           </div>
-        </div>
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-[12vh] h-[clamp(150px,22vh,240px)]"
+            style={{ perspective: "2200px", perspectiveOrigin: "50% 20%" }}
+          >
+            <div
+              className="absolute left-1/2 top-0 h-full"
+              style={{ transformStyle: "preserve-3d", transform: "rotateX(-6deg)" }}
+            >
+              {arcCards.map((c, i) => (
+                <RingCard key={i} i={i} rot={rot} card={c} />
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 }
 
-/* ------------------------------- FINAL CTA ------------------------------ */
-function FinalCTA() {
+function RingCard({
+  i,
+  rot,
+  card,
+}: {
+  i: number;
+  rot: MotionValue<number>;
+  card: (typeof arcCards)[number];
+}) {
+  const angle = useTransform(rot, (r) => r + (i - 2) * STEP);
+  // The ring keeps its original radius; new cards just fill the extra angles.
+  const ringRadius = 2.1;
+  const transform = useTransform(
+    angle,
+    (a) =>
+      `translateX(-50%) rotateY(${a}deg) translateZ(calc(clamp(130px, 15vw, 230px) * ${ringRadius}))`,
+  );
+  // Only the front arc (about five cards) is visible; the rest reveal as the ring turns.
+  const opacity = useTransform(angle, heroArcOpacity);
   return (
-    <section className="cta-section relative overflow-hidden border-t border-border py-16 lg:py-24">
-      <div className="cta-orbit cta-orbit-one" aria-hidden="true" />
-      <div className="cta-orbit cta-orbit-two" aria-hidden="true" />
-      <div className="relative mx-auto max-w-4xl px-4 lg:px-6 text-center">
-        <ScrollReveal variant="scaleIn">
-          <div className="inline-flex items-center gap-2 mb-4">
-            <img src="/supertelque-logo.png" alt="" className="h-8 w-8 object-contain drop-shadow-[0_0_10px_rgba(255,184,0,0.4)]" />
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#FFB800]/70">Let's talk</span>
-          </div>
-          <h2 className="font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-[56px] lg:leading-[1.05]">
-            <RevealWords text="Ready to stop running everything manually?" highlight="everything manually?" />
-          </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
-            Tell us what's taking too much time from your team. We'll discuss the workflow, identify where support or automation could help, and determine whether there's a practical fit.
-          </p>
-          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-border bg-white/60 px-4 py-2 text-sm text-muted-foreground">
-            <span className="h-2 w-2 rounded-full bg-emerald-400" />
-            20 minutes · Remote · No obligation
-          </div>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              to="/book"
-              className="inline-flex items-center gap-2 rounded-full px-7 py-4 text-[15px] font-bold text-[#080D1C] transition-all hover:scale-[1.03] hover:shadow-[0_12px_32px_-8px_rgba(255,184,0,0.45)]"
-              style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
-            >
-              Book an Operations Review →
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-white/60 px-7 py-4 text-[15px] font-medium text-foreground/80 hover:bg-white transition-colors"
-            >
-              Contact the team
-            </Link>
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
+    <motion.div
+      style={{ transform, opacity, backfaceVisibility: "hidden" }}
+      className="absolute left-0 top-0 flex h-[78%] w-[clamp(70px,8vw,122px)] flex-col items-center justify-center gap-2 rounded-xl border border-ink-foreground/25 bg-ink-foreground/10 p-3 shadow-2xl backdrop-blur-md"
+    >
+      <img
+        src={card.logo}
+        alt={card.name}
+        loading="eager"
+        className={`max-h-[52%] w-3/5 object-contain drop-shadow-lg ${["Apollo", "OpenAI"].includes(card.name) ? "brightness-0 invert" : ""}`}
+      />
+      <p className="hidden text-xs font-medium text-ink-foreground/85 sm:block">{card.name}</p>
+    </motion.div>
   );
 }

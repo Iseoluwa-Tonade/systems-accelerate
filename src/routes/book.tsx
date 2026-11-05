@@ -1,432 +1,298 @@
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useMemo, useState, type FormEvent } from "react";
+import { z } from "zod";
 import { toast } from "sonner";
-import { SiteLayout } from "@/components/site/SiteLayout";
-import { Eyebrow } from "@/components/site/Eyebrow";
-import { ScrollReveal } from "@/components/site/ScrollReveal";
-import { BookingCalendar, formatConfirmDate } from "@/components/site/BookingCalendar";
+import { Page, PageIntro } from "@/components/site/chrome";
+import { photos } from "@/lib/photography";
+import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/site/motion";
+import { Field, SelectField, AreaField, SubmitButton } from "@/components/site/fields";
+import { challenges } from "@/lib/content";
 import { submitBookSession } from "@/lib/form-actions";
+import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/book")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: photos.workplace },
+      { name: "twitter:image", content: photos.workplace },
       { title: "Book an Operations Review | SuperTelque" },
-      { name: "description", content: "Book a 20-minute operations review with SuperTelque. Tell us what's taking too much time and we'll identify where support or automation could help." },
+      {
+        name: "description",
+        content:
+          "A 20-minute remote conversation about your workflows, support needs and automation opportunities.",
+      },
       { property: "og:title", content: "Book an Operations Review | SuperTelque" },
-      { property: "og:description", content: "20 minutes. Tell us what's slowing your team down. Free, no obligation." },
+      { property: "og:description", content: "20 minutes - Remote - No obligation." },
     ],
   }),
-  component: BookPage,
+  component: Book,
 });
 
-const SLIDE_VARIANTS = {
-  initial: (dir: number) => ({ opacity: 0, x: dir * 32 }),
-  animate: { opacity: 1, x: 0 },
-  exit: (dir: number) => ({ opacity: 0, x: dir * -32 }),
-};
-const SLIDE_TRANSITION = { duration: 0.28, ease: [0.22, 1, 0.36, 1] as const };
+const slots = ["09:00", "10:30", "13:00", "14:30", "16:00"];
+const schema = z.object({
+  full_name: z.string().trim().min(1, "Full name is required").max(120),
+  email: z.string().trim().email("Enter a valid work email").max(255),
+  company: z.string().trim().min(1, "Company is required").max(160),
+  company_size: z
+    .string()
+    .max(40)
+    .optional()
+    .transform((v) => v || ""),
+  crm: z
+    .string()
+    .trim()
+    .max(80)
+    .optional()
+    .transform((v) => v || ""),
+  challenge: z.string().min(1, "Choose a main challenge"),
+  notes: z
+    .string()
+    .trim()
+    .max(4000)
+    .optional()
+    .transform((v) => v || ""),
+});
 
-function BookPage() {
-  const [step, setStep] = useState<1 | 2 | 3>(1);
-  const [dir, setDir] = useState(1);
+function toIso(d: Date) {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
 
-  /* Step 1 */
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
+function Book() {
+  const [month, setMonth] = useState(() => {
+    const d = new Date();
+    return new Date(d.getFullYear(), d.getMonth(), 1);
+  });
+  const [day, setDay] = useState<Date | null>(null);
+  const [slot, setSlot] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [done, setDone] = useState(false);
 
-  /* Step 2 */
-  const [fullName, setFullName] = useState("");
-  const [workEmail, setWorkEmail] = useState("");
-  const [company, setCompany] = useState("");
-  const [companySize, setCompanySize] = useState("1-10");
-  const [supportType, setSupportType] = useState("Not sure");
-  const [notes, setNotes] = useState("");
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [sending, setSending] = useState(false);
+  const days = useMemo(() => {
+    const first = (month.getDay() + 6) % 7;
+    const count = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
+    return [
+      ...Array(first).fill(null),
+      ...Array.from(
+        { length: count },
+        (_, i) => new Date(month.getFullYear(), month.getMonth(), i + 1),
+      ),
+    ];
+  }, [month]);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
-  function goTo(next: 1 | 2 | 3, direction: number) {
-    setDir(direction);
-    setStep(next);
-  }
-
-  async function handleSubmit(e: React.FormEvent) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (sending || !selectedDate || !selectedSlot) return;
-    const errs: Record<string, string> = {};
-    if (!fullName.trim()) errs.fullName = "Required";
-    if (!workEmail.trim()) errs.workEmail = "Required";
-    if (!company.trim()) errs.company = "Required";
-    setErrors(errs);
-    if (Object.keys(errs).length > 0) return;
-    setSending(true);
+    if (!day || !slot) {
+      toast.error("Pick a date and time first");
+      return;
+    }
+    const parsed = schema.safeParse(Object.fromEntries(new FormData(e.currentTarget)));
+    if (!parsed.success) {
+      toast.error(parsed.error.issues[0]?.message ?? "Check the form");
+      return;
+    }
+    setBusy(true);
     try {
       await submitBookSession({
-        data: { fullName, workEmail, company, companySize, crm: supportType, challenge: supportType, notes, selectedDate: formatConfirmDate(selectedDate), selectedSlot },
+        data: {
+          fullName: parsed.data.full_name,
+          workEmail: parsed.data.email,
+          company: parsed.data.company,
+          companySize: parsed.data.company_size,
+          crm: parsed.data.crm,
+          challenge: parsed.data.challenge,
+          notes: parsed.data.notes,
+          selectedDate: toIso(day),
+          selectedSlot: slot,
+        },
       });
-      goTo(3, 1);
+      setDone(true);
     } catch {
       toast.error("Something went wrong. Please email support@supertelque.com");
     } finally {
-      setSending(false);
+      setBusy(false);
     }
   }
 
   return (
-    <SiteLayout headerTheme="dark">
-      {/* ── Hero ── */}
-      <section className="sec-navy relative isolate min-h-[540px] overflow-hidden border-b border-border lg:min-h-[600px]">
-        <img
-          src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=1600&q=80&auto=format&fit=crop"
-          alt="Professional operations review"
-          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
-        />
-        <div
-          className="absolute inset-0 -z-10 backdrop-blur-[8px]"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(8, 13, 28, 0.94) 0%, rgba(8, 13, 28, 0.72) 36%, rgba(8, 13, 28, 0) 68%)",
-          }}
-        />
-        <div className="relative mx-auto flex min-h-[540px] max-w-7xl flex-col justify-end px-4 pb-12 pt-32 lg:min-h-[600px] lg:justify-center lg:px-6 lg:pb-16 lg:pt-24">
-          <Eyebrow>Book a session</Eyebrow>
-          <h1 className="mt-5 font-display text-[32px] font-extrabold tracking-tight text-white sm:text-[44px] lg:text-[46px] lg:leading-[1.03]">
-            Book a <span className="text-gradient-gold">20-minute</span> operations review.
-          </h1>
-          <ScrollReveal variant="fadeUp" delay={0.15}>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/72 sm:text-lg">
-              Tell us what's taking too much time from your team. We'll discuss the workflow, identify where support or automation could help, and determine whether there's a practical fit.
+    <Page darkHeader>
+      <PageIntro
+        compact
+        eyebrow="Operations Review"
+        title="Let's look at your operations."
+        lede="Tell us what is taking too much time from your team. We'll explore where support or automation could help."
+        image={photos.workplace}
+      />
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <div className="grid gap-16 md:grid-cols-[1fr_1.5fr]">
+          <div className="md:sticky md:top-32 md:self-start">
+            <p className="eyebrow text-muted-foreground">Operations Review</p>
+            <h2 className="h-section mt-6">20 minutes on your operations.</h2>
+            <p className="mt-6 text-muted-foreground">Remote - No obligation.</p>
+            <p className="eyebrow mt-12 text-muted-foreground">What we discuss</p>
+            <ul className="mt-4">
+              {[
+                "The workflow taking too much time",
+                "Where handoffs or tasks get stuck",
+                "Support and automation opportunities",
+                "Which delivery model could fit",
+                "Practical next steps",
+              ].map((x) => (
+                <li key={x} className="border-t border-border py-3 text-sm">
+                  {x}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-8 text-sm text-muted-foreground">
+              Choose a preferred date and time. This is a request; the team will confirm
+              availability before the review.
             </p>
-          </ScrollReveal>
-          <ScrollReveal variant="fadeUp" delay={0.25}>
-            <div className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-white/55">
-              Free · No pressure · For growing businesses
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+          </div>
 
-      {/* ── Booking ── */}
-      <section className="sec-white">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6 py-14 lg:py-20">
-          <div className="grid gap-8 lg:grid-cols-12">
-
-            {/* ── Main card ── */}
-            <div className="lg:col-span-8">
-              <div className="rounded-2xl border border-[#E8EEFF] bg-white shadow-[0_4px_32px_rgba(27,94,255,0.07)] overflow-hidden">
-
-                {/* Step header */}
-                {step !== 3 && (
-                  <div className="px-6 pt-6 pb-5 border-b border-[#F0F4FF]">
-                    <div className="flex items-center gap-3">
-                      <div className={`flex items-center gap-2 transition-colors ${step >= 1 ? "text-[#1B5EFF]" : "text-[#4C5670]/35"}`}>
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-bold transition-colors"
-                          style={{ background: step >= 1 ? "#1B5EFF" : "#E8EEFF", color: step >= 1 ? "white" : "#4C5670" }}>
-                          {step > 1 ? (
-                            <svg viewBox="0 0 12 12" fill="none" className="h-3 w-3" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="M2 6l3 3 5-5" />
-                            </svg>
-                          ) : "1"}
-                        </span>
-                        <span className="font-mono text-[10.5px] uppercase tracking-[0.16em]">Schedule</span>
-                      </div>
-                      <div className="flex-1 h-px" style={{ background: step >= 2 ? "#1B5EFF" : "#E8EEFF" }} />
-                      <div className={`flex items-center gap-2 transition-colors ${step >= 2 ? "text-[#1B5EFF]" : "text-[#4C5670]/35"}`}>
-                        <span className="flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-bold transition-colors"
-                          style={{ background: step >= 2 ? "#1B5EFF" : "#E8EEFF", color: step >= 2 ? "white" : "#4C5670" }}>
-                          2
-                        </span>
-                        <span className="font-mono text-[10.5px] uppercase tracking-[0.16em]">Your details</span>
+          <Reveal className="border-t-4 border-orange bg-stone p-6 md:p-10">
+            {done ? (
+              <div className="flex min-h-[480px] flex-col justify-center">
+                <p className="eyebrow text-muted-foreground">Requested</p>
+                <h2 className="h-section mt-4">
+                  You're pencilled in for{" "}
+                  {day?.toLocaleDateString(undefined, {
+                    weekday: "long",
+                    month: "long",
+                    day: "numeric",
+                  })}{" "}
+                  at {slot}.
+                </h2>
+                <p className="mt-4 text-muted-foreground">
+                  We'll confirm the invite by email shortly.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={onSubmit}>
+                <div className="grid gap-8 md:grid-cols-[1.3fr_1fr]">
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <p className="font-serif text-xl">
+                        {month.toLocaleDateString(undefined, { month: "long", year: "numeric" })}
+                      </p>
+                      <div className="flex gap-1">
+                        {[-1, 1].map((d) => (
+                          <Button
+                            variant="ghost"
+                            type="button"
+                            key={d}
+                            aria-label={d < 0 ? "Previous month" : "Next month"}
+                            onClick={() =>
+                              setMonth(new Date(month.getFullYear(), month.getMonth() + d, 1))
+                            }
+                            className="h-8 w-8 rounded-full border border-border text-sm hover:border-ink"
+                          >
+                            {d < 0 ? (
+                              <ArrowLeft strokeWidth={3} className="size-4" />
+                            ) : (
+                              <ArrowRight strokeWidth={3} className="size-4" />
+                            )}
+                          </Button>
+                        ))}
                       </div>
                     </div>
-                  </div>
-                )}
-
-                {/* Step content */}
-                <div className="relative overflow-hidden">
-                  <AnimatePresence mode="wait" custom={dir}>
-                    {step === 1 && (
-                      <motion.div key="step1" custom={dir} variants={SLIDE_VARIANTS} initial="initial" animate="animate" exit="exit" transition={SLIDE_TRANSITION} className="p-6 lg:p-8">
-                        <BookingCalendar
-                          selectedDate={selectedDate}
-                          selectedSlot={selectedSlot}
-                          onDateChange={(d) => { setSelectedDate(d); setSelectedSlot(null); }}
-                          onSlotChange={setSelectedSlot}
-                        />
-                        <div className="mt-8 flex items-center justify-between border-t border-[#F0F4FF] pt-6">
-                          <div>
-                            {selectedDate && selectedSlot ? (
-                              <div className="flex items-center gap-2">
-                                <span className="relative flex h-2 w-2">
-                                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
-                                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                                </span>
-                                <span className="font-mono text-[12px] text-[#080D1C]/60">
-                                  {formatConfirmDate(selectedDate)} · {selectedSlot} WAT
-                                </span>
-                              </div>
-                            ) : (
-                              <span className="font-mono text-[12px] text-[#4C5670]/40">
-                                {selectedDate ? "Now pick a time slot" : "Pick a date to get started"}
-                              </span>
-                            )}
-                          </div>
-                          <button
+                    <div className="mt-6 grid grid-cols-7 gap-1 text-center text-xs text-muted-foreground">
+                      {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (
+                        <span key={i} className="py-1">
+                          {d}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="mt-1 grid grid-cols-7 gap-1">
+                      {days.map((d, i) => {
+                        if (!d) return <span key={i} />;
+                        const off = d < today || d.getDay() === 0 || d.getDay() === 6;
+                        const sel = day && toIso(d) === toIso(day);
+                        return (
+                          <Button
+                            variant="ghost"
                             type="button"
-                            disabled={!selectedDate || !selectedSlot}
-                            onClick={() => goTo(2, 1)}
-                            className="inline-flex items-center gap-2.5 rounded-full px-6 py-3 text-[14px] font-bold text-[#080D1C] transition-all disabled:opacity-35 disabled:pointer-events-none hover:scale-[1.02] hover:shadow-[0_8px_24px_-6px_rgba(255,184,0,0.45)]"
-                            style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
+                            key={i}
+                            disabled={off}
+                            onClick={() => {
+                              setDay(d);
+                              setSlot(null);
+                            }}
+                            className={cn(
+                              "aspect-square h-auto min-w-0 w-full p-0 rounded-full text-sm transition-colors",
+                              off ? "text-muted-foreground/40" : "hover:bg-stone",
+                              sel && "bg-ink text-ink-foreground hover:bg-ink",
+                            )}
                           >
-                            Continue
-                            <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
-                              <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                          </button>
-                        </div>
-                      </motion.div>
-                    )}
-
-                    {step === 2 && (
-                      <motion.div key="step2" custom={dir} variants={SLIDE_VARIANTS} initial="initial" animate="animate" exit="exit" transition={SLIDE_TRANSITION} className="p-6 lg:p-8">
-                        {selectedDate && selectedSlot && (
-                          <div className="mb-7 flex items-center gap-3 rounded-xl border border-[#E8EEFF] bg-[#F8FAFF] px-4 py-3">
-                            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#1B5EFF]/10">
-                              <svg viewBox="0 0 16 16" fill="none" className="h-4 w-4 text-[#1B5EFF]" stroke="currentColor" strokeWidth="1.8">
-                                <rect x="2" y="3" width="12" height="11" rx="2" /><path d="M5 1v3M11 1v3M2 7h12" strokeLinecap="round" />
-                              </svg>
-                            </div>
-                            <div>
-                              <div className="font-display text-[13px] font-semibold text-[#080D1C]">
-                                {formatConfirmDate(selectedDate)} · {selectedSlot} WAT
-                              </div>
-                              <div className="font-mono text-[10px] text-[#4C5670]/55 uppercase tracking-[0.14em]">20-minute operations review</div>
-                            </div>
-                            <button type="button" onClick={() => goTo(1, -1)} className="ml-auto font-mono text-[10.5px] text-[#1B5EFF] hover:underline shrink-0">
-                              Change
-                            </button>
-                          </div>
-                        )}
-
-                        <form onSubmit={handleSubmit} className="grid gap-5 sm:grid-cols-2">
-                          <FormField label="Full name" placeholder="Alex Morgan" value={fullName} onChange={(e) => setFullName(e.target.value)} error={errors.fullName} />
-                          <FormField label="Work email" type="email" placeholder="alex@company.com" value={workEmail} onChange={(e) => setWorkEmail(e.target.value)} error={errors.workEmail} />
-                          <FormField label="Company" placeholder="Acme Inc." value={company} onChange={(e) => setCompany(e.target.value)} error={errors.company} />
-                          <FormSelect label="Company size" options={["1-10", "11-50", "51-200", "201-500", "500+"]} value={companySize} onChange={(e) => setCompanySize(e.target.value)} />
-                          <div className="sm:col-span-2">
-                            <FormSelect
-                              label="Type of support needed"
-                              options={["Sales & Revenue Operations", "Customer Operations", "Business Operations", "CRM & Automation", "Not sure"]}
-                              value={supportType}
-                              onChange={(e) => setSupportType(e.target.value)}
-                            />
-                          </div>
-                          <div className="sm:col-span-2">
-                            <FieldLabel>What's taking too much time? (optional)</FieldLabel>
-                            <textarea
-                              rows={3}
-                              placeholder="Tell us about the workflow or process that's slowing your team down..."
-                              value={notes}
-                              onChange={(e) => setNotes(e.target.value)}
-                              className="mt-2 w-full resize-none rounded-xl border border-[#E8EEFF] bg-[#FAFBFF] px-4 py-3 text-sm text-[#080D1C] placeholder:text-[#4C5670]/40 focus:outline-none focus:ring-2 focus:ring-[#1B5EFF]/20 focus:border-[#1B5EFF]/40 transition-colors"
-                            />
-                          </div>
-                          <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-4 border-t border-[#F0F4FF] pt-5">
-                            <button type="button" onClick={() => goTo(1, -1)}
-                              className="inline-flex items-center gap-2 font-mono text-[12px] text-[#4C5670]/60 hover:text-[#080D1C] transition-colors">
-                              <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2">
-                                <path d="M13 8H3M7 4l-4 4 4 4" strokeLinecap="round" strokeLinejoin="round" />
-                              </svg>
-                              Back
-                            </button>
-                            <button
-                              type="submit"
-                              disabled={sending}
-                              className="inline-flex items-center gap-2.5 rounded-full px-7 py-3 text-[14px] font-bold text-[#080D1C] transition-all disabled:opacity-50 hover:scale-[1.02] hover:shadow-[0_8px_24px_-6px_rgba(255,184,0,0.45)]"
-                              style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}
-                            >
-                              {sending ? (
-                                <>
-                                  <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
-                                  </svg>
-                                  Confirming...
-                                </>
-                              ) : (
-                                <>
-                                  Confirm booking
-                                  <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5">
-                                    <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-                                  </svg>
-                                </>
-                              )}
-                            </button>
-                          </div>
-                        </form>
-                      </motion.div>
-                    )}
-
-                    {step === 3 && (
-                      <motion.div key="step3" custom={dir} variants={SLIDE_VARIANTS} initial="initial" animate="animate" exit="exit" transition={SLIDE_TRANSITION} className="p-10 lg:p-14 flex flex-col items-center text-center">
-                        <motion.div
-                          initial={{ scale: 0.5, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.1 }}
-                          className="flex h-16 w-16 items-center justify-center rounded-full mb-6"
-                          style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)", boxShadow: "0 8px 24px rgba(255,184,0,0.35)" }}
+                            {d.getDate()}
+                          </Button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="eyebrow text-muted-foreground">
+                      {day
+                        ? day.toLocaleDateString(undefined, {
+                            weekday: "short",
+                            day: "numeric",
+                            month: "short",
+                          })
+                        : "Choose a date"}
+                    </p>
+                    <div className="mt-4 grid gap-2">
+                      {slots.map((s) => (
+                        <Button
+                          variant="ghost"
+                          type="button"
+                          key={s}
+                          disabled={!day}
+                          onClick={() => setSlot(s)}
+                          className={cn(
+                            "rounded-full border border-border py-2.5 text-sm transition-colors disabled:opacity-40",
+                            slot === s
+                              ? "border-ink bg-ink text-ink-foreground"
+                              : "hover:border-ink",
+                          )}
                         >
-                          <svg viewBox="0 0 24 24" fill="none" className="h-8 w-8" stroke="#080D1C" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M5 12l4.5 4.5L19 7" />
-                          </svg>
-                        </motion.div>
-                        <h2 className="font-display text-2xl font-extrabold text-[#080D1C] sm:text-3xl">
-                          Session booked!
-                        </h2>
-                        <p className="mt-3 text-base text-[#4C5670] max-w-sm">
-                          We'll send a calendar invite to <strong className="text-[#080D1C]">{workEmail}</strong> shortly.
-                        </p>
-                        {selectedDate && selectedSlot && (
-                          <div className="mt-6 rounded-2xl border border-[#E8EEFF] bg-[#F8FAFF] px-6 py-4 text-center">
-                            <div className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-[#4C5670]/50 mb-1.5">Your session</div>
-                            <div className="font-display text-lg font-bold text-[#080D1C]">
-                              {formatConfirmDate(selectedDate)} · {selectedSlot} WAT
-                            </div>
-                            <div className="font-mono text-[11px] text-[#4C5670]/55 mt-1">20 min · SuperTelque LLC</div>
-                          </div>
-                        )}
-                        <div className="mt-8 flex flex-wrap gap-3 justify-center">
-                          <a href="/"
-                            className="inline-flex items-center gap-2 rounded-full border border-[#E8EEFF] px-5 py-2.5 text-sm font-medium text-[#4C5670] hover:bg-[#F4F7FF] hover:text-[#080D1C] transition-colors">
-                            Back to home
-                          </a>
-                          <a href="/services"
-                            className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold text-[#080D1C] transition-all hover:scale-[1.02]"
-                            style={{ background: "linear-gradient(135deg, #FFD44D 0%, #FFB800 100%)" }}>
-                            Explore services →
-                          </a>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                          {s} <span className="opacity-60">WAT</span>
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            {/* ── Sidebar ── */}
-            <aside className="lg:col-span-4 space-y-4">
-              <div className="rounded-2xl border border-[#E8EEFF] bg-white p-5 shadow-[0_2px_16px_rgba(0,0,0,0.04)]">
-                <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#4C5670]/55 mb-4">What you'll get</div>
-                <ul className="space-y-3">
-                  {[
-                    "Identify what's slowing your team down",
-                    "Discuss where support or automation could help",
-                    "Determine if there's a practical fit",
-                    "Clear next steps — no obligation",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <span className="mt-1.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#FFB800]/15">
-                        <svg viewBox="0 0 10 10" fill="none" className="h-2.5 w-2.5">
-                          <path d="M2 5l2.5 2.5L8 3" stroke="#B45309" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </span>
-                      <span className="text-sm text-[#4C5670]">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="rounded-2xl border border-[#E8EEFF] bg-[#FAFBFF] p-5">
-                <div className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-[#4C5670]/55 mb-3">Who it's for</div>
-                <div className="text-sm text-[#4C5670] leading-relaxed">
-                  Growing businesses that need operational support — whether you're a service company, a small team scaling up, or an organization that needs help managing processes.
+                <div className="mt-12 grid gap-8 border-t border-border pt-10 sm:grid-cols-2">
+                  <Field label="Full name" name="full_name" required />
+                  <Field label="Work email" name="email" type="email" required />
+                  <Field label="Company" name="company" required />
+                  <SelectField
+                    label="Company size"
+                    name="company_size"
+                    options={["1-20", "21-50", "51-200", "201-500", "500+"]}
+                  />
+                  <Field label="Current CRM" name="crm" />
+                  <SelectField
+                    label="Main challenge"
+                    name="challenge"
+                    options={challenges}
+                    required
+                  />
+                  <div className="sm:col-span-2">
+                    <AreaField label="Notes (optional)" name="notes" />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <SubmitButton busy={busy}>Request this session</SubmitButton>
+                  </div>
                 </div>
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {["Service businesses", "Small teams", "Growing companies", "Operations leaders"].map((t) => (
-                    <span key={t} className="rounded-full border border-[#E8EEFF] bg-white px-2.5 py-1 font-mono text-[10px] text-[#4C5670]/60">{t}</span>
-                  ))}
-                </div>
-              </div>
-            </aside>
-          </div>
+              </form>
+            )}
+          </Reveal>
         </div>
       </section>
-
-      {/* Already a client - portal CTA */}
-      <section className="sec-mid border-t border-border py-12 lg:py-16">
-        <div className="mx-auto max-w-7xl px-4 lg:px-6">
-          <div className="rounded-2xl border border-[#E0E7FF] bg-white p-8 lg:p-12 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-            <div className="flex items-start gap-5">
-              <div className="shrink-0 flex h-12 w-12 items-center justify-center rounded-xl border border-[#1B5EFF]/20 bg-[#F0F4FF]">
-                <svg viewBox="0 0 24 24" className="h-6 w-6 text-[#1B5EFF]" fill="none" stroke="currentColor" strokeWidth="1.8">
-                  <rect x="3" y="8" width="18" height="13" rx="2" />
-                  <path d="M8 8V7a4 4 0 0 1 8 0v1" strokeLinecap="round" />
-                </svg>
-              </div>
-              <div>
-                <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#1B5EFF] mb-2">Already a client?</div>
-                <h2 className="font-display text-xl font-extrabold tracking-tight text-[#080D1C] sm:text-2xl">
-                  Manage your project
-                </h2>
-                <p className="mt-2 max-w-lg text-[15px] leading-relaxed text-[#4C5670]">
-                  Track deliverables, review progress, share feedback, and collaborate with your SuperTelque team.
-                </p>
-                <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-1.5">
-                  {["Track milestones", "Review deliverables", "Collaborate with your team"].map((item) => (
-                    <li key={item} className="flex items-center gap-1.5 font-mono text-[11px] text-[#4C5670]">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#1B5EFF]" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            <a
-              href="https://crm.supertelque.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="shrink-0 inline-flex items-center gap-2 rounded-full border-2 border-[#1B5EFF] px-6 py-3.5 text-[13px] font-bold text-[#1B5EFF] transition-all hover:bg-[#1B5EFF] hover:text-white"
-            >
-              Go to client portal
-              <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </section>
-    </SiteLayout>
-  );
-}
-
-/* ─── Form primitives ─── */
-function FieldLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <label className="block font-mono text-[10.5px] uppercase tracking-[0.18em] text-[#4C5670]/60">{children}</label>
-  );
-}
-function FormField({ label, error, ...props }: React.InputHTMLAttributes<HTMLInputElement> & { label: string; error?: string }) {
-  return (
-    <div>
-      <FieldLabel>{label}</FieldLabel>
-      <input
-        {...props}
-        className="mt-2 w-full rounded-xl border border-[#E8EEFF] bg-[#FAFBFF] px-4 py-3 text-sm text-[#080D1C] placeholder:text-[#4C5670]/40 focus:outline-none focus:ring-2 focus:ring-[#1B5EFF]/20 focus:border-[#1B5EFF]/40 transition-colors"
-      />
-      {error && <p className="mt-1 font-mono text-[10px] text-red-500">{error}</p>}
-    </div>
-  );
-}
-function FormSelect({ label, options, ...props }: { label: string; options: string[] } & React.SelectHTMLAttributes<HTMLSelectElement>) {
-  return (
-    <div>
-      <FieldLabel>{label}</FieldLabel>
-      <select
-        {...props}
-        className="mt-2 w-full rounded-xl border border-[#E8EEFF] bg-[#FAFBFF] px-4 py-3 text-sm text-[#080D1C] focus:outline-none focus:ring-2 focus:ring-[#1B5EFF]/20 focus:border-[#1B5EFF]/40 transition-colors"
-      >
-        {options.map((o) => <option key={o} className="bg-white">{o}</option>)}
-      </select>
-    </div>
+    </Page>
   );
 }
